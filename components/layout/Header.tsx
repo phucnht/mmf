@@ -2,6 +2,7 @@ import { Button } from "@whammytechvn/wt-components";
 import Image from "next/image";
 import NavLink from "../navigation/NavLink";
 import { useRouter } from "next/router";
+import logo from "/public/assets/logo.png";
 
 const Header = () => {
   const router = useRouter();
@@ -14,13 +15,7 @@ const Header = () => {
     <nav
       className={`fixed z-40 w-full max-w-full max-h-32 px-6 flex justify-items-start items-center bg-[#11131b]`}
     >
-      <Image
-        layout="fill"
-        alt="Idle Glory"
-        className="w-[23rem] h-[11.3rem] ml-2 self-start mt-8"
-        src="/assets/logos/logo.png`"
-        onClick={goToHome}
-      />
+      <Image alt="Idle Glory" src={logo} onClick={goToHome} />
       <ul className="ml-4 flex gap-x-4">
         <NavLink href="/">
           <Button color="primary" content="Dashboard" />

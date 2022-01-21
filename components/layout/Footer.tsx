@@ -4,7 +4,7 @@ import Link from "../navigation/Link";
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className="sticky bottom-0 left-0">
       <NextLink href="/" passHref>
         <Link>http://mymetafarm.com</Link>
       </NextLink>
