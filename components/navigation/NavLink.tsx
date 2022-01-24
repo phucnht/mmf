@@ -26,6 +26,8 @@ export default function NavLink({
     ? pathname === href
     : pathname.startsWith(href);
 
+  console.log(pathname, href, isActive);
+
   const cxNavLink = classNames({ active: isActive }, className);
 
   return (

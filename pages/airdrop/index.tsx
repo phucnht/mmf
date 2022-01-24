@@ -1,5 +1,5 @@
 import { Box } from "@whammytechvn/wt-components";
-import Heading from "../../components/typography/Heading";
+import Heading from "components/typography/Heading";
 
 export default function Airdrop() {
   return (

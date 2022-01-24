@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Image from "next/image";
 import Head from "next/head";
-import imgHomeBanner from "../public/assets/home-banner.png";
+import imgHomeBanner from "../public/assets/airdrop-banner.png";
 
 import { Box, Container } from "@whammytechvn/wt-components";
 

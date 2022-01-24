@@ -4,7 +4,6 @@ import NavLink from "../navigation/NavLink";
 import { useRouter } from "next/router";
 import logo from "/public/assets/logo.png";
 import ButtonLogin from "../controls/button/ButtonLogin";
-import Link from "next/link";
 interface HeaderNavLinkProps {
   path: string;
   content: string;
@@ -31,14 +30,12 @@ const Header = () => {
     <nav
       className={`header-nav fixed z-40 w-full h-48 flex justify-between items-start px-12`}
     >
-      <Link href="/" passHref>
-        <Image
-          alt="Idle Glory"
-          src={logo}
-          onClick={goToHome}
-          className="hover:cursor-pointer"
-        />
-      </Link>
+      <Image
+        alt="Idle Glory"
+        src={logo}
+        onClick={goToHome}
+        className="hover:cursor-pointer"
+      />
       <ul className="ml-4 flex items-baseline gap-x-2">
         <HeaderNavLink path="/" content="Home" />
         <HeaderNavLink path="/dashboard" content="Dashboard" />
