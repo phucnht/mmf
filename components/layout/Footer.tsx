@@ -1,16 +1,13 @@
-import { Button } from "@whammytechvn/wt-components";
 import NextLink from "next/link";
 import Link from "../navigation/Link";
 
 const Footer = () => {
   return (
-    <footer className="sticky bottom-0 left-0">
+    <footer className="absolute bottom-0 left-0 w-full h-24 flex justify-between items-center bg-black bg-opacity-40 font-black text-white px-16">
       <NextLink href="/" passHref>
-        <Link>http://mymetafarm.com</Link>
+        <Link>http://www.mymetafarm.com</Link>
       </NextLink>
-      <ul
-        className={`w-full h-[6.7rem] shrink-0 mt-40 max-w-full flex justify-center items-center flex-wrap gap-12 bg-gradient-to-r from-[#0000000D] via-[#00000080] to-[#0000000D]`}
-      >
+      <ul className="flex gap-24">
         <NextLink href="/contact" passHref>
           <Link>Contact</Link>
         </NextLink>

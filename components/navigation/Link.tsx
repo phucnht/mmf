@@ -16,9 +16,9 @@ export interface LinkProps
 }
 
 const Link = ({ href, className, children, ...props }: LinkProps) => {
-  const cxLink = classNames(className);
+  const cxLink = classNames("hover:opacity-70", className);
 
-  return href ? (
+  return !href ? (
     <div className={cxLink}>{children}</div>
   ) : (
     <a href={href} className={cxLink} {...props}>
