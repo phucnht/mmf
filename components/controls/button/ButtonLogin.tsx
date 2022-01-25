@@ -1,8 +1,10 @@
+import { ButtonImage } from '@whammytechvn/wt-components';
+
 const ButtonLogin = () => {
   return (
-    <button className="bg-[url('/assets/login.png')] bg-auto w-48 h-24 flex items-center justify-center uppercase text-white font-black pt-6">
+    <ButtonImage imgSrc="/assets/login.png" className="h-[10rem] w-[19.3rem] pt-6">
       Login
-    </button>
+    </ButtonImage>
   );
 };
 

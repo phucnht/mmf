@@ -1,50 +1,28 @@
-import { Button } from "@whammytechvn/wt-components";
-import Image from "next/image";
-import NavLink from "../navigation/NavLink";
-import { useRouter } from "next/router";
-import logo from "/public/assets/logo.png";
-import ButtonLogin from "../controls/button/ButtonLogin";
-interface HeaderNavLinkProps {
-  path: string;
-  content: string;
-}
-
-const HeaderNavLink = ({ path, content }: HeaderNavLinkProps) => (
-  <NavLink href={path}>
-    <Button
-      color="primary"
-      content={content}
-      className="w-36 h-12 uppercase hover:text-[#722828]"
-    />
-  </NavLink>
-);
-
+import { Button, Scaffold } from '@whammytechvn/wt-components';
+import Image from 'next/image';
+import NavLink from '../navigation/NavLink';
+import { useRouter } from 'next/router';
+import logo from '/public/assets/logo.png';
+import ButtonLogin from '../controls/button/ButtonLogin';
 const Header = () => {
   const router = useRouter();
 
   const goToHome = () => {
-    router.push("/");
+    router.push('/');
   };
 
   return (
-    <nav
-      className={`header-nav fixed z-40 w-full h-48 flex justify-between items-start px-12`}
-    >
-      <Image
-        alt="Idle Glory"
-        src={logo}
-        onClick={goToHome}
-        className="hover:cursor-pointer"
-      />
+    <Scaffold.Header className="header-nav">
+      <Image alt="Idle Glory" src={logo} onClick={goToHome} className="hover:cursor-pointer" />
       <ul className="ml-4 flex items-baseline gap-x-2">
-        <HeaderNavLink path="/" content="Home" />
-        <HeaderNavLink path="/dashboard" content="Dashboard" />
-        <HeaderNavLink path="/marketplace" content="Marketplace" />
-        <HeaderNavLink path="/airdrop" content="Airdrop" />
-        <HeaderNavLink path="/document" content="Document" />
+        <NavLink href="/" exact content="Home" />
+        <NavLink href="/dashboard" content="Dashboard" />
+        <NavLink href="/marketplace" content="Marketplace" />
+        <NavLink href="/airdrop" content="Airdrop" />
+        <NavLink href="/document" content="Document" />
         <ButtonLogin />
       </ul>
-    </nav>
+    </Scaffold.Header>
   );
 };
 

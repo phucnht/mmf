@@ -1,10 +1,16 @@
-import { Box } from "@whammytechvn/wt-components";
-import Heading from "../../components/typography/Heading";
+import { NextPage } from 'next';
+import Head from 'next/head';
 
-export default function Document() {
+const Document: NextPage = () => {
   return (
-    <Box>
-      <Heading as="h1">Document</Heading>
-    </Box>
+    <>
+      <Head>
+        <title>Document | My Metafarm</title>
+        <meta name="description" content="Document | My Metafarm" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+    </>
   );
-}
+};
+
+export default Document;

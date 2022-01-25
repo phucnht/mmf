@@ -1,44 +1,29 @@
-import { useRouter } from "next/router";
-import Link from "next/link";
-import { ReactNode } from "react";
-import classNames from "classnames";
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+import { ReactNode } from 'react';
+import classNames from 'classnames';
+import { Button } from '@whammytechvn/wt-components';
 
 interface NavLinkProps {
+  content: string;
   href: string;
   exact?: boolean;
   disabled?: boolean;
   className?: string;
-  children: ReactNode;
 }
 
-export default function NavLink({
-  href,
-  exact,
-  disabled,
-  children,
-  className,
-  ...props
-}: NavLinkProps) {
+export default function NavLink({ content, href, exact, disabled, className }: NavLinkProps) {
   const { pathname } = useRouter();
-  const isActive = disabled
-    ? false
-    : exact
-    ? pathname === href
-    : pathname.startsWith(href);
-
-  console.log(pathname, href, isActive);
-
-  const cxNavLink = classNames({ active: isActive }, className);
+  const isActive = disabled ? false : exact ? pathname === href : pathname.startsWith(href);
+  const cxNavLink = classNames({ '!bg-yellow-gradient !text-[#722828]': isActive }, className);
 
   return (
     <Link href={href} passHref>
-      <a className={cxNavLink} {...props}>
-        {children}
-      </a>
+      <Button className={cxNavLink} color="primary" content={content} />
     </Link>
   );
 }
 
 NavLink.defaultProps = {
-  exact: false,
+  exact: false
 };

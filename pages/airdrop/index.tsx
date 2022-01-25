@@ -1,10 +1,21 @@
-import { Box } from "@whammytechvn/wt-components";
-import Heading from "components/typography/Heading";
+import { Box } from '@whammytechvn/wt-components';
+import { NextPage } from 'next';
+import Head from 'next/head';
+import Image from 'next/image';
+import imgAirdropBanner from 'public/assets/airdrop-banner.png';
 
-export default function Airdrop() {
+const Airdrop: NextPage = () => {
   return (
-    <Box>
-      <Heading as="h1">Airdrop</Heading>
-    </Box>
+    <>
+      <Head>
+        <title>Airdrop | My Metafarm</title>
+        <meta name="description" content="Airdrop | My Metafarm" />
+      </Head>
+      <Box className="-mt-16 flex flex-col">
+        <Image alt="Welcome Metaverse" src={imgAirdropBanner} />
+      </Box>
+    </>
   );
-}
+};
+
+export default Airdrop;

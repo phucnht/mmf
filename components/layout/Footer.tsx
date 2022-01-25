@@ -1,9 +1,10 @@
-import NextLink from "next/link";
-import Link from "../navigation/Link";
+import { Scaffold } from '@whammytechvn/wt-components';
+import NextLink from 'next/link';
+import Link from '../navigation/Link';
 
 const Footer = () => {
   return (
-    <footer className="absolute bottom-0 left-0 w-full h-24 flex justify-between items-center bg-black bg-opacity-40 font-black text-white px-16">
+    <Scaffold.Footer>
       <NextLink href="/" passHref>
         <Link>http://www.mymetafarm.com</Link>
       </NextLink>
@@ -21,7 +22,7 @@ const Footer = () => {
           <Link>Buy Token</Link>
         </NextLink>
       </ul>
-    </footer>
+    </Scaffold.Footer>
   );
 };
 

@@ -1,10 +1,16 @@
-import { Box } from "@whammytechvn/wt-components";
-import Heading from "../../components/typography/Heading";
+import { NextPage } from 'next';
+import Head from 'next/head';
 
-export default function Dashboard() {
+const Dashboard: NextPage = () => {
   return (
-    <Box>
-      <Heading as="h1">Dashboard</Heading>
-    </Box>
+    <>
+      <Head>
+        <title>Dashboard | My Metafarm</title>
+        <meta name="description" content="Dashboard | My Metafarm" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+    </>
   );
-}
+};
+
+export default Dashboard;
