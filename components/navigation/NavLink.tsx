@@ -15,7 +15,7 @@ interface NavLinkProps {
 export default function NavLink({ content, href, exact, disabled, className }: NavLinkProps) {
   const { pathname } = useRouter();
   const isActive = disabled ? false : exact ? pathname === href : pathname.startsWith(href);
-  const cxNavLink = classNames({ '!bg-yellow-gradient !text-[#722828]': isActive }, className);
+  const cxNavLink = classNames({ 'bg-yellow-gradient text-red-100': isActive }, className);
 
   return (
     <Link href={href} passHref>

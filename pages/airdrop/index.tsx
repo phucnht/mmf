@@ -1,8 +1,9 @@
-import { Box } from '@whammytechvn/wt-components';
+import { Box, Stack } from '@whammytechvn/wt-components';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
-import imgAirdropBanner from 'public/assets/airdrop-banner.png';
+import imgAirdropBanner from 'public/assets/airdrop/metaverse.png';
+import CardAirdrop from './components/card/CardAirdrop';
 
 const Airdrop: NextPage = () => {
   return (
@@ -11,9 +12,13 @@ const Airdrop: NextPage = () => {
         <title>Airdrop | My Metafarm</title>
         <meta name="description" content="Airdrop | My Metafarm" />
       </Head>
-      <Box className="-mt-16 flex flex-col">
-        <Image alt="Welcome Metaverse" src={imgAirdropBanner} />
-      </Box>
+      <Stack className="flex-col px-12 gap-16 container justify-center">
+        <Box className="-mt-56 flex flex-col">
+          <Image alt="Welcome Metaverse" src={imgAirdropBanner} />
+        </Box>
+        <CardAirdrop />
+        <CardAirdrop />
+      </Stack>
     </>
   );
 };

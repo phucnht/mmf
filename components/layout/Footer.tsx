@@ -1,10 +1,10 @@
 import { Scaffold } from '@whammytechvn/wt-components';
-import NextLink from 'next/link';
 import Link from '../navigation/Link';
+import NextLink from 'next/link';
 
 const Footer = () => {
   return (
-    <Scaffold.Footer>
+    <Scaffold.Footer className="text-md relative">
       <NextLink href="/" passHref>
         <Link>http://www.mymetafarm.com</Link>
       </NextLink>
