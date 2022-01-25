@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { ReactNode } from 'react';
+import { forwardRef, ReactNode } from 'react';
 import classNames from 'classnames';
 import { Button } from '@whammytechvn/wt-components';
 
@@ -11,11 +11,10 @@ interface NavLinkProps {
   disabled?: boolean;
   className?: string;
 }
-
 export default function NavLink({ content, href, exact, disabled, className }: NavLinkProps) {
   const { pathname } = useRouter();
   const isActive = disabled ? false : exact ? pathname === href : pathname.startsWith(href);
-  const cxNavLink = classNames({ 'bg-yellow-gradient text-red-100': isActive }, className);
+  const cxNavLink = classNames('py-3', { 'bg-yellow-gradient text-red-100': isActive }, className);
 
   return (
     <Link href={href} passHref>

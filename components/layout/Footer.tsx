@@ -4,7 +4,7 @@ import NextLink from 'next/link';
 
 const Footer = () => {
   return (
-    <Scaffold.Footer className="text-md relative">
+    <Scaffold.Footer className="text-md relative bg-black/40">
       <NextLink href="/" passHref>
         <Link>http://www.mymetafarm.com</Link>
       </NextLink>
