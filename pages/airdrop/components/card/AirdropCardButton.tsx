@@ -1,10 +1,7 @@
-import Image from 'next/image';
 import { FC, useEffect, useState } from 'react';
-import { Box, Button, Text, Stack } from '@whammytechvn/wt-components';
+import { Button } from '@whammytechvn/wt-components';
 
-import imgMeteverseSmall from 'public/assets/airdrop/metaverse-sm.png';
 import useModalConfirmation from 'hooks/useModal';
-import Countdown from 'components/countdown/Countdown';
 import { useAccount } from 'wagmi';
 import { useRouter } from 'next/router';
 
