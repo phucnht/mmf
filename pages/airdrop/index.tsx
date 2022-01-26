@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import imgAirdropBanner from 'public/assets/airdrop/metaverse.png';
-import CardAirdrop from './components/card/CardAirdrop';
+import CardAirdrop from './components/card/AirdropCard';
 
 const Airdrop: NextPage = () => {
   return (

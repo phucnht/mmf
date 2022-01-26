@@ -35,3 +35,5 @@ export const getChainById = (chain: string): number | null => networkConfigs[cha
 export const getExplorer = (chain: string): string => networkConfigs[chain]?.blockExplorerUrl;
 
 export const getWrappedNative = (chain: string): string | null => networkConfigs[chain]?.wrapped || null;
+
+export const hasEthereum = typeof window !== 'undefined' && typeof window.ethereum !== 'undefined';

@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import Header from './header/Header';
 import Footer from './footer/Footer';
 import { Box, Scaffold } from '@whammytechvn/wt-components';
+import { useAccount } from 'wagmi';
 
 interface LayoutProps {
   children: ReactNode;

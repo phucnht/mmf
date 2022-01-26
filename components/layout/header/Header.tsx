@@ -5,7 +5,7 @@ import logo from '/public/assets/logo.png';
 import { Box, Scaffold } from '@whammytechvn/wt-components';
 import NavLink from 'components/navigation/NavLink';
 
-import HeaderButtonUser from './HeaderButtonUser';
+import HeaderButton from './components/HeaderButton';
 import Link from 'next/link';
 
 const Header = () => {
@@ -22,7 +22,7 @@ const Header = () => {
           <NavLink href="/marketplace" content="Marketplace" />
           <NavLink href="/airdrop" content="Airdrop" />
           <NavLink href="/document" content="Document" />
-          <HeaderButtonUser />
+          <HeaderButton />
         </ul>
       </Scaffold.Header>
     </>

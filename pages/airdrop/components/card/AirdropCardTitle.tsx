@@ -4,11 +4,11 @@ import { Box, Heading, Stack } from '@whammytechvn/wt-components';
 
 import imgLogoSmall from 'public/assets/logo-sm.png';
 
-export interface CardAirdropTitleProps {
+export interface AirdropCardTitleProps {
   title: string;
 }
 
-const CardAirdropTitle: FC<CardAirdropTitleProps> = ({ title }) => (
+const AirdropCardTitle: FC<AirdropCardTitleProps> = ({ title }) => (
   <Stack className="rounded-[2rem] h-40 w-full bgg-teal divide-x-[3px] px-8">
     <Box className="pr-8">
       <Image alt="Logo Title" src={imgLogoSmall} />
@@ -19,4 +19,4 @@ const CardAirdropTitle: FC<CardAirdropTitleProps> = ({ title }) => (
   </Stack>
 );
 
-export default CardAirdropTitle;
+export default AirdropCardTitle;
