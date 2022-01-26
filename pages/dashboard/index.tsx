@@ -7,7 +7,6 @@ const Dashboard: NextPage = () => {
       <Head>
         <title>Dashboard | My Metafarm</title>
         <meta name="description" content="Dashboard | My Metafarm" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
     </>
   );

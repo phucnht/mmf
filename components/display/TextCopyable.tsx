@@ -4,7 +4,7 @@ import IconCopy from 'components/icon/IconCopy';
 import classNames from 'classnames';
 import { toast } from 'react-toastify';
 import IconButton from 'components/icon-button/IconButton';
-import { shorten } from 'utils/shorten';
+import { getEllipsisTxt } from 'utils/format';
 
 interface TextCopyableProps {
   value?: string | null;
@@ -44,7 +44,7 @@ const TextCopyable: FC<TextCopyableProps> = ({ value, className }) => {
 
   return value ? (
     <Stack className={cxTextCopyable}>
-      <Text>{shorten(value)}</Text>
+      <Text>{getEllipsisTxt(value)}</Text>
       <IconButton icon={<IconCopy />} onClick={handleCopyClick} />
     </Stack>
   ) : null;

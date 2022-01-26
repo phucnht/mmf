@@ -7,7 +7,6 @@ const Marketplace: NextPage = () => {
       <Head>
         <title>Marketplace | My Metafarm</title>
         <meta name="description" content="Marketplace | My Metafarm" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
     </>
   );

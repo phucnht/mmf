@@ -7,7 +7,6 @@ const Help: NextPage = () => {
       <Head>
         <title>Help | My Metafarm</title>
         <meta name="description" content="Help | My Metafarm" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
     </>
   );

@@ -7,7 +7,6 @@ const Home: NextPage = () => {
       <Head>
         <title>My Metafarm</title>
         <meta name="description" content="My Metafarm" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
     </>
   );

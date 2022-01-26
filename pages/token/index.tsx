@@ -7,7 +7,6 @@ const Token: NextPage = () => {
       <Head>
         <title>Token | My Metafarm</title>
         <meta name="description" content="Token | My Metafarm" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
     </>
   );

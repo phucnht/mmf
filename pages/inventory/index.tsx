@@ -7,7 +7,6 @@ const Inventory: NextPage = () => {
       <Head>
         <title>Inventory | My Metafarm</title>
         <meta name="description" content="Inventory | My Metafarm" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
     </>
   );
