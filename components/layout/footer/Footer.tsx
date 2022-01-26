@@ -1,5 +1,5 @@
 import { Scaffold } from '@whammytechvn/wt-components';
-import Link from '../navigation/Link';
+import Link from 'components/navigation/Link';
 import NextLink from 'next/link';
 
 const Footer = () => {
@@ -18,7 +18,7 @@ const Footer = () => {
         <NextLink href="/marketplace" passHref>
           <Link>Marketplace</Link>
         </NextLink>
-        <NextLink href="/buy-token" passHref>
+        <NextLink href="/token" passHref>
           <Link>Buy Token</Link>
         </NextLink>
       </ul>

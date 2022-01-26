@@ -1,7 +1,8 @@
 import '../styles/main.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 import type { AppProps } from 'next/app';
-import Layout from 'components/layout';
+import Layout from 'components/layout/Layout';
 import { Provider } from 'react-redux';
 import { store } from '../store/store';
 import { ToastContainer } from 'react-toastify';
@@ -23,6 +24,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         pauseOnFocusLoss
         draggable
         pauseOnHover
+        className="text-sm"
       />
       <ModalConfirmation />
     </Provider>

@@ -4,12 +4,12 @@
 @import 'tailwindcss/utilities';
 
 @layer components {
-  .header-nav {
-    background: linear-gradient(180deg, #65a037 0%, rgba(11, 47, 81, 0) 100%);
-  }
-
   .main-bg {
     background: linear-gradient(180deg, #0b2f51 45.86%, rgba(11, 47, 81, 0) 100%);
+  }
+
+  .bgg-green {
+    background: linear-gradient(180deg, #65a037 0%, rgba(11, 47, 81, 0) 100%);
   }
 
   .bgg-teal {

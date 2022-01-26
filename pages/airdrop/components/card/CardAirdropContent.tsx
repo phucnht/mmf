@@ -4,6 +4,7 @@ import { Box, Button, Text, Stack } from '@whammytechvn/wt-components';
 
 import imgMeteverseSmall from 'public/assets/airdrop/metaverse-sm.png';
 import useModalConfirmation from 'hooks/useModal';
+import Countdown from 'components/countdown/Countdown';
 
 export interface CardAirdropContentProps {
   content: string;
@@ -20,6 +21,7 @@ const CardAirdropContent: FC<CardAirdropContentProps> = ({ content, conditions }
   return (
     <Stack className="rounded-[2rem] bgg-black p-8 h-full flex-col divide-y divide-white/50">
       <Box className="grow">
+        <Countdown className="mb-6" />
         <Stack className="gap-12 mb-6">
           <Button compact content="Play To Earn" className="text-sm p-4 min-w-max bgg-pink" />
           <Image src={imgMeteverseSmall} alt="Metaverse" />

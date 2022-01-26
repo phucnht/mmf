@@ -7,10 +7,7 @@ export interface IconButtonProps extends ButtonProps {
 }
 
 const IconButton = ({ icon, className, ...props }: IconButtonProps) => {
-  const cxIconButton = classNames(
-    'p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none',
-    className
-  );
+  const cxIconButton = classNames('hover:opacity-75', className);
   return (
     <button className={cxIconButton} {...props}>
       {icon}

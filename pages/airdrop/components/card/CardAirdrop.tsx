@@ -1,4 +1,4 @@
-import { Box, Button, Center, Flex, Grid, Heading, Stack, Text } from '@whammytechvn/wt-components';
+import { Center, Flex, Grid } from '@whammytechvn/wt-components';
 import Image from 'next/image';
 import imgAirdrop1 from 'public/assets/airdrop/airdrop-card-1.png';
 import CardAirdropContent from './CardAirdropContent';
