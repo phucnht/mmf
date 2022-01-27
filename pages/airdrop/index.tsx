@@ -24,7 +24,7 @@ const Airdrop: NextPage = () => {
         <title>Airdrop | My Metafarm</title>
         <meta name="description" content="Airdrop | My Metafarm" />
       </Head>
-      <Stack className="flex-col px-12 gap-16 container justify-center">
+      <Stack className="flex-col gap-16 container mx-auto mt-32">
         <Box className="-mt-56 flex flex-col">
           <Image alt="Welcome Metaverse" src={imgMetaverse} />
         </Box>

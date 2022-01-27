@@ -4,11 +4,11 @@ import NextLink from 'next/link';
 
 const Footer = () => {
   return (
-    <Scaffold.Footer className="text-md relative bg-black/40">
-      <NextLink href="/" passHref>
-        <Link>http://www.mymetafarm.com</Link>
-      </NextLink>
-      <ul className="flex gap-24">
+    <Scaffold.Footer className="grid grid-cols-4 text-md relative bg-black/40 mt-32 px-12">
+      <Link href="http://www.mymetafarm.com" target="_blank" rel="noopener">
+        http://www.mymetafarm.com
+      </Link>
+      <ul className="flex justify-end gap-24 col-span-3">
         <NextLink href="/contact" passHref>
           <Link>Contact</Link>
         </NextLink>
