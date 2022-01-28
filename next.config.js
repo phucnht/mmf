@@ -1,14 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  async redirects() {
-    return [
-      {
-        source: '/marketplace',
-        destination: '/marketplace/inventory',
-        permanent: true
-      }
-    ];
+  exportPathMap: function () {
+    return {
+      '/': { page: '/' }
+    };
   },
   images: {
     loader: 'imgix',
