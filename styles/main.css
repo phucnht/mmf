@@ -3,9 +3,19 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+* {
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: 0;
+}
+
 @layer components {
   .main-bg {
     background: linear-gradient(180deg, #0b2f51 45.86%, rgba(11, 47, 81, 0) 100%);
+  }
+
+  .bgg-yellow {
+    background: linear-gradient(180deg, #f5cb5d 0%, #f2a840 100%);
   }
 
   .bgg-green {

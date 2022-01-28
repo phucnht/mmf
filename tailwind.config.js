@@ -1,6 +1,9 @@
 module.exports = {
   content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   theme: {
+    container: {
+      center: true
+    },
     fontFamily: {
       sans: ['Nunito']
     },
@@ -17,6 +20,9 @@ module.exports = {
       btn: ['1.6rem', '3.2rem']
     },
     extend: {
+      gridTemplateColumns: {
+        fluid: 'repeat(auto-fit, minmax(26rem, 1fr))'
+      },
       colors: {
         'blue-100': '#5DA8EC',
         'blue-200': '#248DEE',
@@ -52,11 +58,7 @@ module.exports = {
 
         gray: '#a8a8a8',
         'gray-content': 'white'
-      },
-      backgroundImage: {
-        'yellow-gradient': 'linear-gradient(180deg, #F5CB5D 0%, #F2A840 100%)'
-      },
-      backgroundSize: { '100%': '100%' }
+      }
     }
   },
   plugins: []

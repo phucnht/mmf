@@ -1,4 +1,4 @@
-import LayoutSideMenu from 'layouts/side-menu/LayoutSideMenu';
+import LayoutMarketplace from 'components/layouts/marketplace/LayoutMarketplace';
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
 
@@ -13,6 +13,6 @@ const History: NextPageWithLayout = () => {
   );
 };
 
-History.Layout = LayoutSideMenu;
+History.Layout = LayoutMarketplace;
 
 export default History;

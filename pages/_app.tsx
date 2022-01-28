@@ -2,7 +2,6 @@ import '../styles/main.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 import type { AppProps } from 'next/app';
-import MainLayout from 'layouts/main/MainLayout';
 import { store } from '../store/store';
 import { ToastContainer } from 'react-toastify';
 import ModalConfirmation from 'components/modal/ModalConfirmation';
@@ -12,6 +11,7 @@ import { Provider as ProviderEther, defaultChains } from 'wagmi';
 import { InjectedConnector } from 'wagmi/connectors/injected';
 import { NextPage } from 'next';
 import { ReactElement, ReactNode } from 'react';
+import MainLayout from 'components/layouts/main/MainLayout';
 
 const connectors = () => [new InjectedConnector({ chains: defaultChains })];
 

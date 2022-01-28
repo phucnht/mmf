@@ -12,13 +12,13 @@ const Header = () => {
   return (
     <>
       <Box className="absolute z-30 bgg-green h-40 w-full" />
-      <Scaffold.Header className="grid grid-cols-4 relative">
-        <Box className="min-w-[18rem] max-w-[36rem]">
+      <Scaffold.Header className="container grid grid-cols-4 relative px-0">
+        <Box className="min-w-[18rem] max-w-[35rem] w-full text-center">
           <Link href="/">
             <Image alt="Idle Glory" src={logo} className="hover:cursor-pointer" />
           </Link>
         </Box>
-        <ul className="ml-4 flex justify-end items-baseline gap-x-2 col-span-3">
+        <ul className="w-full col-span-3 flex gap-x-2 justify-end items-baseline">
           <NavLink href="/" exact content="Home" />
           <NavLink href="/dashboard" content="Dashboard" />
           <NavLink href="/marketplace" content="Marketplace" />
