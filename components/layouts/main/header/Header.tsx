@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 import logo from '/public/assets/logo.png';
 
 import { Box, Scaffold } from '@whammytechvn/wt-components';
@@ -7,6 +5,7 @@ import NavLink from 'components/navigation/NavLink';
 
 import HeaderButton from './components/HeaderButton';
 import Link from 'next/link';
+import Image from 'components/display/Image';
 
 const Header = () => {
   return (

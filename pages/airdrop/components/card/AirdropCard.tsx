@@ -1,5 +1,5 @@
 import { Box, Center, Flex, Grid } from '@whammytechvn/wt-components';
-import Image from 'next/image';
+import Image from 'components/display/Image';
 import AirdropCardContent from './AirdropCardContent';
 import AirdropCardTitle from './AirdropCardTitle';
 

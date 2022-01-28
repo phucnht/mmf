@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
+import Image from 'components/display/Image';
 
 import { Box, Stack } from '@whammytechvn/wt-components';
 import AirdropCard from './components/card/AirdropCard';

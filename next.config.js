@@ -9,6 +9,10 @@ const nextConfig = {
         permanent: true
       }
     ];
+  },
+  images: {
+    loader: 'imgix',
+    path: ''
   }
 };
 

@@ -1,5 +1,5 @@
 import { Flex, Text, Stack } from '@whammytechvn/wt-components';
-import Image from 'next/image';
+import Image from 'components/display/Image';
 
 import imgIconAirdrop from '/public/assets/icons/airdrop.png';
 import imgIconBox from '/public/assets/icons/box.png';

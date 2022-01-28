@@ -2,7 +2,7 @@ import { GridBox } from '@whammytechvn/wt-components';
 import LayoutMarketplace from 'components/layouts/marketplace/LayoutMarketplace';
 import _times from 'lodash/times';
 import Head from 'next/head';
-import Image from 'next/image';
+import Image from 'components/display/Image';
 import { NextPageWithLayout } from 'pages/_app';
 import imgItem from '/public/assets/items/item-1.png';
 

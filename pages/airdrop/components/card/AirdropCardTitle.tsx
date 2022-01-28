@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from 'components/display/Image';
 import { FC } from 'react';
 import { Box, Heading, Stack } from '@whammytechvn/wt-components';
 

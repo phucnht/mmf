@@ -1,5 +1,5 @@
 import TextCopyable from 'components/display/TextCopyable';
-import Image from 'next/image';
+import Image from 'components/display/Image';
 import { FC } from 'react';
 import { getEllipsisTxt } from 'utils/format';
 import { useAccount } from 'wagmi';
