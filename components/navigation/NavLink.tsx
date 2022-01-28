@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { forwardRef, ReactNode } from 'react';
 import classNames from 'classnames';
 import { Button } from '@whammytechvn/wt-components';
 

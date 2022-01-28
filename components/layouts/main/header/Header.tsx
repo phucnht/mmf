@@ -14,7 +14,7 @@ const Header = () => {
       <Box className="absolute z-30 bgg-green h-40 w-full" />
       <Scaffold.Header className="container grid grid-cols-4 relative px-0">
         <Box className="min-w-[18rem] max-w-[35rem] w-full text-center">
-          <Link href="/">
+          <Link href="/" passHref>
             <Image alt="Idle Glory" src={logo} className="hover:cursor-pointer" />
           </Link>
         </Box>

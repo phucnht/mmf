@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import Header from './header/Header';
 import Footer from './footer/Footer';
-import { Box, Container, Grid, Scaffold } from '@whammytechvn/wt-components';
+import { Box, Container, Scaffold } from '@whammytechvn/wt-components';
 
 interface MainLayoutProps {
   children: ReactNode;

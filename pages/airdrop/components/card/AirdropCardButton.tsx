@@ -5,15 +5,13 @@ import useModalConfirmation from 'hooks/useModal';
 import { useAccount } from 'wagmi';
 import { useRouter } from 'next/router';
 
-export interface AirdropCardButtonProps {}
-
 const ButtonType = {
   IDLE: 'idle',
   PROCESSING: 'processing',
   SUCCESS: 'success'
 };
 
-const AirdropCardButton: FC<AirdropCardButtonProps> = () => {
+const AirdropCardButton: FC = () => {
   const [{ data: account }] = useAccount();
   const router = useRouter();
   const [type, setType] = useState(ButtonType.IDLE);

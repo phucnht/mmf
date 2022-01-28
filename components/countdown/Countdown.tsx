@@ -3,7 +3,6 @@ import { useTimer } from 'react-timer-hook';
 import classNames from 'classnames';
 import { FC } from 'react';
 import { zeroPad } from 'utils/convert';
-import { useAppSelector } from 'store/store.hook';
 
 const CountdownTitle: FC<{ className?: string }> = ({ className, children }) => {
   const countdownTitleClassName = classNames('font-bold text-2xl', className);

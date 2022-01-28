@@ -1,4 +1,3 @@
-import { Fragment, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Menu, Transition } from '@headlessui/react';
 
@@ -45,10 +44,11 @@ const HeaderButtonUser = () => {
             <HeaderBalance className="px-8 py-4" value={balanceToken1?.formatted} loading={loadingToken1} />
           </Menu.Item>
           <Menu.Item>
-            <HeaderBalance className="px-8 py-4" value={balanceToken2?.formatted} loading={loadingToken1} />
+            <HeaderBalance className="px-8 py-4" value={balanceToken2?.formatted} loading={loadingToken2} />
           </Menu.Item>
           <Menu.Item>
             <div
+              role="navigation"
               onClick={() => goTo('/marketplace/inventory')}
               className="px-8 py-4 font-bold hover:bg-green-500 cursor-pointer"
             >
@@ -56,7 +56,11 @@ const HeaderButtonUser = () => {
             </div>
           </Menu.Item>
           <Menu.Item>
-            <div onClick={disconnect} className="px-8 py-4 font-bold hover:bg-green-500 cursor-pointer">
+            <div
+              role="navigation"
+              onClick={disconnect}
+              className="px-8 py-4 font-bold hover:bg-green-500 cursor-pointer"
+            >
               Disconnect
             </div>
           </Menu.Item>

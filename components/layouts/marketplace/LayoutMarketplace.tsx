@@ -3,7 +3,7 @@ import { Box, Flex } from '@whammytechvn/wt-components';
 import classNames from 'classnames';
 import UserAvatar from 'components/user-avatar/UserAvatar';
 import { useRouter } from 'next/router';
-import { Fragment, ReactElement, useEffect } from 'react';
+import { Fragment, ReactElement } from 'react';
 import InventoryTabs from './InventoryTabs';
 
 const routes = [
@@ -31,14 +31,14 @@ const routes = [
 
 export default function LayoutMarketplace(page: ReactElement) {
   const router = useRouter();
-  const currentPath = router.query.route;
-  const currentComp = routes.find(route => route.slug === router.query.route);
+  // const currentPath = router.query.route;
+  // const currentComp = routes.find(route => route.slug === router.query.route);
 
-  useEffect(() => {
-    if (currentPath && !currentComp) {
-      router.push('/404');
-    }
-  }, [router]);
+  // useEffect(() => {
+  //   if (currentPath && !currentComp) {
+  //     router.push('/404');
+  //   }
+  // }, [router, currentPath, currentComp]);
 
   const goTo = (path: string) => {
     router.push(path);
@@ -53,6 +53,7 @@ export default function LayoutMarketplace(page: ReactElement) {
             <Tab as={Fragment} key={route.slug}>
               {({ selected }) => (
                 <div
+                  role="navigation"
                   className={classNames('py-6 px-10 w-full text-left cursor-pointer', { 'bg-green-300': selected })}
                   onClick={() => goTo(`/marketplace/${encodeURIComponent(route.slug)}`)}
                 >

@@ -2,7 +2,6 @@ import React from 'react';
 import useModalConfirmation from 'hooks/useModal';
 import ModalContainer from './components/ModalContainer';
 import ModalOverlay from './components/ModalOverlay';
-import { Stack } from '@whammytechvn/wt-components';
 import ModalTypeAccount from './types/ModalTypeAccount';
 import ModalTypeConfirm from './types/ModalTypeConfirm';
 

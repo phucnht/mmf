@@ -13,7 +13,7 @@ interface TextCopyableProps {
 
 const TextCopyable: FC<TextCopyableProps> = ({ value, className }) => {
   const cxTextCopyable = classNames('justify-between items-center', className);
-  const [_, setIsCopied] = useState(false);
+  const [, setIsCopied] = useState(false);
 
   async function copyTextToClipboard(text: string) {
     if ('clipboard' in navigator) {

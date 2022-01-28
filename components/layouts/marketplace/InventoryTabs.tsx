@@ -1,4 +1,4 @@
-import { Flex, Box, Text, Stack } from '@whammytechvn/wt-components';
+import { Flex, Text, Stack } from '@whammytechvn/wt-components';
 import Image from 'next/image';
 
 import imgIconAirdrop from '/public/assets/icons/airdrop.png';
@@ -38,8 +38,8 @@ const tabs = [
 const InventoryTabs = () => (
   <Flex className="w-full py-10 px-24 rounded-[2rem] bg-green-300 justify-between -mt-[11.5rem] mb-[2.5rem]">
     {tabs.map(tab => (
-      <Stack className="uppercase font-black text-md cursor-pointer">
-        <Image src={tab.icon} />
+      <Stack key={tab.content} className="uppercase font-black text-md cursor-pointer">
+        <Image src={tab.icon} alt={tab.content} />
         <Text className="ml-3 uppercase">{tab.content}</Text>
       </Stack>
     ))}
