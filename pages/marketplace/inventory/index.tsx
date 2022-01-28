@@ -1,7 +1,8 @@
-import { NextPage } from 'next';
+import LayoutSideMenu from 'layouts/side-menu/LayoutSideMenu';
 import Head from 'next/head';
+import { NextPageWithLayout } from 'pages/_app';
 
-const Inventory: NextPage = () => {
+const Inventory: NextPageWithLayout = () => {
   return (
     <>
       <Head>
@@ -11,5 +12,7 @@ const Inventory: NextPage = () => {
     </>
   );
 };
+
+Inventory.Layout = LayoutSideMenu;
 
 export default Inventory;
