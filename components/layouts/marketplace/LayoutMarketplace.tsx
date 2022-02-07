@@ -50,7 +50,7 @@ export function LayoutMarketplace({ children }: LayoutMarketplaceProps) {
       as={Flex}
       className="grid grid-cols-4 items-start justify-start w-full gap-x-6 gap-y-4"
     >
-      <Box className="border-green-200 border-[3px] rounded-[2rem] mt-44 pt-8 pb-48 bg-[url('/assets/marketplace/sidemenu-bottom.png')] bg-bottom bg-auto bg-no-repeat min-w-[18rem] max-w-[35rem] w-full">
+      <Box className="border-green-200 border-[3px] rounded-[2rem] mt-48 pt-8 pb-48 bg-[url('/assets/marketplace/sidemenu-bottom.png')] bg-bottom bg-auto bg-no-repeat min-w-[18rem] max-w-[35rem] w-full">
         <UserAvatar className="mb-4" />
         <Tab.List className="text-white text-md flex flex-col items-start font-black">
           {routes.map(route => (
@@ -58,7 +58,9 @@ export function LayoutMarketplace({ children }: LayoutMarketplaceProps) {
               {({ selected }) => (
                 <div
                   role="navigation"
-                  className={classNames('py-6 px-10 w-full text-left cursor-pointer', { 'bg-green-300': selected })}
+                  className={classNames('py-6 px-10 w-full text-left cursor-pointer hover:bg-green-300/75', {
+                    'bg-green-300': selected
+                  })}
                   onClick={() => goTo(`/marketplace/${route.slug}`)}
                 >
                   {route.label}

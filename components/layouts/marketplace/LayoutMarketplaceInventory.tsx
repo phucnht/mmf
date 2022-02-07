@@ -69,7 +69,7 @@ export function LayoutMarketplaceInventory({ children }: LayoutMarketplaceInvent
   );
 
   const cxTabInventory = classNames(
-    "flex items-center relative uppercase font-black text-md cursor-pointer hover:after:h-2 after:h-0 after:content-[''] after:absolute after:left-0 after:-bottom-2 after:w-full after:bg-white after:rounded-3xl"
+    "flex items-center relative uppercase font-black text-md cursor-pointer hover:after:bg-white/75 hover:after:h-2 after:h-0 after:content-[''] after:absolute after:left-0 after:-bottom-2 after:w-full after:bg-white after:rounded-3xl"
   );
 
   return (
@@ -90,7 +90,7 @@ export function LayoutMarketplaceInventory({ children }: LayoutMarketplaceInvent
           </Tab>
         ))}
       </Tab.List>
-      <Tab.Panels as={Box} className="w-full text-white text-sm">
+      <Tab.Panels as={Box} className="w-full text-white text-sm mt-8">
         {children}
       </Tab.Panels>
     </Tab.Group>
