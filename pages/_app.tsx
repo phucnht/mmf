@@ -24,7 +24,7 @@ export type AppPropsWithLayout = AppProps & {
 };
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
-  const getLayout = Component.Layout || (page => page);
+  const getLayout = Component.Layout ?? (page => page);
 
   return (
     <>

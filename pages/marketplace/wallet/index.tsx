@@ -1,8 +1,8 @@
-import LayoutMarketplace from 'components/layouts/marketplace/LayoutMarketplace';
+import { LayoutPageMarketplace } from 'components/layouts/marketplace/LayoutMarketplace';
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
 
-const Wallet: NextPageWithLayout = () => {
+const MarketplaceWallet: NextPageWithLayout = () => {
   return (
     <>
       <Head>
@@ -13,6 +13,6 @@ const Wallet: NextPageWithLayout = () => {
   );
 };
 
-Wallet.Layout = LayoutMarketplace;
+MarketplaceWallet.Layout = LayoutPageMarketplace;
 
-export default Wallet;
+export default MarketplaceWallet;

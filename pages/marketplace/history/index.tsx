@@ -1,8 +1,8 @@
-import LayoutMarketplace from 'components/layouts/marketplace/LayoutMarketplace';
+import { LayoutPageMarketplace } from 'components/layouts/marketplace/LayoutMarketplace';
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
 
-const History: NextPageWithLayout = () => {
+const MarketplaceHistory: NextPageWithLayout = () => {
   return (
     <>
       <Head>
@@ -13,6 +13,6 @@ const History: NextPageWithLayout = () => {
   );
 };
 
-History.Layout = LayoutMarketplace;
+MarketplaceHistory.Layout = LayoutPageMarketplace;
 
-export default History;
+export default MarketplaceHistory;

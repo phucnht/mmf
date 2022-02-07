@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
-  if (pathname == '/marketplace') {
-    return NextResponse.redirect('/marketplace/inventory');
+  if (['/marketplace', '/marketplace/inventory'].includes(pathname)) {
+    return NextResponse.redirect('/marketplace/inventory/airdrop');
   }
   return NextResponse.next();
 }

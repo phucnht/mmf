@@ -1,8 +1,8 @@
-import LayoutMarketplace from 'components/layouts/marketplace/LayoutMarketplace';
+import { LayoutPageMarketplace } from 'components/layouts/marketplace/LayoutMarketplace';
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
 
-const Upgrade: NextPageWithLayout = () => {
+const MarketplaceUpgrade: NextPageWithLayout = () => {
   return (
     <>
       <Head>
@@ -13,6 +13,6 @@ const Upgrade: NextPageWithLayout = () => {
   );
 };
 
-Upgrade.Layout = LayoutMarketplace;
+MarketplaceUpgrade.Layout = LayoutPageMarketplace;
 
-export default Upgrade;
+export default MarketplaceUpgrade;
