@@ -1,7 +1,8 @@
-import { NextPage } from 'next';
+import { LayoutPageDefault } from 'components/layouts/default/LayoutDefault';
 import Head from 'next/head';
+import { NextPageWithLayout } from 'pages/_app';
 
-const Contact: NextPage = () => {
+const Contact: NextPageWithLayout = () => {
   return (
     <>
       <Head>
@@ -11,5 +12,7 @@ const Contact: NextPage = () => {
     </>
   );
 };
+
+Contact.Layout = LayoutPageDefault;
 
 export default Contact;

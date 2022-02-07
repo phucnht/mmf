@@ -1,4 +1,3 @@
-import { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'components/display/Image';
 
@@ -10,6 +9,8 @@ import imgAirdrop1 from 'public/assets/airdrop/airdrop-card-1.png';
 import imgAirdrop2 from 'public/assets/airdrop/airdrop-card-2.png';
 import imgSubAirdrop1 from 'public/assets/airdrop/airdrop-card-sub-1.png';
 import imgSubAirdrop2 from 'public/assets/airdrop/airdrop-card-sub-2.png';
+import { NextPageWithLayout } from 'pages/_app';
+import { LayoutPageDefault } from 'components/layouts/default/LayoutDefault';
 
 const CARD_CONTENT =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec congue turpis. Nullam feugiat mi consequat interdum tempus. Etiam lorem nisl, semper at convallis ac, dictum eu magna. Praesent non urna tempus, hendrerit nulla sit amet';
@@ -17,7 +18,7 @@ const CARD_CONTENT =
 const CARD_CONDITIONS =
   'The conditions for you to receive this award are: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec congue turpis. ';
 
-const Airdrop: NextPage = () => {
+const Airdrop: NextPageWithLayout = () => {
   return (
     <>
       <Head>
@@ -48,5 +49,7 @@ const Airdrop: NextPage = () => {
     </>
   );
 };
+
+Airdrop.Layout = LayoutPageDefault;
 
 export default Airdrop;

@@ -30,6 +30,7 @@ const routes = [
 ];
 
 const DEFAULT_SLUG = 'inventory';
+
 interface LayoutMarketplaceProps {
   children: ReactNode;
 }
@@ -58,7 +59,7 @@ export function LayoutMarketplace({ children }: LayoutMarketplaceProps) {
                 <div
                   role="navigation"
                   className={classNames('py-6 px-10 w-full text-left cursor-pointer', { 'bg-green-300': selected })}
-                  onClick={() => goTo(`/marketplace/${encodeURIComponent(route.slug)}`)}
+                  onClick={() => goTo(`/marketplace/${route.slug}`)}
                 >
                   {route.label}
                 </div>
@@ -68,7 +69,7 @@ export function LayoutMarketplace({ children }: LayoutMarketplaceProps) {
         </Tab.List>
       </Box>
       <Tab.Panels as={Box} className="col-span-3 w-full text-white text-sm">
-        <Tab.Panel>{children}</Tab.Panel>
+        {children}
       </Tab.Panels>
     </Tab.Group>
   );

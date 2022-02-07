@@ -11,7 +11,7 @@ import { Provider as ProviderEther, defaultChains } from 'wagmi';
 import { InjectedConnector } from 'wagmi/connectors/injected';
 import { NextPage } from 'next';
 import { ReactElement, ReactNode } from 'react';
-import MainLayout from 'components/layouts/main/MainLayout';
+import AppLayout from 'components/layouts/app/AppLayout';
 
 const connectors = () => [new InjectedConnector({ chains: defaultChains })];
 
@@ -24,7 +24,7 @@ export type AppPropsWithLayout = AppProps & {
 };
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
-  const getLayout = Component.Layout ?? (page => page);
+  const getLayout = Component.Layout || (page => page);
 
   return (
     <>
@@ -33,7 +33,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
       </Head>
       <ProviderEther autoConnect connectors={connectors}>
         <ProviderRedux store={store}>
-          <MainLayout>{getLayout(<Component {...pageProps} />)}</MainLayout>
+          <AppLayout>{getLayout(<Component {...pageProps} />)}</AppLayout>
           <ToastContainer
             position="top-right"
             autoClose={3000}

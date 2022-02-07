@@ -50,6 +50,7 @@ const routes = [
 ];
 
 const DEFAULT_SLUG = 'airdrop';
+
 interface LayoutMarketplaceInventoryProps {
   children: ReactNode;
 }
@@ -76,23 +77,21 @@ export function LayoutMarketplaceInventory({ children }: LayoutMarketplaceInvent
       <Tab.List as={Flex} className={cxTabsInventory}>
         {routes.map(route => (
           <Tab as={Fragment} key={route.slug}>
-            {({ selected }) => {
-              return (
-                <div
-                  key={route.slug}
-                  className={classNames(cxTabInventory, { 'after:h-2': selected })}
-                  onClick={() => goTo(`/marketplace/inventory/${encodeURIComponent(route.slug)}`)}
-                >
-                  <Image src={route.icon} alt={route.label} />
-                  <Text className="ml-3 uppercase">{route.label}</Text>
-                </div>
-              );
-            }}
+            {({ selected }) => (
+              <div
+                key={route.slug}
+                className={classNames(cxTabInventory, { 'after:h-2': selected })}
+                onClick={() => goTo(`/marketplace/inventory/${route.slug}`)}
+              >
+                <Image src={route.icon} alt={route.label} />
+                <Text className="ml-3 uppercase">{route.label}</Text>
+              </div>
+            )}
           </Tab>
         ))}
       </Tab.List>
       <Tab.Panels as={Box} className="w-full text-white text-sm">
-        <Tab.Panel>{children}</Tab.Panel>
+        {children}
       </Tab.Panels>
     </Tab.Group>
   );

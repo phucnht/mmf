@@ -13,7 +13,6 @@ const items = _times(10, i => ({
 }));
 
 const MarketplaceInventoryAirdrop: NextPageWithLayout = () => {
-  console.log(items);
   return (
     <>
       <Head>

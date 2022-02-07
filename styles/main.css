@@ -9,6 +9,10 @@
   min-height: 0;
 }
 
+html {
+  @apply !bg-blue-500;
+}
+
 @layer components {
   .main-bg {
     background: linear-gradient(180deg, #0b2f51 45.86%, rgba(11, 47, 81, 0) 100%);
