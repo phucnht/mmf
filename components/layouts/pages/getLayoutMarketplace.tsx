@@ -39,7 +39,7 @@ export function getLayoutMarketplace(page: ReactElement) {
 export function getLayoutMarketplaceOffset(page: ReactElement) {
   return (
     <Sidebar routes={routes} defaultSlug={DEFAULT_SLUG}>
-      <Box className="mt-44">{page}</Box>
+      <Box className="pt-44 h-full">{page}</Box>
     </Sidebar>
   );
 }

@@ -7,10 +7,10 @@ import { Fragment } from 'react';
 import _findIndex from 'lodash/findIndex';
 import { SidebarRoutesProps } from './sidebar.typings';
 
-export default function Sidebar({ routes, defaultSlug, children }: SidebarRoutesProps) {
+export default function Sidebar({ routes, defaultSlug, levelSlug = 2, children }: SidebarRoutesProps) {
   const router = useRouter();
 
-  const currentIndex = _findIndex(routes, { slug: defaultSlug });
+  const currentIndex = _findIndex(routes, { slug: router.pathname.split('/')[levelSlug] || defaultSlug });
 
   const goTo = (path: string) => {
     router.push(path);
@@ -46,7 +46,7 @@ export default function Sidebar({ routes, defaultSlug, children }: SidebarRoutes
           ))}
         </Tab.List>
       </Box>
-      <Tab.Panels as={Box} className="col-span-3 w-full text-white text-sm">
+      <Tab.Panels as={Box} className="col-span-3 w-full h-full text-white text-sm">
         {children}
       </Tab.Panels>
     </Tab.Group>

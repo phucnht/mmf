@@ -9,5 +9,6 @@ export interface SidebarRouteProps {
 export interface SidebarRoutesProps {
   routes: SidebarRouteProps[];
   defaultSlug: string;
+  levelSlug?: number; // for default route active
   children: ReactNode;
 }

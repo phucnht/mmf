@@ -12,6 +12,7 @@ import { InjectedConnector } from 'wagmi/connectors/injected';
 import { NextPage } from 'next';
 import { ReactElement, ReactNode } from 'react';
 import AppLayout from 'components/layouts/app/AppLayout';
+import NextNProgress from 'nextjs-progressbar';
 
 const connectors = () => [new InjectedConnector({ chains: defaultChains })];
 
@@ -31,6 +32,14 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
       <Head>
         <link rel="shortcut icon" href="/assets/favicon.ico" />
       </Head>
+      <NextNProgress
+        color="#0B2F51"
+        startPosition={0.3}
+        stopDelayMs={200}
+        height={3}
+        showOnShallow={true}
+        options={{ easing: 'ease', speed: 500 }}
+      />
       <ProviderEther connectors={connectors}>
         <ProviderRedux store={store}>
           <AppLayout>{getLayout(<Component {...pageProps} />)}</AppLayout>

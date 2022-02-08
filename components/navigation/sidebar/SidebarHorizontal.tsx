@@ -7,10 +7,10 @@ import Image from 'components/display/Image';
 import _findIndex from 'lodash/findIndex';
 import { SidebarRoutesProps } from './sidebar.typings';
 
-export default function SidebarHorizontal({ routes, defaultSlug, children }: SidebarRoutesProps) {
+export default function SidebarHorizontal({ routes, defaultSlug, levelSlug = 3, children }: SidebarRoutesProps) {
   const router = useRouter();
 
-  const currentIndex = _findIndex(routes, { slug: defaultSlug });
+  const currentIndex = _findIndex(routes, { slug: router.pathname.split('/')[levelSlug] || defaultSlug });
 
   const goTo = (path: string) => {
     router.push(path);

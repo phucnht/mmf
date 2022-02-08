@@ -21,7 +21,7 @@ const AirdropCard = ({ content, conditions, imgSrc, imgAlt, imgSubSrc, imgSubAlt
       </Flex>
       <Center className="col-span-5 flex justify-center items-center relative">
         <Image src={imgSrc} alt={imgAlt} height={776} />
-        <Box className="absolute left-12 bottom-4">
+        <Box className="absolute left-12 2xl:left-24 bottom-4">
           <Image src={imgSubSrc} alt={imgSubAlt} />
         </Box>
       </Center>
