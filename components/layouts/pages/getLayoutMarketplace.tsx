@@ -10,7 +10,7 @@ const routes = [
   },
   {
     slug: 'account',
-    label: 'Account'
+    label: 'Account Settings'
   },
   {
     slug: 'history',

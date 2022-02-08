@@ -8,16 +8,17 @@ function useModal() {
   const dispatch: AppDispatch = useDispatch();
 
   const { isOpened, title, description, type } = useSelector(
-    ({ modalConfirmation: { isOpened, title, description, type } }: AppState) => ({
+    ({ modalConfirmation: { isOpened, title, description, type, size } }: AppState) => ({
       isOpened,
       title,
       description,
-      type
+      type,
+      size
     })
   );
 
   const open = async ({ description, title, type }: ModalConfirmationPayload) => {
-    const { payload } = await dispatch(modalConfirmationThunkActions.open({ title, description, type }));
+    const { payload } = await dispatch(modalConfirmationThunkActions.open({ title, description, type, size }));
     return payload;
   };
 
@@ -34,6 +35,7 @@ function useModal() {
     title,
     description,
     type,
+    size,
     open,
     confirm,
     decline
