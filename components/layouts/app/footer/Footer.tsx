@@ -1,5 +1,5 @@
 import { Grid, Scaffold } from '@whammytechvn/wt-components';
-import Link from 'components/navigation/Link';
+import Link from 'components/navigation/link/Link';
 import NextLink from 'next/link';
 
 const Footer = () => {

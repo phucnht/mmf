@@ -10,7 +10,7 @@ import imgAirdrop2 from 'public/assets/airdrop/airdrop-card-2.png';
 import imgSubAirdrop1 from 'public/assets/airdrop/airdrop-card-sub-1.png';
 import imgSubAirdrop2 from 'public/assets/airdrop/airdrop-card-sub-2.png';
 import { NextPageWithLayout } from 'pages/_app';
-import { LayoutPageDefault } from 'components/layouts/default/LayoutDefault';
+import { getLayoutDefault } from 'components/layouts/pages/getLayoutDefault';
 
 const CARD_CONTENT =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec congue turpis. Nullam feugiat mi consequat interdum tempus. Etiam lorem nisl, semper at convallis ac, dictum eu magna. Praesent non urna tempus, hendrerit nulla sit amet';
@@ -50,6 +50,6 @@ const Airdrop: NextPageWithLayout = () => {
   );
 };
 
-Airdrop.Layout = LayoutPageDefault;
+Airdrop.getLayout = getLayoutDefault;
 
 export default Airdrop;

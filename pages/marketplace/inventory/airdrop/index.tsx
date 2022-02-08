@@ -4,7 +4,7 @@ import _times from 'lodash/times';
 import imgItem from '/public/assets/items/item-1.png';
 import { GridBox } from '@whammytechvn/wt-components';
 import Image from 'components/display/Image';
-import { LayoutPageMarketplaceInventory } from 'components/layouts/marketplace/LayoutMarketplaceInventory';
+import { getLayoutMarketplaceInventory } from 'components/layouts/pages/getLayoutMarketplaceInventory';
 
 const items = _times(10, i => ({
   id: i,
@@ -28,6 +28,6 @@ const MarketplaceInventoryAirdrop: NextPageWithLayout = () => {
   );
 };
 
-MarketplaceInventoryAirdrop.Layout = LayoutPageMarketplaceInventory;
+MarketplaceInventoryAirdrop.getLayout = getLayoutMarketplaceInventory;
 
 export default MarketplaceInventoryAirdrop;

@@ -9,6 +9,20 @@ const nextConfig = {
   images: {
     loader: 'imgix',
     path: ''
+  },
+  async redirects() {
+    return [
+      {
+        source: '/marketplace',
+        destination: '/marketplace/inventory',
+        permanent: true
+      },
+      {
+        source: '/marketplace/inventory',
+        destination: '/marketplace/inventory/airdrop',
+        permanent: true
+      }
+    ];
   }
 };
 

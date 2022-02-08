@@ -9,6 +9,6 @@ export function LayoutDefault({ children }: LayoutDefaultProps) {
   return <Box className="mt-64">{children}</Box>;
 }
 
-export function LayoutPageDefault(page: ReactElement) {
+export function getLayoutDefault(page: ReactElement) {
   return <LayoutDefault>{page}</LayoutDefault>;
 }

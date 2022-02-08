@@ -1,5 +1,5 @@
 import { Box } from '@whammytechvn/wt-components';
-import { LayoutPageDefault } from 'components/layouts/default/LayoutDefault';
+import { getLayoutDefault } from 'components/layouts/pages/getLayoutDefault';
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
 
@@ -15,6 +15,6 @@ const Dashboard: NextPageWithLayout = () => {
   );
 };
 
-Dashboard.Layout = LayoutPageDefault;
+Dashboard.getLayout = getLayoutDefault;
 
 export default Dashboard;

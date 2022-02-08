@@ -1,5 +1,5 @@
 import { Box } from '@whammytechvn/wt-components';
-import { LayoutPageMarketplace } from 'components/layouts/marketplace/LayoutMarketplace';
+import { getLayoutMarketplaceOffset } from 'components/layouts/pages/getLayoutMarketplace';
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
 
@@ -15,6 +15,6 @@ const MarketplaceAccount: NextPageWithLayout = () => {
   );
 };
 
-MarketplaceAccount.Layout = LayoutPageMarketplace;
+MarketplaceAccount.getLayout = getLayoutMarketplaceOffset;
 
 export default MarketplaceAccount;

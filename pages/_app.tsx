@@ -16,7 +16,7 @@ import AppLayout from 'components/layouts/app/AppLayout';
 const connectors = () => [new InjectedConnector({ chains: defaultChains })];
 
 export type NextPageWithLayout = NextPage & {
-  Layout?: (page: ReactElement) => ReactNode;
+  getLayout?: (page: ReactElement) => ReactNode;
 };
 
 export type AppPropsWithLayout = AppProps & {
@@ -24,14 +24,14 @@ export type AppPropsWithLayout = AppProps & {
 };
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
-  const getLayout = Component.Layout || (page => page);
+  const getLayout = Component.getLayout || (page => page);
 
   return (
     <>
       <Head>
         <link rel="shortcut icon" href="/assets/favicon.ico" />
       </Head>
-      <ProviderEther autoConnect connectors={connectors}>
+      <ProviderEther connectors={connectors}>
         <ProviderRedux store={store}>
           <AppLayout>{getLayout(<Component {...pageProps} />)}</AppLayout>
           <ToastContainer

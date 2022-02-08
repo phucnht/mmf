@@ -1,5 +1,5 @@
 import { Box } from '@whammytechvn/wt-components';
-import { LayoutPageMarketplaceInventory } from 'components/layouts/marketplace/LayoutMarketplaceInventory';
+import { getLayoutMarketplaceInventory } from 'components/layouts/pages/getLayoutMarketplaceInventory';
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
 
@@ -15,6 +15,6 @@ const MarketplaceInventoryLands: NextPageWithLayout = () => {
   );
 };
 
-MarketplaceInventoryLands.Layout = LayoutPageMarketplaceInventory;
+MarketplaceInventoryLands.getLayout = getLayoutMarketplaceInventory;
 
 export default MarketplaceInventoryLands;
