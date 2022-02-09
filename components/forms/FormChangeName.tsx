@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -16,7 +16,9 @@ export default function FormChangeName() {
     handleSubmit
   } = methods;
 
-  const onSubmit = handleSubmit(data => console.log(data));
+  const onSubmit = handleSubmit(data => {
+    console.log(data);
+  });
 
   // TODO: Need to remove this
   const styles = { alignItems: 'end' };
@@ -24,14 +26,7 @@ export default function FormChangeName() {
   return (
     <FormProvider {...methods}>
       <form onSubmit={onSubmit} className="flex gap-6" style={styles}>
-        <FormInputField
-          inputProps={{ className: '!w-full' }}
-          name="name"
-          label="Name"
-          placeholder="Name"
-          errors={errors}
-          className="w-full"
-        />
+        <FormInputField fullWidth name="name" label="Name" placeholder="Name" errors={errors} />
         <Button type="submit" compact className="!bg-blue-300 min-w-0 py-6 hover:!bg-blue-300">
           <Text className="font-normal capitalize">Change Name</Text>
         </Button>

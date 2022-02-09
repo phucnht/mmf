@@ -1,9 +1,9 @@
 import React from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { Button } from '@whammytechvn/wt-components';
 import { FormInputField } from 'components/input/InputField';
-import { Button, Text } from '@whammytechvn/wt-components';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { FormProvider, useForm } from 'react-hook-form';
 
 const schema = yup
   .object({
@@ -17,38 +17,31 @@ const schema = yup
   .required();
 
 export default function FormCreateGameProfile() {
-  const methods = useForm({
-    resolver: yupResolver(schema)
-  });
+  const methods = useForm({ resolver: yupResolver(schema) });
+
   const {
     formState: { errors },
     handleSubmit
   } = methods;
 
-  const onSubmit = handleSubmit(data => console.log(data));
+  const onSubmit = handleSubmit(data => {
+    console.log(data);
+  });
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={onSubmit} className="flex gap-6">
+      <form onSubmit={onSubmit} className="flex flex-col items-center gap-8">
+        <FormInputField fullWidth name="email" label="Email" placeholder="Email" type="email" errors={errors} />
         <FormInputField
-          inputProps={{ className: '!w-full' }}
-          name="email"
-          label="Email"
-          placeholder="Email"
-          type="email"
-          errors={errors}
-          className="w-full"
-        />
-        <FormInputField
-          inputProps={{ className: '!w-full' }}
+          fullWidth
           name="password"
           type="password"
           label="Password"
           placeholder="Password"
           errors={errors}
-          className="w-full"
+          helperText="Password should contain both letter and number, with minimum length of 8 characters"
         />
-        <Button type="submit" className="!bg-blue-300 min-w-0 py-6 hover:!bg-blue-300" content="Create Account" />
+        <Button type="submit" className="w-2/3 py-6" color="primary" content="Create Account" />
       </form>
     </FormProvider>
   );

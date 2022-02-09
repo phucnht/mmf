@@ -3,8 +3,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 export interface ModalConfirmationPayload {
   title?: string;
   description?: string;
+  size?: 'md' | 'sm';
   type: 'createGameProfile' | 'account' | 'confirm';
-  size: 'md' | 'sm';
 }
 
 export type ModalConfirmationState = {

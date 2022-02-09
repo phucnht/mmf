@@ -4,7 +4,7 @@ import { Popover, Transition } from '@headlessui/react';
 import { ButtonImage, Text } from '@whammytechvn/wt-components';
 
 import HeaderBalance from '../HeaderBalance';
-import TextCopyable from 'components/display/TextCopyable';
+import TextCopyable from 'components/display/text/TextCopyable';
 import { useAccount, useBalance } from 'wagmi';
 import HeaderButtonLogin from './HeaderButtonLogin';
 import { forwardRef } from 'react';

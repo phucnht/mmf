@@ -6,14 +6,14 @@ import IconButton from '../../icon-button/IconButton';
 import IconClose from '../../icon/IconClose';
 
 export interface ModalContainerProps {
-  size: 'md' | 'sm';
+  size?: 'md' | 'sm';
   decline: MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
 const ModalContainer: FC<ModalContainerProps> = ({ size = 'sm', decline, children }) => {
-  const cxModalContainer = classNames('relative w-auto my-6 mx-auto', {
+  const cxModalContainer = classNames('relative w-full my-6 mx-auto', {
     'max-w-3xl': size === 'sm',
-    'max-w-5xl': size === 'md'
+    'max-w-[68rem]': size === 'md'
   });
   return (
     <Box className={cxModalContainer}>

@@ -3,7 +3,7 @@ import { NextPageWithLayout } from 'pages/_app';
 import _times from 'lodash/times';
 import imgItem from '/public/assets/items/item-1.png';
 import { GridBox } from '@whammytechvn/wt-components';
-import Image from 'components/display/Image';
+import Image from 'components/display/image/Image';
 import { getLayoutMarketplaceInventory } from 'components/layouts/pages/getLayoutMarketplaceInventory';
 
 const items = _times(10, i => ({

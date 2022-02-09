@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import Image from 'components/display/Image';
+import Image from 'components/display/image/Image';
 
 import { Box, Stack } from '@whammytechvn/wt-components';
 import AirdropCard from './components/card/AirdropCard';

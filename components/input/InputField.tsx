@@ -4,12 +4,14 @@ import { FormInputText, InputText } from './InputText';
 import classNames from 'classnames';
 import InputDropdown from './InputDropdown';
 import { GroupBase, OptionsOrGroups } from 'react-select';
-import { Flex } from '@whammytechvn/wt-components';
+import { Flex, Text } from '@whammytechvn/wt-components';
 
 interface InputFieldProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
   name: string;
   label?: string;
   type?: string;
+  helperText?: string;
+  fullWidth?: boolean;
   className?: string;
   errors?: {
     [x: string]: {
@@ -27,6 +29,8 @@ export function InputField({
   name,
   label,
   type = 'text',
+  helperText,
+  fullWidth,
   className,
   inputProps,
   errors = {},
@@ -34,8 +38,9 @@ export function InputField({
   isForm = false,
   ...props
 }: InputFieldProps) {
-  const cxInputField = classNames('flex-col', className);
-  const commonProps = { readOnly: !isForm, name, ...props };
+  const cxInputField = classNames('flex-col items-start relative', { 'w-full': fullWidth }, className);
+  const cxInput = classNames({ '!w-full': fullWidth }, inputProps?.className);
+  const commonProps = { readOnly: !isForm, name, errors, ...props };
 
   let ComponentInputText = InputText;
 
@@ -51,11 +56,11 @@ export function InputField({
         </label>
       )}
       {['text', 'password', 'email'].includes(type) && (
-        <ComponentInputText id={name} className={inputProps?.className} {...commonProps} />
+        <ComponentInputText id={name} className={cxInput} {...commonProps} />
       )}
-      {type === 'dropdown' && options && (
-        <InputDropdown options={options} className={inputProps?.className} {...commonProps} />
-      )}
+      {type === 'dropdown' && options && <InputDropdown options={options} className={cxInput} {...commonProps} />}
+      {errors[name]?.message && <Text className="text-red-400 text-sm mt-4">* {errors[name]?.message}</Text>}
+      {helperText && <Text className="text-md mt-8">{helperText}</Text>}
     </Flex>
   );
 }

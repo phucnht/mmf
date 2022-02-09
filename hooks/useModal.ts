@@ -7,7 +7,7 @@ import { AppDispatch, AppState } from '../store/store';
 function useModal() {
   const dispatch: AppDispatch = useDispatch();
 
-  const { isOpened, title, description, type } = useSelector(
+  const { isOpened, title, description, type, size } = useSelector(
     ({ modalConfirmation: { isOpened, title, description, type, size } }: AppState) => ({
       isOpened,
       title,
@@ -17,7 +17,7 @@ function useModal() {
     })
   );
 
-  const open = async ({ description, title, type }: ModalConfirmationPayload) => {
+  const open = async ({ description, title, type, size }: ModalConfirmationPayload) => {
     const { payload } = await dispatch(modalConfirmationThunkActions.open({ title, description, type, size }));
     return payload;
   };

@@ -4,7 +4,7 @@ import { Box, Scaffold } from '@whammytechvn/wt-components';
 import NavLink from 'components/navigation/link/NavLink';
 
 import Link from 'next/link';
-import Image from 'components/display/Image';
+import Image from 'components/display/image/Image';
 import HeaderButtonUser from './components/HeaderButtonUser';
 
 const Header = () => {

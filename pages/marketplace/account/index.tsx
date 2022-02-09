@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Box, Button, Flex, Heading, Text } from '@whammytechvn/wt-components';
-import Divider from 'components/display/Divider';
+import Divider from 'components/display/divider/Divider';
 import { InputField } from 'components/input/InputField';
 import { getLayoutMarketplaceOffset } from 'components/layouts/pages/getLayoutMarketplace';
-import FormChangeName from 'forms/FormChangeName';
+import FormChangeName from 'components/forms/FormChangeName';
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
 import useModalConfirmation from 'hooks/useModal';
@@ -14,7 +14,7 @@ const MarketplaceAccount: NextPageWithLayout = () => {
   // Modal confirmation
   const { open } = useModalConfirmation();
   const handleOpenDialogCreateGameProfile = async () => {
-    await open({ type: 'createGameProfile' });
+    await open({ type: 'createGameProfile', size: 'md' });
   };
 
   return (
@@ -28,7 +28,7 @@ const MarketplaceAccount: NextPageWithLayout = () => {
           Account Settings
         </Heading>
         <Divider className="mt-10" />
-        <Box className="w-1/2">
+        <Box className="w-2/3">
           <Box className="mt-12">
             <Heading as="h2" className="!text-xl font-bold uppercase mb-8">
               General Settings

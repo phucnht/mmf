@@ -5,9 +5,16 @@ import ModalOverlay from './components/ModalOverlay';
 import ModalTypeAccount from './types/ModalTypeAccount';
 import ModalTypeConfirm from './types/ModalTypeConfirm';
 import ModalTypeCreateGameProfile from './types/ModalTypeCreateGameProfile';
+import { useAppDispatch } from 'store/store.hook';
+import useUnload from 'hooks/useUnload';
 
 export default function ModalConfirmation() {
   const { isOpened, type, size, title, description, confirm, decline } = useModalConfirmation();
+  const dispatch = useAppDispatch();
+
+  useUnload(() => {
+    dispatch(decline());
+  });
 
   return isOpened ? (
     <ModalOverlay>
