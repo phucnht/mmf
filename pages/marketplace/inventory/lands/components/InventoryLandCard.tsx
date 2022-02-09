@@ -4,7 +4,7 @@ import Image from 'components/display/image/Image';
 import IconStar from 'components/icon/IconStar';
 import { getCurrencyToken, getCurrencyUSD } from 'utils/format';
 
-export interface InventoryAirdropCardProps {
+export interface InventoryLandCardProps {
   item: {
     id: string;
     stars: number;
@@ -18,7 +18,7 @@ export interface InventoryAirdropCardProps {
   };
 }
 
-export default function InventoryAirdropCard({ item }: InventoryAirdropCardProps) {
+export default function InventoryLandCard({ item }: InventoryLandCardProps) {
   const cxId = classNames('text-xs font-black py-2 px-5 rounded-[2rem]', {
     'bg-blue-300': item.rarity === 'blue',
     'bg-green-500': item.rarity === 'green',

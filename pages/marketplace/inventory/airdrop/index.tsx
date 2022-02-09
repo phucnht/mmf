@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
-import { Stack, GridBox, Text, Flex } from '@whammytechvn/wt-components';
-import Image from 'components/display/image/Image';
+import { GridBox } from '@whammytechvn/wt-components';
 import { getLayoutMarketplaceInventory } from 'components/layouts/pages/getLayoutMarketplaceInventory';
 
 import _times from 'lodash/times';
@@ -12,8 +11,6 @@ import imgPants from '/public/assets/inventory/items/pants.png';
 import imgHair from '/public/assets/inventory/items/hair.png';
 import imgClothes from '/public/assets/inventory/items/clothes.png';
 import imgBoots from '/public/assets/inventory/items/boots.png';
-import { getCurrencyUSD, getCurrencyToken } from 'utils/format';
-import IconStar from 'components/icon/IconStar';
 import InventoryAirdropCard from './components/InventoryAirdropCard';
 
 const items = _times(10, i => ({
