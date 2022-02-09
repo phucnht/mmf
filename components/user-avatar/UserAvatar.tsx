@@ -3,8 +3,8 @@ import Image from 'components/display/image/Image';
 import { FC } from 'react';
 import { getEllipsisTxt } from 'utils/format';
 import { useAccount } from 'wagmi';
-import imgAvatar from 'public/assets/profile/avatar.png';
-import imgAvatarFrame from 'public/assets/profile/avatar-frame.png';
+import imgAvatar from 'public/assets/sidebar/avatar.png';
+import imgAvatarFrame from 'public/assets/sidebar/avatar-frame.png';
 import { Box, Stack } from '@whammytechvn/wt-components';
 import classNames from 'classnames';
 

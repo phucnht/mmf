@@ -2,13 +2,13 @@ import Image from 'components/display/image/Image';
 import { FC } from 'react';
 import { Box, Heading, Stack } from '@whammytechvn/wt-components';
 
-import imgLogoSmall from 'public/assets/logo-sm.png';
+import imgLogoSmall from 'public/assets/logos/logo-sm.png';
 
-export interface AirdropCardTitleProps {
+export interface MetaverseCardTitleProps {
   title: string;
 }
 
-const AirdropCardTitle: FC<AirdropCardTitleProps> = ({ title }) => (
+const MetaverseCardTitle: FC<MetaverseCardTitleProps> = ({ title }) => (
   <Stack className="rounded-[2rem] h-40 w-full bgg-teal divide-x-[3px] px-8">
     <Box className="pr-8">
       <Image alt="Logo Title" src={imgLogoSmall} />
@@ -19,4 +19,4 @@ const AirdropCardTitle: FC<AirdropCardTitleProps> = ({ title }) => (
   </Stack>
 );
 
-export default AirdropCardTitle;
+export default MetaverseCardTitle;

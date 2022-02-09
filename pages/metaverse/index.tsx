@@ -2,13 +2,13 @@ import Head from 'next/head';
 import Image from 'components/display/image/Image';
 
 import { Box, Stack } from '@whammytechvn/wt-components';
-import AirdropCard from './components/card/AirdropCard';
+import MetaverseCard from './components/card/MetaverseCard';
 
-import imgMetaverse from 'public/assets/airdrop/metaverse.png';
-import imgAirdrop1 from 'public/assets/airdrop/airdrop-card-1.png';
-import imgAirdrop2 from 'public/assets/airdrop/airdrop-card-2.png';
-import imgSubAirdrop1 from 'public/assets/airdrop/airdrop-card-sub-1.png';
-import imgSubAirdrop2 from 'public/assets/airdrop/airdrop-card-sub-2.png';
+import imgMetaverse from 'public/assets/metaverse/metaverse.png';
+import imgMetaverse1 from 'public/assets/metaverse/Metaverse-card-1.png';
+import imgMetaverse2 from 'public/assets/metaverse/Metaverse-card-2.png';
+import imgSubMetaverse1 from 'public/assets/metaverse/Metaverse-card-sub-1.png';
+import imgSubMetaverse2 from 'public/assets/metaverse/Metaverse-card-sub-2.png';
 import { NextPageWithLayout } from 'pages/_app';
 import { getLayoutDefault } from 'components/layouts/pages/getLayoutDefault';
 
@@ -18,38 +18,38 @@ const CARD_CONTENT =
 const CARD_CONDITIONS =
   'The conditions for you to receive this award are: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec congue turpis. ';
 
-const Airdrop: NextPageWithLayout = () => {
+const Metaverse: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Airdrop | My Metafarm</title>
-        <meta name="description" content="Airdrop | My Metafarm" />
+        <title>Metaverse | My Metafarm</title>
+        <meta name="description" content="Metaverse | My Metafarm" />
       </Head>
       <Stack className="flex-col gap-16 container mx-auto mt-32">
         <Box className="-mt-56 flex flex-col">
           <Image alt="Welcome Metaverse" src={imgMetaverse} />
         </Box>
-        <AirdropCard
+        <MetaverseCard
           content={CARD_CONTENT}
           conditions={CARD_CONDITIONS}
-          imgSrc={imgAirdrop1}
-          imgAlt="Airdrop 1"
-          imgSubSrc={imgSubAirdrop1}
-          imgSubAlt="Airdrop Sub 1"
+          imgSrc={imgMetaverse1}
+          imgAlt="Metaverse 1"
+          imgSubSrc={imgSubMetaverse1}
+          imgSubAlt="Metaverse Sub 1"
         />
-        <AirdropCard
+        <MetaverseCard
           content={CARD_CONTENT}
           conditions={CARD_CONDITIONS}
-          imgSrc={imgAirdrop2}
-          imgAlt="Airdrop 2"
-          imgSubSrc={imgSubAirdrop2}
-          imgSubAlt="Airdrop Sub 2"
+          imgSrc={imgMetaverse2}
+          imgAlt="Metaverse 2"
+          imgSubSrc={imgSubMetaverse2}
+          imgSubAlt="Metaverse Sub 2"
         />
       </Stack>
     </>
   );
 };
 
-Airdrop.getLayout = getLayoutDefault;
+Metaverse.getLayout = getLayoutDefault;
 
-export default Airdrop;
+export default Metaverse;

@@ -40,7 +40,7 @@ export default function SidebarHorizontal({ routes, defaultSlug, levelSlug = 3, 
           </Tab>
         ))}
       </Tab.List>
-      <Tab.Panels as={Box} className="w-full text-white text-sm mt-9">
+      <Tab.Panels as={Box} className="w-full text-white text-sm mt-10">
         {children}
       </Tab.Panels>
     </Tab.Group>

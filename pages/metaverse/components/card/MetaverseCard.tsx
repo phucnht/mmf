@@ -1,9 +1,9 @@
 import { Box, Center, Flex, Grid } from '@whammytechvn/wt-components';
 import Image from 'components/display/image/Image';
-import AirdropCardContent from './AirdropCardContent';
-import AirdropCardTitle from './AirdropCardTitle';
+import MetaverseCardContent from './MetaverseCardContent';
+import MetaverseCardTitle from './MetaverseCardTitle';
 
-export interface AirdropCardProps {
+export interface MetaverseCardProps {
   content: string;
   conditions: string;
   imgSrc: StaticImageData | string;
@@ -12,12 +12,12 @@ export interface AirdropCardProps {
   imgSubAlt: string;
 }
 
-const AirdropCard = ({ content, conditions, imgSrc, imgAlt, imgSubSrc, imgSubAlt }: AirdropCardProps) => {
+const MetaverseCard = ({ content, conditions, imgSrc, imgAlt, imgSubSrc, imgSubAlt }: MetaverseCardProps) => {
   return (
     <Grid className="grid-cols-11 gap-4 text-white text-xl font-bold">
       <Flex className="flex-col col-span-6 gap-4">
-        <AirdropCardTitle title="My Meta Farm" />
-        <AirdropCardContent content={content} conditions={conditions} />
+        <MetaverseCardTitle title="My Meta Farm" />
+        <MetaverseCardContent content={content} conditions={conditions} />
       </Flex>
       <Center className="col-span-5 flex justify-center items-center relative">
         <Image src={imgSrc} alt={imgAlt} height={776} />
@@ -29,4 +29,4 @@ const AirdropCard = ({ content, conditions, imgSrc, imgAlt, imgSubSrc, imgSubAlt
   );
 };
 
-export default AirdropCard;
+export default MetaverseCard;

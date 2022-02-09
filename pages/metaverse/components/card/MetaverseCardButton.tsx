@@ -11,7 +11,7 @@ const ButtonType = {
   SUCCESS: 'success'
 };
 
-const AirdropCardButton: FC = () => {
+const MetaverseCardButton: FC = () => {
   const [{ data: account }] = useAccount();
   const router = useRouter();
   const [type, setType] = useState(ButtonType.IDLE);
@@ -69,4 +69,4 @@ const AirdropCardButton: FC = () => {
   return renderButton;
 };
 
-export default AirdropCardButton;
+export default MetaverseCardButton;

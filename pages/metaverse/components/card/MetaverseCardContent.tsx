@@ -2,16 +2,16 @@ import Image from 'components/display/image/Image';
 import { FC } from 'react';
 import { Box, Button, Text, Stack } from '@whammytechvn/wt-components';
 
-import imgMeteverseSmall from 'public/assets/airdrop/metaverse-sm.png';
+import imgMeteverseSmall from 'public/assets/metaverse/metaverse-sm.png';
 import Countdown from 'components/countdown/Countdown';
-import AirdropCardButton from './AirdropCardButton';
+import AirdropCardButton from './MetaverseCardButton';
 
-export interface CardAirdropContentProps {
+export interface MetaverseCardContentProps {
   content: string;
   conditions: string;
 }
 
-const CardAirdropContent: FC<CardAirdropContentProps> = ({ content, conditions }) => {
+const MetaverseCardContent: FC<MetaverseCardContentProps> = ({ content, conditions }) => {
   return (
     <Stack className="rounded-[2rem] bgg-black p-8 h-full flex-col divide-y divide-white/50">
       <Box className="grow">
@@ -30,4 +30,4 @@ const CardAirdropContent: FC<CardAirdropContentProps> = ({ content, conditions }
   );
 };
 
-export default CardAirdropContent;
+export default MetaverseCardContent;

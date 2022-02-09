@@ -39,7 +39,7 @@ const HeaderButtonUser = () => {
 
   return (
     <Popover className="relative">
-      <Popover.Button as={ButtonImageRef} imgSrc="/assets/bg-header-user.png" className="h-[10rem] w-[19.3rem] pt-6">
+      <Popover.Button as={ButtonImageRef} imgSrc="/assets/bg/bg-header-user.png" className="h-[10rem] w-[19.3rem] pt-6">
         <Text className="truncate capitalize font-bold">Anthony93</Text>
       </Popover.Button>
       <Transition

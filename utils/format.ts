@@ -9,12 +9,15 @@ export const n4 = new Intl.NumberFormat('en-us', {
   maximumFractionDigits: 4
 });
 
-export const c2 = new Intl.NumberFormat('en-us', {
-  style: 'currency',
-  currency: 'USD',
-  minimumFractionDigits: 2,
-  maximumFractionDigits: 2
-});
+export const getCurrencyUSD = (value: number) =>
+  new Intl.NumberFormat('en-us', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  }).format(value);
+
+export const getCurrencyToken = (value: number) => getCurrencyUSD(value).substring(1);
 
 /**
  * Returns a string of form "abc...xyz"

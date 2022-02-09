@@ -1,12 +1,12 @@
 import { ReactElement } from 'react';
 import _findIndex from 'lodash/findIndex';
 
-import imgIconAirdrop from '/public/assets/icons/airdrop.png';
-import imgIconBox from '/public/assets/icons/box.png';
-import imgIconCharacters from '/public/assets/icons/characters.png';
-import imgIconEvents from '/public/assets/icons/events.png';
-import imgIconItems from '/public/assets/icons/items.png';
-import imgIconLands from '/public/assets/icons/lands.png';
+import imgIconAirdrop from '/public/assets/navbar/airdrop.png';
+import imgIconBox from '/public/assets/navbar/box.png';
+import imgIconCharacters from '/public/assets/navbar/characters.png';
+import imgIconEvents from '/public/assets/navbar/events.png';
+import imgIconItems from '/public/assets/navbar/items.png';
+import imgIconLands from '/public/assets/navbar/lands.png';
 import SidebarHorizontal from 'components/navigation/sidebar/SidebarHorizontal';
 import { getLayoutMarketplace } from './getLayoutMarketplace';
 

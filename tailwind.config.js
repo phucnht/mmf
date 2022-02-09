@@ -37,7 +37,8 @@ module.exports = {
         'red-a200': '#FF1A1A',
         'red-content': 'white',
 
-        pink: '#E02861',
+        'pink-100': '#FCC1D1',
+        'pink-200': '#E02861',
         'pink-content': 'white',
 
         'green-100': '#A4D64B',
@@ -53,10 +54,13 @@ module.exports = {
         'yellow-300': '#F2A840',
         'yellow-content': 'white',
 
-        'grow-100': '#A75F37',
-        'grow-content': 'white',
+        'brown-100': '#A75F37',
+        'brown-content': 'white',
 
-        gray: '#a8a8a8',
+        'gray-100': '#EEEEEE',
+        'gray-200': '#E5E5E5',
+        'gray-300': '#C4C4C4',
+        'gray-400': '#767676',
         'gray-content': 'white'
       }
     }

@@ -9,7 +9,7 @@ const HeaderButtonLogin = () => {
   };
 
   return (
-    <ButtonImage imgSrc="/assets/bg-header-user.png" className="h-[10rem] w-[19.3rem] pt-6" onClick={loginWeb3}>
+    <ButtonImage imgSrc="/assets/bg/bg-header-user.png" className="h-[10rem] w-[19.3rem] pt-6" onClick={loginWeb3}>
       <Text>Login</Text>
     </ButtonImage>
   );

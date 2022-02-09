@@ -1,4 +1,4 @@
-import logo from '/public/assets/logo.png';
+import logo from '/public/assets/logos/logo.png';
 
 import { Box, Scaffold } from '@whammytechvn/wt-components';
 import NavLink from 'components/navigation/link/NavLink';
@@ -23,7 +23,7 @@ const Header = () => {
           <NavLink href="/" exact content="Home" />
           <NavLink href="/dashboard" content="Dashboard" />
           <NavLink href="/marketplace" content="Marketplace" />
-          <NavLink href="/airdrop" content="Airdrop" />
+          <NavLink href="/metaverse" content="Metaverse" />
           <NavLink href="/document" content="Document" />
           <HeaderButtonUser />
         </ul>
