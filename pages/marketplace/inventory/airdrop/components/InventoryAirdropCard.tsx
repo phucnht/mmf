@@ -1,7 +1,7 @@
 import { Stack, Text, Flex } from '@whammytechvn/wt-components';
 import classNames from 'classnames';
 import Image from 'components/display/image/Image';
-import IconStar from 'components/icon/IconStar';
+import { IconStar } from 'components/icon/IconStar';
 import { getCurrencyToken, getCurrencyUSD } from 'utils/format';
 
 export interface InventoryAirdropCardProps {

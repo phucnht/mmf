@@ -1,4 +1,6 @@
-export default function IconStar() {
+import { Center } from '@whammytechvn/wt-components';
+
+export function IconStar({}) {
   return (
     <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -7,5 +9,13 @@ export default function IconStar() {
         stroke="black"
       />
     </svg>
+  );
+}
+
+export function IconStarRounded({}) {
+  return (
+    <Center className="flex justify-center items-center rounded-full w-[4.4rem] h-[4.4rem] bg-[#6DA900] p-4">
+      <IconStar />
+    </Center>
   );
 }

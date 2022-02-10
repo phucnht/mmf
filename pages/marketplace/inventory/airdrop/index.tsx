@@ -32,7 +32,7 @@ const MarketplaceInventoryAirdrop: NextPageWithLayout = () => {
         <title>Inventory - Airdrop | My Metafarm</title>
         <meta name="description" content="Inventory - Airdrop | My Metafarm" />
       </Head>
-      <GridBox className="grid-cols-fluid gap-14">
+      <GridBox className="grid-cols-fluid-3 gap-14">
         {items.map((item, index) => (
           <InventoryAirdropCard key={index} item={item} />
         ))}

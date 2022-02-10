@@ -19,7 +19,7 @@ const MarketplaceInventoryItems: NextPageWithLayout = () => {
         <title>Inventory - Items | My Metafarm</title>
         <meta name="description" content="Inventory - Items | My Metafarm" />
       </Head>
-      <GridBox className="grid-cols-fluid gap-4">
+      <GridBox className="grid-cols-fluid-3 gap-4">
         {items.map(item => (
           <Image key={item.id} alt={item.name} src={item.imgSrc} />
         ))}

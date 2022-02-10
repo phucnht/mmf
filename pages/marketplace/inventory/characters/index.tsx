@@ -24,7 +24,7 @@ const MarketplaceInventoryCharacters: NextPageWithLayout = () => {
         <title>Inventory - Characters | My Metafarm</title>
         <meta name="description" content="Inventory - Characters | My Metafarm" />
       </Head>
-      <GridBox className="grid-cols-fluid gap-14">
+      <GridBox className="grid-cols-fluid-2 gap-10">
         {items.map((item, index) => (
           <InventoryCharacterCard key={index} item={item} />
         ))}
