@@ -4,6 +4,7 @@ import { Badge } from 'components/display/badge/Badge';
 import CardTitleBanner from 'components/display/card/CardTitleBanner';
 import Image from 'components/display/image/Image';
 import { IconStarRounded } from 'components/icon/IconStar';
+import { MouseEventHandler } from 'react';
 import { getCurrencyToken, getCurrencyUSD } from 'utils/format';
 
 export interface InventoryBoxCardProps {
@@ -15,13 +16,15 @@ export interface InventoryBoxCardProps {
     priceBNB: number;
     priceUSD: number;
   };
+  onClick?: MouseEventHandler<HTMLDivElement> | undefined;
 }
 
-export default function InventoryBoxCard({ item }: InventoryBoxCardProps) {
+export default function InventoryBoxCard({ item, onClick }: InventoryBoxCardProps) {
+  const cxCardWrapper = classNames('flex flex-col text-white', { 'cursor-pointer': onClick });
   const cxWrapper = classNames('flex-col items-center justify-between py-8 px-12 rounded-[2rem] bg-blue-400 h-[66rem]');
 
   return (
-    <Stack className="flex flex-col text-white">
+    <div className={cxCardWrapper} onClick={onClick}>
       <Flex className={cxWrapper}>
         <Badge content="05" />
         <Box className="h-[41rem] m-auto">
@@ -32,6 +35,6 @@ export default function InventoryBoxCard({ item }: InventoryBoxCardProps) {
           <Button fullWidth color="secondary" content="Open Box" className="py-6 text-red-100 text-xl" />
         </Stack>
       </Flex>
-    </Stack>
+    </div>
   );
 }

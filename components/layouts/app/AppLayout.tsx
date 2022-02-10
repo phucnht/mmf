@@ -15,7 +15,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
   let content = (
     <>
       <Header />
-      <Container className="mb-36">
+      <Container className="mb-36 xl:max-w-[132rem]">
         <Box className="w-full relative grow">{children}</Box>
       </Container>
       <Footer />

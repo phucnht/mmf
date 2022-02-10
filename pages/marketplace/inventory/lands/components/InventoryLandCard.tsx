@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import CardTitleBanner from 'components/display/card/CardTitleBanner';
 import Image from 'components/display/image/Image';
 import { IconStarRounded } from 'components/icon/IconStar';
+import { MouseEventHandler } from 'react';
 import { getCurrencyToken, getCurrencyUSD } from 'utils/format';
 
 export interface InventoryLandCardProps {
@@ -14,15 +15,17 @@ export interface InventoryLandCardProps {
     priceBNB: number;
     priceUSD: number;
   };
+  onClick?: MouseEventHandler<HTMLDivElement> | undefined;
 }
 
-export default function InventoryLandCard({ item }: InventoryLandCardProps) {
+export default function InventoryLandCard({ item, onClick }: InventoryLandCardProps) {
+  const cxCardWrapper = classNames('flex flex-col text-white', { 'cursor-pointer': onClick });
   const cxWrapper = classNames(
     'relative flex-col justify-between items-start p-4 rounded-[2rem] bg-blue-400 h-[48rem]'
   );
 
   return (
-    <Stack className="flex flex-col text-white">
+    <div className={cxCardWrapper} onClick={onClick}>
       <Flex className={cxWrapper}>
         <Flex className="absolute flex-col items-start gap-2">
           <IconStarRounded />
@@ -39,6 +42,6 @@ export default function InventoryLandCard({ item }: InventoryLandCardProps) {
           </Stack>
         </Stack>
       </Flex>
-    </Stack>
+    </div>
   );
 }

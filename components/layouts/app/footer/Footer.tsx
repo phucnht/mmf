@@ -5,7 +5,7 @@ import NextLink from 'next/link';
 const Footer = () => {
   return (
     <Scaffold.Footer className="bg-black/40">
-      <Grid className="container grid-cols-4 text-md">
+      <Grid className="container xl:max-w-[132rem] grid-cols-4 text-md">
         <Link href="http://www.mymetafarm.com" target="_blank" rel="noopener">
           http://www.mymetafarm.com
         </Link>

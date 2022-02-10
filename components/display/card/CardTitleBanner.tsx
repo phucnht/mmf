@@ -76,8 +76,8 @@ const SvgCardTitleBanner = () => (
         y2="53.0164"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#65A037" />
-        <stop offset="1" stop-color="#65A037" stop-opacity="0" />
+        <stop stopColor="#65A037" />
+        <stop offset="1" stopColor="#65A037" stop-opacity="0" />
       </linearGradient>
       <linearGradient
         id="paint1_linear_302_5322"
@@ -87,8 +87,8 @@ const SvgCardTitleBanner = () => (
         y2="47.486"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stop-color="#65A037" />
-        <stop offset="1" stop-color="#65A037" stop-opacity="0" />
+        <stop stopColor="#65A037" />
+        <stop offset="1" stopColor="#65A037" stop-opacity="0" />
       </linearGradient>
       <radialGradient
         id="paint2_radial_302_5322"
@@ -98,8 +98,8 @@ const SvgCardTitleBanner = () => (
         gradientUnits="userSpaceOnUse"
         gradientTransform="translate(176.241 38.0481) rotate(90) scale(38.2513 142.511)"
       >
-        <stop stop-color="#A4D64B" />
-        <stop offset="1" stop-color="#71AE01" />
+        <stop stopColor="#A4D64B" />
+        <stop offset="1" stopColor="#71AE01" />
       </radialGradient>
     </defs>
   </svg>

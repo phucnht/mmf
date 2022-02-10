@@ -21,8 +21,9 @@ module.exports = {
     },
     extend: {
       gridTemplateColumns: {
-        'fluid-3': 'repeat(auto-fit, minmax(26rem, 1fr))',
-        'fluid-2': 'repeat(auto-fit, minmax(46rem, 1fr))'
+        'fluid-31': 'repeat(auto-fit, minmax(31rem, 1fr))',
+        'fluid-32': 'repeat(auto-fit, minmax(32rem, 1fr))',
+        'fluid-48': 'repeat(auto-fit, minmax(48rem, 1fr))'
       },
       colors: {
         'blue-100': '#5DA8EC',

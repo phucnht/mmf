@@ -11,7 +11,7 @@ const Header = () => {
   return (
     <>
       <Box className="absolute z-30 bgg-green h-48 w-full" />
-      <Scaffold.Header className="container grid grid-cols-4 relative !px-0 mb-4">
+      <Scaffold.Header className="container xl:max-w-[132rem] grid grid-cols-4 relative !px-0 mb-4">
         <Box className="relative min-w-[18rem] max-w-[35rem] w-full text-center">
           <Box className="absolute cursor-pointer">
             <Link href="/" passHref>

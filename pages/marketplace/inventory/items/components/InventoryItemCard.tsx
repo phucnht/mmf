@@ -2,9 +2,10 @@ import { Stack, Text, Flex } from '@whammytechvn/wt-components';
 import classNames from 'classnames';
 import Image from 'components/display/image/Image';
 import { IconStar } from 'components/icon/IconStar';
+import { MouseEventHandler } from 'react';
 import { getCurrencyToken, getCurrencyUSD } from 'utils/format';
 
-export interface InventoryAirdropCardProps {
+export interface InventoryItemCardProps {
   item: {
     id: string;
     stars: number;
@@ -16,9 +17,11 @@ export interface InventoryAirdropCardProps {
     priceBNB: number;
     priceUSD: number;
   };
+  onClick?: MouseEventHandler<HTMLDivElement> | undefined;
 }
 
-export default function InventoryAirdropCard({ item }: InventoryAirdropCardProps) {
+export default function InventoryItemCard({ item, onClick }: InventoryItemCardProps) {
+  const cxCardWrapper = classNames('flex flex-col text-white', { 'cursor-pointer': onClick });
   const cxId = classNames('text-xs font-black py-2 px-5 rounded-[2rem]', {
     'bg-blue-300': item.rarity === 'blue',
     'bg-green-500': item.rarity === 'green',
@@ -33,7 +36,7 @@ export default function InventoryAirdropCard({ item }: InventoryAirdropCardProps
   });
 
   return (
-    <Stack className="flex flex-col text-white">
+    <div className={cxCardWrapper} onClick={onClick}>
       <Flex className={cxWrapper}>
         <Stack className="flex-col gap-2">
           <Text className={cxId}>{item.id}</Text>
@@ -49,6 +52,6 @@ export default function InventoryAirdropCard({ item }: InventoryAirdropCardProps
         <Text>{getCurrencyToken(item.priceBNB)} BNB</Text>
         <Text>{getCurrencyUSD(item.priceUSD)}</Text>
       </Stack>
-    </Stack>
+    </div>
   );
 }

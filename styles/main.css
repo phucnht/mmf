@@ -37,4 +37,9 @@ html {
   .bgg-pink {
     background: linear-gradient(180deg, #f5799e 0%, #de6585 100%);
   }
+
+  .character-frame-clip {
+    clip-path: url(#characterFrameClip);
+    -webkit-clip-path: url(#characterFrameClip);
+  }
 }
