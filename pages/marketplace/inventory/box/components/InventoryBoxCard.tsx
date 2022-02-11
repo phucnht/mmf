@@ -1,11 +1,9 @@
-import { Stack, Text, Flex, Box, Button } from '@whammytechvn/wt-components';
+import { Stack, Flex, Box, Button } from '@whammytechvn/wt-components';
 import classNames from 'classnames';
 import { Badge } from 'components/display/badge/Badge';
 import CardTitleBanner from 'components/display/card/CardTitleBanner';
 import Image from 'components/display/image/Image';
-import { IconStarRounded } from 'components/icon/IconStar';
 import { MouseEventHandler } from 'react';
-import { getCurrencyToken, getCurrencyUSD } from 'utils/format';
 
 export interface InventoryBoxCardProps {
   item: {
@@ -20,7 +18,9 @@ export interface InventoryBoxCardProps {
 }
 
 export default function InventoryBoxCard({ item, onClick }: InventoryBoxCardProps) {
-  const cxCardWrapper = classNames('flex flex-col text-white', { 'cursor-pointer': onClick });
+  const cxCardWrapper = classNames('flex flex-col text-white hover:opacity-90 transition', {
+    'cursor-pointer': onClick
+  });
   const cxWrapper = classNames('flex-col items-center justify-between py-8 px-12 rounded-[2rem] bg-blue-400 h-[66rem]');
 
   return (

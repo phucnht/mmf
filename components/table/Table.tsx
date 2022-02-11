@@ -1,70 +1,46 @@
-import { useMemo } from 'react';
-import { Column, useTable } from 'react-table';
+import classNames from 'classnames';
+import { DetailedHTMLProps, FC, TableHTMLAttributes } from 'react';
 
-export default function Table() {
-  const data = useMemo(
-    () => [
-      {
-        col1: 'Hello',
-        col2: 'World'
-      },
-      {
-        col1: 'react-table',
-        col2: 'rocks'
-      },
-      {
-        col1: 'whatever',
-        col2: 'you want'
-      }
-    ],
-    []
-  );
+import TableBody, { TableBodyProps } from './components/body/TableBody';
+import TableCell, { TableCellProps } from './components/cell/TableCell';
+import TableContainer, { TableContainerProps } from './components/container/TableContainer';
+import TableHead, { TableHeadProps } from './components/head/TableHead';
+import TableHeaderCell, { TableHeaderCellProps } from './components/header-cell/TableHeaderCell';
+import TableSortLabel, { TableSortLabelProps } from './components/label/TableSortLabel';
+import TableRow, { TableRowProps } from './components/row/TableRow';
 
-  const columns = useMemo(
-    () => [
-      {
-        Header: 'Column 1',
-        accessor: 'col1' // accessor is the "key" in the data
-      },
-      {
-        Header: 'Column 2',
-        accessor: 'col2'
-      }
-    ],
-    []
-  ) as readonly Column<{ col1: string; col2: string }>[];
+interface TableCompoundProps {
+  Body: FC<TableBodyProps>;
+  Cell: FC<TableCellProps>;
+  Container: FC<TableContainerProps>;
+  Head: FC<TableHeadProps>;
+  HeaderCell: FC<TableHeaderCellProps>;
+  Row: FC<TableRowProps>;
+  SortLabel: FC<TableSortLabelProps>;
+}
 
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data });
+export interface TableProps extends DetailedHTMLProps<TableHTMLAttributes<HTMLTableElement>, HTMLTableElement> {
+  className?: string;
+}
+
+const Table: FC<TableProps> & TableCompoundProps = ({ className, children, ...props }) => {
+  const cxTable = classNames('border-collapse w-full text-content', className);
 
   return (
-    <table {...getTableProps()} className="table w-full">
-      <thead>
-        {headerGroups.map((headerGroup, index) => (
-          <tr {...headerGroup.getHeaderGroupProps()} key={index}>
-            {headerGroup.headers.map((column, index) => (
-              <th {...column.getHeaderProps()} key={index}>
-                {column.render('Header')}
-              </th>
-            ))}
-          </tr>
-        ))}
-      </thead>
-      <tbody {...getTableBodyProps()}>
-        {rows.map((row, index) => {
-          prepareRow(row);
-          return (
-            <tr {...row.getRowProps()} key={index}>
-              {row.cells.map((cell, index) => {
-                return (
-                  <td {...cell.getCellProps()} key={index}>
-                    {cell.render('Cell')}
-                  </td>
-                );
-              })}
-            </tr>
-          );
-        })}
-      </tbody>
+    <table className={cxTable} {...props}>
+      {children}
     </table>
   );
-}
+};
+
+Table.Body = TableBody;
+Table.Cell = TableCell;
+Table.Container = TableContainer;
+Table.Head = TableHead;
+Table.HeaderCell = TableHeaderCell;
+Table.Row = TableRow;
+Table.SortLabel = TableSortLabel;
+
+Table.displayName = 'Table';
+
+export default Table;

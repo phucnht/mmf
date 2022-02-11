@@ -19,7 +19,9 @@ export interface InventoryLandCardProps {
 }
 
 export default function InventoryLandCard({ item, onClick }: InventoryLandCardProps) {
-  const cxCardWrapper = classNames('flex flex-col text-white', { 'cursor-pointer': onClick });
+  const cxCardWrapper = classNames('flex flex-col text-white hover:opacity-90 transition', {
+    'cursor-pointer': onClick
+  });
   const cxWrapper = classNames(
     'relative flex-col justify-between items-start p-4 rounded-[2rem] bg-blue-400 h-[48rem]'
   );

@@ -21,7 +21,9 @@ export interface InventoryItemCardProps {
 }
 
 export default function InventoryItemCard({ item, onClick }: InventoryItemCardProps) {
-  const cxCardWrapper = classNames('flex flex-col text-white', { 'cursor-pointer': onClick });
+  const cxCardWrapper = classNames('flex flex-col text-white hover:opacity-90 transition', {
+    'cursor-pointer': onClick
+  });
   const cxId = classNames('text-xs font-black py-2 px-5 rounded-[2rem]', {
     'bg-blue-300': item.rarity === 'blue',
     'bg-green-500': item.rarity === 'green',

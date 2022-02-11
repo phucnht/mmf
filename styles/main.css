@@ -42,4 +42,18 @@ html {
     clip-path: url(#characterFrameClip);
     -webkit-clip-path: url(#characterFrameClip);
   }
+
+  ::-webkit-scrollbar {
+    @apply w-4;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-[#A8A8A8] bg-clip-padding rounded-full;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-[#eee] bg-clip-padding;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+  }
 }

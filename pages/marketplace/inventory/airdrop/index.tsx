@@ -1,11 +1,11 @@
-import { Box, GridBox } from '@whammytechvn/wt-components';
-import Image from 'components/display/image/Image';
+import { GridBox } from '@whammytechvn/wt-components';
 import { getLayoutMarketplaceInventory } from 'components/layouts/pages/getLayoutMarketplaceInventory';
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
 import imgItem from '/public/assets/inventory/airdrop/t-shirt.png';
 import _times from 'lodash/times';
 import { useRouter } from 'next/router';
+import InventoryAirdropCard from './components/InventoryAirdropCard';
 
 const itemsAirdrop = _times(10, i => ({
   id: `${i}`,
@@ -27,9 +27,7 @@ const MarketplaceInventoryAirdrop: NextPageWithLayout = () => {
       </Head>
       <GridBox className="grid-cols-fluid-32 gap-4">
         {itemsAirdrop.map(item => (
-          <Box key={item.id}>
-            <Image alt={item.name} src={item.imgSrc} onClick={() => goTo(item.id)} />
-          </Box>
+          <InventoryAirdropCard key={item.id} item={item} onClick={() => goTo(item.id)} />
         ))}
       </GridBox>
     </>

@@ -17,7 +17,7 @@ export default function Sidebar({ routes, defaultSlug, levelSlug = 2, children }
   };
 
   const cxTabsWrapper = classNames(
-    "border-green-200 border-[3px] rounded-[2rem] mt-44 pt-8 pb-48 bg-[url('/assets/marketplace/sidemenu-bottom.png')] bg-bottom bg-auto bg-no-repeat min-w-[18rem] max-w-[35rem] w-full"
+    "border-green-200 border-[3px] rounded-[2rem] mt-44 pt-8 pb-48 bg-[url('/assets/sidebar/sidemenu-bottom.png')] bg-bottom bg-auto bg-no-repeat min-w-[18rem] max-w-[35rem] w-full"
   );
 
   return (
