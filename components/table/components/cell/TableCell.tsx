@@ -3,7 +3,7 @@ import IconCopy from 'components/icon/IconCopy';
 import { DetailedHTMLProps, FC, ReactNode, TdHTMLAttributes } from 'react';
 
 export interface TableCellProps
-  extends DetailedHTMLProps<TdHTMLAttributes<HTMLTableDataCellElement>, HTMLTableDataCellElement> {
+  extends DetailedHTMLProps<TdHTMLAttributes<HTMLTableCellElement>, HTMLTableCellElement> {
   isCopyable?: boolean;
   className?: string;
   children?: ReactNode;

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import _ from 'lodash';
 import { FC } from 'react';
 import { useTable, useSortBy, Column } from 'react-table';
@@ -21,7 +22,7 @@ const DataTable: FC<DataTableProps> = ({ title, sortable = false, data, columns,
     <Container title={title} className={className}>
       <Table {...getTableProps()}>
         <Head>
-          {headerGroups.map((headerGroup, index) => (
+          {headerGroups.map(headerGroup => (
             <Row {...headerGroup.getHeaderGroupProps()} className="w-[calc(100% - 1.6rem)]">
               {headerGroup.headers.map(column => {
                 return (
@@ -48,8 +49,6 @@ const DataTable: FC<DataTableProps> = ({ title, sortable = false, data, columns,
                 <Row {...row.getRowProps()} className="hover:bg-primary-dark hover:opacity-70">
                   {row.cells.map(cell => {
                     const key = `${cell.column.id}-${cell.row.id}`;
-
-                    console.log(cell.column.id);
                     return (
                       <Cell
                         align="center"

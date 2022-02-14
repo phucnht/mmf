@@ -18,6 +18,8 @@ const ButtonImageRef = forwardRef<any, ButtonImageProps>(({ children, ...props }
   );
 });
 
+ButtonImageRef.displayName = 'ButtonImageRef';
+
 const HeaderButtonUser = () => {
   const [{ data: account }, disconnect] = useAccount();
 
