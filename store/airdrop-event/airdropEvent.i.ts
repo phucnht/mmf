@@ -1,3 +1,5 @@
+import { BaseResults, GetResponse, GetState } from 'store/store.i';
+
 export interface AirdropEventDto {
   id: string;
   name: string;
@@ -37,8 +39,7 @@ export interface AirdropEventRequest {
   condition: string;
 }
 
-export interface GetAirdropEventsReponse {
-  data: AirdropEventDto[] | null;
-  errors: any;
-  success: boolean;
-}
+export type AirdropEventResult = BaseResults<AirdropEventDto>;
+export type AirdropEventState = GetState<AirdropEventResult>;
+
+export type GetAirdropEventsReponse = GetResponse<AirdropEventResult>;

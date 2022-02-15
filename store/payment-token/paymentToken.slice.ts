@@ -1,40 +1,15 @@
-import { StateLoading } from './../store.i';
+import { DEFAULT_BASE_RESULTS, pendingStatus, rejectResult } from './../store.utils';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { AppState } from 'store/store';
-import { GetPaymentTokensResponse } from './paymentToken.i';
+import { PaymentTokenState } from './paymentToken.i';
 import paymentTokenApi from './paymentToken.api';
-
-export type PaymentTokenState = StateLoading & GetPaymentTokensResponse;
-
-export interface PaginationRequest {
-  sortBy?: string;
-  page?: number;
-}
 
 export const getPaymentTokens = createAsyncThunk('payment-tokens/get', async () => {
   const res = await paymentTokenApi.getPaymentTokens();
   return res;
 });
 
-export const initialState: PaymentTokenState = {
-  loading: false,
-  data: [],
-  success: true,
-  errors: {}
-};
-
-const pendingStatus = (state: any) => {
-  if (state.loading === false) {
-    state.loading = true;
-  }
-};
-
-const rejectResult = (state: any, action: any) => {
-  if (state.loading === true) {
-    state.loading = false;
-    state.error = action.error;
-  }
-};
+export const initialState: PaymentTokenState = DEFAULT_BASE_RESULTS;
 
 const paymentTokenSlice = createSlice({
   name: 'payment-tokens',

@@ -1,3 +1,5 @@
+import { BaseResults, GetResponse, GetState } from 'store/store.i';
+
 export interface PaymentTokenDto {
   id: string;
   name: string;
@@ -6,8 +8,6 @@ export interface PaymentTokenDto {
   contractAddress: string;
 }
 
-export interface GetPaymentTokensResponse {
-  data: PaymentTokenDto[] | null;
-  errors: any;
-  success: boolean;
-}
+export type PaymentTokenResult = BaseResults<PaymentTokenDto>;
+export type PaymentTokenState = GetState<PaymentTokenResult>;
+export type GetPaymentTokensResponse = GetResponse<PaymentTokenResult>;

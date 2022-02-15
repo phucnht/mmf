@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AuthState, LoginState, ProfileRequest } from './models/auth.model';
+import { AuthState, LoginState, ProfileRequest } from './auth.i';
 import { client } from 'utils/api';
 import { AppState } from 'store/store';
 

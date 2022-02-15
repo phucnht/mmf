@@ -1,11 +1,10 @@
-import { StateLoading, PaginationRequest } from './../store.i';
+import { DEFAULT_BASE_RESULTS } from './../store.utils';
+import { PaginationRequest } from './../store.i';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { AppState } from 'store/store';
-import { GetAirdropEventsReponse, AirdropEventRequest } from './airdropEvent.i';
+import { AirdropEventRequest, AirdropEventState } from './airdropEvent.i';
 import airdropEventApi from './airdropEvent.api';
 import { pendingStatus, rejectResult } from 'store/store.utils';
-
-export type AirdropEventState = StateLoading & GetAirdropEventsReponse;
 
 export const getAirdropEvents = createAsyncThunk('airdop-events/get', async ({ page, sortBy }: PaginationRequest) => {
   const res = await airdropEventApi.getAirdropEvents({ page, sortBy });
@@ -17,12 +16,7 @@ export const addAirdropEvent = createAsyncThunk('airdop-events/post', async (dat
   return res;
 });
 
-export const initialState: AirdropEventState = {
-  loading: false,
-  data: [],
-  success: true,
-  errors: {}
-};
+export const initialState: AirdropEventState = DEFAULT_BASE_RESULTS;
 
 const airdropEventsSlice = createSlice({
   name: 'airdrop-events',
@@ -33,7 +27,7 @@ const airdropEventsSlice = createSlice({
       .addCase(getAirdropEvents.pending, pendingStatus)
       .addCase(getAirdropEvents.fulfilled, (state, action) => {
         if (state.loading === true) {
-          return { ...state, ...action.payload, loading: false, errors: {} };
+          return { ...state, ...action.payload, loading: false, errors: undefined };
         }
       })
       .addCase(getAirdropEvents.rejected, rejectResult);

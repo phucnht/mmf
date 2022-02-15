@@ -1,33 +1,25 @@
 export interface BaseResult<T> {
-  errors: any;
+  error: any;
   data: T | null;
-  success: boolean;
 }
 
 export interface BaseResults<T> {
-  errors: any;
+  error: any;
   data: T[] | null;
-  success: boolean;
 }
 
-export interface BaseResultPagination<T> {
-  errors: any;
-  data: PaginationDto<T> | null;
-  success: boolean;
-}
+export type BaseResultPagination<T> = BaseResults<T> & PaginationDto;
 
-export interface PaginationDto<T> {
+export type GetState<T> = { loading: boolean } & T;
+export type GetResponse<T> = { success: boolean } & T;
+
+export interface PaginationDto {
   total: number;
   currentPage: number;
   size: number;
   pages: number;
   hasNext: boolean;
   hasPrevious: boolean;
-  items: T[];
-}
-
-export interface StateLoading {
-  loading: boolean;
 }
 
 export interface PaginationRequest {

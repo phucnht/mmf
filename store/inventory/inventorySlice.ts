@@ -1,28 +1,17 @@
+import { DEFAULT_BASE_RESULT_PAGINATION } from './../store.utils';
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
+import { NftItemRequest } from 'store/nft-item/nftItem.i';
 import { pendingStatus, rejectResult } from 'store/store.utils';
 import { AppState } from '../store';
-import itemApi from './inventory.api';
+import inventoryApi from './inventory.api';
+import { InventoryState } from './inventory.i';
 
-export const fetchInventoryNftItems = createAsyncThunk(
-  'items/inventories/fetch',
-  async ({ owner, page, sortBy }: NftItemRequest) => {
-    const res = await itemApi.fetchInventories({ owner, page, sortBy });
-    return res;
-  }
-);
+export const getInventories = createAsyncThunk('inventories/get', async ({ owner, page, sortBy }: NftItemRequest) => {
+  const res = await inventoryApi.getInventories({ owner, page, sortBy });
+  return res;
+});
 
-export const initialState: NftItemsState = {
-  items: [],
-  loading: 'idle',
-  error: null,
-  hasNext: false,
-  hasPrevious: false,
-  pages: 0,
-  currentPage: 1,
-  size: 0,
-  total: 0,
-  sortBy: ''
-};
+export const initialState: InventoryState = DEFAULT_BASE_RESULT_PAGINATION;
 
 const inventorySlice = createSlice({
   name: 'inventory',
@@ -32,18 +21,18 @@ const inventorySlice = createSlice({
       state.currentPage = action.payload;
     },
     updateSortBy: (state, action: PayloadAction<string>) => {
-      state.sortBy = action.payload;
+      // state.sortBy = action.payload;
     }
   },
   extraReducers: builder => {
     builder
-      .addCase(fetchInventoryNftItems.pending, pendingStatus)
-      .addCase(fetchInventoryNftItems.fulfilled, (state, action) => {
-        if (state.loading === 'pending') {
-          return { ...state, ...action.payload, loading: 'idle', error: null };
+      .addCase(getInventories.pending, pendingStatus)
+      .addCase(getInventories.fulfilled, (state, action) => {
+        if (state.loading === false) {
+          return { ...state, ...action.payload, loading: true, error: undefined };
         }
       })
-      .addCase(fetchInventoryNftItems.rejected, rejectResult);
+      .addCase(getInventories.rejected, rejectResult);
   }
 });
 

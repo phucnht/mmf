@@ -1,6 +1,6 @@
 import { PaymentTokenDto } from '../payment-token/paymentToken.i';
-import { BasicUserDto } from 'store/user/user.dto';
-import { BaseResultPagination, StateLoading } from 'store/store.i';
+import { BasicUserDto } from 'store/user/user.i';
+import { BaseResultPagination } from 'store/store.i';
 
 export enum MarketType {
   NotForSale,
@@ -85,9 +85,7 @@ export interface NftItemDto {
   evolveSaltNonce: number;
 }
 
-export type GetNftItemsResponse = BaseResultPagination<NftItemDto>;
-
-export type NftItemsState = StateLoading & GetNftItemsResponse;
+export type NftItemsState = BaseResultPagination<NftItemDto>;
 
 export interface NftItemRequest {
   sort?: string;

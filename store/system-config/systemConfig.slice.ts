@@ -1,23 +1,16 @@
-import { StateLoading } from './../store.i';
+import { DEFAULT_BASE_RESULT } from './../store.utils';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { AppState } from 'store/store';
-import { GetSystemConfigResponse } from './systemConfig.i';
 import systemApi from './systemConfig.api';
 import { pendingStatus, rejectResult } from 'store/store.utils';
-
-export type SystemConfigState = StateLoading & GetSystemConfigResponse;
+import { SystemConfigState } from './systemConfig.i';
 
 export const getSystems = createAsyncThunk('system/get', async () => {
   const res = await systemApi.getSystemConfig();
   return res;
 });
 
-export const initialState: SystemConfigState = {
-  loading: false,
-  data: null,
-  success: true,
-  errors: {}
-};
+export const initialState: SystemConfigState = DEFAULT_BASE_RESULT;
 
 const systemConfigSlice = createSlice({
   name: 'system',

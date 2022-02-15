@@ -1,4 +1,4 @@
-import { BaseResult } from '../store.i';
+import { BaseResult, GetResponse, GetState } from '../store.i';
 
 export interface SystemConfigDto {
   id: string;
@@ -23,4 +23,6 @@ export interface SystemConfigDto {
   nftEvolveContractBlock: string;
 }
 
-export type GetSystemConfigResponse = BaseResult<SystemConfigDto>;
+export type SystemConfigResult = BaseResult<SystemConfigDto>;
+export type SystemConfigState = GetState<SystemConfigResult>;
+export type GetSystemConfigResponse = GetResponse<SystemConfigResult>;

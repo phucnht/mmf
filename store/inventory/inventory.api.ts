@@ -1,10 +1,8 @@
 import { clientMarket } from 'utils/api';
-import { GetAirdropEventsReponse } from './inventory.i';
+import { GetInventoriesResponse } from './inventory.i';
 
-const getAirdropEvents = (params?: any): Promise<GetAirdropEventsReponse> =>
-  clientMarket.get(`/airdrop-events`, { params });
-const addAirdropEvent = (data: any) => clientMarket.post(`/airdrop-events`, data);
+const getInventories = (params?: any): Promise<GetInventoriesResponse> => clientMarket.get(`/inventories`, { params });
 
-const airdropEventApi = { getAirdropEvents, addAirdropEvent };
+const inventoryApi = { getInventories };
 
-export default airdropEventApi;
+export default inventoryApi;
