@@ -5,10 +5,11 @@ import { ButtonImage, Text } from '@whammytechvn/wt-components';
 
 import HeaderBalance from '../HeaderBalance';
 import TextCopyable from 'components/display/text/TextCopyable';
-import { useAccount, useBalance } from 'wagmi';
 import HeaderButtonLogin from './HeaderButtonLogin';
 import { forwardRef } from 'react';
 import { ButtonImageProps } from '@whammytechvn/wt-components/dist/controls/button-image/ButtonImage.i';
+import { useAppDispatch, useAppSelector } from 'store/store.hook';
+import { logout, selectAuthData } from 'store/account/auth/auth.slice';
 
 const ButtonImageRef = forwardRef<any, ButtonImageProps>(({ children, ...props }: ButtonImageProps, ref) => {
   return (
@@ -21,21 +22,15 @@ const ButtonImageRef = forwardRef<any, ButtonImageProps>(({ children, ...props }
 ButtonImageRef.displayName = 'ButtonImageRef';
 
 const HeaderButtonUser = () => {
-  const [{ data: account }, disconnect] = useAccount();
-
-  const [{ data: balanceToken1, loading: loadingToken1 }] = useBalance({
-    addressOrName: process.env.NEXT_PUBLIC_TOKEN_1
-  });
-  const [{ data: balanceToken2, loading: loadingToken2 }] = useBalance({
-    addressOrName: process.env.NEXT_PUBLIC_TOKEN_2
-  });
+  const dispatch = useAppDispatch();
+  const { accessToken, address, balance, balance2 } = useAppSelector(selectAuthData);
 
   const router = useRouter();
   const goTo = (path: string) => {
     router.push(path);
   };
 
-  if (!account?.address) {
+  if (!accessToken) {
     return <HeaderButtonLogin />;
   }
 
@@ -55,9 +50,9 @@ const HeaderButtonUser = () => {
         className="absolute right-0"
       >
         <Popover.Panel className="text-white text-sm bg-blue-400 rounded-[2rem] py-8 min-w-[20rem]">
-          <TextCopyable className="px-8 py-4" value={account?.address} />
-          <HeaderBalance className="px-8 py-4" value={balanceToken1?.formatted} loading={loadingToken1} />
-          <HeaderBalance className="px-8 py-4" value={balanceToken2?.formatted} loading={loadingToken2} />
+          <TextCopyable className="px-8 py-4" value={address} />
+          <HeaderBalance className="px-8 py-4" value={balance} />
+          <HeaderBalance className="px-8 py-4" value={balance2} />
           <div
             role="navigation"
             onClick={() => goTo('/marketplace/inventory')}
@@ -65,7 +60,11 @@ const HeaderButtonUser = () => {
           >
             Inventory
           </div>
-          <div role="navigation" onClick={disconnect} className="px-8 py-4 font-bold hover:bg-green-500 cursor-pointer">
+          <div
+            role="navigation"
+            onClick={() => dispatch(logout())}
+            className="px-8 py-4 font-bold hover:bg-green-500 cursor-pointer"
+          >
             Disconnect
           </div>
         </Popover.Panel>

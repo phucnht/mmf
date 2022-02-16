@@ -7,14 +7,10 @@ import { ToastContainer } from 'react-toastify';
 import ModalConfirmation from 'components/modal/ModalConfirmation';
 import Head from 'next/head';
 import { Provider as ProviderRedux } from 'react-redux';
-import { Provider as ProviderEther, defaultChains } from 'wagmi';
-import { InjectedConnector } from 'wagmi/connectors/injected';
 import { NextPage } from 'next';
 import { ReactElement, ReactNode } from 'react';
 import AppLayout from 'components/layouts/app/AppLayout';
 import NextNProgress from 'nextjs-progressbar';
-
-const connectors = () => [new InjectedConnector({ chains: defaultChains })];
 
 export type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -40,24 +36,22 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         showOnShallow={true}
         options={{ easing: 'ease', speed: 500 }}
       />
-      <ProviderEther connectors={connectors}>
-        <ProviderRedux store={store}>
-          <AppLayout>{getLayout(<Component {...pageProps} />)}</AppLayout>
-          <ToastContainer
-            position="top-right"
-            autoClose={3000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            className="text-sm"
-          />
-          <ModalConfirmation />
-        </ProviderRedux>
-      </ProviderEther>
+      <ProviderRedux store={store}>
+        <AppLayout>{getLayout(<Component {...pageProps} />)}</AppLayout>
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          className="text-sm"
+        />
+        <ModalConfirmation />
+      </ProviderRedux>
     </>
   );
 }

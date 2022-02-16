@@ -4,13 +4,18 @@ import Footer from './footer/Footer';
 import { Box, Container, Scaffold } from '@whammytechvn/wt-components';
 import useWindowSize from 'hooks/useWindowSize';
 import Warning from 'components/display/warning/Warning';
+import { useAppDispatch } from 'store/store.hook';
+import { getSystemConfig } from 'store/market/system-config/systemConfig.api';
 
 interface AppLayoutProps {
   children: ReactNode;
 }
 
 export default function AppLayout({ children }: AppLayoutProps) {
+  const dispatch = useAppDispatch();
   const { width } = useWindowSize();
+
+  dispatch(getSystemConfig());
 
   let content = (
     <>

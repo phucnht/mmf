@@ -2,7 +2,7 @@ import { BaseResult, GetResponse, GetState } from 'store/store.i';
 
 // NONCE
 export interface NonceRequest {
-  address: string;
+  address?: string;
 }
 
 export type NonceDto = {
@@ -14,8 +14,8 @@ export type GetNonceResponse = GetResponse<BaseResult<NonceDto>>;
 
 // TOKEN
 export interface TokenRequest {
-  address: string;
-  signature: string;
+  address?: string;
+  signature?: string;
 }
 
 export interface TokenDto {
@@ -29,5 +29,6 @@ export interface AuthDto {
   accessToken: string;
   address: string;
   balance: number;
+  balance2: number;
 }
 export type AuthState = GetState<BaseResult<AuthDto>>;

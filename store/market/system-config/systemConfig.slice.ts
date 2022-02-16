@@ -44,4 +44,5 @@ const systemConfigSlice = createSlice({
 });
 
 export const selectSystemConfig = (state: AppState) => state.systemConfig;
+export const selectSystemConfigData = (state: AppState) => state.systemConfig.data;
 export default systemConfigSlice.reducer;

@@ -2,18 +2,19 @@ import TextCopyable from 'components/display/text/TextCopyable';
 import Image from 'components/display/image/Image';
 import { FC } from 'react';
 import { getEllipsisTxt } from 'utils/format';
-import { useAccount } from 'wagmi';
 import imgAvatar from 'public/assets/sidebar/avatar.png';
 import imgAvatarFrame from 'public/assets/sidebar/avatar-frame.png';
 import { Box, Stack } from '@whammytechvn/wt-components';
 import classNames from 'classnames';
+import { useAppSelector } from 'store/store.hook';
+import { selectAuthData } from 'store/account/auth/auth.slice';
 
 interface UserAvatarProps {
   className?: string;
 }
 
 const UserAvatar: FC<UserAvatarProps> = ({ className }) => {
-  const [{ data: account }] = useAccount();
+  const { address } = useAppSelector(selectAuthData);
   const cxUserAvatar = classNames('flex-col', className);
 
   return (
@@ -27,7 +28,7 @@ const UserAvatar: FC<UserAvatarProps> = ({ className }) => {
       <Stack className="text-white text-normal text-md flex-col">
         <Box className="font-black text-2xl">Anthony93</Box>
         <Box className="flex justify-center items-center">
-          <TextCopyable value={getEllipsisTxt(account?.address)} />
+          <TextCopyable value={getEllipsisTxt(address)} />
         </Box>
       </Stack>
     </Stack>

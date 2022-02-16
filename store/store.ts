@@ -1,5 +1,5 @@
 import { configureStore, Action, ThunkAction, Store, combineReducers, AnyAction } from '@reduxjs/toolkit';
-import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
+import { persistStore, persistReducer } from 'redux-persist';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
 import storage from 'redux-persist/lib/storage/session';
 
@@ -50,9 +50,7 @@ const createStore = () => {
     middleware: getDefaultMiddleware =>
       getDefaultMiddleware({
         thunk: { extraArgument: thunkArguments },
-        serializableCheck: {
-          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
-        }
+        serializableCheck: false
       })
   });
 

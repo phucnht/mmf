@@ -2,8 +2,9 @@ import { FC, useEffect, useState } from 'react';
 import { Button } from '@whammytechvn/wt-components';
 
 import useModalConfirmation from 'hooks/useModal';
-import { useAccount } from 'wagmi';
 import { useRouter } from 'next/router';
+import { useAppSelector } from 'store/store.hook';
+import { selectAuthData } from 'store/account/auth/auth.slice';
 
 const ButtonType = {
   IDLE: 'idle',
@@ -12,7 +13,7 @@ const ButtonType = {
 };
 
 const MetaverseCardButton: FC = () => {
-  const [{ data: account }] = useAccount();
+  const { accessToken } = useAppSelector(selectAuthData);
   const router = useRouter();
   const [type, setType] = useState(ButtonType.IDLE);
 
@@ -48,7 +49,7 @@ const MetaverseCardButton: FC = () => {
     />
   );
 
-  if (account?.address) {
+  if (accessToken) {
     renderButton = (
       <Button color="secondary" content="Claim" fullWidth className="py-5 text-red-100" onClick={handleProcess} />
     );

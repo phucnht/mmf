@@ -1,8 +1,9 @@
 import { Box } from '@whammytechvn/wt-components';
-import type { NextPage } from 'next';
+import { getLayoutDefault } from 'components/layouts/pages/getLayoutDefault';
 import Head from 'next/head';
+import { NextPageWithLayout } from './_app';
 
-const Home: NextPage = () => {
+const Home: NextPageWithLayout = () => {
   return (
     <>
       <Head>
@@ -13,5 +14,7 @@ const Home: NextPage = () => {
     </>
   );
 };
+
+Home.getLayout = getLayoutDefault;
 
 export default Home;
