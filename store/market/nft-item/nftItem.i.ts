@@ -1,11 +1,28 @@
 import { PaymentTokenDto } from '../payment-token/paymentToken.i';
-import { BasicUserDto } from 'store/user/user.i';
-import { BaseResultPagination } from 'store/store.i';
+import { BasicUserDto } from 'store/account/profile/profile.i';
+import { BaseResultPagination, PaginationRequest } from 'store/store.i';
 
-export enum MarketType {
+export enum NftItemStatus {
+  Minting,
+  Available,
+  Locked,
+  Burned,
+  Burning,
+  Evolving
+}
+
+export enum NftItemMarketType {
   NotForSale,
   Sale,
   Auction
+}
+
+export enum NftItemMarketStatus {
+  NotAvailable,
+  Available,
+  InTransactionProcess,
+  Sold,
+  Cancelled
 }
 
 export interface AttributeDto {
@@ -62,7 +79,7 @@ export interface NftItemDto {
   createdAt: Date;
   updatedAt: Date;
   version: number;
-  marketType: MarketType;
+  marketType: NftItemMarketType;
   listedOnMarket: boolean;
   nativeNftToken: boolean;
   attributes: AttributeDto[];
@@ -87,18 +104,21 @@ export interface NftItemDto {
 
 export type NftItemsState = BaseResultPagination<NftItemDto>;
 
-export interface NftItemRequest {
-  sort?: string;
-  text?: string;
-  listedByMe?: string;
-  class?: string;
-  element?: string;
-  quality?: string;
-  tiers?: string;
-  levels?: string;
+export type NftItemRequest = {
+  status?: NftItemStatus;
+  marketType?: NftItemMarketType;
+  marketStatus?: NftItemMarketStatus;
+  owner?: string;
+  paymentTokenId?: string;
+  listedOnMarket?: boolean;
+  onTopFlag?: boolean;
+  elements?: string[];
+  classes?: string[];
+  qualitys?: string[];
   minPrice?: string;
   maxPrice?: string;
-  owner?: string;
-  sortBy?: string;
-  page?: number;
-}
+  minTier?: string;
+  maxTier?: string;
+  minLevel?: string;
+  maxLevel?: string;
+} & PaginationRequest;

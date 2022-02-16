@@ -40,6 +40,6 @@ export interface AirdropEventRequest {
 }
 
 export type AirdropEventResult = BaseResults<AirdropEventDto>;
-export type AirdropEventState = GetState<AirdropEventResult>;
-
 export type GetAirdropEventsReponse = GetResponse<AirdropEventResult>;
+
+export type AirdropEventState = GetState<AirdropEventResult>;

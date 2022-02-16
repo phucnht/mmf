@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 import axios, { AxiosInstance } from 'axios';
 import { stringify } from 'query-string';
 import { store } from 'store/store';
-import { logout } from '../store/auth/auth.slice';
+import { logout } from '../store/account/auth/auth.slice';
 
 export const client = (baseURL?: string): AxiosInstance => {
   if (!baseURL) {

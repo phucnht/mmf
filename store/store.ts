@@ -4,16 +4,18 @@ import { setupListeners } from '@reduxjs/toolkit/dist/query';
 import storage from 'redux-persist/lib/storage/session';
 
 import modalConfirmationReducer from './modal-confirmation/modalConfirmation.slice';
-import authReducer, { logout } from './auth/auth.slice';
-import airdropEventReducer from './airdrop-event/airdropEvent.slice';
-import inventoryReducer from './nft-item/nftItem.slice';
-import marketplaceReducer from './nft-item/nftItem.slice';
-import systemConfigReducer from './system-config/systemConfig.slice';
-import paymentTokenReducer from './payment-token/paymentToken.slice';
+import authReducer, { logout } from './account/auth/auth.slice';
+import profileReducer from './account/profile/profile.slice';
+import airdropEventReducer from './market/airdrop-event/airdropEvent.slice';
+import inventoryReducer from './market/nft-item/nftItem.slice';
+import marketplaceReducer from './market/nft-item/nftItem.slice';
+import systemConfigReducer from './market/system-config/systemConfig.slice';
+import paymentTokenReducer from './market/payment-token/paymentToken.slice';
 
 const appReducer = combineReducers({
   modalConfirmation: modalConfirmationReducer,
   auth: authReducer,
+  profile: profileReducer,
   airdropEvent: airdropEventReducer,
   inventory: inventoryReducer,
   marketplace: marketplaceReducer,

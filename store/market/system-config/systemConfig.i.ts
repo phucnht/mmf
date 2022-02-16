@@ -1,4 +1,4 @@
-import { BaseResult, GetResponse, GetState } from '../store.i';
+import { BaseResult, GetResponse, GetState } from 'store/store.i';
 
 export interface SystemConfigDto {
   id: string;

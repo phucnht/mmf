@@ -1,11 +1,11 @@
 export interface BaseResult<T> {
-  error: any;
-  data: T | null;
+  errors: any;
+  data: T;
 }
 
 export interface BaseResults<T> {
-  error: any;
-  data: T[] | null;
+  errors: any;
+  data: T[];
 }
 
 export type BaseResultPagination<T> = BaseResults<T> & PaginationDto;
@@ -23,6 +23,9 @@ export interface PaginationDto {
 }
 
 export interface PaginationRequest {
-  sortBy?: string;
+  search?: string;
   page?: number;
+  size?: number;
+  orderBy?: number;
+  desc?: boolean;
 }

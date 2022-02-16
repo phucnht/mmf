@@ -7,34 +7,39 @@ export const DEFAULT_PAGINATION = {
   hasPrevious: false
 };
 
-export const DEFAULT_BASE_RESULT = {
-  error: undefined,
-  data: null,
+export const DEFAULT_BASE_STATE = {
+  errors: undefined,
   loading: false
 };
 
-export const DEFAULT_BASE_RESULTS = {
-  error: undefined,
-  data: [],
-  loading: false
+export const DEFAULT_BASE_STATE_PAGINATION = {
+  ...DEFAULT_BASE_STATE,
+  data: {
+    ...DEFAULT_PAGINATION,
+    items: []
+  }
 };
 
-export const DEFAULT_BASE_RESULT_PAGINATION = {
-  error: undefined,
-  data: [],
-  loading: false,
-  ...DEFAULT_PAGINATION
+export const DEFAULT_BASE_STATE_LIST = {
+  ...DEFAULT_BASE_STATE,
+  data: []
 };
 
-export const pendingStatus = (state: any) => {
+export const handlePending = (state: any) => {
   if (state.loading === false) {
     state.loading = true;
   }
 };
 
-export const rejectResult = (state: any, action: any) => {
+export const handleFulfilled = (state: any, action: any) => {
+  if (state.loading === true) {
+    return { ...DEFAULT_BASE_STATE, data: { ...state.data, ...action.payload } };
+  }
+};
+
+export const handleReject = (state: any, action: any) => {
   if (state.loading === true) {
     state.loading = false;
-    state.error = action.error;
+    state.errors = action.errors;
   }
 };
