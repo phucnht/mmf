@@ -19,7 +19,7 @@ export default function ModalConfirmation() {
   return isOpened ? (
     <ModalOverlay>
       <ModalContainer decline={decline} size={size}>
-        {type === 'createGameProfile' && <ModalTypeCreateGameProfile decline={decline} />}
+        {type === 'createGameProfile' && <ModalTypeCreateGameProfile />}
         {type === 'account' && <ModalTypeAccount decline={decline} />}
         {type === 'confirm' && (
           <ModalTypeConfirm title={title} description={description} decline={decline} confirm={confirm} />

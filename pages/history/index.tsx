@@ -1,4 +1,3 @@
-import { Box } from '@whammytechvn/wt-components';
 import EmptyBanner from 'components/display/empty/EmptyBanner';
 import { getLayoutInventoryOffset } from 'components/layouts/pages/inventory/getLayoutInventory';
 import Head from 'next/head';

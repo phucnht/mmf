@@ -1,58 +1,63 @@
 import Head from 'next/head';
-import DataTable from 'components/table/DataTable';
-import { Box, Button, Container, Flex, Heading, Text } from '@whammytechvn/wt-components';
+// import DataTable from 'components/table/DataTable';
+import {
+  Box,
+  Container,
+  Heading
+  // Button, Flex, Text
+} from '@whammytechvn/wt-components';
 import ButtonBack from 'components/buttons/ButtonBack';
 import { getLayoutDefault } from 'components/layouts/pages/default/getLayoutDefault';
 
-import _times from 'lodash/times';
+// import _times from 'lodash/times';
 import _find from 'lodash/find';
-import { MOCK_CONTENT } from 'utils/mock';
-import ProgressBar from 'components/display/progress-bar/ProgressBar';
-import { useMemo } from 'react';
+// import { MOCK_CONTENT } from 'utils/mock';
+// import ProgressBar from 'components/display/progress-bar/ProgressBar';
+// import { useMemo } from 'react';
 import { useAppSelector } from 'store/store.hook';
 import { selectNftItemState } from 'store/market/nft-item/nftItem.slice';
 import { useRouter } from 'next/router';
-import { getEllipsisTxt } from 'utils/format';
-import CardItem from './components/CardItem';
+// import { getEllipsisTxt } from 'utils/format';
+// import CardItem from './components/CardItem';
 
 export default function InvnetoryItemDetail() {
   const { query } = useRouter();
   const { loading, data: nftItems } = useAppSelector(selectNftItemState);
   const item = _find(nftItems, ['id', query.id]);
 
-  const data = useMemo(
-    () =>
-      _times(10, i => ({
-        id: i,
-        time: '25 Oct 2021 10:03',
-        amount: '0.12340000 BUSD',
-        from: '094373474873724890',
-        to: '094373474873724890'
-      })),
-    []
-  );
+  // const data = useMemo(
+  //   () =>
+  //     _times(10, i => ({
+  //       id: i,
+  //       time: '25 Oct 2021 10:03',
+  //       amount: '0.12340000 BUSD',
+  //       from: '094373474873724890',
+  //       to: '094373474873724890'
+  //     })),
+  //   []
+  // );
 
-  const columns = useMemo(
-    () => [
-      {
-        Header: 'Time',
-        accessor: 'time'
-      },
-      {
-        Header: 'Amount',
-        accessor: 'amount'
-      },
-      {
-        Header: 'From',
-        accessor: 'from'
-      },
-      {
-        Header: 'To',
-        accessor: 'to'
-      }
-    ],
-    []
-  );
+  // const columns = useMemo(
+  //   () => [
+  //     {
+  //       Header: 'Time',
+  //       accessor: 'time'
+  //     },
+  //     {
+  //       Header: 'Amount',
+  //       accessor: 'amount'
+  //     },
+  //     {
+  //       Header: 'From',
+  //       accessor: 'from'
+  //     },
+  //     {
+  //       Header: 'To',
+  //       accessor: 'to'
+  //     }
+  //   ],
+  //   []
+  // );
 
   if (loading) return <Box>Loading...</Box>;
   if (!item) return <Box>Error</Box>;

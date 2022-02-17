@@ -4,7 +4,6 @@ import { Box, Button, Container, Flex, Heading, Text } from '@whammytechvn/wt-co
 import ButtonBack from 'components/buttons/ButtonBack';
 import { getLayoutDefault } from 'components/layouts/pages/default/getLayoutDefault';
 import CardCharacter from './components/CardCharacter';
-import mockCharacters from './mockCharacters';
 
 import _times from 'lodash/times';
 import _find from 'lodash/find';
@@ -12,6 +11,7 @@ import { GetServerSideProps } from 'next';
 import { MOCK_CONTENT } from 'utils/mock';
 import ProgressBar from 'components/display/progress-bar/ProgressBar';
 import { useMemo } from 'react';
+import { mockCharacters } from 'pages/inventory/characters';
 
 export interface InventoryCharacterDetailProps {
   character: {

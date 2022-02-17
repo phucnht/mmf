@@ -18,6 +18,7 @@ const MetaverseCard = ({ metaverse }: MetaverseCardProps) => {
           condition={metaverse.condition}
           fromDate={metaverse.fromDate}
           toDate={metaverse.toDate}
+          whitelistContract={metaverse.whitelistContract}
         />
       </Flex>
       <Center className="col-span-5 flex justify-center items-center relative">

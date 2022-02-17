@@ -4,7 +4,6 @@ import { Box, Button, Container, Flex, Heading, Text } from '@whammytechvn/wt-co
 import ButtonBack from 'components/buttons/ButtonBack';
 import { getLayoutDefault } from 'components/layouts/pages/default/getLayoutDefault';
 import CardCharacter from './components/CardCharacter';
-import mockCharacters from './mockCharacters';
 
 import _times from 'lodash/times';
 import _find from 'lodash/find';
@@ -13,6 +12,7 @@ import { MOCK_CONTENT } from 'utils/mock';
 import ProgressBar from 'components/display/progress-bar/ProgressBar';
 import { useMemo } from 'react';
 import useAuthGuard from 'hooks/useAuthGuard';
+import { mockCharacters } from 'pages/marketplace/characters';
 
 export interface InventoryCharacterDetailProps {
   character: {

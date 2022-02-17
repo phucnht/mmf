@@ -1,4 +1,4 @@
-import React, { DetailedHTMLProps, forwardRef, LegacyRef } from 'react';
+import React, { DetailedHTMLProps, forwardRef } from 'react';
 import { InputHTMLAttributes } from 'react';
 import { useFormContext } from 'react-hook-form';
 import classNames from 'classnames';
@@ -10,7 +10,7 @@ interface InputTextProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLInput
   className?: string;
 }
 
-export const InputText = ({ innerRef, fullWidth = false, className, errors, ...props }: InputTextProps) => {
+export const InputText = ({ innerRef, fullWidth = false, className, ...props }: InputTextProps) => {
   const cxInputText = classNames(
     'min-w-[27rem] w-[27rem] py-6 px-10 bg-blue-400 rounded-[2rem] text-lg focus:outline-blue-400',
     { 'w-full': fullWidth },
@@ -22,6 +22,8 @@ export const InputText = ({ innerRef, fullWidth = false, className, errors, ...p
 const InputTextWithRef = forwardRef<HTMLInputElement, InputTextProps>((props: InputTextProps, ref) => {
   return <InputText innerRef={ref} {...props} />;
 });
+
+InputTextWithRef.displayName = 'InputTextWithRef';
 
 export function FormInputText({ name, ...props }: InputTextProps) {
   const { register } = useFormContext();
