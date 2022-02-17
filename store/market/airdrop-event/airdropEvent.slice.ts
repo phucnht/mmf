@@ -22,5 +22,6 @@ const airdropEventsSlice = createSlice({
   }
 });
 
-export const selectAirdropEvents = (state: AppState) => state.airdropEvent;
+export const selectAirdropEventState = (state: AppState) => state.airdropEvent;
+export const selectAirdropEventData = (state: AppState) => state.airdropEvent.data;
 export default airdropEventsSlice.reducer;

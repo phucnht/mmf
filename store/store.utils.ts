@@ -1,3 +1,5 @@
+import _isArray from 'lodash/isArray';
+
 export const DEFAULT_PAGINATION = {
   total: 0,
   currentPage: 1,
@@ -33,7 +35,13 @@ export const handlePending = (state: any) => {
 
 export const handleFulfilled = (state: any, action: any) => {
   if (state.loading === true) {
-    return { ...DEFAULT_BASE_STATE, data: { ...state.data, ...action.payload } };
+    let data;
+    if (_isArray(state.data)) {
+      data = [...state.data, ...action.payload];
+    } else {
+      data = { ...state.data, ...action.payload };
+    }
+    return { ...DEFAULT_BASE_STATE, data };
   }
 };
 

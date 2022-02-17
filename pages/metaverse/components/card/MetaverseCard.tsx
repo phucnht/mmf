@@ -1,28 +1,37 @@
 import { Box, Center, Flex, Grid } from '@whammytechvn/wt-components';
 import Image from 'components/display/image/Image';
-import MetaverseCardContent from './MetaverseCardContent';
+import MetaverseCardDescription from './MetaverseCardDescription';
 import MetaverseCardTitle from './MetaverseCardTitle';
 
 export interface MetaverseCardProps {
-  content: string;
-  conditions: string;
-  imgSrc: StaticImageData | string;
-  imgAlt: string;
-  imgSubSrc: StaticImageData | string;
-  imgSubAlt: string;
+  name: string;
+  description: string;
+  condition: string;
+  bgImgSrc: StaticImageData | string;
+  bgImgAlt: string;
+  itemImgSrc: StaticImageData | string;
+  itemImgAlt: string;
 }
 
-const MetaverseCard = ({ content, conditions, imgSrc, imgAlt, imgSubSrc, imgSubAlt }: MetaverseCardProps) => {
+const MetaverseCard = ({
+  name,
+  description,
+  condition,
+  bgImgSrc,
+  bgImgAlt,
+  itemImgSrc,
+  itemImgAlt
+}: MetaverseCardProps) => {
   return (
     <Grid className="grid-cols-11 gap-4 text-white text-xl font-bold">
       <Flex className="flex-col col-span-6 gap-4">
-        <MetaverseCardTitle title="My Meta Farm" />
-        <MetaverseCardContent content={content} conditions={conditions} />
+        <MetaverseCardTitle title={name} />
+        <MetaverseCardDescription description={description} condition={condition} />
       </Flex>
       <Center className="col-span-5 flex justify-center items-center relative">
-        <Image src={imgSrc} alt={imgAlt} height={776} />
+        <Image src={bgImgSrc} alt={bgImgAlt} width={638} height={776} />
         <Box className="absolute left-12 2xl:left-24 bottom-4">
-          <Image src={imgSubSrc} alt={imgSubAlt} />
+          <Image src={itemImgSrc} alt={itemImgAlt} width={300} height={360} />
         </Box>
       </Center>
     </Grid>

@@ -6,21 +6,21 @@ import storage from 'redux-persist/lib/storage/session';
 import modalConfirmationReducer from './modal-confirmation/modalConfirmation.slice';
 import authReducer, { logout } from './account/auth/auth.slice';
 import profileReducer from './account/profile/profile.slice';
-import airdropEventReducer from './market/airdrop-event/airdropEvent.slice';
 import inventoryReducer from './market/nft-item/nftItem.slice';
 import marketplaceReducer from './market/nft-item/nftItem.slice';
 import systemConfigReducer from './market/system-config/systemConfig.slice';
 import paymentTokenReducer from './market/payment-token/paymentToken.slice';
+import airdropEventReducer from './market/airdrop-event/airdropEvent.slice';
 
 const appReducer = combineReducers({
   modalConfirmation: modalConfirmationReducer,
   auth: authReducer,
   profile: profileReducer,
-  airdropEvent: airdropEventReducer,
   inventory: inventoryReducer,
   marketplace: marketplaceReducer,
   systemConfig: systemConfigReducer,
-  paymentToken: paymentTokenReducer
+  paymentToken: paymentTokenReducer,
+  airdropEvent: airdropEventReducer
 });
 
 const rootReducer = (state: any, action: AnyAction) => {
@@ -44,7 +44,7 @@ const createStore = () => {
 
   const _store = configureStore({
     reducer: persistedReducer,
-    devTools: true,
+    devTools: process.env.NODE_ENV !== 'production',
     // Adding the api middleware enables caching, invalidation, polling,
     // and other useful features of `rtk-query`.
     middleware: getDefaultMiddleware =>

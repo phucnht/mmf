@@ -6,12 +6,12 @@ import imgMeteverseSmall from 'public/assets/metaverse/metaverse-sm.png';
 import Countdown from 'components/countdown/Countdown';
 import AirdropCardButton from './MetaverseCardButton';
 
-export interface MetaverseCardContentProps {
-  content: string;
-  conditions: string;
+export interface MetaverseCardDescriptionProps {
+  description: string;
+  condition: string;
 }
 
-const MetaverseCardContent: FC<MetaverseCardContentProps> = ({ content, conditions }) => {
+const MetaverseCardDescription: FC<MetaverseCardDescriptionProps> = ({ description, condition }) => {
   return (
     <Stack className="rounded-[2rem] bgg-black p-8 h-full flex-col divide-y divide-white/50">
       <Box className="grow">
@@ -20,14 +20,14 @@ const MetaverseCardContent: FC<MetaverseCardContentProps> = ({ content, conditio
           <Button compact content="Play To Earn" className="text-sm p-4 min-w-max bgg-pink" />
           <Image src={imgMeteverseSmall} alt="Metaverse" />
         </Stack>
-        <Text className="uppercase">{content}</Text>
+        <Text className="uppercase">{description}</Text>
       </Box>
       <Stack className="flex-col">
-        <Text className="text-yellow-100 my-5">{conditions}</Text>
+        <Text className="text-yellow-100 my-5">{condition}</Text>
         <AirdropCardButton />
       </Stack>
     </Stack>
   );
 };
 
-export default MetaverseCardContent;
+export default MetaverseCardDescription;
