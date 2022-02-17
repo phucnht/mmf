@@ -69,7 +69,7 @@ const HeaderButtonUser = () => {
           <TextCopyable className="px-8 py-4" value={address} />
           <HeaderBalance className="px-8 py-4" value={balance} />
           <HeaderBalance className="px-8 py-4" value={balance2} />
-          <div role="navigation" onClick={() => goTo('/inventory')} className={cxTab('/inventory')}>
+          <div role="navigation" onClick={() => goTo('/inventory/airdrop')} className={cxTab('/inventory')}>
             Inventory
           </div>
           <div role="navigation" onClick={() => dispatch(logout())} className={cxTab()}>
