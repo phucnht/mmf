@@ -45,4 +45,5 @@ export const profileSlice = createSlice({
 });
 
 export const selectProfile = (state: AppState) => state.profile;
+export const selectProfileData = (state: AppState) => state.profile.data;
 export default profileSlice.reducer;

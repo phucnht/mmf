@@ -1,3 +1,5 @@
+import _isEmpty from 'lodash/isEmpty';
+
 export const n6 = new Intl.NumberFormat('en-us', {
   style: 'decimal',
   minimumFractionDigits: 0,
@@ -25,7 +27,7 @@ export const getCurrencyToken = (value: number) => getCurrencyUSD(value).substri
  * @param {number} n number of chars to keep at front/end
  * @returns {string}
  */
-export const getEllipsisTxt = (str?: string | null, n: number = 6): string => {
+export const getEllipsisTxt = (str?: string | null, n = 6): string => {
   if (str) {
     return `${str.slice(0, n)}...${str.slice(str.length - n)}`;
   }
@@ -44,3 +46,6 @@ export const tokenValue = (value: number, decimals: number): number =>
  */
 export const tokenValueTxt = (value: number, decimals: number, symbol: string): string =>
   `${n4.format(tokenValue(value, decimals))} ${symbol}`;
+
+export const formatUsername = (username: string) =>
+  username && !_isEmpty(username) ? (username.startsWith('0x') ? getEllipsisTxt(username) : username) : 'Unknown';

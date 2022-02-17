@@ -6,10 +6,13 @@ import { ButtonImage, Text } from '@whammytechvn/wt-components';
 import HeaderBalance from '../HeaderBalance';
 import TextCopyable from 'components/display/text/TextCopyable';
 import HeaderButtonLogin from './HeaderButtonLogin';
-import { forwardRef } from 'react';
+import { forwardRef, useEffect } from 'react';
 import { ButtonImageProps } from '@whammytechvn/wt-components/dist/controls/button-image/ButtonImage.i';
 import { useAppDispatch, useAppSelector } from 'store/store.hook';
 import { logout, selectAuthData } from 'store/account/auth/auth.slice';
+import { selectProfileData } from 'store/account/profile/profile.slice';
+import { getProfileByAddress } from 'store/account/profile/profile.api';
+import { formatUsername } from 'utils/format';
 
 const ButtonImageRef = forwardRef<any, ButtonImageProps>(({ children, ...props }: ButtonImageProps, ref) => {
   return (
@@ -24,6 +27,13 @@ ButtonImageRef.displayName = 'ButtonImageRef';
 const HeaderButtonUser = () => {
   const dispatch = useAppDispatch();
   const { accessToken, address, balance, balance2 } = useAppSelector(selectAuthData);
+  const { username } = useAppSelector(selectProfileData);
+
+  useEffect(() => {
+    if (accessToken) {
+      dispatch(getProfileByAddress({ address }));
+    }
+  }, [accessToken, dispatch, address]);
 
   const router = useRouter();
   const goTo = (path: string) => {
@@ -37,7 +47,7 @@ const HeaderButtonUser = () => {
   return (
     <Popover className="relative">
       <Popover.Button as={ButtonImageRef} imgSrc="/assets/bg/bg-header-user.png" className="h-[10rem] w-[19.3rem] pt-6">
-        <Text className="truncate capitalize font-bold">Anthony93</Text>
+        <Text className="truncate capitalize font-bold">{formatUsername(username)}</Text>
       </Popover.Button>
       <Transition
         as="div"

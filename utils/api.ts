@@ -16,7 +16,7 @@ export const client = (baseURL?: string): AxiosInstance => {
 
   instance.interceptors.request.use(
     config => {
-      const { accessToken } = store.getState().auth;
+      const { accessToken } = store.getState().auth.data;
 
       if (config.headers) {
         if (accessToken) {

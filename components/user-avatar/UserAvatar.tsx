@@ -1,32 +1,31 @@
 import TextCopyable from 'components/display/text/TextCopyable';
 import Image from 'components/display/image/Image';
 import { FC } from 'react';
-import { getEllipsisTxt } from 'utils/format';
+import { formatUsername, getEllipsisTxt } from 'utils/format';
 import imgAvatar from 'public/assets/sidebar/avatar.png';
 import imgAvatarFrame from 'public/assets/sidebar/avatar-frame.png';
 import { Box, Stack } from '@whammytechvn/wt-components';
 import classNames from 'classnames';
 import { useAppSelector } from 'store/store.hook';
-import { selectAuthData } from 'store/account/auth/auth.slice';
-
+import { selectProfileData } from 'store/account/profile/profile.slice';
 interface UserAvatarProps {
   className?: string;
 }
 
 const UserAvatar: FC<UserAvatarProps> = ({ className }) => {
-  const { address } = useAppSelector(selectAuthData);
+  const { username, address, avatar } = useAppSelector(selectProfileData);
   const cxUserAvatar = classNames('flex-col', className);
 
   return (
     <Stack className={cxUserAvatar}>
       <Box className="relative min-w-full flex items-center justify-center mb-2">
         <Box className="absolute">
-          <Image src={imgAvatar} alt="Anthony93" />
+          <Image src={avatar || imgAvatar} alt={username || 'Unknown'} />
         </Box>
         <Image src={imgAvatarFrame} alt="Avatar Frame" />
       </Box>
       <Stack className="text-white text-normal text-md flex-col">
-        <Box className="font-black text-2xl">Anthony93</Box>
+        <Box className="font-black text-2xl">{formatUsername(username)}</Box>
         <Box className="flex justify-center items-center">
           <TextCopyable value={getEllipsisTxt(address)} />
         </Box>

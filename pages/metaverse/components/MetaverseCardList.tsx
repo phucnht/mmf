@@ -1,4 +1,3 @@
-import { Flex, Heading } from '@whammytechvn/wt-components';
 import MetaverseCard from './card/MetaverseCard';
 
 import { FC, useEffect } from 'react';
