@@ -3,6 +3,7 @@ import { BaseResults, GetResponse, GetState } from 'store/store.i';
 export interface AirdropEventDto {
   id: string;
   name: string;
+  whitelistContract: string;
   condition: string;
   description: string;
   tokenId: string;

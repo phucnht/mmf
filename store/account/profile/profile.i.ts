@@ -10,13 +10,13 @@ export interface ProfileLinkAccountRequest {
 }
 
 export interface ProfileRequest {
-  username: string;
-  bio: string;
-  playerId: string;
-  email: string;
-  address: string;
-  avatar: string;
-  cover: string;
+  username?: string;
+  bio?: string;
+  playerId?: string;
+  email?: string;
+  address?: string;
+  avatar?: string;
+  cover?: string;
 }
 
 export type ProfileDto = {

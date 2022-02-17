@@ -26,6 +26,6 @@ export interface PaginationRequest {
   search?: string;
   page?: number;
   size?: number;
-  orderBy?: number;
+  orderBy?: string;
   desc?: boolean;
 }

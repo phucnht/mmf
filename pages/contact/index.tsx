@@ -1,4 +1,4 @@
-import { getLayoutDefault } from 'components/layouts/pages/getLayoutDefault';
+import { getLayoutDefault } from 'components/layouts/pages/default/getLayoutDefault';
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
 

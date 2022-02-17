@@ -16,7 +16,7 @@ export default function SidebarHorizontal({ routes, defaultSlug, levelSlug = 3, 
     router.push(path);
   };
 
-  const cxTabs = classNames('justify-between text-white w-full py-10 px-12 rounded-[2rem] bg-green-300');
+  const cxTabs = classNames('justify-start gap-20 text-white w-full py-10 px-12 rounded-[2rem] bg-green-300');
 
   const cxTab = classNames(
     "flex items-center relative uppercase font-black text-md cursor-pointer hover:after:bg-white/75 hover:after:h-2 after:h-0 after:content-[''] after:absolute after:left-0 after:-bottom-2 after:w-full after:bg-white after:rounded-3xl"
@@ -30,7 +30,7 @@ export default function SidebarHorizontal({ routes, defaultSlug, levelSlug = 3, 
             {({ selected }) => (
               <div
                 key={route.slug}
-                onClick={() => goTo(`/marketplace/inventory/${route.slug}`)}
+                onClick={() => goTo(`/${route.slug}`)}
                 className={classNames(cxTab, { 'after:h-2': selected })}
               >
                 <Image src={route.icon} alt={route.label} />

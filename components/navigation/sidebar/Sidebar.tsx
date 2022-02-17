@@ -1,5 +1,5 @@
 import { Tab } from '@headlessui/react';
-import { Box, Flex, Grid } from '@whammytechvn/wt-components';
+import { Box, Grid } from '@whammytechvn/wt-components';
 import classNames from 'classnames';
 import UserAvatar from 'components/user-avatar/UserAvatar';
 import { useRouter } from 'next/router';
@@ -37,7 +37,7 @@ export default function Sidebar({ routes, defaultSlug, levelSlug = 2, children }
                 });
 
                 return (
-                  <div role="navigation" className={cxTab} onClick={() => goTo(`/marketplace/${route.slug}`)}>
+                  <div role="navigation" className={cxTab} onClick={() => goTo(`/${route.slug}`)}>
                     {route.label}
                   </div>
                 );

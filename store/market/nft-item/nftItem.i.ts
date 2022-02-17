@@ -102,8 +102,6 @@ export interface NftItemDto {
   evolveSaltNonce: number;
 }
 
-export type NftItemsState = BaseResultPagination<NftItemDto>;
-
 export type NftItemRequest = {
   status?: NftItemStatus;
   marketType?: NftItemMarketType;
@@ -122,3 +120,10 @@ export type NftItemRequest = {
   minLevel?: string;
   maxLevel?: string;
 } & PaginationRequest;
+
+export type InventoryRequest = {
+  owner?: string;
+} & PaginationRequest;
+
+export type NftItemsState = BaseResultPagination<NftItemDto>;
+export type InventoryState = BaseResultPagination<NftItemDto>;

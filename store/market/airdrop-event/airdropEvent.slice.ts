@@ -10,8 +10,8 @@ export const initialState: AirdropEventState = {
   data: []
 };
 
-const airdropEventsSlice = createSlice({
-  name: 'airdrop-events',
+const airdropEventSlice = createSlice({
+  name: 'airdropEvent',
   initialState,
   reducers: {},
   extraReducers: builder => {
@@ -24,4 +24,4 @@ const airdropEventsSlice = createSlice({
 
 export const selectAirdropEventState = (state: AppState) => state.airdropEvent;
 export const selectAirdropEventData = (state: AppState) => state.airdropEvent.data;
-export default airdropEventsSlice.reducer;
+export default airdropEventSlice.reducer;

@@ -2,7 +2,7 @@ import '../styles/main.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 import type { AppProps } from 'next/app';
-import { store } from '../store/store';
+import { persistor, store } from '../store/store';
 import { ToastContainer } from 'react-toastify';
 import ModalConfirmation from 'components/modal/ModalConfirmation';
 import Head from 'next/head';
@@ -11,6 +11,7 @@ import { NextPage } from 'next';
 import { ReactElement, ReactNode } from 'react';
 import AppLayout from 'components/layouts/app/AppLayout';
 import NextNProgress from 'nextjs-progressbar';
+import { PersistGate } from 'redux-persist/integration/react';
 
 export type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -37,20 +38,22 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         options={{ easing: 'ease', speed: 500 }}
       />
       <ProviderRedux store={store}>
-        <AppLayout>{getLayout(<Component {...pageProps} />)}</AppLayout>
-        <ToastContainer
-          position="top-right"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          className="text-sm"
-        />
-        <ModalConfirmation />
+        <PersistGate loading={<>Loading...</>} persistor={persistor}>
+          <AppLayout>{getLayout(<Component {...pageProps} />)}</AppLayout>
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            className="text-sm"
+          />
+          <ModalConfirmation />
+        </PersistGate>
       </ProviderRedux>
     </>
   );

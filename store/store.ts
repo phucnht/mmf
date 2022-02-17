@@ -7,6 +7,7 @@ import modalConfirmationReducer from './modal-confirmation/modalConfirmation.sli
 import authReducer, { logout } from './account/auth/auth.slice';
 import profileReducer from './account/profile/profile.slice';
 import nftItemReducer from './market/nft-item/nftItem.slice';
+import inventoryReducer from './market/nft-item/inventory.slice';
 import systemConfigReducer from './market/system-config/systemConfig.slice';
 import paymentTokenReducer from './market/payment-token/paymentToken.slice';
 import airdropEventReducer from './market/airdrop-event/airdropEvent.slice';
@@ -17,6 +18,7 @@ const appReducer = combineReducers({
   auth: authReducer,
   profile: profileReducer,
   nftItem: nftItemReducer,
+  inventory: inventoryReducer,
   systemConfig: systemConfigReducer,
   paymentToken: paymentTokenReducer,
   airdropEvent: airdropEventReducer
@@ -32,7 +34,6 @@ const rootReducer = (state: any, action: AnyAction) => {
 
 const rootPersistConfig = {
   key: 'root',
-  version: 1,
   storage: storage
 };
 

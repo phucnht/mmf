@@ -28,7 +28,7 @@ const MetaverseCardButton: FC = () => {
   };
 
   const handleSuccess = () => {
-    router.push('/marketplace/inventory');
+    router.push('/inventory');
   };
 
   useEffect(() => {

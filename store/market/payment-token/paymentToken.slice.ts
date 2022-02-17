@@ -8,7 +8,7 @@ import { getPaymentTokens } from './paymentToken.api';
 export const initialState: PaymentTokenState = { ...DEFAULT_BASE_STATE, data: {} };
 
 const paymentTokenSlice = createSlice({
-  name: 'payment-tokens',
+  name: 'paymentToken',
   initialState,
   reducers: {},
   extraReducers: builder => {

@@ -8,14 +8,14 @@ export const getProfileByAddress = createAsyncThunk('profile/getByAddress', asyn
 });
 
 export const updateProfile = createAsyncThunk('profile/update', async (params: ProfileRequest) => {
-  const res = await clientAccount.put(`/profile/account`, params);
+  const res = await clientAccount.put(`/profile`, params);
   return res;
 });
 
 export const linkAccountProfile = createAsyncThunk(
   'profile/link-account',
   async (params: ProfileLinkAccountRequest) => {
-    const res = await clientAccount.post(`/profile/account`, params);
+    const res = await clientAccount.post(`/profile/link-account`, params);
     return res;
   }
 );

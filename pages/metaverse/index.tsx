@@ -5,7 +5,7 @@ import { Box, Stack } from '@whammytechvn/wt-components';
 
 import imgMetaverse from 'public/assets/metaverse/metaverse.png';
 import { NextPageWithLayout } from 'pages/_app';
-import { getLayoutDefault } from 'components/layouts/pages/getLayoutDefault';
+import { getLayoutDefault } from 'components/layouts/pages/default/getLayoutDefault';
 import MetaverseCardList from './components/MetaverseCardList';
 
 const Metaverse: NextPageWithLayout = () => {

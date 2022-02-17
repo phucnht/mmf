@@ -65,7 +65,7 @@ const HeaderButtonUser = () => {
           <HeaderBalance className="px-8 py-4" value={balance2} />
           <div
             role="navigation"
-            onClick={() => goTo('/marketplace/inventory')}
+            onClick={() => goTo('/inventory')}
             className="px-8 py-4 font-bold hover:bg-green-500 cursor-pointer"
           >
             Inventory

@@ -14,12 +14,12 @@ const nextConfig = {
     return [
       {
         source: '/marketplace',
-        destination: '/marketplace/inventory',
+        destination: '/marketplace/items',
         permanent: true
       },
       {
-        source: '/marketplace/inventory',
-        destination: '/marketplace/inventory/airdrop',
+        source: '/inventory',
+        destination: '/inventory/airdrop',
         permanent: true
       }
     ];
