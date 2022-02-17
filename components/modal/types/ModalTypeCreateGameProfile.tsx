@@ -6,7 +6,7 @@ export interface ModalTypeCreateGameProfileProps {
   decline: MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
-const ModalTypeCreateGameProfile = ({ decline }: ModalTypeCreateGameProfileProps) => {
+const ModalTypeCreateGameProfile = () => {
   return (
     <Stack className="p-24 rounded-[2rem] shadow-lg relative flex-col w-full bg-blue-500 outline-none focus:outline-none border-[3px] border-green-200 text-white text-center">
       <Flex className="flex-col max-w-3xl">

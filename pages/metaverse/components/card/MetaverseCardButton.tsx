@@ -1,10 +1,11 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import { Button } from '@whammytechvn/wt-components';
 
 import useModalConfirmation from 'hooks/useModal';
 import { useRouter } from 'next/router';
 import { useAppSelector } from 'store/store.hook';
 import { selectAuthData } from 'store/account/auth/auth.slice';
+import { checkIsInWhitelist } from 'store/account/auth/auth.api';
 
 const ButtonType = {
   IDLE: 'idle',
@@ -12,8 +13,21 @@ const ButtonType = {
   SUCCESS: 'success'
 };
 
-const MetaverseCardButton: FC = () => {
-  const { accessToken } = useAppSelector(selectAuthData);
+const MetaverseCardButton: FC<{ whitelistContract: string }> = ({ whitelistContract }) => {
+  const { accessToken, address } = useAppSelector(selectAuthData);
+  const [isClaimable, setIsClaimable] = useState(false);
+
+  const toggleWhitelist = useCallback(async () => {
+    const result = await checkIsInWhitelist(whitelistContract, address);
+    setIsClaimable(result);
+  }, [whitelistContract, address]);
+
+  useEffect(() => {
+    if (address) {
+      toggleWhitelist();
+    }
+  }, [address, toggleWhitelist]);
+
   const router = useRouter();
   const [type, setType] = useState(ButtonType.IDLE);
 
@@ -51,7 +65,14 @@ const MetaverseCardButton: FC = () => {
 
   if (accessToken) {
     renderButton = (
-      <Button color="secondary" content="Claim" fullWidth className="py-5 text-red-100" onClick={handleProcess} />
+      <Button
+        color={isClaimable ? 'secondary' : 'default'}
+        disabled={!isClaimable}
+        content="Claim"
+        fullWidth
+        className="py-5 text-red-100 disabled:bg-grey-400 disabled:cursor-not-allowed"
+        onClick={handleProcess}
+      />
     );
   }
 

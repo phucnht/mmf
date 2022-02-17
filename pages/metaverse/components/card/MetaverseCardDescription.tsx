@@ -9,11 +9,18 @@ import AirdropCardButton from './MetaverseCardButton';
 export interface MetaverseCardDescriptionProps {
   description: string;
   condition: string;
+  whitelistContract: string;
   fromDate: Date;
   toDate: Date;
 }
 
-const MetaverseCardDescription: FC<MetaverseCardDescriptionProps> = ({ description, condition, fromDate, toDate }) => {
+const MetaverseCardDescription: FC<MetaverseCardDescriptionProps> = ({
+  description,
+  condition,
+  whitelistContract,
+  fromDate,
+  toDate
+}) => {
   return (
     <Stack className="rounded-[2rem] bgg-black p-8 h-full flex-col divide-y divide-white/50">
       <Box className="w-full grow">
@@ -26,7 +33,7 @@ const MetaverseCardDescription: FC<MetaverseCardDescriptionProps> = ({ descripti
       </Box>
       <Stack className="flex-col w-full">
         <Text className="text-yellow-100 my-5 w-full">{condition}</Text>
-        <AirdropCardButton />
+        <AirdropCardButton whitelistContract={whitelistContract} />
       </Stack>
     </Stack>
   );

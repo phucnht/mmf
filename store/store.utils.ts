@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { PaginationDto, PaginationRequest } from './store.i';
 
 export const DEFAULT_PAGINATION_RESPONSE: PaginationDto = {

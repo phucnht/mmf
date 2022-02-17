@@ -1,4 +1,4 @@
-import React, { Component, DetailedHTMLProps, useEffect } from 'react';
+import React, { DetailedHTMLProps } from 'react';
 import { InputHTMLAttributes } from 'react';
 import { FormInputText, InputText } from './InputText';
 import classNames from 'classnames';

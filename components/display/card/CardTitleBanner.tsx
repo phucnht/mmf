@@ -1,6 +1,6 @@
 import { Box, Stack, Text } from '@whammytechvn/wt-components';
 import classNames from 'classnames';
-import { FC, ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 export interface CardTitleBannerProps {
   className?: string;

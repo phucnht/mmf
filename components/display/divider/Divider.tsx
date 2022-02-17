@@ -6,6 +6,6 @@ export interface DividerProps extends DetailedHTMLProps<HTMLAttributes<HTMLHREle
 }
 
 export default function Divider({ className, ...props }: DividerProps) {
-  const cxDivider = classNames(className);
-  return <hr className="mt-10 border border-solid border-blue-100" {...props} />;
+  const cxDivider = classNames('mt-10 border border-solid border-blue-100', className);
+  return <hr className={cxDivider} {...props} />;
 }

@@ -48,7 +48,7 @@ const DataTable: FC<DataTableProps> = ({ title, sortable = false, data, columns,
               return (
                 <Row {...row.getRowProps()} className="hover:bg-primary-dark hover:opacity-70">
                   {row.cells.map(cell => {
-                    const key = `${cell.column.id}-${cell.row.id}`;
+                    // const key = `${cell.column.id}-${cell.row.id}`;
                     return (
                       <Cell
                         align="center"
