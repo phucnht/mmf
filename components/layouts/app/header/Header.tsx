@@ -22,7 +22,7 @@ const Header = () => {
         <ul className="w-full col-span-3 flex gap-x-2 justify-end items-baseline">
           <NavLink href="/" exact content="Home" />
           <NavLink href="/dashboard" content="Dashboard" />
-          <NavLink href="/marketplace" content="Marketplace" />
+          <NavLink href="/marketplace/items" content="Marketplace" />
           <NavLink href="/metaverse" content="Metaverse" />
           <NavLink href="/document" content="Document" />
           <HeaderButtonUser />
