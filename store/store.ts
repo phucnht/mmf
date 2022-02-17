@@ -27,7 +27,7 @@ const appReducer = combineReducers({
 const rootReducer = (state: any, action: AnyAction) => {
   if (action.type === logout.type) {
     storage.removeItem('persist:root');
-    return appReducer({ ...state, auth: undefined, profile: undefined }, action);
+    return appReducer({ ...state, auth: undefined, profile: undefined, inventory: undefined }, action);
   }
   return appReducer(state, action);
 };

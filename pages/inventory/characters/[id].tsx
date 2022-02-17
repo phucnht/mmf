@@ -12,6 +12,7 @@ import { GetServerSideProps } from 'next';
 import { MOCK_CONTENT } from 'utils/mock';
 import ProgressBar from 'components/display/progress-bar/ProgressBar';
 import { useMemo } from 'react';
+import useAuthGuard from 'hooks/useAuthGuard';
 
 export interface InventoryCharacterDetailProps {
   character: {
@@ -26,6 +27,8 @@ export interface InventoryCharacterDetailProps {
 }
 
 export default function InvnetoryCharacterDetail({ character }: InventoryCharacterDetailProps) {
+  useAuthGuard();
+
   const data = useMemo(
     () =>
       _times(10, i => ({

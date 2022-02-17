@@ -29,7 +29,7 @@ const DEFAULT_SLUG = 'inventory';
 
 export function getLayoutInventory(page: ReactElement) {
   return (
-    <Sidebar routes={routes} defaultSlug={DEFAULT_SLUG}>
+    <Sidebar routes={routes} baseSlug="/inventory" defaultSlug={DEFAULT_SLUG}>
       {page}
     </Sidebar>
   );
@@ -37,7 +37,7 @@ export function getLayoutInventory(page: ReactElement) {
 
 export function getLayoutInventoryOffset(page: ReactElement) {
   return (
-    <Sidebar routes={routes} defaultSlug={DEFAULT_SLUG}>
+    <Sidebar routes={routes} baseSlug="/inventory" defaultSlug={DEFAULT_SLUG}>
       <Box className="pt-44 h-full">{page}</Box>
     </Sidebar>
   );

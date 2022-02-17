@@ -5,22 +5,24 @@ import { IconStar } from 'components/icon/IconStar';
 import { MouseEventHandler } from 'react';
 import { getCurrencyToken, getCurrencyUSD } from 'utils/format';
 
-export interface InventoryItemCardProps {
-  item: {
-    id: string;
-    stars: number;
-    element: string;
-    name: string;
-    rarity: string | undefined;
-    breedCount: number;
-    imgSrc: StaticImageData | undefined;
-    priceBNB: number;
-    priceUSD: number;
-  };
+export interface MarketplaceItemDto {
+  id: string;
+  stars: number;
+  element: string;
+  name: string;
+  rarity: string | undefined;
+  breedCount: number;
+  imgSrc: StaticImageData | undefined;
+  priceBNB: number;
+  priceUSD: number;
+}
+
+export interface MarketplaceItemCardProps {
+  item: MarketplaceItemDto;
   onClick?: MouseEventHandler<HTMLDivElement> | undefined;
 }
 
-export default function InventoryItemCard({ item, onClick }: InventoryItemCardProps) {
+export default function MarketplaceItemCard({ item, onClick }: MarketplaceItemCardProps) {
   const cxCardWrapper = classNames('flex flex-col text-white hover:opacity-90 transition', {
     'cursor-pointer': onClick
   });
@@ -40,14 +42,14 @@ export default function InventoryItemCard({ item, onClick }: InventoryItemCardPr
   return (
     <div className={cxCardWrapper} onClick={onClick}>
       <Flex className={cxWrapper}>
-        <Stack className="flex-col gap-2">
+        <Flex className="flex-col items-start gap-2">
           <Text className={cxId}>{item.id}</Text>
           <Flex className="justify-center items-end gap-2">
             <IconStar />
             <Text className="text-md font-black">{item.element}</Text>
           </Flex>
           <Text>Breed count: {item.breedCount}</Text>
-        </Stack>
+        </Flex>
         <Image alt={item.name} src={item.imgSrc} />
       </Flex>
       <Stack className="flex-col text-2xl font-black mt-2">

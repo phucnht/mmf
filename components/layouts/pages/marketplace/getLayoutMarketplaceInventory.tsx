@@ -10,17 +10,17 @@ const routes = [
   {
     icon: imgIconCharacters,
     label: 'Characters',
-    slug: 'marketplace/characters'
+    slug: 'characters'
   },
   {
     icon: imgIconLands,
     label: 'Lands',
-    slug: 'marketplace/lands'
+    slug: 'lands'
   },
   {
     icon: imgIconItems,
     label: 'Items',
-    slug: 'marketplace/items'
+    slug: 'items'
   }
 ];
 
@@ -28,7 +28,7 @@ const DEFAULT_SLUG = 'airdrop';
 
 export function getLayoutMarketplaceInventory(page: ReactElement) {
   return getLayoutMarketplace(
-    <SidebarHorizontal routes={routes} defaultSlug={DEFAULT_SLUG}>
+    <SidebarHorizontal routes={routes} baseSlug="/marketplace" defaultSlug={DEFAULT_SLUG}>
       {page}
     </SidebarHorizontal>
   );

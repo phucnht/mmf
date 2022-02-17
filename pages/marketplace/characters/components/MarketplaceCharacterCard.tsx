@@ -17,7 +17,7 @@ export interface InventoryCharacterCardProps {
   onClick?: MouseEventHandler<HTMLDivElement> | undefined;
 }
 
-export default function InventoryCharacterCard({ item, onClick }: InventoryCharacterCardProps) {
+export default function MarketplaceCharacterCard({ item, onClick }: InventoryCharacterCardProps) {
   const cxCardWrapper = classNames('flex flex-col text-white hover:opacity-90 transition w-full', {
     'cursor-pointer': onClick
   });

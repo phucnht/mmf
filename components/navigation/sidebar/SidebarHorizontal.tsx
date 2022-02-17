@@ -7,7 +7,13 @@ import Image from 'components/display/image/Image';
 import _findIndex from 'lodash/findIndex';
 import { SidebarRoutesProps } from './sidebar.typings';
 
-export default function SidebarHorizontal({ routes, defaultSlug, levelSlug = 3, children }: SidebarRoutesProps) {
+export default function SidebarHorizontal({
+  routes,
+  baseSlug,
+  defaultSlug,
+  levelSlug = 2,
+  children
+}: SidebarRoutesProps) {
   const router = useRouter();
 
   const currentIndex = _findIndex(routes, { slug: router.pathname.split('/')[levelSlug] || defaultSlug });
@@ -30,7 +36,7 @@ export default function SidebarHorizontal({ routes, defaultSlug, levelSlug = 3, 
             {({ selected }) => (
               <div
                 key={route.slug}
-                onClick={() => goTo(`/${route.slug}`)}
+                onClick={() => goTo(`${baseSlug}/${route.slug}`)}
                 className={classNames(cxTab, { 'after:h-2': selected })}
               >
                 <Image src={route.icon} alt={route.label} />

@@ -6,7 +6,7 @@ import { IconStarRounded } from 'components/icon/IconStar';
 import { MouseEventHandler } from 'react';
 import { getCurrencyToken, getCurrencyUSD } from 'utils/format';
 
-export interface InventoryLandCardProps {
+export interface MarketplaceLandCardProps {
   item: {
     id: string;
     name: string;
@@ -18,7 +18,7 @@ export interface InventoryLandCardProps {
   onClick?: MouseEventHandler<HTMLDivElement> | undefined;
 }
 
-export default function InventoryLandCard({ item, onClick }: InventoryLandCardProps) {
+export default function MarketplaceLandCard({ item, onClick }: MarketplaceLandCardProps) {
   const cxCardWrapper = classNames('flex flex-col text-white hover:opacity-90 transition', {
     'cursor-pointer': onClick
   });

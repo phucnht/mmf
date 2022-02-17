@@ -5,12 +5,14 @@ import { NextPageWithLayout } from 'pages/_app';
 import InventoryCharacterCard from './components/InventoryCharacterCard';
 import { useRouter } from 'next/router';
 import mockCharacters from './mockCharacters';
+import useAuthGuard from 'hooks/useAuthGuard';
 
 const InventoryCharacters: NextPageWithLayout = () => {
   const router = useRouter();
   const goTo = (characterId: string) => {
     router.push(`/inventory/characters/${characterId}`);
   };
+  useAuthGuard();
 
   return (
     <>

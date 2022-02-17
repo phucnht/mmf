@@ -13,6 +13,7 @@ import imgClothes from '/public/assets/inventory/items/clothes.png';
 import imgBoots from '/public/assets/inventory/items/boots.png';
 import InventoryItemCard from './components/InventoryItemCard';
 import { useRouter } from 'next/router';
+import useAuthGuard from 'hooks/useAuthGuard';
 
 const items = _times(10, i => ({
   id: '257578245',
@@ -31,6 +32,7 @@ const InventoryItems: NextPageWithLayout = () => {
   const goTo = (itemId: string) => {
     router.push(`/inventory/items/${itemId}`);
   };
+  useAuthGuard();
 
   return (
     <>

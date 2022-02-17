@@ -7,8 +7,10 @@ import FormChangeName from 'components/forms/FormChangeName';
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
 import useModalConfirmation from 'hooks/useModal';
+import useAuthGuard from 'hooks/useAuthGuard';
 
 const MarketplaceAccount: NextPageWithLayout = () => {
+  useAuthGuard();
   const [userCreated] = useState(false);
 
   // Modal confirmation

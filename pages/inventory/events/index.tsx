@@ -1,9 +1,12 @@
 import { Box } from '@whammytechvn/wt-components';
 import { getLayoutInventoryInventory } from 'components/layouts/pages/inventory/getLayoutInventoryInventory';
+import useAuthGuard from 'hooks/useAuthGuard';
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
 
 const InventoryEvents: NextPageWithLayout = () => {
+  useAuthGuard();
+
   return (
     <>
       <Head>

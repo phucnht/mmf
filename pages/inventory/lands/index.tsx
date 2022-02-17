@@ -7,6 +7,7 @@ import InventoryLandCard from './components/InventoryLandCard';
 import _times from 'lodash/times';
 import imgLand1 from '/public/assets/inventory/lands/land-1.png';
 import { useRouter } from 'next/router';
+import useAuthGuard from 'hooks/useAuthGuard';
 
 const items = _times(4, () => ({
   id: '257578245',
@@ -22,6 +23,8 @@ const InventoryLands: NextPageWithLayout = () => {
   const goTo = (itemId: string) => {
     router.push(`/inventory/lands/${itemId}`);
   };
+
+  useAuthGuard();
 
   return (
     <>

@@ -7,7 +7,7 @@ import { Fragment } from 'react';
 import _findIndex from 'lodash/findIndex';
 import { SidebarRoutesProps } from './sidebar.typings';
 
-export default function Sidebar({ routes, defaultSlug, levelSlug = 2, children }: SidebarRoutesProps) {
+export default function Sidebar({ routes, defaultSlug, levelSlug = 1, children }: SidebarRoutesProps) {
   const router = useRouter();
 
   const currentIndex = _findIndex(routes, { slug: router.pathname.split('/')[levelSlug] || defaultSlug });

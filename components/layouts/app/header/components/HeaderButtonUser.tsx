@@ -13,6 +13,7 @@ import { logout, selectAuthData } from 'store/account/auth/auth.slice';
 import { selectProfileData } from 'store/account/profile/profile.slice';
 import { getProfileByAddress } from 'store/account/profile/profile.api';
 import { formatUsername } from 'utils/format';
+import classNames from 'classnames';
 
 const ButtonImageRef = forwardRef<any, ButtonImageProps>(({ children, ...props }: ButtonImageProps, ref) => {
   return (
@@ -25,9 +26,14 @@ const ButtonImageRef = forwardRef<any, ButtonImageProps>(({ children, ...props }
 ButtonImageRef.displayName = 'ButtonImageRef';
 
 const HeaderButtonUser = () => {
+  const { pathname } = useRouter();
   const dispatch = useAppDispatch();
   const { accessToken, address, balance, balance2 } = useAppSelector(selectAuthData);
   const { username } = useAppSelector(selectProfileData);
+  const cxTab = (path?: string) =>
+    classNames('px-8 py-4 font-bold hover:bg-green-500/70 cursor-pointer', {
+      'bg-green-500': path ? pathname.startsWith(path) : false
+    });
 
   useEffect(() => {
     if (accessToken) {
@@ -63,18 +69,10 @@ const HeaderButtonUser = () => {
           <TextCopyable className="px-8 py-4" value={address} />
           <HeaderBalance className="px-8 py-4" value={balance} />
           <HeaderBalance className="px-8 py-4" value={balance2} />
-          <div
-            role="navigation"
-            onClick={() => goTo('/inventory')}
-            className="px-8 py-4 font-bold hover:bg-green-500 cursor-pointer"
-          >
+          <div role="navigation" onClick={() => goTo('/inventory')} className={cxTab('/inventory')}>
             Inventory
           </div>
-          <div
-            role="navigation"
-            onClick={() => dispatch(logout())}
-            className="px-8 py-4 font-bold hover:bg-green-500 cursor-pointer"
-          >
+          <div role="navigation" onClick={() => dispatch(logout())} className={cxTab()}>
             Disconnect
           </div>
         </Popover.Panel>
