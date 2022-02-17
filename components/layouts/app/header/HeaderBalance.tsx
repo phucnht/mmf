@@ -13,7 +13,7 @@ const HeaderBalance: FC<HeaderBalanceProps> = ({ value, loading, className }) =>
   return (
     <Stack className={cxHeaderBalance}>
       <span>{loading ? 'Loading...' : value}</span>
-      <span className="ml-2 bg-[url('/assets/coin.png')] w-9 h-10 bg-center bg-no-repeat" />
+      <span className="ml-2 bg-[url('/assets/icons/coin.png')] w-9 h-10 bg-center bg-no-repeat" />
     </Stack>
   );
 };

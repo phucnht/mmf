@@ -7,3 +7,6 @@ export const toK = (value: number): string => {
 };
 
 export const zeroPad = (num: number, places = 2) => String(num).padStart(places, '0');
+
+export const convertArrayToObject = (array: any[], key: string) =>
+  array.reduce((acc, curr) => ((acc[curr[key]] = curr), acc), {});

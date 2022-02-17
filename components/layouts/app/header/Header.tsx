@@ -1,17 +1,17 @@
-import logo from '/public/assets/logo.png';
+import logo from '/public/assets/logos/logo.png';
 
 import { Box, Scaffold } from '@whammytechvn/wt-components';
-import NavLink from 'components/navigation/NavLink';
+import NavLink from 'components/navigation/link/NavLink';
 
-import HeaderButton from './components/HeaderButton';
 import Link from 'next/link';
-import Image from 'components/display/Image';
+import Image from 'components/display/image/Image';
+import HeaderButtonUser from './components/HeaderButtonUser';
 
 const Header = () => {
   return (
     <>
       <Box className="absolute z-30 bgg-green h-48 w-full" />
-      <Scaffold.Header className="container grid grid-cols-4 relative !px-0">
+      <Scaffold.Header className="container xl:max-w-[132rem] grid grid-cols-4 relative !px-0 mb-4">
         <Box className="relative min-w-[18rem] max-w-[35rem] w-full text-center">
           <Box className="absolute cursor-pointer">
             <Link href="/" passHref>
@@ -23,9 +23,9 @@ const Header = () => {
           <NavLink href="/" exact content="Home" />
           <NavLink href="/dashboard" content="Dashboard" />
           <NavLink href="/marketplace" content="Marketplace" />
-          <NavLink href="/airdrop" content="Airdrop" />
+          <NavLink href="/metaverse" content="Metaverse" />
           <NavLink href="/document" content="Document" />
-          <HeaderButton />
+          <HeaderButtonUser />
         </ul>
       </Scaffold.Header>
     </>

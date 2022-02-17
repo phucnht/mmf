@@ -2,21 +2,19 @@ import '../styles/main.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 import type { AppProps } from 'next/app';
-import { store } from '../store/store';
+import { persistor, store } from '../store/store';
 import { ToastContainer } from 'react-toastify';
 import ModalConfirmation from 'components/modal/ModalConfirmation';
 import Head from 'next/head';
 import { Provider as ProviderRedux } from 'react-redux';
-import { Provider as ProviderEther, defaultChains } from 'wagmi';
-import { InjectedConnector } from 'wagmi/connectors/injected';
 import { NextPage } from 'next';
 import { ReactElement, ReactNode } from 'react';
 import AppLayout from 'components/layouts/app/AppLayout';
-
-const connectors = () => [new InjectedConnector({ chains: defaultChains })];
+import NextNProgress from 'nextjs-progressbar';
+import { PersistGate } from 'redux-persist/integration/react';
 
 export type NextPageWithLayout = NextPage & {
-  Layout?: (page: ReactElement) => ReactNode;
+  getLayout?: (page: ReactElement) => ReactNode;
 };
 
 export type AppPropsWithLayout = AppProps & {
@@ -24,15 +22,23 @@ export type AppPropsWithLayout = AppProps & {
 };
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
-  const getLayout = Component.Layout || (page => page);
+  const getLayout = Component.getLayout || (page => page);
 
   return (
     <>
       <Head>
-        <link rel="shortcut icon" href="/assets/favicon.ico" />
+        <link rel="shortcut icon" href="/assets/logos/favicon.ico" />
       </Head>
-      <ProviderEther autoConnect connectors={connectors}>
-        <ProviderRedux store={store}>
+      <NextNProgress
+        color="#0B2F51"
+        startPosition={0.3}
+        stopDelayMs={200}
+        height={3}
+        showOnShallow={true}
+        options={{ easing: 'ease', speed: 500 }}
+      />
+      <ProviderRedux store={store}>
+        <PersistGate loading={<>Loading...</>} persistor={persistor}>
           <AppLayout>{getLayout(<Component {...pageProps} />)}</AppLayout>
           <ToastContainer
             position="top-right"
@@ -47,8 +53,8 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
             className="text-sm"
           />
           <ModalConfirmation />
-        </ProviderRedux>
-      </ProviderEther>
+        </PersistGate>
+      </ProviderRedux>
     </>
   );
 }

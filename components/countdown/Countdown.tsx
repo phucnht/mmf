@@ -48,20 +48,24 @@ const CountdownComing = ({ startDate }: { startDate: number }) => {
   );
 };
 
-const Countdown = ({ className }: { className?: string }) => {
-  // const { startDate, endDate } = useAppSelector(selectSeason);
-  const _now = new Date();
-  const startDate = _now.setDate(_now.getDate() - 14);
-  const endDate = _now.setDate(_now.getDate() + 14);
+export interface CountdownProps {
+  fromDate: Date;
+  toDate: Date;
+  className?: string;
+}
+
+export default function Countdown({ fromDate, toDate, className }: CountdownProps) {
+  const startDate = new Date(fromDate).getTime();
+  const endDate = new Date(toDate).getTime();
   const now = Date.now();
 
-  let renderCountdown = <CountdownInProgress endDate={endDate * 1000} />;
+  let renderCountdown = <CountdownInProgress endDate={endDate} />;
 
-  if (now < startDate * 1000) {
-    renderCountdown = <CountdownComing startDate={startDate * 1000} />;
+  if (now < startDate) {
+    renderCountdown = <CountdownComing startDate={startDate} />;
   }
 
-  if (now > endDate * 1000) {
+  if (now > endDate) {
     renderCountdown = <CountdownEnded />;
   }
 
@@ -71,6 +75,4 @@ const Countdown = ({ className }: { className?: string }) => {
   );
 
   return <div className={cxCountdown}>{renderCountdown}</div>;
-};
-
-export default Countdown;
+}
