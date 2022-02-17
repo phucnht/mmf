@@ -1,7 +1,8 @@
+import _find from 'lodash/find';
 import { web3, erc20Contract } from 'utils/contract';
 import { clientAccount } from 'utils/api';
 import { NonceDto, NonceRequest, TokenDto, TokenRequest } from './auth.i';
-import { fetchBalance, login } from './auth.slice';
+import { fetchBalance, login, loginLoading } from './auth.slice';
 import { toast } from 'react-toastify';
 import { store } from 'store/store';
 
@@ -19,8 +20,11 @@ export const getBalance = async (address: string | null, tokenAddress?: string) 
 };
 
 export const connect = async (callback?: () => void) => {
+  store.dispatch(loginLoading(true));
+
   const { ethereum } = window;
   const { chainId: systemConfigChainId, chainName } = store.getState().systemConfig.data;
+  const paymentTokens = store.getState().paymentToken.data;
 
   try {
     // First request user to login to their wallet
@@ -41,14 +45,15 @@ export const connect = async (callback?: () => void) => {
         const signature = await web3.eth.personal.sign(message, address, '');
         const { accessToken } = await getToken({ address, signature });
 
-        const balance = await getBalance(address, process.env.NEXT_PUBLIC_TOKEN_1);
-        const balance2 = await getBalance(address, process.env.NEXT_PUBLIC_TOKEN_2);
+        const balance = await getBalance(address, paymentTokens['MMF'].contractAddress);
+        const balance2 = await getBalance(address, paymentTokens['BUSD'].contractAddress);
 
         store.dispatch(login({ accessToken, address, balance, balance2 }));
 
         if (typeof callback === 'function') callback();
       } catch (err: any) {
         console.error(err);
+        store.dispatch(loginLoading(false));
       }
     }
   } catch (err: any) {
@@ -59,5 +64,6 @@ export const connect = async (callback?: () => void) => {
     } else {
       console.error(err);
     }
+    store.dispatch(loginLoading(false));
   }
 };

@@ -12,11 +12,15 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
+    loginLoading: (state, { payload }) => {
+      state.loading = payload;
+    },
     login: (state, { payload: { accessToken, address, balance, balance2 } }: PayloadAction<AuthDto>) => {
       state.data.accessToken = accessToken;
       state.data.address = address;
       state.data.balance = balance;
       state.data.balance2 = balance2;
+      state.loading = false;
     },
     logout: () => initialState,
     fetchToken: (state, { payload }: PayloadAction<string>) => {
@@ -28,7 +32,7 @@ export const authSlice = createSlice({
   }
 });
 
-export const { login, logout, fetchToken, fetchBalance } = authSlice.actions;
+export const { loginLoading, login, logout, fetchToken, fetchBalance } = authSlice.actions;
 export const selectAuthState = (state: AppState) => state.auth;
 export const selectAuthData = (state: AppState) => state.auth.data;
 export default authSlice.reducer;

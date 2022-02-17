@@ -35,13 +35,7 @@ export const handlePending = (state: any) => {
 
 export const handleFulfilledReplace = (state: any, action: any) => {
   if (state.loading === true) {
-    let data;
-    if (_isArray(state.data)) {
-      data = action.payload;
-    } else {
-      data = { ...state.data, ...action.payload };
-    }
-    return { ...DEFAULT_BASE_STATE, data };
+    return { ...DEFAULT_BASE_STATE, data: action.payload };
   }
 };
 

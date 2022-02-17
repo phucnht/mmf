@@ -7,6 +7,7 @@ import Warning from 'components/display/warning/Warning';
 import { useAppDispatch, useAppSelector } from 'store/store.hook';
 import { getSystemConfig } from 'store/market/system-config/systemConfig.api';
 import { selectSystemConfigData } from 'store/market/system-config/systemConfig.slice';
+import { getPaymentTokens } from 'store/market/payment-token/paymentToken.api';
 
 interface AppLayoutProps {
   children: ReactNode;
@@ -20,6 +21,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
   useEffect(() => {
     if (!id) {
       dispatch(getSystemConfig());
+      dispatch(getPaymentTokens());
     }
   }, [id, dispatch]);
 

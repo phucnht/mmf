@@ -8,6 +8,9 @@ export interface PaymentTokenDto {
   contractAddress: string;
 }
 
-export type PaymentTokenResult = BaseResults<PaymentTokenDto>;
-export type PaymentTokenState = GetState<PaymentTokenResult>;
-export type GetPaymentTokensResponse = GetResponse<PaymentTokenResult>;
+export interface PaymentTokenStateData {
+  data: { [x: string]: PaymentTokenDto };
+}
+
+export type PaymentTokenState = GetState<PaymentTokenStateData>;
+export type GetPaymentTokensResponse = GetResponse<BaseResults<PaymentTokenDto>>;

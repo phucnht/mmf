@@ -6,18 +6,17 @@ import storage from 'redux-persist/lib/storage/session';
 import modalConfirmationReducer from './modal-confirmation/modalConfirmation.slice';
 import authReducer, { logout } from './account/auth/auth.slice';
 import profileReducer from './account/profile/profile.slice';
-import inventoryReducer from './market/nft-item/nftItem.slice';
-import marketplaceReducer from './market/nft-item/nftItem.slice';
+import nftItemReducer from './market/nft-item/nftItem.slice';
 import systemConfigReducer from './market/system-config/systemConfig.slice';
 import paymentTokenReducer from './market/payment-token/paymentToken.slice';
 import airdropEventReducer from './market/airdrop-event/airdropEvent.slice';
 
 const appReducer = combineReducers({
   modalConfirmation: modalConfirmationReducer,
+  // Logic API
   auth: authReducer,
   profile: profileReducer,
-  inventory: inventoryReducer,
-  marketplace: marketplaceReducer,
+  nftItem: nftItemReducer,
   systemConfig: systemConfigReducer,
   paymentToken: paymentTokenReducer,
   airdropEvent: airdropEventReducer
@@ -26,18 +25,18 @@ const appReducer = combineReducers({
 const rootReducer = (state: any, action: AnyAction) => {
   if (action.type === logout.type) {
     storage.removeItem('persist:root');
-    return appReducer(undefined, action);
+    return appReducer({ ...state, auth: undefined, profile: undefined }, action);
   }
   return appReducer(state, action);
 };
 
-const persistConfig = {
+const rootPersistConfig = {
   key: 'root',
   version: 1,
-  storage
+  storage: storage
 };
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(rootPersistConfig, rootReducer);
 
 const createStore = () => {
   const thunkArguments = {} as ThunkExtraArguments;
