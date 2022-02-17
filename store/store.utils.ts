@@ -33,11 +33,11 @@ export const handlePending = (state: any) => {
   }
 };
 
-export const handleFulfilled = (state: any, action: any) => {
+export const handleFulfilledReplace = (state: any, action: any) => {
   if (state.loading === true) {
     let data;
     if (_isArray(state.data)) {
-      data = [...state.data, ...action.payload];
+      data = action.payload;
     } else {
       data = { ...state.data, ...action.payload };
     }

@@ -1,7 +1,7 @@
 import { DATE_DEFAULT } from 'utils/date';
 import { createSlice } from '@reduxjs/toolkit';
 import { AppState } from 'store/store';
-import { DEFAULT_BASE_STATE, handleFulfilled, handlePending, handleReject } from 'store/store.utils';
+import { DEFAULT_BASE_STATE, handleFulfilledReplace, handlePending, handleReject } from 'store/store.utils';
 import { ProfileState } from './profile.i';
 import { getProfileByAddress, linkAccountProfile, updateProfile } from './profile.api';
 
@@ -31,15 +31,15 @@ export const profileSlice = createSlice({
     builder
       // GET PROFILE BY ADDRESS
       .addCase(getProfileByAddress.pending, handlePending)
-      .addCase(getProfileByAddress.fulfilled, handleFulfilled)
+      .addCase(getProfileByAddress.fulfilled, handleFulfilledReplace)
       .addCase(getProfileByAddress.rejected, handleReject)
       // UPDATE PROFILE
       .addCase(updateProfile.pending, handlePending)
-      .addCase(updateProfile.fulfilled, handleFulfilled)
+      .addCase(updateProfile.fulfilled, handleFulfilledReplace)
       .addCase(updateProfile.rejected, handleReject)
       // LINK ACCOUNT PROFILE
       .addCase(linkAccountProfile.pending, handlePending)
-      .addCase(linkAccountProfile.fulfilled, handleFulfilled)
+      .addCase(linkAccountProfile.fulfilled, handleFulfilledReplace)
       .addCase(linkAccountProfile.rejected, handleReject);
   }
 });

@@ -1,4 +1,4 @@
-import { handleFulfilled, handleReject, handlePending, DEFAULT_BASE_STATE_LIST } from 'store/store.utils';
+import { handleFulfilledReplace, handleReject, handlePending, DEFAULT_BASE_STATE_LIST } from 'store/store.utils';
 import { createSlice } from '@reduxjs/toolkit';
 import { AppState } from 'store/store';
 import { PaymentTokenState } from './paymentToken.i';
@@ -13,7 +13,7 @@ const paymentTokenSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getPaymentTokens.pending, handlePending)
-      .addCase(getPaymentTokens.fulfilled, handleFulfilled)
+      .addCase(getPaymentTokens.fulfilled, handleFulfilledReplace)
       .addCase(getPaymentTokens.rejected, handleReject);
   }
 });

@@ -1,4 +1,4 @@
-import { handlePending, handleFulfilled, handleReject, DEFAULT_BASE_STATE } from './../../store.utils';
+import { handlePending, handleFulfilledReplace, handleReject, DEFAULT_BASE_STATE } from './../../store.utils';
 import { createSlice } from '@reduxjs/toolkit';
 import { AppState } from 'store/store';
 import { getSystemConfig } from './systemConfig.api';
@@ -38,7 +38,7 @@ const systemConfigSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getSystemConfig.pending, handlePending)
-      .addCase(getSystemConfig.fulfilled, handleFulfilled)
+      .addCase(getSystemConfig.fulfilled, handleFulfilledReplace)
       .addCase(getSystemConfig.rejected, handleReject);
   }
 });

@@ -45,8 +45,6 @@ const createStore = () => {
   const _store = configureStore({
     reducer: persistedReducer,
     devTools: process.env.NODE_ENV !== 'production',
-    // Adding the api middleware enables caching, invalidation, polling,
-    // and other useful features of `rtk-query`.
     middleware: getDefaultMiddleware =>
       getDefaultMiddleware({
         thunk: { extraArgument: thunkArguments },

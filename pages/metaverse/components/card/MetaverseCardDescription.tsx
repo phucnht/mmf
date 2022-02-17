@@ -9,21 +9,23 @@ import AirdropCardButton from './MetaverseCardButton';
 export interface MetaverseCardDescriptionProps {
   description: string;
   condition: string;
+  fromDate: Date;
+  toDate: Date;
 }
 
-const MetaverseCardDescription: FC<MetaverseCardDescriptionProps> = ({ description, condition }) => {
+const MetaverseCardDescription: FC<MetaverseCardDescriptionProps> = ({ description, condition, fromDate, toDate }) => {
   return (
     <Stack className="rounded-[2rem] bgg-black p-8 h-full flex-col divide-y divide-white/50">
-      <Box className="grow">
-        <Countdown className="mb-6" />
+      <Box className="w-full grow">
+        <Countdown fromDate={fromDate} toDate={toDate} className="mb-6" />
         <Stack className="gap-12 mb-6">
           <Button compact content="Play To Earn" className="text-sm p-4 min-w-max bgg-pink" />
           <Image src={imgMeteverseSmall} alt="Metaverse" />
         </Stack>
         <Text className="uppercase">{description}</Text>
       </Box>
-      <Stack className="flex-col">
-        <Text className="text-yellow-100 my-5">{condition}</Text>
+      <Stack className="flex-col w-full">
+        <Text className="text-yellow-100 my-5 w-full">{condition}</Text>
         <AirdropCardButton />
       </Stack>
     </Stack>

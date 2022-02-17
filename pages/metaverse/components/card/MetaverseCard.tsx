@@ -1,37 +1,41 @@
 import { Box, Center, Flex, Grid } from '@whammytechvn/wt-components';
 import Image from 'components/display/image/Image';
+import { AirdropEventDto } from 'store/market/airdrop-event/airdropEvent.i';
 import MetaverseCardDescription from './MetaverseCardDescription';
 import MetaverseCardTitle from './MetaverseCardTitle';
 
 export interface MetaverseCardProps {
-  name: string;
-  description: string;
-  condition: string;
-  bgImgSrc: StaticImageData | string;
-  bgImgAlt: string;
-  itemImgSrc: StaticImageData | string;
-  itemImgAlt: string;
+  metaverse: AirdropEventDto;
 }
 
-const MetaverseCard = ({
-  name,
-  description,
-  condition,
-  bgImgSrc,
-  bgImgAlt,
-  itemImgSrc,
-  itemImgAlt
-}: MetaverseCardProps) => {
+const MetaverseCard = ({ metaverse }: MetaverseCardProps) => {
   return (
     <Grid className="grid-cols-11 gap-4 text-white text-xl font-bold">
       <Flex className="flex-col col-span-6 gap-4">
-        <MetaverseCardTitle title={name} />
-        <MetaverseCardDescription description={description} condition={condition} />
+        <MetaverseCardTitle title={metaverse.name} />
+        <MetaverseCardDescription
+          description={metaverse.description}
+          condition={metaverse.condition}
+          fromDate={metaverse.fromDate}
+          toDate={metaverse.toDate}
+        />
       </Flex>
       <Center className="col-span-5 flex justify-center items-center relative">
-        <Image src={bgImgSrc} alt={bgImgAlt} width={638} height={776} />
-        <Box className="absolute left-12 2xl:left-24 bottom-4">
-          <Image src={itemImgSrc} alt={itemImgAlt} width={300} height={360} />
+        <Image
+          src={metaverse.backgroundImage}
+          alt={metaverse.description}
+          width={638}
+          height={776}
+          className="rounded-[2rem]"
+        />
+        <Box className="absolute left-12 lg:left-1 xl:left-2 2xl:left-4 bottom-4">
+          <Image
+            src={metaverse.itemImage}
+            alt={metaverse.description}
+            width={300}
+            height={360}
+            className="rounded-[2rem]"
+          />
         </Box>
       </Center>
     </Grid>
