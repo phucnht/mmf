@@ -46,7 +46,7 @@ export default function MarketplaceItemCard({ item, onClick }: MarketplaceItemCa
           <Text className={cxId}>{item.id}</Text>
           <Flex className="justify-center items-end gap-2">
             <IconStar />
-            <Text className="text-md font-black">{item.element}</Text>
+            <Text className="text-md font-black">{item.name}</Text>
           </Flex>
           <Text>Breed count: {item.breedCount}</Text>
         </Flex>

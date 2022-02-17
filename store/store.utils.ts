@@ -53,7 +53,6 @@ export const handleFulfilledReplace = (state: any, action: any) => {
 };
 
 export const handleFulfilledPagination = (state: any, action: any) => {
-  console.log('action', state.loading, action);
   if (state.loading === true || state.loading === 'idle') {
     const { items, ...pagination } = action.payload;
     return { ...DEFAULT_BASE_STATE, ...pagination, data: items };

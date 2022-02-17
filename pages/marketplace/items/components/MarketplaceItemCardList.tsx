@@ -19,7 +19,7 @@ import imgClothes from '/public/assets/inventory/items/clothes.png';
 import imgBoots from '/public/assets/inventory/items/boots.png';
 import { selectNftItemData } from 'store/market/nft-item/nftItem.slice';
 
-const MOCK_ITEM = {
+export const MOCK_ITEM = {
   id: '257578245',
   stars: _random(1, 3),
   element: 'Thunder',
@@ -48,7 +48,6 @@ const MarketplaceItemCardList: FC = () => {
     }
   }, [dispatch, address]);
 
-  console.log(nftItems);
   if (_isEmpty(nftItems)) {
     return (
       <Box className="h-[48rem]">

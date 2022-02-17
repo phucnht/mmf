@@ -1,6 +1,6 @@
 import { PaymentTokenDto } from '../payment-token/paymentToken.i';
 import { BasicUserDto } from 'store/account/profile/profile.i';
-import { BaseResultPagination, PaginationRequest } from 'store/store.i';
+import { BaseResultPagination, GetState, PaginationRequest } from 'store/store.i';
 
 export enum NftItemStatus {
   Minting,
@@ -125,5 +125,5 @@ export type InventoryRequest = {
   owner?: string;
 } & PaginationRequest;
 
-export type NftItemsState = BaseResultPagination<NftItemDto>;
-export type InventoryState = BaseResultPagination<NftItemDto>;
+export type NftItemsState = GetState<BaseResultPagination<NftItemDto>>;
+export type InventoryState = GetState<BaseResultPagination<NftItemDto>>;
