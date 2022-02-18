@@ -1,6 +1,5 @@
 import { Box } from '@whammytechvn/wt-components';
 import { getLayoutInventoryOffset } from 'components/layouts/pages/inventory/getLayoutInventory';
-import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
 
@@ -16,7 +15,7 @@ const MarketplaceWallet: NextPageWithLayout = () => {
   );
 };
 
-export const getStaticProps: GetStaticProps = () => {
+export const getServerSideProps = () => {
   return {
     redirect: {
       destination: '/',

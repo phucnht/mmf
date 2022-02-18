@@ -9,9 +9,9 @@ import imgHomeSys3 from '/public/assets/home/home-sys-3.png';
 import imgHomeSys4 from '/public/assets/home/home-sys-4.png';
 import imgHomeSys5 from '/public/assets/home/home-sys-5.png';
 import imgHomeSys6 from '/public/assets/home/home-sys-6.png';
-import imgHomeVideo from '/public/assets/home/home-video.png';
 import Image from 'components/display/image/Image';
 import classNames from 'classnames';
+import ReactPlayer from 'react-player/lazy';
 
 const HOME_CONTENT =
   'Donec nec congue turpis. Nullam feugiat mi consequat interdum tempus. Etiam lorem nisl, semper at convallis ac, dictum eu magna. Praesent non urna tempus, hendrerit nulla sit amet, interdum sapien. Nunc pretium ';
@@ -121,9 +121,9 @@ const HomeBlock: FC<{ title: string }> = ({ title, children }) => {
     <Box className="z-[5] relative -mt-20 py-40">
       <Box className="bg-[url('/assets/home/home-border.png')] bg-auto bg-left h-[17rem] w-full absolute top-0" />
       <Box>
-        <Stack className="relative justify-center my-36">
+        <Stack className="relative justify-center mt-36 mb-20">
           <Box className="bg-[url('/assets/home/home-title-banner.svg')] bg-center bg-auto w-[65rem] h-[14rem]" />
-          <Heading className="w-full text-center absolute text-[3.6rem] text-white font-black uppercase mb-4">
+          <Heading className="w-full text-center absolute !text-[3.6rem] text-white !font-black uppercase mb-4">
             {title}
           </Heading>
         </Stack>
@@ -170,9 +170,24 @@ const GameInformation = () => {
   return (
     <HomeBlock title="Game Information">
       <Flex className="flex-col items-center">
-        <Box className="mb-20">
-          <Image alt={'My Meta Farm'} src={imgHomeVideo} />
-        </Box>
+        <Container className="aspect-video mb-20 px-20 relative">
+          <ReactPlayer
+            url="https://www.youtube.com/embed/qoyYn01QDT8"
+            title="My Meta Farm Trailer"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            playing
+            className="absolute top-0 left-0 w-full h-full rounded-[2rem] overflow-hidden"
+            style={{ borderRadius: '2rem' }}
+            width="100%"
+            height="100%"
+            light="/assets/home/home-game-light.png"
+            playIcon={
+              <ButtonImage imgSrc="/assets/home/home-game-play.svg" className="h-[21.4rem] w-[13.8rem] !bg-auto" />
+            }
+          />
+        </Container>
         <Text className="text-white uppercase text-xl text-center font-black max-w-[100rem]">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec congue turpis. Nullam feugiat mi consequat
           interdum tempus. Etiam lorem nisl, semper at convallis ac, dictum eu magna. Praesent non urna tempus,
