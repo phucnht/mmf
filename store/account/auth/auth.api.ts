@@ -39,6 +39,7 @@ export const connect = async (callback?: () => void) => {
 
     if (chainId !== +systemConfigChainId) {
       toast.info(`Please connect to ${chainName}`);
+      store.dispatch(loginLoading(false));
       return;
     }
 
@@ -62,6 +63,7 @@ export const connect = async (callback?: () => void) => {
       }
     }
   } catch (err: any) {
+    store.dispatch(loginLoading(false));
     if (err.code === 4001) {
       // EIP-1193 userRejectedRequest error
       // If this happens, the user rejected the connection request.
@@ -69,6 +71,5 @@ export const connect = async (callback?: () => void) => {
     } else {
       console.error(err);
     }
-    store.dispatch(loginLoading(false));
   }
 };

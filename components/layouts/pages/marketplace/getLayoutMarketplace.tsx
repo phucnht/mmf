@@ -25,11 +25,9 @@ const routes = [
   }
 ];
 
-const DEFAULT_SLUG = 'inventory';
-
 export function getLayoutMarketplace(page: ReactElement) {
   return (
-    <SidebarFilter routes={routes} baseSlug="/marketplace" defaultSlug={DEFAULT_SLUG}>
+    <SidebarFilter routes={routes} baseSlug="/marketplace">
       {page}
     </SidebarFilter>
   );
@@ -37,7 +35,7 @@ export function getLayoutMarketplace(page: ReactElement) {
 
 export function getLayoutMarketplaceOffset(page: ReactElement) {
   return (
-    <SidebarFilter routes={routes} baseSlug="/marketplace" defaultSlug={DEFAULT_SLUG}>
+    <SidebarFilter routes={routes} baseSlug="/marketplace">
       <Box className="pt-44 h-full">{page}</Box>
     </SidebarFilter>
   );

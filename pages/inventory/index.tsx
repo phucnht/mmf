@@ -1,5 +1,5 @@
 import { Box } from '@whammytechvn/wt-components';
-import { GetStaticProps, NextPage } from 'next';
+import { NextPage } from 'next';
 import Head from 'next/head';
 
 const Inventory: NextPage = () => {
@@ -14,7 +14,7 @@ const Inventory: NextPage = () => {
   );
 };
 
-export const getStaticProps: GetStaticProps = () => {
+export const getServerSideProps = () => {
   return {
     redirect: {
       destination: '/inventory/airdrop',
