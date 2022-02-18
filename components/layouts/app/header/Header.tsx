@@ -6,11 +6,12 @@ import NavLink from 'components/navigation/link/NavLink';
 import Link from 'next/link';
 import Image from 'components/display/image/Image';
 import HeaderButtonUser from './components/HeaderButtonUser';
+import BackgroundHeaderShadow from 'components/bg/BackgroundHeaderShadow';
 
 const Header = () => {
   return (
     <>
-      <Box className="absolute z-30 bgg-green h-48 w-full" />
+      <BackgroundHeaderShadow />
       <Scaffold.Header className="container xl:max-w-[132rem] grid grid-cols-4 relative !px-0 mb-4">
         <Box className="relative min-w-[18rem] max-w-[35rem] w-full text-center">
           <Box className="absolute cursor-pointer">
