@@ -11,16 +11,16 @@ const Footer = () => {
         </Link>
         <ul className="flex justify-end gap-24 col-span-3">
           <NextLink href="/contact" passHref>
-            <Link>Contact</Link>
+            <Link disabled>Contact</Link>
           </NextLink>
           <NextLink href="/help" passHref>
-            <Link>Get help</Link>
+            <Link disabled>Get help</Link>
           </NextLink>
           <NextLink href="/marketplace" passHref>
-            <Link>Marketplace</Link>
+            <Link disabled>Marketplace</Link>
           </NextLink>
           <NextLink href="/token" passHref>
-            <Link>Buy Token</Link>
+            <Link disabled>Buy Token</Link>
           </NextLink>
         </ul>
       </Grid>

@@ -10,19 +10,8 @@ const nextConfig = {
     loader: 'imgix',
     path: ''
   },
-  async redirects() {
-    return [
-      {
-        source: '/marketplace',
-        destination: '/marketplace/items',
-        permanent: true
-      },
-      {
-        source: '/inventory',
-        destination: '/inventory/airdrop',
-        permanent: true
-      }
-    ];
+  eslint: {
+    ignoreDuringBuilds: true
   }
 };
 

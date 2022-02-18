@@ -13,23 +13,24 @@ const routes = [
   },
   {
     slug: 'history',
-    label: 'History'
+    label: 'History',
+    disabled: true
   },
   {
     slug: 'wallet',
-    label: 'Wallet'
+    label: 'Wallet',
+    disabled: true
   },
   {
     slug: 'upgrade',
-    label: 'Upgrade'
+    label: 'Upgrade',
+    disabled: true
   }
 ];
 
-const DEFAULT_SLUG = 'inventory';
-
 export function getLayoutInventory(page: ReactElement) {
   return (
-    <Sidebar routes={routes} baseSlug="/inventory" defaultSlug={DEFAULT_SLUG}>
+    <Sidebar routes={routes} baseSlug="/inventory">
       {page}
     </Sidebar>
   );
@@ -37,7 +38,7 @@ export function getLayoutInventory(page: ReactElement) {
 
 export function getLayoutInventoryOffset(page: ReactElement) {
   return (
-    <Sidebar routes={routes} baseSlug="/inventory" defaultSlug={DEFAULT_SLUG}>
+    <Sidebar routes={routes} baseSlug="/inventory">
       <Box className="pt-44 h-full">{page}</Box>
     </Sidebar>
   );

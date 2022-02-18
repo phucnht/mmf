@@ -14,6 +14,7 @@ import { selectProfileData } from 'store/account/profile/profile.slice';
 import { getProfileByAddress } from 'store/account/profile/profile.api';
 import { formatUsername } from 'utils/format';
 import classNames from 'classnames';
+import Divider from 'components/display/divider/Divider';
 
 const ButtonImageRef = forwardRef<any, ButtonImageProps>(({ children, ...props }: ButtonImageProps, ref) => {
   return (
@@ -30,9 +31,10 @@ const HeaderButtonUser = () => {
   const dispatch = useAppDispatch();
   const { accessToken, address, balance, balance2 } = useAppSelector(selectAuthData);
   const { username } = useAppSelector(selectProfileData);
-  const cxTab = (path?: string) =>
-    classNames('px-8 py-4 font-bold hover:bg-green-500/70 cursor-pointer', {
-      'bg-green-500': path ? pathname.startsWith(path) : false
+  const cxTab = (path?: string, isLast = false) =>
+    classNames('px-8 py-4 uppercase font-bold hover:bg-green-500/70 cursor-pointer', {
+      'bg-green-500': path ? pathname.startsWith(path) : false,
+      'hover:rounded-b-[2rem]': isLast
     });
 
   useEffect(() => {
@@ -65,16 +67,28 @@ const HeaderButtonUser = () => {
         leaveTo="transform scale-95 opacity-0"
         className="absolute right-0"
       >
-        <Popover.Panel className="text-white text-sm bg-blue-400 rounded-[2rem] py-8 min-w-[20rem]">
-          <TextCopyable className="px-8 py-4" value={address} />
-          <HeaderBalance className="px-8 py-4" value={balance} />
-          <HeaderBalance className="px-8 py-4" value={balance2} />
-          <div role="navigation" onClick={() => goTo('/inventory/airdrop')} className={cxTab('/inventory')}>
-            Inventory
-          </div>
-          <div role="navigation" onClick={() => dispatch(logout())} className={cxTab()}>
-            Disconnect
-          </div>
+        <Popover.Panel className="text-white text-md bg-blue-400 rounded-[2rem] min-w-[20rem]">
+          {({ close }) => (
+            <>
+              <TextCopyable className="px-8 py-4" value={address} />
+              <Divider />
+              <HeaderBalance className="px-8 py-4" value={balance} />
+              <HeaderBalance className="px-8 py-4" value={balance2} />
+              <div
+                role="navigation"
+                onClick={() => {
+                  goTo('/inventory/airdrop');
+                  close();
+                }}
+                className={cxTab('/inventory')}
+              >
+                Inventory
+              </div>
+              <div role="navigation" onClick={() => dispatch(logout())} className={cxTab(undefined, true)}>
+                Disconnect
+              </div>
+            </>
+          )}
         </Popover.Panel>
       </Transition>
     </Popover>

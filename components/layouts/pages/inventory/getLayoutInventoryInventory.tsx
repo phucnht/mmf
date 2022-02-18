@@ -13,22 +13,26 @@ const routes = [
   {
     icon: imgIconCharacters,
     label: 'Characters',
-    slug: 'characters'
+    slug: 'characters',
+    disabled: true
   },
   {
     icon: imgIconLands,
     label: 'Lands',
-    slug: 'lands'
+    slug: 'lands',
+    disabled: true
   },
   {
     icon: imgIconItems,
     label: 'Items',
-    slug: 'items'
+    slug: 'items',
+    disabled: true
   },
   {
     icon: imgIconEvents,
     label: 'Events',
-    slug: 'events'
+    slug: 'events',
+    disabled: true
   },
   {
     icon: imgIconAirdrop,
@@ -38,15 +42,14 @@ const routes = [
   {
     icon: imgIconBox,
     label: 'Box',
-    slug: 'box'
+    slug: 'box',
+    disabled: true
   }
 ];
 
-const DEFAULT_SLUG = 'airdrop';
-
 export function getLayoutInventoryInventory(page: ReactElement) {
   return getLayoutInventory(
-    <SidebarHorizontal routes={routes} baseSlug="/inventory" defaultSlug={DEFAULT_SLUG}>
+    <SidebarHorizontal routes={routes} baseSlug="/inventory">
       {page}
     </SidebarHorizontal>
   );
