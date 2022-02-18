@@ -7,10 +7,10 @@ import { Fragment } from 'react';
 import _findIndex from 'lodash/findIndex';
 import { SidebarRoutesProps } from './sidebar.typings';
 
-export default function Sidebar({ routes, defaultSlug, levelSlug = 1, children }: SidebarRoutesProps) {
+export default function Sidebar({ routes, levelSlug = 1, children }: SidebarRoutesProps) {
   const router = useRouter();
 
-  const currentIndex = _findIndex(routes, { slug: router.pathname.split('/')[levelSlug] || defaultSlug });
+  const currentIndex = _findIndex(routes, { slug: router.pathname.split('/')[levelSlug] });
 
   const goTo = (path: string) => {
     router.push(path);
@@ -32,12 +32,18 @@ export default function Sidebar({ routes, defaultSlug, levelSlug = 1, children }
           {routes.map(route => (
             <Tab as={Fragment} key={route.slug}>
               {({ selected }) => {
-                const cxTab = classNames('py-6 px-10 w-full text-left cursor-pointer hover:bg-green-300/75', {
-                  'bg-green-300': selected
+                const cxTab = classNames('py-6 px-10 w-full text-left', {
+                  'cursor-pointer hover:bg-green-300/75': !route.disabled,
+                  'bg-green-300': !route.disabled && selected,
+                  'cursor-not-allowed pointer-events-none opacity-50': route.disabled
                 });
 
                 return (
-                  <div role="navigation" className={cxTab} onClick={() => goTo(`/${route.slug}`)}>
+                  <div
+                    role="navigation"
+                    className={cxTab}
+                    onClick={route.disabled ? undefined : () => goTo(`/${route.slug}`)}
+                  >
                     {route.label}
                   </div>
                 );

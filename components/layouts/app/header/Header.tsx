@@ -21,10 +21,10 @@ const Header = () => {
         </Box>
         <ul className="w-full col-span-3 flex gap-x-2 justify-end items-baseline">
           <NavLink href="/" exact content="Home" />
-          <NavLink href="/dashboard" content="Dashboard" />
-          <NavLink href="/marketplace/items" content="Marketplace" />
+          <NavLink disabled href="/dashboard" content="Dashboard" />
+          <NavLink disabled href="/marketplace/items" content="Marketplace" />
           <NavLink href="/metaverse" content="Metaverse" />
-          <NavLink href="/document" content="Document" />
+          <NavLink disabled href="/document" content="Document" />
           <HeaderButtonUser />
         </ul>
       </Scaffold.Header>

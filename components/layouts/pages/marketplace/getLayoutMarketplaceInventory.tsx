@@ -24,11 +24,9 @@ const routes = [
   }
 ];
 
-const DEFAULT_SLUG = 'airdrop';
-
 export function getLayoutMarketplaceInventory(page: ReactElement) {
   return getLayoutMarketplace(
-    <SidebarHorizontal routes={routes} baseSlug="/marketplace" defaultSlug={DEFAULT_SLUG}>
+    <SidebarHorizontal routes={routes} baseSlug="/marketplace">
       {page}
     </SidebarHorizontal>
   );

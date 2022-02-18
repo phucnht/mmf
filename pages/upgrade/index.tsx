@@ -1,5 +1,6 @@
 import { Box } from '@whammytechvn/wt-components';
 import { getLayoutInventoryOffset } from 'components/layouts/pages/inventory/getLayoutInventory';
+import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
 
@@ -13,6 +14,15 @@ const MarketplaceUpgrade: NextPageWithLayout = () => {
       <Box className="text-white text-sm">In development...</Box>
     </>
   );
+};
+
+export const getStaticProps: GetStaticProps = () => {
+  return {
+    redirect: {
+      destination: '/',
+      permanent: true
+    }
+  };
 };
 
 MarketplaceUpgrade.getLayout = getLayoutInventoryOffset;
