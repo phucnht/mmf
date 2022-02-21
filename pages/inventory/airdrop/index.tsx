@@ -2,7 +2,7 @@ import { getLayoutInventoryInventory } from 'components/layouts/pages/inventory/
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
 import useAuthGuard from 'hooks/useAuthGuard';
-import InventoryAirdropCardList from './components/InventoryAirdropCardList';
+import InventoryAirdropCardList from 'components/pages/inventory/airdrop/InventoryAirdropCardList';
 
 const InventoryAirdrop: NextPageWithLayout = () => {
   useAuthGuard();

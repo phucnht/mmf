@@ -1,7 +1,7 @@
 import { GridBox } from '@whammytechvn/wt-components';
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
-import InventoryLandCard from './components/MarketplaceLandCard';
+import InventoryLandCard from '../../../components/pages/marketplace/lands/MarketplaceLandCard';
 
 import _times from 'lodash/times';
 import imgLand1 from '/public/assets/inventory/lands/land-1.png';

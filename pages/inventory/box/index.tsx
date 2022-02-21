@@ -2,7 +2,7 @@ import { GridBox } from '@whammytechvn/wt-components';
 import { getLayoutInventoryInventory } from 'components/layouts/pages/inventory/getLayoutInventoryInventory';
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
-import InventoryBoxCard from './components/InventoryBoxCard';
+import InventoryBoxCard from '../../../components/pages/inventory/box/InventoryBoxCard';
 
 import _times from 'lodash/times';
 import imgBox1 from '/public/assets/inventory/box/box-1.png';

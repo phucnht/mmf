@@ -2,7 +2,7 @@ import { GridBox } from '@whammytechvn/wt-components';
 import { getLayoutInventoryInventory } from 'components/layouts/pages/inventory/getLayoutInventoryInventory';
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
-import InventoryCharacterCard from './components/InventoryCharacterCard';
+import InventoryCharacterCard from '../../../components/pages/inventory/character/InventoryCharacterCard';
 import { useRouter } from 'next/router';
 
 import useAuthGuard from 'hooks/useAuthGuard';

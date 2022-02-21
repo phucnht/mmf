@@ -1,7 +1,7 @@
 import { GridBox } from '@whammytechvn/wt-components';
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
-import InventoryCharacterCard from './components/MarketplaceCharacterCard';
+import InventoryCharacterCard from '../../../components/pages/marketplace/characters/MarketplaceCharacterCard';
 import { useRouter } from 'next/router';
 import { getLayoutMarketplaceInventory } from 'components/layouts/pages/marketplace/getLayoutMarketplaceInventory';
 import imgCharacter1 from '/public/assets/inventory/characters/character-1.png';

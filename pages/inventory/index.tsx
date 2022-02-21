@@ -1,8 +1,16 @@
 import { Box } from '@whammytechvn/wt-components';
 import { NextPage } from 'next';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 const Inventory: NextPage = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push('/inventory/airdrop');
+  }, [router]);
+
   return (
     <>
       <Head>
@@ -12,15 +20,6 @@ const Inventory: NextPage = () => {
       <Box className="text-white text-sm">Redirecting...</Box>
     </>
   );
-};
-
-export const getServerSideProps = () => {
-  return {
-    redirect: {
-      destination: '/inventory/airdrop',
-      permanent: true
-    }
-  };
 };
 
 export default Inventory;
