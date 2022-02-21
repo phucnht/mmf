@@ -39,7 +39,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
     renderChildren = <>{children}</>;
   }
 
-  let content = (
+  const content = (
     <>
       <Header />
       {renderChildren}
@@ -47,12 +47,8 @@ export default function AppLayout({ children }: AppLayoutProps) {
     </>
   );
 
-  if (width && width <= 1024) {
-    content = <Warning />;
-  }
-
   return (
-    <Scaffold className="bg-[#0B2F51] bg-[url('/assets/bg/bg-main.png')] bg-[length:100%_51rem] bg-no-repeat bg-bottom flex flex-col">
+    <Scaffold className="bg-[#0B2F51] bg-[url('/assets/bg/bg-main.png')] bg-[length:100%_51rem] bg-no-repeat bg-bottom flex flex-col min-w-[90rem] overflow-x-scroll">
       {content}
       <BackgroundFooterShadow />
       <BackgroundFlare />
