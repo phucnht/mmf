@@ -1,26 +1,17 @@
 import { BaseResult, GetResponse, GetState } from 'store/store.i';
 
 export interface SystemConfigDto {
+  chainId: string;
+  chainName: string;
+  marketplaceAddress: string;
+  marketplaceBlock: string;
+  userMintEnable: boolean;
+  multipleMintEnable: boolean;
+  mMFContractAddress: string;
+  metaverseContractAddress: string;
   id: string;
   createdAt: Date;
   updatedAt: Date;
-  version: number;
-  chainId: string;
-  chainName: string;
-  factoryAddress: string;
-  nftContractAddress: string;
-  marketplaceAddress: string;
-  boxPaymentContractAddress: string;
-  factoryBlock: string;
-  nftContractBlock: string;
-  marketplaceBlock: string;
-  boxPaymentContractBlock: string;
-  userMintEnable: string;
-  multipleMintEnable: true;
-  boxContractBlock: string;
-  boxContractAddress: string;
-  nftEvolveContractAddress: string;
-  nftEvolveContractBlock: string;
 }
 
 export type SystemConfigResult = BaseResult<SystemConfigDto>;

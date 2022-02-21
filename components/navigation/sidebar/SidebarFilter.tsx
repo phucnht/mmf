@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { useRouter } from 'next/router';
 import _findIndex from 'lodash/findIndex';
 import { SidebarRoutesProps } from './sidebar.typings';
+import MarketplaceFilter from 'components/pages/marketplace/filter/MarketplaceFilter';
 
 export default function SidebarFilter({ routes, levelSlug = 1, children }: SidebarRoutesProps) {
   const router = useRouter();
@@ -20,7 +21,9 @@ export default function SidebarFilter({ routes, levelSlug = 1, children }: Sideb
       as={Grid}
       className="grid-cols-4 items-start justify-start w-full gap-x-6 gap-y-4"
     >
-      <Box className={cxTabsWrapper}></Box>
+      <Box className={cxTabsWrapper}>
+        <MarketplaceFilter />
+      </Box>
       <Tab.Panels as={Box} className="col-span-3 w-full h-full text-white text-sm">
         {children}
       </Tab.Panels>

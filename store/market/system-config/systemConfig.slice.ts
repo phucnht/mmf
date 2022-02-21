@@ -8,26 +8,17 @@ import { DATE_DEFAULT } from 'utils/date';
 export const initialState: SystemConfigState = {
   ...DEFAULT_BASE_STATE,
   data: {
-    id: '',
-    createdAt: DATE_DEFAULT,
-    updatedAt: DATE_DEFAULT,
-    version: 0,
     chainId: '',
     chainName: '',
-    factoryAddress: '',
-    nftContractAddress: '',
     marketplaceAddress: '',
-    boxPaymentContractAddress: '',
-    factoryBlock: '',
-    nftContractBlock: '',
     marketplaceBlock: '',
-    boxPaymentContractBlock: '',
-    userMintEnable: '',
-    multipleMintEnable: true,
-    boxContractBlock: '',
-    boxContractAddress: '',
-    nftEvolveContractAddress: '',
-    nftEvolveContractBlock: ''
+    userMintEnable: false,
+    multipleMintEnable: false,
+    mMFContractAddress: '',
+    metaverseContractAddress: '',
+    id: '',
+    createdAt: DATE_DEFAULT,
+    updatedAt: DATE_DEFAULT
   }
 };
 
