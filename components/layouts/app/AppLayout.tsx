@@ -2,8 +2,6 @@ import { ReactNode, useEffect } from 'react';
 import Header from './header/Header';
 import Footer from './footer/Footer';
 import { Box, Container, Scaffold } from '@whammytechvn/wt-components';
-import useWindowSize from 'hooks/useWindowSize';
-import Warning from 'components/display/warning/Warning';
 import { useAppDispatch, useAppSelector } from 'store/store.hook';
 import { getSystemConfig } from 'store/market/system-config/systemConfig.api';
 import { selectSystemConfigData } from 'store/market/system-config/systemConfig.slice';
@@ -20,7 +18,6 @@ export default function AppLayout({ children }: AppLayoutProps) {
   const { pathname } = useRouter();
   const dispatch = useAppDispatch();
   const { id } = useAppSelector(selectSystemConfigData);
-  const { width } = useWindowSize();
 
   useEffect(() => {
     if (!id) {
