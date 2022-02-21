@@ -8,7 +8,7 @@ export interface MetaverseCardProps {
   metaverse: AirdropEventDto;
 }
 
-const MetaverseCard = ({ metaverse }: MetaverseCardProps) => {
+export default function MetaverseCard({ metaverse }: MetaverseCardProps) {
   return (
     <Grid className="grid-cols-11 gap-4 text-white text-xl font-bold">
       <Flex className="flex-col col-span-6 gap-4">
@@ -28,6 +28,7 @@ const MetaverseCard = ({ metaverse }: MetaverseCardProps) => {
           width={638}
           height={776}
           className="rounded-[2rem]"
+          isExternal
         />
         <Box className="absolute left-12 lg:left-1 xl:left-2 2xl:left-4 bottom-4">
           <Image
@@ -36,11 +37,10 @@ const MetaverseCard = ({ metaverse }: MetaverseCardProps) => {
             width={300}
             height={360}
             className="rounded-[2rem]"
+            isExternal
           />
         </Box>
       </Center>
     </Grid>
   );
-};
-
-export default MetaverseCard;
+}

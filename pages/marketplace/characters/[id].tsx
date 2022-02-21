@@ -3,7 +3,7 @@ import DataTable from 'components/table/DataTable';
 import { Box, Button, Container, Flex, Heading, Text } from '@whammytechvn/wt-components';
 import ButtonBack from 'components/buttons/ButtonBack';
 import { getLayoutDefault } from 'components/layouts/pages/default/getLayoutDefault';
-import CardCharacter from './components/CardCharacter';
+import CardCharacter from '../../../components/pages/marketplace/characters/CardCharacter';
 
 import _times from 'lodash/times';
 import _find from 'lodash/find';

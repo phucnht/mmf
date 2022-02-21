@@ -3,8 +3,21 @@ const nextConfig = {
   reactStrictMode: true,
   exportPathMap: function () {
     return {
-      '/': { page: '/' }
+      '/': { page: '/' },
+      '/metaverse': { page: '/metaverse' },
+      '/account': { page: '/account' },
+      '/inventory': { page: '/inventory' },
+      '/inventory/airdrop': { page: '/inventory/airdrop' }
     };
+  },
+  async redirects() {
+    return [
+      {
+        source: '/inventory',
+        destination: '/inventory/airdrop',
+        permanent: true
+      }
+    ];
   },
   images: {
     loader: 'imgix',
