@@ -53,12 +53,7 @@ const MetaverseCardButton: FC<{ whitelistContract: string }> = ({ whitelistContr
       })
       .on('error', function (e: any) {
         console.error(e);
-        setType(ButtonType.PROCESSING);
-        toast.error('Claim failed');
-      })
-      .catch(function (e: any) {
-        console.error(e);
-        setType(ButtonType.PROCESSING);
+        setType(ButtonType.IDLE);
         toast.error('Claim failed');
       });
   };
