@@ -6,7 +6,6 @@ import InventoryAirdropCardList from 'components/pages/inventory/airdrop/Invento
 
 const InventoryAirdrop: NextPageWithLayout = () => {
   useAuthGuard();
-
   return (
     <>
       <Head>

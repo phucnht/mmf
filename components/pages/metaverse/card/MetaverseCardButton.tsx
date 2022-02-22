@@ -16,10 +16,14 @@ const ButtonType = {
   SUCCESS: 'success'
 };
 
-const MetaverseCardButton: FC<{ whitelistContract: string }> = ({ whitelistContract }) => {
+const MetaverseCardButton: FC<{ whitelistContract: string; onchainId: string }> = ({
+  whitelistContract,
+  onchainId
+}) => {
   const { accessToken, address } = useAppSelector(selectAuthData);
   const { metaverseContractAddress } = useAppSelector(selectSystemConfigData);
   const [isClaimable, setIsClaimable] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const toggleWhitelist = useCallback(async () => {
     const result = await checkIsInWhitelist(whitelistContract, address);
@@ -42,17 +46,22 @@ const MetaverseCardButton: FC<{ whitelistContract: string }> = ({ whitelistContr
   };
 
   const handleProcess = () => {
+    setIsProcessing(true);
+    console.log(isProcessing);
     metaverseContract(metaverseContractAddress)
-      .methods.claim1155Event(address)
+      .methods.claim1155Event(1402)
       .send({ from: address })
       .once('transactionHash', function () {
+        setIsProcessing(false);
         setType(ButtonType.PROCESSING);
       })
       .once('receipt', async function () {
+        setIsProcessing(false);
         setType(ButtonType.SUCCESS);
       })
       .on('error', function (e: any) {
         console.error(e);
+        setIsProcessing(false);
         setType(ButtonType.IDLE);
         toast.error('Claim failed');
       });
@@ -68,6 +77,7 @@ const MetaverseCardButton: FC<{ whitelistContract: string }> = ({ whitelistContr
       content="I want to receive it"
       fullWidth
       className="py-5"
+      disabled={isProcessing}
       onClick={handleOpenDialogAuthRequired}
     />
   );
@@ -75,11 +85,11 @@ const MetaverseCardButton: FC<{ whitelistContract: string }> = ({ whitelistContr
   if (accessToken) {
     renderButton = (
       <Button
-        color={isClaimable ? 'secondary' : 'default'}
-        disabled={!isClaimable}
+        color={isClaimable && !isProcessing ? 'secondary' : 'default'}
+        disabled={!isClaimable || isProcessing}
         content="Claim"
         fullWidth
-        className="py-5 text-red-100 disabled:bg-grey-400 disabled:cursor-not-allowed"
+        className="py-5 text-red-100 disabled:bg-grey-400 disabled:cursor-not-allowed disabled:pointer-events-none"
         onClick={handleProcess}
       />
     );
@@ -87,7 +97,12 @@ const MetaverseCardButton: FC<{ whitelistContract: string }> = ({ whitelistContr
 
   if (type === ButtonType.PROCESSING) {
     renderButton = (
-      <Button disabled content="Processing..." fullWidth className="py-5 bg-grey-400 cursor-not-allowed" />
+      <Button
+        disabled
+        content="Processing..."
+        fullWidth
+        className="py-5 bg-grey-400 cursor-not-allowed pointer-events-none"
+      />
     );
   }
 
@@ -96,6 +111,8 @@ const MetaverseCardButton: FC<{ whitelistContract: string }> = ({ whitelistContr
       <Button content="Check My Inventory" fullWidth className="py-5 !bg-green-200" onClick={handleSuccess} />
     );
   }
+
+  console.log(isProcessing);
 
   return renderButton;
 };

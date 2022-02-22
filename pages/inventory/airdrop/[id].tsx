@@ -1,84 +1,90 @@
 import Head from 'next/head';
-// import DataTable from 'components/table/DataTable';
-import {
-  Container,
-  Heading
-  //  Text, Box, Button, Flex
-} from '@whammytechvn/wt-components';
+import DataTable from 'components/table/DataTable';
+import { Box, Button, Container, Flex, Heading, Text } from '@whammytechvn/wt-components';
 import ButtonBack from 'components/buttons/ButtonBack';
 import { getLayoutDefault } from 'components/layouts/pages/default/getLayoutDefault';
 
-// import _times from 'lodash/times';
-// import _find from 'lodash/find';
-// import { MOCK_CONTENT } from 'utils/mock';
-// import ProgressBar from 'components/display/progress-bar/ProgressBar';
-// import { useMemo } from 'react';
-// import { useAppSelector } from 'store/store.hook';
-// import { selectNftItemState } from 'store/market/nft-item/nftItem.slice';
-// import { useRouter } from 'next/router';
-// import { getEllipsisTxt } from 'utils/format';
-// import CardItem from './components/CardItem';
+import _times from 'lodash/times';
+import _find from 'lodash/find';
+import { MOCK_CONTENT } from 'utils/mock';
+import ProgressBar from 'components/display/progress-bar/ProgressBar';
+import { useEffect, useMemo, useState } from 'react';
+import useAuthGuard from 'hooks/useAuthGuard';
+import { useAppSelector } from 'store/store.hook';
+import { selectInventoryData } from 'store/market/nft-item/inventory.slice';
+import { useRouter } from 'next/router';
 
-export default function InventoryLandDetail() {
-  // const { query } = useRouter();
-  // const { loading, data: nftItems } = useAppSelector(selectNftItemState);
-  // const item = _find(nftItems, ['id', query.id]);
+import imgItem from '/public/assets/inventory/airdrop/t-shirt.png';
+import CardItem from 'components/pages/inventory/airdrop/CardItem';
+export interface InventoryMetaverseDetailProps {
+  [x: string]: any;
+}
 
-  // const data = useMemo(
-  //   () =>
-  //     _times(10, i => ({
-  //       id: i,
-  //       time: '25 Oct 2021 10:03',
-  //       amount: '0.12340000 BUSD',
-  //       from: '094373474873724890',
-  //       to: '094373474873724890'
-  //     })),
-  //   []
-  // );
+export default function InventoryMetaverseDetail() {
+  const inventory = useAppSelector(selectInventoryData);
+  const { query } = useRouter();
+  const [metaverse, setMetaverse] = useState<InventoryMetaverseDetailProps>({});
 
-  // const columns = useMemo(
-  //   () => [
-  //     {
-  //       Header: 'Time',
-  //       accessor: 'time'
-  //     },
-  //     {
-  //       Header: 'Amount',
-  //       accessor: 'amount'
-  //     },
-  //     {
-  //       Header: 'From',
-  //       accessor: 'from'
-  //     },
-  //     {
-  //       Header: 'To',
-  //       accessor: 'to'
-  //     }
-  //   ],
-  //   []
-  // );
+  useEffect(() => {
+    if (query.id) {
+      const item = _find(inventory, ['id', query.id]);
+      if (item) {
+        setMetaverse(item);
+      }
+    }
+  }, [query.id, inventory]);
 
-  // if (loading) return <Box>Loading...</Box>;
-  // if (!item) return <Box>Error</Box>;
+  useAuthGuard();
+
+  const data = useMemo(
+    () =>
+      _times(10, i => ({
+        id: i,
+        time: '25 Oct 2021 10:03',
+        amount: '0.12340000 BUSD',
+        from: '094373474873724890',
+        to: '094373474873724890'
+      })),
+    []
+  );
+
+  const columns = useMemo(
+    () => [
+      {
+        Header: 'Time',
+        accessor: 'time'
+      },
+      {
+        Header: 'Amount',
+        accessor: 'amount'
+      },
+      {
+        Header: 'From',
+        accessor: 'from'
+      },
+      {
+        Header: 'To',
+        accessor: 'to'
+      }
+    ],
+    []
+  );
 
   return (
     <>
       <Head>
-        <title>In development... | My Metafarm</title>
-        <meta name="description" content={`In development... | My Metafarm`} />
+        <title>{metaverse.name} | My Metafarm</title>
+        <meta name="description" content={`${metaverse.name} | My Metafarm`} />
       </Head>
       <Container className="max-w-screen-lg min-h-fit">
         <ButtonBack className="mb-8" />
-        <Heading className="text-white font-black text-lg items-baseline text-center">In development...</Heading>
-        {/* <Flex className="justify-between gap-20 p-28 rounded-[2rem] border-[3px] border-green-200 text-white">
+        <Flex className="justify-between gap-20 p-28 rounded-[2rem] border-[3px] border-green-200 text-white">
           <Flex className="col-span-3 flex-col items-center justify-between min-h-[48rem] w-full">
-            <CardItem content={item.name} />
+            <CardItem content={metaverse.name} imgSrc={imgItem} />
           </Flex>
           <Flex className="col-span-2 flex-col justify-between w-[34rem] min-w-[34rem]">
             <Box className="overflow-y-auto overflow-x-hidden max-h-[40rem] pr-12">
-              <Heading className="font-black text-lg items-baseline">
-                Owner: {getEllipsisTxt(item.ownerAddress)}
-              </Heading>
+              <Heading className="font-black text-lg items-baseline">Owner: {metaverse.ownerId}</Heading>
               <Flex className="flex-col mt-9">
                 <Heading className="uppercase font-black text-md">Story</Heading>
                 <Text className="mt-4 text-md whitespace-normal	break-normal">{MOCK_CONTENT}</Text>
@@ -106,10 +112,10 @@ export default function InventoryLandDetail() {
             </Flex>
           </Flex>
         </Flex>
-        <DataTable title="Sale History" sortable data={data} columns={columns} className="my-24" /> */}
+        <DataTable title="Sale History" sortable data={data} columns={columns} className="my-24" />
       </Container>
     </>
   );
 }
 
-InventoryLandDetail.getLayout = getLayoutDefault;
+InventoryMetaverseDetail.getLayout = getLayoutDefault;
