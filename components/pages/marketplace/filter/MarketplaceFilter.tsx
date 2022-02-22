@@ -1,75 +1,71 @@
 import { FormProvider, useForm } from 'react-hook-form';
-// import FilterHeader from 'components/filters/header/FilterHeader';
-// import FilterSelect from 'components/filters/selects/FilterSelect';
-// import FilterSwitchBox from 'components/filters/selects/FilterSwitchBox';
-// import FilterRange from 'components/filters/range/FilterRange';
-// import FilterAccordion from 'components/filters/accordion/FilterAccordion';
-// import FilterPrice from 'components/filters/price/FilterPrice';
-// import { InputOutlined } from 'components/inputs';
 import _keys from 'lodash/keys';
 import _isBoolean from 'lodash/isBoolean';
 import _isNumber from 'lodash/isNumber';
 import _isEmpty from 'lodash/isEmpty';
 
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import MarketplaceFilterHeader from './MarketplaceFilterHeader';
-// import { DevTool } from '@hookform/devtools';
-
-// const listClass = {
-//   items: [
-//     { content: 'Assasin1', isActive: false },
-//     { content: 'Marksman', isActive: false },
-//     { content: 'Starpunk', isActive: false },
-//     { content: 'Techie', isActive: false }
-//   ]
-// };
-
-// const elementClass = {
-//   items: [
-//     { content: 'Assasin12', isActive: false },
-//     { content: 'Marksman2', isActive: false },
-//     { content: 'Starpunk2', isActive: false },
-//     { content: 'Techie2', isActive: false }
-//   ]
-// };
-
-export interface CheckBoxProps {
-  key: string;
-  value: string;
-}
-
-export interface SearchParamsProps {
-  [x: string]: any;
-}
+import MarketplaceFilterSearch from './MarketplaceFilterSearch';
+import MarketplaceFilterSelect from './MarketplaceFilterSelect';
+import MarketplaceFilterSwitch from './MarketplaceFilterSwitch';
+import MarketplaceFilterMinMax from './MarketplaceFilterMinMax';
+import MarketplaceFilterCheckbox from './MarketplaceFilterCheckbox';
+import { convertEnumToSelectOptions } from 'utils/convert';
+import { ObjectProps, Option } from 'utils/types';
+import { useRouter } from 'next/router';
 
 export type FilterProps = {
-  searchParams: SearchParamsProps;
-  setSearchParams: (searchParams: SearchParamsProps) => void;
+  searchParams: ObjectProps;
+  setSearchParams: (searchParams: ObjectProps) => void;
 };
+
+export const SORT_BY = {
+  LOWEST_ID: 'Lowest ID',
+  HIGHEST_ID: 'Highest ID',
+  LOWEST_PRICE: 'Lowest Price',
+  HIGHEST_PRICE: 'Highest Price',
+  RECENTLY_LISTED: 'Recently Listed'
+};
+
+export const SORT_BY_OPTIONS = convertEnumToSelectOptions(SORT_BY);
 
 const DEFAULT_SEARCH_PARAMS = {
-  searchTerms: undefined,
+  searchTerms: '',
   sortBy: undefined,
-  listedByMe: false,
+  listedByMe: undefined,
   elements: [],
-  priceMin: undefined,
-  priceMax: undefined
+  priceMin: '',
+  priceMax: ''
 };
 
-export default function MarketplaceFilter() {
-  const [searchParams, setSearchParams] = useState<SearchParamsProps>(DEFAULT_SEARCH_PARAMS);
+export interface MarketplaceFilterProps {
+  elementOptions: Option[];
+}
+
+export default function MarketplaceFilter({ elementOptions }: MarketplaceFilterProps) {
+  const router = useRouter();
+  const [searchParams, setSearchParams] = useState<ObjectProps>(DEFAULT_SEARCH_PARAMS);
   const method = useForm({
     defaultValues: searchParams
   });
 
-  const handleResetFilter = () => {
+  const handleResetFilter = useCallback(() => {
     setSearchParams({});
     method.reset(DEFAULT_SEARCH_PARAMS);
-  };
+    router.push(router.pathname, undefined, { shallow: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (router.pathname) {
+      handleResetFilter();
+    }
+  }, [router.pathname, handleResetFilter]);
 
   const handleSearchParams = () => {
     const values = method.getValues();
-    const params = _keys(values).reduce((result: SearchParamsProps, key: string) => {
+    const params = _keys(values).reduce((result: ObjectProps, key: string) => {
       const value = values[key];
       if (!_isEmpty(value) || _isBoolean(value) || (_isNumber(value) && value > 0)) {
         result[key] = value;
@@ -77,39 +73,17 @@ export default function MarketplaceFilter() {
       return result;
     }, {});
     setSearchParams(params);
+    router.push(router.pathname, { query: params }, { shallow: true });
   };
 
   return (
     <FormProvider {...method}>
+      <MarketplaceFilterSearch name="searchTerms" callback={handleSearchParams} />
       <MarketplaceFilterHeader onResetFilter={handleResetFilter} />
-      {/* <FilterHeader onResetFilter={handleResetFilter} />
-      <FilterSelect name="sort" className="mt-24" callback={handleSearchParams} />
-      <InputOutlined name="text" className="mt-24" callback={handleSearchParams} />
-      <FilterSwitchBox
-        name="listedByMe"
-        className="mt-24 flex justify-between !px-6 text-white cursor-default"
-        content="LISTED BY ME"
-        isActive={false}
-        callback={handleSearchParams}
-      />
-      <FilterAccordion
-        name="class"
-        className="mt-24"
-        content="Class"
-        items={listClass.items}
-        callback={handleSearchParams}
-      />
-      <FilterAccordion
-        name="element"
-        className="mt-24"
-        content="Element"
-        items={elementClass.items}
-        callback={handleSearchParams}
-      />
-      <FilterRange name="quality" className="mt-24" content="Quality" callback={handleSearchParams} />
-      <FilterRange name="tiers" className="mt-24" content="Tiers" callback={handleSearchParams} />
-      <FilterRange name="levels" className="mt-24" content="Levels" callback={handleSearchParams} />
-      <FilterPrice name="price" className="mt-24" callback={handleSearchParams} /> */}
+      <MarketplaceFilterSelect name="sortBy" options={SORT_BY_OPTIONS} callback={handleSearchParams} />
+      <MarketplaceFilterSwitch name="listedByMe" callback={handleSearchParams} />
+      <MarketplaceFilterCheckbox name="elements" options={elementOptions} callback={handleSearchParams} />
+      <MarketplaceFilterMinMax nameMin="priceMin" nameMax="priceMax" callback={handleSearchParams} />
     </FormProvider>
   );
 }
