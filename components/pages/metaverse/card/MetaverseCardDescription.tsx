@@ -4,12 +4,13 @@ import { Box, Button, Text, Stack } from '@whammytechvn/wt-components';
 
 import imgMeteverseSmall from 'public/assets/metaverse/metaverse-sm.png';
 import Countdown from 'components/countdown/Countdown';
-import AirdropCardButton from './MetaverseCardButton';
+import MetaverseCardButton from './MetaverseCardButton';
 
 export interface MetaverseCardDescriptionProps {
   description: string;
   condition: string;
   whitelistContract: string;
+  onchainId: string;
   fromDate: Date;
   toDate: Date;
 }
@@ -18,6 +19,7 @@ const MetaverseCardDescription: FC<MetaverseCardDescriptionProps> = ({
   description,
   condition,
   whitelistContract,
+  onchainId,
   fromDate,
   toDate
 }) => {
@@ -33,7 +35,7 @@ const MetaverseCardDescription: FC<MetaverseCardDescriptionProps> = ({
       </Box>
       <Stack className="flex-col w-full">
         <Text className="text-yellow-100 my-5 w-full">{condition}</Text>
-        <AirdropCardButton whitelistContract={whitelistContract} />
+        <MetaverseCardButton whitelistContract={whitelistContract} onchainId={onchainId} />
       </Stack>
     </Stack>
   );
