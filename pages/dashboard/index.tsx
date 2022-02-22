@@ -1,5 +1,5 @@
 import { Box } from '@whammytechvn/wt-components';
-import { getLayoutDefault } from 'components/layouts/pages/default/getLayoutDefault';
+import { getLayoutDashboard } from 'components/layouts/pages/dashboard/getLayoutDashboard';
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
 
@@ -15,15 +15,6 @@ const Dashboard: NextPageWithLayout = () => {
   );
 };
 
-export const getServerSideProps = () => {
-  return {
-    redirect: {
-      destination: '/',
-      permanent: true
-    }
-  };
-};
-
-Dashboard.getLayout = getLayoutDefault;
+Dashboard.getLayout = getLayoutDashboard;
 
 export default Dashboard;

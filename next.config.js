@@ -5,6 +5,7 @@ const nextConfig = {
     return {
       '/': { page: '/' },
       '/metaverse': { page: '/metaverse' },
+      '/dashboard': { page: '/dashboard' },
       '/account': { page: '/account' },
       '/inventory': { page: '/inventory' },
       '/inventory/airdrop': { page: '/inventory/airdrop' }
