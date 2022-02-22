@@ -15,9 +15,7 @@ const paymentTokenSlice = createSlice({
     builder
       .addCase(getPaymentTokens.pending, handlePending)
       .addCase(getPaymentTokens.fulfilled, (state: any, action: any) => {
-        if (state.loading === true) {
-          return { ...DEFAULT_BASE_STATE, data: convertArrayToObject(action.payload, 'symbol') };
-        }
+        return { ...DEFAULT_BASE_STATE, data: convertArrayToObject(action.payload, 'symbol') };
       })
       .addCase(getPaymentTokens.rejected, handleReject);
   }

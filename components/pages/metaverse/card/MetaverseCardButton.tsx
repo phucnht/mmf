@@ -6,6 +6,9 @@ import { useRouter } from 'next/router';
 import { useAppSelector } from 'store/store.hook';
 import { selectAuthData } from 'store/account/auth/auth.slice';
 import { checkIsInWhitelist } from 'store/account/auth/auth.api';
+import { metaverseContract } from 'utils/contract';
+import { selectSystemConfigData } from 'store/market/system-config/systemConfig.slice';
+import { toast } from 'react-toastify';
 
 const ButtonType = {
   IDLE: 'idle',
@@ -15,6 +18,7 @@ const ButtonType = {
 
 const MetaverseCardButton: FC<{ whitelistContract: string }> = ({ whitelistContract }) => {
   const { accessToken, address } = useAppSelector(selectAuthData);
+  const { metaverseContractAddress } = useAppSelector(selectSystemConfigData);
   const [isClaimable, setIsClaimable] = useState(false);
 
   const toggleWhitelist = useCallback(async () => {
@@ -38,20 +42,30 @@ const MetaverseCardButton: FC<{ whitelistContract: string }> = ({ whitelistContr
   };
 
   const handleProcess = () => {
-    setType(ButtonType.PROCESSING);
+    metaverseContract(metaverseContractAddress)
+      .methods.claim1155Event(address)
+      .send({ from: address })
+      .once('transactionHash', function () {
+        setType(ButtonType.PROCESSING);
+      })
+      .once('receipt', async function () {
+        setType(ButtonType.SUCCESS);
+      })
+      .on('error', function (e: any) {
+        console.error(e);
+        setType(ButtonType.PROCESSING);
+        toast.error('Claim failed');
+      })
+      .catch(function (e: any) {
+        console.error(e);
+        setType(ButtonType.PROCESSING);
+        toast.error('Claim failed');
+      });
   };
 
   const handleSuccess = () => {
     router.push('/inventory');
   };
-
-  useEffect(() => {
-    if (type === ButtonType.PROCESSING) {
-      setTimeout(() => {
-        setType(ButtonType.SUCCESS);
-      }, 2000);
-    }
-  }, [type]);
 
   let renderButton = (
     <Button

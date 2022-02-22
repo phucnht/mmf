@@ -6,6 +6,7 @@ import erc20 from './abis/ERC20.json';
 import erc721 from './abis/ERC721.json';
 import erc1155 from './abis/ERC1155.json';
 import whitelist from './abis/whitelist.json';
+import metaverse from './abis/metaverse.json';
 
 export const web3 = new Web3(Web3.givenProvider || 'ws://localhost:8545');
 
@@ -16,3 +17,4 @@ export const erc20Contract = (address?: string): Contract => new web3.eth.Contra
 export const erc721Contract = (address?: string): Contract => new web3.eth.Contract(erc721 as AbiItem[], address);
 export const erc1155Contract = (address?: string): Contract => new web3.eth.Contract(erc1155 as AbiItem[], address);
 export const whitelistContract = (address?: string): Contract => new web3.eth.Contract(whitelist as AbiItem[], address);
+export const metaverseContract = (address?: string): Contract => new web3.eth.Contract(metaverse as AbiItem[], address);

@@ -1,4 +1,5 @@
 import NextImage from 'next/image';
+import { useState } from 'react';
 
 const cloudflareImageLoader = (
   { src, width, quality }: { src: string; width: number; quality?: number },
@@ -11,10 +12,19 @@ const cloudflareImageLoader = (
   return `https://images.mymetafarm.workers.dev?width=${width}&quality=${quality}&image=${imgSrc}`;
 };
 
-export default function Image({ isExternal, ...props }: any) {
+export default function Image({ isExternal, src: _src, ...props }: any) {
+  const [src, setSrc] = useState(_src);
+  const imgProps = {
+    ...props,
+    src,
+    onError: () => {
+      setSrc('/assets/default/img_blank.svg');
+    }
+  };
+
   if (process.env.NODE_ENV === 'development') {
-    return <NextImage unoptimized={true} {...props} />;
+    return <NextImage unoptimized={true} {...imgProps} />;
   } else {
-    return <NextImage {...props} loader={loader => cloudflareImageLoader(loader, isExternal)} />;
+    return <NextImage {...imgProps} loader={loader => cloudflareImageLoader(loader, isExternal)} />;
   }
 }
