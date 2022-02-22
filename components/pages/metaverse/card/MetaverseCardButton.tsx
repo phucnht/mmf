@@ -47,7 +47,6 @@ const MetaverseCardButton: FC<{ whitelistContract: string; onchainId: string }> 
 
   const handleProcess = () => {
     setIsProcessing(true);
-    console.log(isProcessing);
     metaverseContract(metaverseContractAddress)
       .methods.claim1155Event(1402)
       .send({ from: address })
@@ -111,8 +110,6 @@ const MetaverseCardButton: FC<{ whitelistContract: string; onchainId: string }> 
       <Button content="Check My Inventory" fullWidth className="py-5 !bg-green-200" onClick={handleSuccess} />
     );
   }
-
-  console.log(isProcessing);
 
   return renderButton;
 };
