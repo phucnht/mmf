@@ -43,7 +43,6 @@ export const client = (baseURL?: string): AxiosInstance => {
       },
       ({ response }) => {
         if (response) {
-          console.log(response);
           const { status, statusText } = response;
 
           if (status === 401) {

@@ -48,7 +48,7 @@ const MetaverseCardButton: FC<{ whitelistContract: string; onchainId: string }> 
   const handleProcess = () => {
     setIsProcessing(true);
     metaverseContract(metaverseContractAddress)
-      .methods.claim1155Event(1402)
+      .methods.claim1155Event(onchainId)
       .send({ from: address })
       .once('transactionHash', function () {
         setIsProcessing(false);
