@@ -25,8 +25,8 @@ const routes = [
   {
     icon: imgIconItems,
     label: 'Items',
-    slug: 'items',
-    disabled: true
+    slug: 'items'
+    // disabled: true
   },
   {
     icon: imgIconEvents,

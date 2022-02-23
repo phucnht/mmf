@@ -1,7 +1,7 @@
 import { Stack, Text, Flex } from '@whammytechvn/wt-components';
 import classNames from 'classnames';
 import Image from 'components/display/image/Image';
-import { IconStar } from 'components/icon/IconStar';
+import { IconStarList } from 'components/icon/IconStar';
 import { MouseEventHandler } from 'react';
 import { getCurrencyToken, getCurrencyUSD } from 'utils/format';
 
@@ -45,7 +45,7 @@ export default function MarketplaceItemCard({ item, onClick }: MarketplaceItemCa
         <Flex className="flex-col items-start gap-2">
           <Text className={cxId}>{item.id}</Text>
           <Flex className="justify-center items-end gap-2">
-            <IconStar />
+            <IconStarList count={item.stars} />
             <Text className="text-md font-black">{item.name}</Text>
           </Flex>
           <Text>Breed count: {item.breedCount}</Text>

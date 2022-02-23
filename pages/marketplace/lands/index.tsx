@@ -4,6 +4,7 @@ import { NextPageWithLayout } from 'pages/_app';
 import InventoryLandCard from '../../../components/pages/marketplace/lands/MarketplaceLandCard';
 
 import _times from 'lodash/times';
+import _random from 'lodash/random';
 import imgLand1 from '/public/assets/inventory/lands/land-1.png';
 import { useRouter } from 'next/router';
 import { getLayoutMarketplaceInventory } from 'components/layouts/pages/marketplace/getLayoutMarketplaceInventory';
@@ -11,6 +12,7 @@ import { getLayoutMarketplaceInventory } from 'components/layouts/pages/marketpl
 const items = _times(4, () => ({
   id: '257578245',
   name: `Kythira`,
+  stars: _random(1, 3),
   breedCount: 3,
   imgSrc: imgLand1,
   priceBNB: 11356,

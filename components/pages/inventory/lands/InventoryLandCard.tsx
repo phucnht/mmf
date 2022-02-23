@@ -2,7 +2,7 @@ import { Stack, Text, Flex, Box } from '@whammytechvn/wt-components';
 import classNames from 'classnames';
 import CardTitleBanner from 'components/display/card/CardTitleBanner';
 import Image from 'components/display/image/Image';
-import { IconStarRounded } from 'components/icon/IconStar';
+import { IconStarList } from 'components/icon/IconStar';
 import { MouseEventHandler } from 'react';
 import { getCurrencyToken, getCurrencyUSD } from 'utils/format';
 
@@ -10,6 +10,7 @@ export interface InventoryLandCardProps {
   item: {
     id: string;
     name: string;
+    stars: number;
     breedCount: number;
     imgSrc: StaticImageData | undefined;
     priceBNB: number;
@@ -30,7 +31,7 @@ export default function InventoryLandCard({ item, onClick }: InventoryLandCardPr
     <div className={cxCardWrapper} onClick={onClick}>
       <Flex className={cxWrapper}>
         <Flex className="absolute flex-col items-start gap-2">
-          <IconStarRounded />
+          <IconStarList count={item.stars} withBg />
           <Text className="text-md">Breed count: {item.breedCount}</Text>
         </Flex>
         <Box className="h-[28.8rem] m-auto">

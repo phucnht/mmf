@@ -5,7 +5,12 @@ const nextConfig = {
     return {
       '/': { page: '/' },
       '/metaverse': { page: '/metaverse' },
+      '/metaverse/items': { page: '/metaverse/items' },
+      '/metaverse/lands': { page: '/metaverse/lands' },
+      '/metaverse/characters': { page: '/metaverse/characters' },
       '/dashboard': { page: '/dashboard' },
+      '/dashboard/box': { page: '/dashboard/box' },
+      '/dashboard/dashboard': { page: '/dashboard/dashboard' },
       '/account': { page: '/account' },
       '/inventory': { page: '/inventory' },
       '/inventory/airdrop': { page: '/inventory/airdrop' }
@@ -16,6 +21,16 @@ const nextConfig = {
       {
         source: '/inventory',
         destination: '/inventory/airdrop',
+        permanent: true
+      },
+      {
+        source: '/metaverse',
+        destination: '/metaverse/items',
+        permanent: true
+      },
+      {
+        source: '/dashboard',
+        destination: '/dashboard/box',
         permanent: true
       }
     ];
