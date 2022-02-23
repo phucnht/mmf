@@ -50,7 +50,7 @@ export default function SidebarHorizontal({
           </Tab>
         ))}
       </Tab.List>
-      <Tab.Panels as={Box} className="w-full text-white text-sm mt-10">
+      <Tab.Panels as={Box} className="w-full text-white text-sm mt-12">
         {children}
       </Tab.Panels>
     </Tab.Group>

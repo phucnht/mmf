@@ -3,13 +3,14 @@ import { useTimer } from 'react-timer-hook';
 import classNames from 'classnames';
 import { FC } from 'react';
 import { zeroPad } from 'utils/convert';
+import { Flex } from '@whammytechvn/wt-components';
 
 const CountdownTitle: FC<{ className?: string }> = ({ className, children }) => {
-  const countdownTitleClassName = classNames('font-bold text-2xl', className);
+  const countdownTitleClassName = classNames('text-white font-bold text-2xl', className);
   return <span className={countdownTitleClassName}>{children}</span>;
 };
 
-const CountdownEnded = () => <CountdownTitle className="uppercase">Event Ended</CountdownTitle>;
+const CountdownEnded = () => <CountdownTitle className="font-bold uppercase">Event Ended</CountdownTitle>;
 
 const CountdownInProgress = ({ endDate }: { endDate: number }) => {
   const { seconds, minutes, hours, days } = useTimer({
@@ -19,7 +20,7 @@ const CountdownInProgress = ({ endDate }: { endDate: number }) => {
   return (
     <>
       <CountdownTitle>In Progress...</CountdownTitle>
-      <span className="font-bold text-title text-white tracking-wider">
+      <span className="font-bold text-title text-2xl text-white tracking-wider">
         {zeroPad(days)}:{zeroPad(hours)}:{zeroPad(minutes)}:{zeroPad(seconds)}
       </span>
     </>
@@ -27,10 +28,10 @@ const CountdownInProgress = ({ endDate }: { endDate: number }) => {
 };
 
 const CountdownComingBlock = ({ value, unit }: { value: string; unit: string }) => (
-  <div className="flex flex-col">
+  <Flex className="flex-col text-white">
     <span className="text-2xl font-bold justify-center text-center">{value}</span>
-    <span className="text-sm font-normal text-center">{unit}</span>
-  </div>
+    <span className="text-md font-normal text-center">{unit}</span>
+  </Flex>
 );
 
 const CountdownComing = ({ startDate }: { startDate: number }) => {

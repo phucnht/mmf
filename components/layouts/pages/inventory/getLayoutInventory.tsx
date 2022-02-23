@@ -39,7 +39,7 @@ export function getLayoutInventory(page: ReactElement) {
 export function getLayoutInventoryOffset(page: ReactElement) {
   return (
     <Sidebar routes={routes} baseSlug="/inventory">
-      <Box className="pt-44 h-full">{page}</Box>
+      <Box className="my-48 h-full">{page}</Box>
     </Sidebar>
   );
 }

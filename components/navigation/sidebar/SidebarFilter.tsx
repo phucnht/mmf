@@ -33,7 +33,7 @@ const ELEMENTS_BY_ROUTES: ObjectProps = {
 };
 
 export default function SidebarFilter({ children }: { children: ReactNode }) {
-  const cxTabsWrapper = classNames('flex-col gap-[2.5rem] mt-44 pb-48 min-w-[18rem] max-w-[35rem] w-full');
+  const cxTabsWrapper = classNames('flex-col gap-[2.5rem] mt-48 pb-48 min-w-[18rem] max-w-[35rem] w-full');
   const currentIndex = useRouter().pathname.split('/').pop() as string;
   const elements = convertEnumToSelectOptions(ELEMENTS_BY_ROUTES[currentIndex]);
 

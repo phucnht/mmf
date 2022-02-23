@@ -9,7 +9,7 @@ export function getLayoutMarketplace(page: ReactElement) {
 export function getLayoutMarketplaceOffset(page: ReactElement) {
   return (
     <SidebarFilter>
-      <Box className="pt-44 h-full">{page}</Box>
+      <Box className="my-48 h-full">{page}</Box>
     </SidebarFilter>
   );
 }
