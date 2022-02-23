@@ -16,6 +16,7 @@ import { useRouter } from 'next/router';
 
 import imgItem from '/public/assets/inventory/airdrop/t-shirt.png';
 import CardItem from 'components/pages/inventory/airdrop/CardItem';
+import { getEllipsisTxt } from 'utils/format';
 export interface InventoryMetaverseDetailProps {
   [x: string]: any;
 }
@@ -84,7 +85,9 @@ export default function InventoryMetaverseDetail() {
           </Flex>
           <Flex className="col-span-2 flex-col justify-between w-[34rem] min-w-[34rem]">
             <Box className="overflow-y-auto overflow-x-hidden max-h-[40rem] pr-12">
-              <Heading className="font-black text-lg items-baseline">Owner: {metaverse.ownerId}</Heading>
+              <Heading className="font-black text-lg items-baseline">
+                Owner: {getEllipsisTxt(metaverse.ownerAddress)}
+              </Heading>
               <Flex className="flex-col mt-9">
                 <Heading className="uppercase font-black text-md">Story</Heading>
                 <Text className="mt-4 text-md whitespace-normal	break-normal">{MOCK_CONTENT}</Text>
@@ -104,15 +107,15 @@ export default function InventoryMetaverseDetail() {
                 </Heading>
                 <Text className="font-black text-xl">0.361 IGL</Text>
               </Flex>
-              <Button
+              {/* <Button
                 color="secondary"
                 className="text-red-100 py-3 px-4 min-w-fit xl:min-w-[20rem] text-xl"
                 content="Buy Now"
-              />
+              /> */}
             </Flex>
           </Flex>
         </Flex>
-        <DataTable title="Sale History" sortable data={data} columns={columns} className="my-24" />
+        {/* <DataTable title="Sale History" sortable data={data} columns={columns} className="my-24" /> */}
       </Container>
     </>
   );

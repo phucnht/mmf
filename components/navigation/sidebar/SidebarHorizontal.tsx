@@ -7,7 +7,13 @@ import Image from 'components/display/image/Image';
 import _findIndex from 'lodash/findIndex';
 import { SidebarRoutesProps } from './sidebar.typings';
 
-export default function SidebarHorizontal({ routes, baseSlug, levelSlug = 2, children }: SidebarRoutesProps) {
+export default function SidebarHorizontal({
+  className,
+  routes,
+  baseSlug,
+  levelSlug = 2,
+  children
+}: SidebarRoutesProps) {
   const router = useRouter();
 
   const currentIndex = _findIndex(routes, { slug: router.pathname.split('/')[levelSlug] });
@@ -16,12 +22,12 @@ export default function SidebarHorizontal({ routes, baseSlug, levelSlug = 2, chi
     router.push(path);
   };
 
+  const cxTabWrapper = classNames('w-full text-white text-sm', className);
   const cxTabs = classNames('justify-start gap-20 text-white w-full py-10 px-12 rounded-[2rem] bg-green-300');
-
   const cxTab = classNames('flex items-center relative uppercase font-black text-md');
 
   return (
-    <Tab.Group defaultIndex={currentIndex} as={Box} className="w-full text-white text-sm">
+    <Tab.Group defaultIndex={currentIndex} as={Box} className={cxTabWrapper}>
       <Tab.List as={Flex} className={cxTabs}>
         {routes.map(route => (
           <Tab as={Fragment} key={route.slug}>
@@ -44,7 +50,7 @@ export default function SidebarHorizontal({ routes, baseSlug, levelSlug = 2, chi
           </Tab>
         ))}
       </Tab.List>
-      <Tab.Panels as={Box} className="w-full text-white text-sm mt-10">
+      <Tab.Panels as={Box} className="w-full text-white text-sm mt-12">
         {children}
       </Tab.Panels>
     </Tab.Group>

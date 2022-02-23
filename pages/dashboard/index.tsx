@@ -1,29 +1,25 @@
 import { Box } from '@whammytechvn/wt-components';
-import { getLayoutDefault } from 'components/layouts/pages/default/getLayoutDefault';
+import { NextPage } from 'next';
 import Head from 'next/head';
-import { NextPageWithLayout } from 'pages/_app';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
-const Dashboard: NextPageWithLayout = () => {
+const Dashboard: NextPage = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push('/dashboard/box');
+  }, [router]);
+
   return (
     <>
       <Head>
         <title>Dashboard | My Metafarm</title>
         <meta name="description" content="Dashboard | My Metafarm" />
       </Head>
-      <Box className="text-white text-sm">In development...</Box>
+      <Box className="text-white text-sm">Redirecting...</Box>
     </>
   );
 };
-
-export const getServerSideProps = () => {
-  return {
-    redirect: {
-      destination: '/',
-      permanent: true
-    }
-  };
-};
-
-Dashboard.getLayout = getLayoutDefault;
 
 export default Dashboard;

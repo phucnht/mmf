@@ -75,7 +75,7 @@ const Footer = () => {
     );
   }
 
-  const cxFooter = classNames('bg-black/40', { '!h-[22rem] z-10 relative': pathname === '/' });
+  const cxFooter = classNames('bg-black/40 z-10', { '!h-[22rem] relative': pathname === '/' });
 
   return <Scaffold.Footer className={cxFooter}>{renderFooter}</Scaffold.Footer>;
 };

@@ -1,4 +1,4 @@
-import { convertArrayToObject } from './../../../utils/convert';
+import { convertArrayToObject } from 'utils/convert';
 import { handleReject, handlePending, DEFAULT_BASE_STATE } from 'store/store.utils';
 import { createSlice } from '@reduxjs/toolkit';
 import { AppState } from 'store/store';

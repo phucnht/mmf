@@ -10,3 +10,6 @@ export const zeroPad = (num: number, places = 2) => String(num).padStart(places,
 
 export const convertArrayToObject = (array: any[], key: string) =>
   array.reduce((acc, curr) => ((acc[curr[key]] = curr), acc), {});
+
+export const convertEnumToSelectOptions = (obj: { [x: string]: string }) =>
+  Object.values(obj).map(value => ({ key: value, value, text: value }));

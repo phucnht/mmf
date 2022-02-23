@@ -23,6 +23,7 @@ module.exports = {
       gridTemplateColumns: {
         'fluid-31': 'repeat(auto-fill, minmax(31rem, 1fr))',
         'fluid-32': 'repeat(auto-fill, minmax(32rem, 1fr))',
+        'fluid-42': 'repeat(auto-fill, minmax(42rem, 1fr))',
         'fluid-48': 'repeat(auto-fill, minmax(48rem, 1fr))'
       },
       colors: {

@@ -1,3 +1,4 @@
+import { Flex, Heading } from '@whammytechvn/wt-components';
 import classNames from 'classnames';
 interface FilterHeaderProps {
   className?: string;
@@ -5,8 +6,8 @@ interface FilterHeaderProps {
 }
 
 export default function MarketplaceFilterHeader({ className, onResetFilter }: FilterHeaderProps) {
-  const filterClassname = classNames(
-    'filter-header w-[35rem] h-[7.3rem] bg-filter-header bg-img-default px-12 py-9 flex justify-between items-center',
+  const cxHeaderWrapper = classNames(
+    'pl-7 pr-5 py-5 bg-white/20 justify-between items-center rounded-[1rem]',
     className
   );
 
@@ -17,13 +18,16 @@ export default function MarketplaceFilterHeader({ className, onResetFilter }: Fi
   };
 
   return (
-    <div className={filterClassname}>
-      <h6 className="text-fill-transparent bg-gradient-to-tr from-primary to-primary-light bg-clip-text font-black uppercase text-[2rem]">
+    <Flex className={cxHeaderWrapper}>
+      <Heading as="h6" className="text-white font-bold uppercase text-xl">
         Filters
-      </h6>
-      <button className="font-medium text-[2rem] text-[#00cffe]" onClick={handleResetFilter}>
+      </Heading>
+      <button
+        className="font-bold text-xl text-blue-100 p-2 hover:bg-white/5 rounded-[1rem]"
+        onClick={handleResetFilter}
+      >
         Reset Filter
       </button>
-    </div>
+    </Flex>
   );
 }

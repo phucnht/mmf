@@ -16,7 +16,7 @@ import { useRouter } from 'next/router';
 import useAuthGuard from 'hooks/useAuthGuard';
 
 const items = _times(10, i => ({
-  id: '257578245',
+  id: '#257578245',
   stars: _random(1, 3),
   element: 'Thunder',
   name: `Item ${i}`,

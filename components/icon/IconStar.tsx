@@ -1,4 +1,6 @@
 import { Center } from '@whammytechvn/wt-components';
+import classNames from 'classnames';
+import _times from 'lodash/times';
 
 export function IconStar() {
   return (
@@ -12,10 +14,23 @@ export function IconStar() {
   );
 }
 
-export function IconStarRounded() {
+export interface StarListProps {
+  count: number;
+  withBg?: boolean;
+  className?: string;
+}
+
+export function IconStarList({ count, withBg = false, className }: StarListProps) {
+  const cxIconStarList = classNames(
+    'flex justify-center items-center w-fit',
+    { 'rounded-full h-[4.4rem] bg-[#6DA900] p-4': withBg },
+    className
+  );
   return (
-    <Center className="flex justify-center items-center rounded-full w-[4.4rem] h-[4.4rem] bg-[#6DA900] p-4">
-      <IconStar />
+    <Center className={cxIconStarList}>
+      {_times(count, () => (
+        <IconStar />
+      ))}
     </Center>
   );
 }
