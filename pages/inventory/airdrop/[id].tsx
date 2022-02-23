@@ -1,6 +1,5 @@
 import Head from 'next/head';
-import DataTable from 'components/table/DataTable';
-import { Box, Button, Container, Flex, Heading, Text } from '@whammytechvn/wt-components';
+import { Box, Container, Flex, Heading, Text } from '@whammytechvn/wt-components';
 import ButtonBack from 'components/buttons/ButtonBack';
 import { getLayoutDefault } from 'components/layouts/pages/default/getLayoutDefault';
 
@@ -8,33 +7,20 @@ import _times from 'lodash/times';
 import _find from 'lodash/find';
 import { MOCK_CONTENT } from 'utils/mock';
 import ProgressBar from 'components/display/progress-bar/ProgressBar';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import useAuthGuard from 'hooks/useAuthGuard';
-import { useAppSelector } from 'store/store.hook';
-import { selectInventoryData } from 'store/market/nft-item/inventory.slice';
-import { useRouter } from 'next/router';
 
 import imgItem from '/public/assets/inventory/airdrop/t-shirt.png';
 import CardItem from 'components/pages/inventory/airdrop/CardItem';
 import { getEllipsisTxt } from 'utils/format';
+import { GetStaticPropsContext } from 'next';
+import { ParsedUrlQuery } from 'querystring';
+import { clientMarket } from 'utils/api';
 export interface InventoryMetaverseDetailProps {
-  [x: string]: any;
+  metaverse: any;
 }
 
-export default function InventoryMetaverseDetail() {
-  const inventory = useAppSelector(selectInventoryData);
-  const { query } = useRouter();
-  const [metaverse, setMetaverse] = useState<InventoryMetaverseDetailProps>({});
-
-  useEffect(() => {
-    if (query.id) {
-      const item = _find(inventory, ['id', query.id]);
-      if (item) {
-        setMetaverse(item);
-      }
-    }
-  }, [query.id, inventory]);
-
+export default function InventoryMetaverseDetail({ metaverse }: InventoryMetaverseDetailProps) {
   useAuthGuard();
 
   const data = useMemo(
@@ -119,6 +105,24 @@ export default function InventoryMetaverseDetail() {
       </Container>
     </>
   );
+}
+interface PageParams extends ParsedUrlQuery {
+  id: string;
+}
+
+export async function getStaticPaths() {
+  const inventory = ((await clientMarket.get(`/items`, {})) as any).items;
+  const paths = inventory.map((item: any) => ({ params: { id: item.id } }));
+  return {
+    paths,
+    fallback: false
+  };
+}
+
+export async function getStaticProps({ params }: GetStaticPropsContext<PageParams>) {
+  const inventory = ((await clientMarket.get(`/items`, {})) as any).items;
+  const metaverse = _find(inventory, ['id', params?.id]);
+  return { props: { metaverse } };
 }
 
 InventoryMetaverseDetail.getLayout = getLayoutDefault;

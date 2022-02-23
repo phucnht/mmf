@@ -2,7 +2,7 @@
   "name": "my-metafarm",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "NODE_OPTIONS='--inspect=5009' next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
