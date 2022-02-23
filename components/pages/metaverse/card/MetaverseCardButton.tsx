@@ -25,16 +25,20 @@ const MetaverseCardButton: FC<{ whitelistContract: string; onchainId: string }> 
   const [isClaimable, setIsClaimable] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
 
-  const toggleWhitelist = useCallback(async () => {
+  const toggleClaimable = useCallback(async () => {
     const result = await checkIsInWhitelist(whitelistContract, address);
-    setIsClaimable(result);
-  }, [whitelistContract, address]);
+    const alreadyClaimed = await metaverseContract(metaverseContractAddress)
+      .methods.metaverseEventClaims(onchainId, address)
+      .call();
+
+    setIsClaimable(result && !alreadyClaimed);
+  }, [metaverseContractAddress, onchainId, whitelistContract, address]);
 
   useEffect(() => {
     if (address) {
-      toggleWhitelist();
+      toggleClaimable();
     }
-  }, [address, toggleWhitelist]);
+  }, [address, toggleClaimable]);
 
   const router = useRouter();
   const [type, setType] = useState(ButtonType.IDLE);
