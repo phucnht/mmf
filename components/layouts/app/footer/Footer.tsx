@@ -13,8 +13,8 @@ const Footer = () => {
 
   let renderFooter = (
     <Grid className="container xl:max-w-[132rem] grid-cols-4 text-md">
-      <Link href="http://www.mymetafarm.com" target="_blank" rel="noopener">
-        http://www.mymetafarm.com
+      <Link href="https://www.mymetafarm.com" target="_blank" rel="noopener">
+        https://www.mymetafarm.com
       </Link>
       <ul className="flex justify-end gap-24 col-span-3">
         <NextLink href="/contact" passHref>
@@ -62,7 +62,7 @@ const Footer = () => {
             </Link>
           </Flex>
           <Link href="mailto:info@mymetafarm.com">@MyMetaFarm</Link>
-          <Link href="http://www.mymetafarm.com" target="_blank" rel="noopener">
+          <Link href="https://www.mymetafarm.com" target="_blank" rel="noopener">
             <Flex className="items-center gap-2">
               <Box className="bg-[#186123] rounded-full p-3 shadow-md shadow-gray-700">
                 <Box className="bg-[url('/assets/icons/web.svg')] bg-auto bg-center bg-no-repeat w-11 h-11" />
