@@ -4,6 +4,8 @@ const nextConfig = {
   exportPathMap: function () {
     return {
       '/': { page: '/' },
+      '/404': { page: '/404' },
+      '/500': { page: '/500' },
       '/metaverse': { page: '/metaverse' },
       // '/marketplace': { page: '/marketplace' },
       // '/marketplace/items': { page: '/marketplace/items' },
