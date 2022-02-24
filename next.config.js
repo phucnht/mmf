@@ -25,8 +25,8 @@ const nextConfig = {
         permanent: true
       },
       {
-        source: '/metaverse',
-        destination: '/metaverse/items',
+        source: '/marketplace',
+        destination: '/marketplace/items',
         permanent: true
       },
       {

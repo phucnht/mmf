@@ -31,7 +31,7 @@ const MetaverseCardButton: FC<{ whitelistContract: string; onchainId: string }> 
       .methods.metaverseEventClaims(onchainId, address)
       .call();
 
-    setIsClaimable(result && !alreadyClaimed);
+    setIsClaimable(result && alreadyClaimed === false);
   }, [metaverseContractAddress, onchainId, whitelistContract, address]);
 
   useEffect(() => {
