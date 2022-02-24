@@ -9,6 +9,7 @@ import { getPaymentTokens } from 'store/market/payment-token/paymentToken.api';
 import BackgroundFlare from 'components/bg/BackgroundFlare';
 import BackgroundFooterShadow from 'components/bg/BackgroundFooterShadow';
 import { useRouter } from 'next/router';
+import useWeb3Validate from 'hooks/useWeb3Validate';
 
 interface AppLayoutProps {
   children: ReactNode;
@@ -18,6 +19,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
   const { pathname } = useRouter();
   const dispatch = useAppDispatch();
   const { id } = useAppSelector(selectSystemConfigData);
+  useWeb3Validate();
 
   useEffect(() => {
     if (!id) {
