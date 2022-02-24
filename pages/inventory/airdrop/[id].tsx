@@ -12,7 +12,7 @@ import useAuthGuard from 'hooks/useAuthGuard';
 import imgItem from '/public/assets/inventory/airdrop/t-shirt.png';
 import CardItem from 'components/pages/inventory/airdrop/CardItem';
 import { getEllipsisTxt } from 'utils/format';
-import { GetServerSideProps } from 'next';
+import { GetStaticProps } from 'next';
 import { clientMarket } from 'utils/api';
 export interface InventoryMetaverseDetailProps {
   metaverseItem: any;
@@ -106,23 +106,31 @@ export default function InventoryMetaverseDetail({ metaverseItem }: InventoryMet
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  // console.log('124124214124214124124qweeqwe', query.id);
-  // try {
-  //   const metaverseItem = await clientMarket.get(`/items/${query.id}`);
-  //   if (!metaverseItem) {
-  //     return {
-  //       notFound: true
-  //     };
-  //   }
-  //   return { props: { metaverseItem } };
-  // } catch (e) {
-  //   console.error(e);
-  //   return {
-  //     notFound: true
-  //   };
-  // }
-  return { props: { metaverseItem: {} } };
+export async function getStaticPaths() {
+  console.log('accessToken static');
+  const metaverseItems = ((await clientMarket.get(`/items/pages?`)) as any).items;
+  console;
+  return {
+    paths: metaverseItems.map((item: any) => ({ params: { id: item.id } })),
+    fallback: false
+  };
+}
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  try {
+    const metaverseItem = await clientMarket.get(`/items/${params?.id}`);
+    if (!metaverseItem) {
+      return {
+        notFound: true
+      };
+    }
+    return { props: { metaverseItem } };
+  } catch (e) {
+    console.error(e);
+    return {
+      notFound: true
+    };
+  }
 };
 
 InventoryMetaverseDetail.getLayout = getLayoutDefault;

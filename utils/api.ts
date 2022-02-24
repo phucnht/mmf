@@ -3,7 +3,6 @@ import axios, { AxiosInstance } from 'axios';
 import { stringify } from 'query-string';
 import { store } from 'store/store';
 import { logout } from '../store/account/auth/auth.slice';
-import { loadState } from './storage';
 
 export const client = (baseURL?: string): AxiosInstance => {
   if (!baseURL) {
