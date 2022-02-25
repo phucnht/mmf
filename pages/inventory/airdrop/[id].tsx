@@ -4,6 +4,7 @@ import ButtonBack from 'components/buttons/ButtonBack';
 import { getLayoutDefault } from 'components/layouts/pages/default/getLayoutDefault';
 
 import _times from 'lodash/times';
+import _find from 'lodash/find';
 import { MOCK_CONTENT } from 'utils/mock';
 import ProgressBar from 'components/display/progress-bar/ProgressBar';
 import { useMemo } from 'react';
@@ -12,14 +13,14 @@ import useAuthGuard from 'hooks/useAuthGuard';
 import imgItem from '/public/assets/inventory/airdrop/t-shirt.png';
 import CardItem from 'components/pages/inventory/airdrop/CardItem';
 import { getEllipsisTxt } from 'utils/format';
-import { GetStaticProps } from 'next';
+import { GetServerSidePropsContext } from 'next';
+import { ParsedUrlQuery } from 'querystring';
 import { clientMarket } from 'utils/api';
 export interface InventoryMetaverseDetailProps {
   metaverseItem: any;
 }
 
 export default function InventoryMetaverseDetail({ metaverseItem }: InventoryMetaverseDetailProps) {
-  console.log('InventoryMetaverseDetail', metaverseItem);
   useAuthGuard();
 
   const data = useMemo(
@@ -106,31 +107,9 @@ export default function InventoryMetaverseDetail({ metaverseItem }: InventoryMet
   );
 }
 
-export async function getStaticPaths() {
-  console.log('accessToken static');
-  const metaverseItems = ((await clientMarket.get(`/items/pages?`)) as any).items;
-  console;
-  return {
-    paths: metaverseItems.map((item: any) => ({ params: { id: item.id } })),
-    fallback: false
-  };
-}
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  try {
-    const metaverseItem = await clientMarket.get(`/items/${params?.id}`);
-    if (!metaverseItem) {
-      return {
-        notFound: true
-      };
-    }
-    return { props: { metaverseItem } };
-  } catch (e) {
-    console.error(e);
-    return {
-      notFound: true
-    };
-  }
+export const getServerSideProps = async ({ params }: GetServerSidePropsContext) => {
+  const metaverseItem = await clientMarket.get(`/items/${params?.id}`);
+  return { props: { metaverseItem } };
 };
 
 InventoryMetaverseDetail.getLayout = getLayoutDefault;
