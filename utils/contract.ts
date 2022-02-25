@@ -16,5 +16,8 @@ export const MAX_ALLOWANCE = '11579208923731619542357098500868790785326998466564
 export const erc20Contract = (address?: string): Contract => new web3.eth.Contract(erc20 as AbiItem[], address);
 export const erc721Contract = (address?: string): Contract => new web3.eth.Contract(erc721 as AbiItem[], address);
 export const erc1155Contract = (address?: string): Contract => new web3.eth.Contract(erc1155 as AbiItem[], address);
+
+export const marketplaceContract = (address?: string): Contract =>
+  new web3.eth.Contract(whitelist as AbiItem[], address);
 export const whitelistContract = (address?: string): Contract => new web3.eth.Contract(whitelist as AbiItem[], address);
 export const metaverseContract = (address?: string): Contract => new web3.eth.Contract(metaverse as AbiItem[], address);

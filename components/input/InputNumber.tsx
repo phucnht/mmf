@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { InputHTMLAttributes } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { validateInputNumber } from 'utils/validate';
-import './input-number.css';
+import { PlusIcon, MinusIcon } from '@heroicons/react/outline';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -19,14 +19,6 @@ const InputNumber = ({ type = 'number', min = 0, max = 40, disabled, className, 
     const isOverMax = +(watch(name) + e.key) > max;
     return (validateInputNumber(e) || isOverMax) && e.preventDefault();
   };
-
-  const inputWrapperClassName = classNames('item-center', className);
-  const inputClassName = classNames(
-    'bg-[#082c6b] py-[1.6rem] px-[2.4rem] w-[27rem] h-[5.6rem] border border-solid border-[#ffba1a] flex-1 items-center justify-center text-white text-input rounded-[0.4rem]',
-    {
-      [`input-${type}`]: true
-    }
-  );
 
   const handleDecrease = () => {
     const value = +watch(name);
@@ -52,16 +44,26 @@ const InputNumber = ({ type = 'number', min = 0, max = 40, disabled, className, 
 
   const handleFocus = (e: any) => e.target.select();
 
+  const cxInputWrapper = classNames('item-center', className);
+  const cxInput = classNames(
+    'bg-blue-400 py-5 px-8 w-[29.7rem] h-[5.2rem] items-center justify-center rounded-[2rem]',
+    {
+      [`input-${type}`]: true
+    }
+  );
+
   return (
-    <Flex className={inputWrapperClassName}>
-      <Flex className={inputClassName}>
+    <Flex className={cxInputWrapper}>
+      <Flex className={cxInput}>
         <button
           type="button"
-          className="focus:outline-none w-[3.8rem] h-[2.8rem] bg-img-icon-minus bg-img-default cursor-pointer"
+          className="focus:outline-none cursor-pointer w-[2.8rem] h-[2.8rem] bg-brown-100 rounded-lg"
           onClick={handleDecrease}
-        />
+        >
+          <MinusIcon className={`text-white h-8 m-auto`} />
+        </button>
         <input
-          className="focus:outline-none bg-[#082c6b] w-full text-center cursor-default"
+          className="border-none focus:outline-none bg-blue-400 w-full text-center text-white text-xl font-black "
           type="number"
           {...register(name)}
           min={min}
@@ -73,13 +75,15 @@ const InputNumber = ({ type = 'number', min = 0, max = 40, disabled, className, 
         />
         <button
           type="button"
-          className="focus:outline-none w-[3.8rem] h-[2.8rem] bg-img-icon-plus bg-img-default cursor-pointer"
+          className="focus:outline-none cursor-pointer w-[2.8rem] h-[2.8rem] bg-brown-100 rounded-lg"
           onClick={handleIncrease}
-        />
+        >
+          <PlusIcon className={`text-white h-8 m-auto`} />
+        </button>
       </Flex>
       <button
         type="button"
-        className="focus:outline-none text-[#5da8ec] uppercase text-input font-bold ml-6 cursor-pointer"
+        className="focus:outline-none text-blue-100 uppercase text-lg font-bold ml-6 cursor-pointer"
         onClick={handleSetMax}
       >
         MAX

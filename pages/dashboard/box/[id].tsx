@@ -7,6 +7,7 @@ import Image from 'components/display/image/Image';
 import imgDashboardBox from '/public/assets/dashboard/box.png';
 import { MOCK_CONTENT } from 'utils/mock';
 import Alert from 'components/display/alert/Alert';
+import FormBuyBox from 'components/forms/buy-box/FormBuyBox';
 
 const MOCK_AMOUNT = 500;
 
@@ -14,8 +15,8 @@ export default function DashboardBoxDetail() {
   return (
     <>
       <Head>
-        <title>In development... | My Metafarm</title>
-        <meta name="description" content={`In development... | My Metafarm`} />
+        <title>Buy Box | My Metafarm</title>
+        <meta name="description" content={`Buy Box | My Metafarm`} />
       </Head>
       <Container className="max-w-[113rem] min-h-fit">
         <ButtonBack className="mb-8" />
@@ -42,12 +43,7 @@ export default function DashboardBoxDetail() {
                 <Box className="overflow-y-auto overflow-x-hidden max-h-[40rem] pr-16">
                   <Text className="text-md whitespace-normal	break-normal">{MOCK_CONTENT}</Text>
                 </Box>
-                <Alert type="error" content={'Your balance is not enough BNB'} />
-                <Button
-                  color="secondary"
-                  className="text-red-100 p-8 w-fit text-xl"
-                  content={`Purchase ${MOCK_AMOUNT} BNB`}
-                />
+                <FormBuyBox amount={1} />
               </Flex>
             </Grid>
           </Flex>

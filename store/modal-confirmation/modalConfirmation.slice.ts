@@ -1,10 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+export type ModalSize = 'md' | 'sm' | 'max' | 'min' | 'fit';
+
 export interface ModalConfirmationPayload {
   title?: string;
   description?: string;
-  size?: 'md' | 'sm';
-  type: 'createGameProfile' | 'account' | 'confirm';
+  size?: ModalSize;
+  type: 'createGameProfile' | 'account' | 'confirm' | 'login';
 }
 
 export type ModalConfirmationState = {
