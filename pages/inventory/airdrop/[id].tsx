@@ -104,8 +104,9 @@ export default function InventoryMetaverseDetail({ metaverseItem }: InventoryMet
 }
 
 export const getServerSideProps = async ({ query }: GetServerSidePropsContext) => {
-  // const metaverseItem = await clientMarket.get(`/items/${query.id}`, {});
-  return { props: { metaverseItem: {} } };
+  const res = await fetch(`https://metafarm-api.onsky.services/market-apis/api/items/${query.id}`);
+  const { data } = await res.json();
+  return { props: { metaverseItem: data } };
 };
 
 InventoryMetaverseDetail.getLayout = getLayoutDefault;
