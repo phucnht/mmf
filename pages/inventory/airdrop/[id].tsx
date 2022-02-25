@@ -108,8 +108,8 @@ export default function InventoryMetaverseDetail({ metaverseItem }: InventoryMet
   );
 }
 
-export const getServerSideProps = async ({ params }: GetServerSidePropsContext) => {
-  const metaverseItem = await clientMarket.get(`/items/${params?.id}`);
+export const getServerSideProps = async ({ query }: GetServerSidePropsContext) => {
+  const metaverseItem = await clientMarket.get(`/items/${query.id}`);
   console.log(metaverseItem);
   return { props: { metaverseItem } };
 };
