@@ -19,6 +19,7 @@ export interface InventoryMetaverseDetailProps {
 }
 
 export default function InventoryMetaverseDetail({ metaverseItem }: InventoryMetaverseDetailProps) {
+  useAuthGuard();
   const data = useMemo(
     () =>
       _times(10, i => ({
