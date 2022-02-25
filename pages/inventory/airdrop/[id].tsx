@@ -4,7 +4,6 @@ import ButtonBack from 'components/buttons/ButtonBack';
 import { getLayoutDefault } from 'components/layouts/pages/default/getLayoutDefault';
 
 import _times from 'lodash/times';
-import _find from 'lodash/find';
 import { MOCK_CONTENT } from 'utils/mock';
 import ProgressBar from 'components/display/progress-bar/ProgressBar';
 import { useMemo } from 'react';
@@ -14,16 +13,12 @@ import imgItem from '/public/assets/inventory/airdrop/t-shirt.png';
 import CardItem from 'components/pages/inventory/airdrop/CardItem';
 import { getEllipsisTxt } from 'utils/format';
 import { GetServerSidePropsContext } from 'next';
-import { ParsedUrlQuery } from 'querystring';
 import { clientMarket } from 'utils/api';
 export interface InventoryMetaverseDetailProps {
   metaverseItem: any;
 }
 
 export default function InventoryMetaverseDetail({ metaverseItem }: InventoryMetaverseDetailProps) {
-  console.log(metaverseItem);
-  useAuthGuard();
-
   const data = useMemo(
     () =>
       _times(10, i => ({
@@ -109,8 +104,7 @@ export default function InventoryMetaverseDetail({ metaverseItem }: InventoryMet
 }
 
 export const getServerSideProps = async ({ query }: GetServerSidePropsContext) => {
-  const metaverseItem = await clientMarket.get(`/items/${query.id}`);
-  console.log(metaverseItem);
+  const metaverseItem = await clientMarket.get(`/items/${query.id}`, {});
   return { props: { metaverseItem } };
 };
 
