@@ -21,6 +21,7 @@ export interface InventoryMetaverseDetailProps {
 }
 
 export default function InventoryMetaverseDetail({ metaverseItem }: InventoryMetaverseDetailProps) {
+  console.log(metaverseItem);
   useAuthGuard();
 
   const data = useMemo(
@@ -109,6 +110,7 @@ export default function InventoryMetaverseDetail({ metaverseItem }: InventoryMet
 
 export const getServerSideProps = async ({ params }: GetServerSidePropsContext) => {
   const metaverseItem = await clientMarket.get(`/items/${params?.id}`);
+  console.log(metaverseItem);
   return { props: { metaverseItem } };
 };
 
