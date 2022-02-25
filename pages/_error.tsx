@@ -1,7 +1,6 @@
 import { Button, Flex, Heading } from '@whammytechvn/wt-components';
 import type { NextPageContext } from 'next';
 import { useRouter } from 'next/router';
-import pino from 'pino';
 function Error({ statusCode, name, message }: { statusCode: number; name: string; message: string }) {
   const router = useRouter();
 
@@ -22,11 +21,7 @@ function Error({ statusCode, name, message }: { statusCode: number; name: string
 }
 
 Error.getInitialProps = ({ res, err }: NextPageContext) => {
-  console.log(res, 'khoa');
-  pino().error(`khoa ${res}`);
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
-  console.log(JSON.stringify(err), 'oooooooa');
-  pino().error(err);
   return { statusCode, name: err?.name, message: err?.message };
 };
 
