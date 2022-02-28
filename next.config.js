@@ -19,13 +19,6 @@ const nextConfig = {
       '/inventory/airdrop': { page: '/inventory/airdrop' }
     };
   },
-  webpack: config => {
-    config.resolve.alias = {
-      ...config.resolve.alias
-      // your aliases
-    };
-    return config;
-  },
   // async redirects() {
   //   return [
   //     {
