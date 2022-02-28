@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from 'store/store.hook';
 import * as yup from 'yup';
 import FormBuyBoxButton from './FormBuyBoxButton';
 import useModalConfirmation from 'hooks/useModal';
+import Alert from 'components/display/alert/Alert';
 
 export interface FormBuyBoxProps {
   amount: number;
@@ -46,7 +47,7 @@ export default function FormBuyBox({ amount }: FormBuyBoxProps) {
       }
     }
 
-    const resultCheckout = await open({ type: 'checkout', size: 'max' });
+    const resultCheckout = await open({ type: 'checkout', size: 'fit' });
 
     // if (!(await notExceedMaxBox(address, data.amount))) {
     //   dispatch(
@@ -93,9 +94,9 @@ export default function FormBuyBox({ amount }: FormBuyBoxProps) {
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={onSubmit} className="flex flex-col gap-6">
-        {/* <Alert type="error" content={'Your balance is not enough BNB'} /> */}
+      <form onSubmit={onSubmit} className="flex flex-col gap-8">
         <InputNumber name="amount" />
+        {methods.formState.errors['amount'] && <Alert type="error" content={'Your balance is not enough BNB'} />}
         <FormBuyBoxButton name="amount" price={MOCK_PRICE} min={0} max={MOCK_LIMIT_PER_TRANSACTION} />
       </form>
     </FormProvider>
