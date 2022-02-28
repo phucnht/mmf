@@ -8,9 +8,10 @@ import ModalTypeCreateGameProfile from './types/ModalTypeCreateGameProfile';
 import { useAppDispatch } from 'store/store.hook';
 import useUnload from 'hooks/useUnload';
 import ModalTypeLoginRequired from './types/ModalTypeLoginRequired';
+import ModalTypeCheckout from './types/ModalTypeCheckout';
 
 export default function ModalConfirmation() {
-  const { isOpened, type, size, title, description, confirm, decline } = useModalConfirmation();
+  const { isOpened, type, size, data, confirm, decline } = useModalConfirmation();
   const dispatch = useAppDispatch();
 
   useUnload(() => {
@@ -23,9 +24,8 @@ export default function ModalConfirmation() {
         {type === 'createGameProfile' && <ModalTypeCreateGameProfile />}
         {type === 'account' && <ModalTypeAccount decline={decline} />}
         {type === 'login' && <ModalTypeLoginRequired decline={decline} />}
-        {type === 'confirm' && (
-          <ModalTypeConfirm title={title} description={description} decline={decline} confirm={confirm} />
-        )}
+        {type === 'checkout' && <ModalTypeCheckout data={data} decline={decline} />}
+        {type === 'confirm' && <ModalTypeConfirm data={data} decline={decline} confirm={confirm} />}
       </ModalContainer>
     </ModalOverlay>
   ) : null;

@@ -20,9 +20,6 @@ export default function FormBuyBox({ amount }: FormBuyBoxProps) {
 
   // Modal confirmation
   const { open } = useModalConfirmation();
-  const handleOpenDialogAuthRequired = async () => {
-    await open({ type: 'login', size: 'max' });
-  };
 
   const schema = yup.object({
     amount: yup
@@ -40,11 +37,16 @@ export default function FormBuyBox({ amount }: FormBuyBoxProps) {
 
   const { handleSubmit } = methods;
 
-  const onSubmit = handleSubmit(({ amount }: FormBuyBoxProps) => {
+  const onSubmit = handleSubmit(async ({ amount }: FormBuyBoxProps) => {
     if (!accessToken) {
-      handleOpenDialogAuthRequired();
-      return;
+      const resultAuth = await open({ type: 'login', size: 'max' });
+
+      if (!resultAuth) {
+        return;
+      }
     }
+
+    const resultCheckout = await open({ type: 'checkout', size: 'max' });
 
     // if (!(await notExceedMaxBox(address, data.amount))) {
     //   dispatch(
