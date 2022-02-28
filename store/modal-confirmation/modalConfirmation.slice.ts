@@ -1,12 +1,13 @@
+import { ObjectProps } from 'utils/types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export type ModalSize = 'md' | 'sm' | 'max' | 'min' | 'fit';
+export type ModalType = 'createGameProfile' | 'account' | 'confirm' | 'login' | 'checkout';
 
 export interface ModalConfirmationPayload {
-  title?: string;
-  description?: string;
+  data?: ObjectProps;
   size?: ModalSize;
-  type: 'createGameProfile' | 'account' | 'confirm' | 'login';
+  type: ModalType;
 }
 
 export type ModalConfirmationState = {
@@ -17,8 +18,7 @@ export type ModalConfirmationState = {
 
 export const initialModalConfirmationState: ModalConfirmationState = {
   isOpened: false,
-  title: 'Modal Title',
-  description: 'Modal Content',
+  data: {},
   type: 'confirm',
   size: 'sm',
   isConfirmed: false,
@@ -30,8 +30,7 @@ export const modalConfirmationSlice = createSlice({
   initialState: initialModalConfirmationState,
   reducers: {
     open: (state, action: PayloadAction<ModalConfirmationPayload>) => {
-      state.title = action.payload.title;
-      state.description = action.payload.description;
+      state.data = action.payload.data;
       state.type = action.payload.type;
       state.size = action.payload.size;
       state.isOpened = true;

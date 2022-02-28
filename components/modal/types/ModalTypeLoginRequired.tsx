@@ -21,8 +21,8 @@ export default function ModalTypeLoginRequired({ decline }: ModalTypeAccountProp
           <Button
             onClick={() => connect()}
             fullWidth
-            color="secondary"
-            className="text-red-100 py-4 w-fit min-w-[15rem]"
+            color={loading ? 'default' : 'secondary'}
+            className="text-red-100 py-4 w-fit min-w-[15rem] disabled:bg-grey-400 disabled:cursor-not-allowed disabled:pointer-events-none"
             disabled={loading}
           >
             Connect Now

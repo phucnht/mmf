@@ -1,24 +1,24 @@
 import { Stack } from '@whammytechvn/wt-components';
 import { MouseEventHandler } from 'react';
+import { ObjectProps } from 'utils/types';
 
 export interface ModalTypeConfirmProps {
-  title?: string;
-  description?: string;
+  data?: ObjectProps;
   decline: MouseEventHandler<HTMLButtonElement> | undefined;
   confirm: MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
-const ModalTypeConfirm = ({ title, description, confirm, decline }: ModalTypeConfirmProps) => {
+const ModalTypeConfirm = ({ data, confirm, decline }: ModalTypeConfirmProps) => {
   return (
     <Stack className="rounded-[2rem] shadow-lg relative flex-col w-full bg-blue-500 outline-none focus:outline-none border-[3px] border-green-200 text-white text-2xl font-bold">
-      {title && (
+      {data && data.title && (
         <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
-          <h3 className="text-3xl font-semibold">{title}</h3>
+          <h3 className="text-3xl font-semibold">{data.title}</h3>
         </div>
       )}
-      {description && (
+      {data && data.description && (
         <div className="relative p-6 flex-auto">
-          <p className="my-4 text-blueGray-500 text-lg leading-relaxed">{description}</p>
+          <p className="my-4 text-blueGray-500 text-lg leading-relaxed">{data.description}</p>
         </div>
       )}
       <Stack className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">

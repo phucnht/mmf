@@ -9,10 +9,10 @@ const modalConfirmationThunkActions = {
     {
       extra: ThunkExtraArguments;
     }
-  >('modalConfirmation', async ({ title, description, type, size }, { extra, dispatch }) => {
+  >('modalConfirmation', async ({ data, type, size }, { extra, dispatch }) => {
     const store = extra.store;
 
-    dispatch(modalConfirmationActions.open({ title, description, type, size }));
+    dispatch(modalConfirmationActions.open({ data, type, size }));
 
     return new Promise<boolean>(resolve => {
       const unsubscribe = store.subscribe(() => {

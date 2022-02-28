@@ -44,7 +44,7 @@ const FormBuyBoxButton = ({ name, price, min, max }: FormBuyBoxButtonrops) => {
   useEffect(() => {
     const handleSetBuyAvailable = async () => {
       // const enoughAllowance = await isEnoughAllowance(watch(name), address);
-      const enoughAllowance = false;
+      const enoughAllowance = true;
       setBuyAvailable(enoughAllowance);
     };
 

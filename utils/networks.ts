@@ -37,3 +37,5 @@ export const getExplorer = (chain: string): string => networkConfigs[chain]?.blo
 export const getWrappedNative = (chain: string): string | null => networkConfigs[chain]?.wrapped || null;
 
 export const hasEthereum = typeof window !== 'undefined' && typeof window.ethereum !== 'undefined';
+
+export const isProduction = process.env.NODE_ENV === 'production';
