@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 
 export default function Custom404() {
   const router = useRouter();
-
   const goHome = () => {
     router.push('/');
   };

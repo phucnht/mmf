@@ -121,9 +121,7 @@ export type NftItemRequest = {
   maxLevel?: string;
 } & PaginationRequest;
 
-export type InventoryRequest = {
-  owner?: string;
-} & PaginationRequest;
+export type InventoryRequest = PaginationRequest;
 
 export type NftItemsState = GetState<BaseResultPagination<NftItemDto>>;
 export type InventoryState = GetState<BaseResultPagination<NftItemDto>>;

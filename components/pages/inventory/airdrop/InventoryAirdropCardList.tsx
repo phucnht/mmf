@@ -22,7 +22,7 @@ const InventoryAirdropCardList: FC = () => {
 
   useEffect(() => {
     if (address) {
-      dispatch(getInventory({ owner: address }));
+      dispatch(getInventory());
     }
   }, [dispatch, address]);
 

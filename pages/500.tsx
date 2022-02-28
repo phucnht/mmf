@@ -8,7 +8,7 @@ export default function Custom500() {
   };
 
   return (
-    <Flex className="items-center justify-center min-h-[60rem]">
+    <Flex className="flex-col items-center justify-center gap-8 min-h-[60rem]">
       <Heading as="h1" className="text-white text-4xl">
         500 - Server-side error occurred
       </Heading>

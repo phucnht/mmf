@@ -4,6 +4,8 @@ const nextConfig = {
   exportPathMap: function () {
     return {
       '/': { page: '/' },
+      '/404': { page: '/404' },
+      '/500': { page: '/500' },
       '/metaverse': { page: '/metaverse' },
       // '/marketplace': { page: '/marketplace' },
       // '/marketplace/items': { page: '/marketplace/items' },
@@ -17,25 +19,25 @@ const nextConfig = {
       '/inventory/airdrop': { page: '/inventory/airdrop' }
     };
   },
-  async redirects() {
-    return [
-      {
-        source: '/inventory',
-        destination: '/inventory/airdrop',
-        permanent: true
-      },
-      {
-        source: '/marketplace',
-        destination: '/marketplace/items',
-        permanent: true
-      },
-      {
-        source: '/dashboard',
-        destination: '/dashboard/box',
-        permanent: true
-      }
-    ];
-  },
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: '/inventory',
+  //       destination: '/inventory/airdrop',
+  //       permanent: true
+  //     },
+  //     {
+  //       source: '/marketplace',
+  //       destination: '/marketplace/items',
+  //       permanent: true
+  //     },
+  //     {
+  //       source: '/dashboard',
+  //       destination: '/dashboard/box',
+  //       permanent: true
+  //     }
+  //   ];
+  // },
   images: {
     loader: 'imgix',
     path: ''

@@ -4,7 +4,6 @@ import ButtonBack from 'components/buttons/ButtonBack';
 import { getLayoutDefault } from 'components/layouts/pages/default/getLayoutDefault';
 
 import _times from 'lodash/times';
-import _find from 'lodash/find';
 import { MOCK_CONTENT } from 'utils/mock';
 import ProgressBar from 'components/display/progress-bar/ProgressBar';
 import { useMemo } from 'react';
@@ -13,16 +12,14 @@ import useAuthGuard from 'hooks/useAuthGuard';
 import imgItem from '/public/assets/inventory/airdrop/t-shirt.png';
 import CardItem from 'components/pages/inventory/airdrop/CardItem';
 import { getEllipsisTxt } from 'utils/format';
-import { GetStaticPropsContext } from 'next';
-import { ParsedUrlQuery } from 'querystring';
+import { GetServerSidePropsContext } from 'next';
 import { clientMarket } from 'utils/api';
 export interface InventoryMetaverseDetailProps {
-  metaverse: any;
+  metaverseItem: any;
 }
 
-export default function InventoryMetaverseDetail({ metaverse }: InventoryMetaverseDetailProps) {
+export default function InventoryMetaverseDetail({ metaverseItem }: InventoryMetaverseDetailProps) {
   useAuthGuard();
-
   const data = useMemo(
     () =>
       _times(10, i => ({
@@ -60,19 +57,19 @@ export default function InventoryMetaverseDetail({ metaverse }: InventoryMetaver
   return (
     <>
       <Head>
-        <title>{metaverse.name} | My Metafarm</title>
-        <meta name="description" content={`${metaverse.name} | My Metafarm`} />
+        <title>{metaverseItem.name} | My Metafarm</title>
+        <meta name="description" content={`${metaverseItem.name} | My Metafarm`} />
       </Head>
       <Container className="max-w-screen-lg min-h-fit">
         <ButtonBack className="mb-8" />
         <Flex className="justify-between gap-20 p-28 rounded-[2rem] border-[3px] border-green-200 text-white">
           <Flex className="col-span-3 flex-col items-center justify-between min-h-[48rem] w-full">
-            <CardItem content={metaverse.name} imgSrc={imgItem} />
+            <CardItem content={metaverseItem.name} imgSrc={imgItem} />
           </Flex>
           <Flex className="col-span-2 flex-col justify-between w-[34rem] min-w-[34rem]">
             <Box className="overflow-y-auto overflow-x-hidden max-h-[40rem] pr-12">
               <Heading className="font-black text-lg items-baseline">
-                Owner: {getEllipsisTxt(metaverse.ownerAddress)}
+                Owner: {getEllipsisTxt(metaverseItem.ownerAddress)}
               </Heading>
               <Flex className="flex-col mt-9">
                 <Heading className="uppercase font-black text-md">Story</Heading>
@@ -106,23 +103,11 @@ export default function InventoryMetaverseDetail({ metaverse }: InventoryMetaver
     </>
   );
 }
-interface PageParams extends ParsedUrlQuery {
-  id: string;
-}
 
-export async function getStaticPaths() {
-  const inventory = ((await clientMarket.get(`/items`, {})) as any).items;
-  const paths = inventory.map((item: any) => ({ params: { id: item.id } }));
-  return {
-    paths,
-    fallback: false
-  };
-}
-
-export async function getStaticProps({ params }: GetStaticPropsContext<PageParams>) {
-  const inventory = ((await clientMarket.get(`/items`, {})) as any).items;
-  const metaverse = _find(inventory, ['id', params?.id]);
-  return { props: { metaverse } };
-}
+export const getServerSideProps = async ({ query }: GetServerSidePropsContext) => {
+  const res = await fetch(`https://metafarm-api.onsky.services/market-apis/api/items/${query.id}`);
+  const { data } = await res.json();
+  return { props: { metaverseItem: data } };
+};
 
 InventoryMetaverseDetail.getLayout = getLayoutDefault;
