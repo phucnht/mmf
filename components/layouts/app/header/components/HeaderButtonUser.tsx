@@ -70,7 +70,7 @@ const HeaderButtonUser = () => {
         <Popover.Panel className="text-white text-md bg-blue-400 rounded-[2rem] min-w-[20rem]">
           {({ close }) => (
             <>
-              <TextCopyable className="px-8 py-4" value={address} />
+              <TextCopyable className="px-8 py-4 justify-between" value={address} />
               <Divider />
               <HeaderBalance className="px-8 py-4" value={balance} />
               <HeaderBalance className="px-8 py-4" value={balance2} />

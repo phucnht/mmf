@@ -7,6 +7,7 @@ import modalConfirmationReducer from './modal-confirmation/modalConfirmation.sli
 import authReducer, { logout } from './account/auth/auth.slice';
 import profileReducer from './account/profile/profile.slice';
 import nftItemReducer from './market/nft-item/nftItem.slice';
+import nftItemHistoryReducer from './market/nft-item/nftItemHistory.slice';
 import inventoryReducer from './market/nft-item/inventory.slice';
 import systemConfigReducer from './market/system-config/systemConfig.slice';
 import paymentTokenReducer from './market/payment-token/paymentToken.slice';
@@ -18,6 +19,7 @@ const appReducer = combineReducers({
   auth: authReducer,
   profile: profileReducer,
   nftItem: nftItemReducer,
+  nftItemHistory: nftItemHistoryReducer,
   inventory: inventoryReducer,
   systemConfig: systemConfigReducer,
   paymentToken: paymentTokenReducer,
@@ -27,7 +29,10 @@ const appReducer = combineReducers({
 const rootReducer = (state: any, action: AnyAction) => {
   if (action.type === logout.type) {
     storage.removeItem('persist:root');
-    return appReducer({ ...state, auth: undefined, profile: undefined, inventory: undefined }, action);
+    return appReducer(
+      { ...state, systemConfig: undefined, auth: undefined, profile: undefined, inventory: undefined },
+      action
+    );
   }
   return appReducer(state, action);
 };

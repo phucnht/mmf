@@ -44,6 +44,9 @@ export const modalConfirmationSlice = createSlice({
     decline: state => {
       state.isDeclined = true;
       state.isOpened = false;
+    },
+    close: state => {
+      state.isOpened = false;
     }
   }
 });

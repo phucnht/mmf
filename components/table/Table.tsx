@@ -24,7 +24,7 @@ export interface TableProps extends DetailedHTMLProps<TableHTMLAttributes<HTMLTa
 }
 
 const Table: FC<TableProps> & TableCompoundProps = ({ className, children, ...props }) => {
-  const cxTable = classNames('border-collapse w-full text-content', className);
+  const cxTable = classNames('border-collapse w-full text-content table-fixed', className);
 
   return (
     <table className={cxTable} {...props}>

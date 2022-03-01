@@ -14,45 +14,16 @@ import CardItem from 'components/pages/inventory/airdrop/CardItem';
 import { getEllipsisTxt } from 'utils/format';
 import { GetServerSidePropsContext } from 'next';
 import { clientMarket } from 'utils/api';
+import DataTableHistory from 'components/table/DataTableHistory';
+import { useAppSelector } from 'store/store.hook';
+import { selectPaymentTokenData } from 'store/market/payment-token/paymentToken.slice';
 export interface InventoryMetaverseDetailProps {
   metaverseItem: any;
 }
 
 export default function InventoryMetaverseDetail({ metaverseItem }: InventoryMetaverseDetailProps) {
   useAuthGuard();
-  const data = useMemo(
-    () =>
-      _times(10, i => ({
-        id: i,
-        time: '25 Oct 2021 10:03',
-        amount: '0.12340000 BUSD',
-        from: '094373474873724890',
-        to: '094373474873724890'
-      })),
-    []
-  );
-
-  const columns = useMemo(
-    () => [
-      {
-        Header: 'Time',
-        accessor: 'time'
-      },
-      {
-        Header: 'Amount',
-        accessor: 'amount'
-      },
-      {
-        Header: 'From',
-        accessor: 'from'
-      },
-      {
-        Header: 'To',
-        accessor: 'to'
-      }
-    ],
-    []
-  );
+  const { BUSD } = useAppSelector(selectPaymentTokenData);
 
   return (
     <>
@@ -88,7 +59,7 @@ export default function InventoryMetaverseDetail({ metaverseItem }: InventoryMet
                 <Heading as="h6" className="font-bold text-2xl">
                   Price
                 </Heading>
-                <Text className="font-black text-xl">0.361 IGL</Text>
+                <Text className="font-black text-xl">0.361 {BUSD?.symbol}</Text>
               </Flex>
               {/* <Button
                 color="secondary"
@@ -98,7 +69,7 @@ export default function InventoryMetaverseDetail({ metaverseItem }: InventoryMet
             </Flex>
           </Flex>
         </Flex>
-        {/* <DataTable title="Sale History" sortable data={data} columns={columns} className="my-24" /> */}
+        <DataTableHistory nftItemId={metaverseItem.id} />
       </Container>
     </>
   );

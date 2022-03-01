@@ -1,3 +1,4 @@
+import { HistoryType } from './../../store.enum';
 import { PaymentTokenDto } from '../payment-token/paymentToken.i';
 import { BasicUserDto } from 'store/account/profile/profile.i';
 import { BaseResultPagination, GetState, PaginationRequest } from 'store/store.i';
@@ -102,6 +103,24 @@ export interface NftItemDto {
   evolveSaltNonce: number;
 }
 
+export interface NftItemHistoryDto {
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  version: number;
+  itemId: string;
+  fromAddress: string;
+  fromUser: BasicUserDto;
+  toAddress: string;
+  toUser: BasicUserDto;
+  tokenId: string;
+  nftContract: string;
+  amount: number;
+  paymentToken: PaymentTokenDto;
+  paymentTokenId: string;
+  type: HistoryType;
+}
+
 export type NftItemRequest = {
   status?: NftItemStatus;
   marketType?: NftItemMarketType;
@@ -122,6 +141,12 @@ export type NftItemRequest = {
 } & PaginationRequest;
 
 export type InventoryRequest = PaginationRequest;
+export type NftItemHistoryRequest = {
+  nftItemId: string;
+  userAddress?: string;
+  type?: HistoryType;
+} & PaginationRequest;
 
 export type NftItemsState = GetState<BaseResultPagination<NftItemDto>>;
 export type InventoryState = GetState<BaseResultPagination<NftItemDto>>;
+export type NftItemHistoryState = GetState<BaseResultPagination<NftItemHistoryDto>>;

@@ -1,3 +1,4 @@
+import _find from 'lodash/find';
 import { web3, erc20Contract, whitelistContract } from 'utils/contract';
 import { clientAccount } from 'utils/api';
 import { NonceDto, NonceRequest, TokenDto, TokenRequest } from './auth.i';
@@ -17,6 +18,9 @@ export const checkIsInWhitelist = async (whitelistAddress: string, userAddress: 
 };
 
 export const getBalance = async (address: string | null, tokenAddress?: string) => {
+  if (!tokenAddress) {
+    return 0;
+  }
   const contract = erc20Contract(tokenAddress);
   const weiBalance = await contract.methods.balanceOf(address).call();
   const balance = +web3.utils.fromWei(weiBalance, 'ether');
@@ -51,8 +55,8 @@ export const connect = async (callback?: () => void) => {
         const signature = await web3.eth.personal.sign(message, address, '');
         const { accessToken } = await getToken({ address, signature });
 
-        const balance = await getBalance(address, MMF.contractAddress);
-        const balance2 = await getBalance(address, BUSD.contractAddress);
+        const balance = await getBalance(address, MMF?.contractAddress, MMF?.decimals);
+        const balance2 = await getBalance(address, BUSD?.contractAddress, BUSD?.decimals);
 
         store.dispatch(login({ accessToken, address, balance, balance2 }));
 
