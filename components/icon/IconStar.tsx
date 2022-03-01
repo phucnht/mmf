@@ -28,8 +28,8 @@ export function IconStarList({ count, withBg = false, className }: StarListProps
   );
   return (
     <Center className={cxIconStarList}>
-      {_times(count, () => (
-        <IconStar />
+      {_times(count, i => (
+        <IconStar key={i} />
       ))}
     </Center>
   );

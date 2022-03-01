@@ -49,6 +49,10 @@ export default function FormBuyBox({ amount }: FormBuyBoxProps) {
 
     const resultCheckout = await open({ type: 'checkout', size: 'fit' });
 
+    if (resultCheckout) {
+      await open({ type: 'completed', size: 'md' });
+    }
+
     // if (!(await notExceedMaxBox(address, data.amount))) {
     //   dispatch(
     //     showModal({

@@ -14,46 +14,54 @@ html {
 }
 
 @layer components {
+  // Linear gradient
   .main-bg {
     background: linear-gradient(180deg, #0b2f51 45.86%, rgba(11, 47, 81, 0) 100%);
   }
-
   .bgg-yellow {
     background: linear-gradient(180deg, #f5cb5d 0%, #f2a840 100%);
   }
-
   .bgg-green {
     background: linear-gradient(180deg, #65a037 0%, rgba(11, 47, 81, 0) 100%);
   }
-
   .bgg-teal {
     background: linear-gradient(90.21deg, #119699 0.18%, rgba(40, 224, 167, 0) 99.81%);
   }
-
   .bgg-black {
     background: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
   }
-
   .bgg-pink {
     background: linear-gradient(180deg, #f5799e 0%, #de6585 100%);
   }
 
+  // Clip frame
   .character-frame-clip {
     clip-path: url(#characterFrameClip);
     -webkit-clip-path: url(#characterFrameClip);
   }
 
+  // Scroll bar
   ::-webkit-scrollbar {
     @apply w-4;
   }
-
   ::-webkit-scrollbar-thumb {
     @apply bg-[#A8A8A8] bg-clip-padding rounded-full;
   }
-
   ::-webkit-scrollbar-track {
     @apply bg-[#eee] bg-clip-padding;
     border-left: 3px solid transparent;
     border-right: 3px solid transparent;
+  }
+}
+
+@layer utilities {
+  // Hide arrows of number input
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type='number'] {
+    -moz-appearance: textfield;
   }
 }

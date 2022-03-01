@@ -29,7 +29,7 @@ export const connect = async (callback?: () => void) => {
 
   const { ethereum } = window;
   const { chainId: systemConfigChainId, chainName } = store.getState().systemConfig.data;
-  const paymentTokens = store.getState().paymentToken.data;
+  const { MMF, BUSD } = store.getState().paymentToken.data;
 
   try {
     // First request user to login to their wallet
@@ -51,8 +51,8 @@ export const connect = async (callback?: () => void) => {
         const signature = await web3.eth.personal.sign(message, address, '');
         const { accessToken } = await getToken({ address, signature });
 
-        const balance = await getBalance(address, paymentTokens['MMF'].contractAddress);
-        const balance2 = await getBalance(address, paymentTokens['BUSD'].contractAddress);
+        const balance = await getBalance(address, MMF.contractAddress);
+        const balance2 = await getBalance(address, BUSD.contractAddress);
 
         store.dispatch(login({ accessToken, address, balance, balance2 }));
 
