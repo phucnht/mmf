@@ -103,6 +103,34 @@ export interface NftItemDto {
   evolveSaltNonce: number;
 }
 
+export interface NftSaleItemDto {
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  version: number;
+  marketType: NftItemMarketType;
+  listedOnMarket: boolean;
+  nativeNftToken: boolean;
+  attributes: AttributeDto[];
+  media: MediaDto[];
+  image: string;
+  collectionId: string;
+  status: number;
+  creator: BasicUserDto;
+  creatorAddress: string;
+  creatorUsername: string;
+  owner: BasicUserDto;
+  ownerAddress: string;
+  nftContract: string;
+  tokenId: string;
+  externalUrl: string;
+  description: string;
+  name: string;
+  sale: SaleDto;
+  saltNonce: number;
+  evolveSaltNonce: number;
+}
+
 export interface NftItemHistoryDto {
   id: string;
   createdAt: Date;
@@ -147,6 +175,7 @@ export type NftItemHistoryRequest = {
   type?: HistoryType;
 } & PaginationRequest;
 
-export type NftItemsState = GetState<BaseResultPagination<NftItemDto>>;
+export type NftItemState = GetState<BaseResultPagination<NftItemDto>>;
+export type NftSaleItemState = GetState<BaseResultPagination<NftSaleItemDto>>;
 export type InventoryState = GetState<BaseResultPagination<NftItemDto>>;
 export type NftItemHistoryState = GetState<BaseResultPagination<NftItemHistoryDto>>;

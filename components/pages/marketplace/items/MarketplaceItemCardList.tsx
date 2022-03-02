@@ -32,8 +32,6 @@ export const MOCK_ITEM = {
 };
 
 const MarketplaceItemCardList: FC = () => {
-  const { address } = useAppSelector(selectAuthData);
-
   const router = useRouter();
   const goTo = (itemId: string) => {
     router.push(`/marketplace/items/${itemId}`);
@@ -43,10 +41,8 @@ const MarketplaceItemCardList: FC = () => {
   const nftItems = useAppSelector(selectNftItemData);
 
   useEffect(() => {
-    if (address) {
-      dispatch(getNftItems({}));
-    }
-  }, [dispatch, address]);
+    dispatch(getNftItems({}));
+  }, [dispatch]);
 
   if (_isEmpty(nftItems)) {
     return (

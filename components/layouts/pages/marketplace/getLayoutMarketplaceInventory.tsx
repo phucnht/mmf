@@ -10,12 +10,14 @@ const routes = [
   {
     icon: imgIconCharacters,
     label: 'Characters',
-    slug: 'characters'
+    slug: 'characters',
+    disabled: true
   },
   {
     icon: imgIconLands,
     label: 'Lands',
-    slug: 'lands'
+    slug: 'lands',
+    disabled: true
   },
   {
     icon: imgIconItems,

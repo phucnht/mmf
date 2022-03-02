@@ -28,7 +28,7 @@ const InventoryAirdropCardList: FC = () => {
 
   if (_isEmpty(inventory)) {
     return (
-      <Box className="h-[48rem]">
+      <Box className="h-[48rem] text-white">
         <EmptyBanner title="No items found" />
       </Box>
     );
