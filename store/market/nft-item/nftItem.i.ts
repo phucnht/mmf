@@ -13,9 +13,9 @@ export enum NftItemStatus {
 }
 
 export enum NftItemMarketType {
-  NotForSale,
-  Sale,
-  Auction
+  NotForSale = 0,
+  Sale = 10,
+  Auction = 20
 }
 
 export enum NftItemMarketStatus {

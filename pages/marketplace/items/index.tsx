@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
 import { getLayoutMarketplaceInventory } from 'components/layouts/pages/marketplace/getLayoutMarketplaceInventory';
-import MarketplaceItemCardList from '../../../components/pages/marketplace/items/MarketplaceItemCardList';
+import MarketplaceItemCardList from 'components/pages/marketplace/items/MarketplaceItemCardList';
 
 const MarketplaceItems: NextPageWithLayout = () => {
   return (

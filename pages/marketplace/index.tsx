@@ -17,7 +17,7 @@ const Marketplace: NextPage = () => {
 export const getServerSideProps = () => {
   return {
     redirect: {
-      destination: '/',
+      destination: '/marketplace/items',
       permanent: true
     }
   };

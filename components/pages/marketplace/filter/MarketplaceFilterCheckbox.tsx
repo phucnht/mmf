@@ -4,6 +4,7 @@ import { Disclosure, Transition } from '@headlessui/react';
 import { PlusIcon, MinusIcon } from '@heroicons/react/outline';
 import Divider from 'components/display/divider/Divider';
 import { Option } from 'utils/types';
+import { Fragment } from 'react';
 
 interface MarketplaceFilterCheckboxProps {
   className?: string;
@@ -49,8 +50,8 @@ export default function MarketplaceFilterCheckbox({ name, options, callback }: M
               <Disclosure.Panel className="flex flex-col m-8 gap-4">
                 {options.map(option => {
                   return (
-                    <>
-                      <label key={option.key} className="flex items-center gap-6">
+                    <Fragment key={option.key}>
+                      <label className="flex items-center gap-6">
                         <input
                           {...rest}
                           className="outline-none border-none w-[2.8rem] h-[2.8rem] !bg-brown-100 rounded-lg text-lg text-white font-bold placeholder:text-gray-200"
@@ -61,7 +62,7 @@ export default function MarketplaceFilterCheckbox({ name, options, callback }: M
                         <Text className="text-lg font-bold text-white">{option.text}</Text>
                       </label>
                       <Divider />
-                    </>
+                    </Fragment>
                   );
                 })}
               </Disclosure.Panel>

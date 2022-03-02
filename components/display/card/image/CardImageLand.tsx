@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import Image from 'components/display/image/Image';
 import { ReactNode } from 'react';
 
-export interface CardItemProps {
+export interface CardImageLandProps {
   id?: string;
   name?: string;
   imgSrc?: StaticImageData | undefined;
@@ -11,7 +11,7 @@ export interface CardItemProps {
   children?: ReactNode;
 }
 
-export default function CardItem({ imgSrc, className, id, name, children }: CardItemProps) {
+export default function CardImageLand({ imgSrc, className, id, name, children }: CardImageLandProps) {
   const cxCardWrapper = classNames('w-full flex-col h-[42rem] max-w-[48rem] items-center justify-center', className);
   const renderContent = children || <Text>{name}</Text>;
 

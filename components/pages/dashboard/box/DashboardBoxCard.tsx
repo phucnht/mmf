@@ -1,6 +1,6 @@
 import { Stack, Flex, Box, Button, Text } from '@whammytechvn/wt-components';
 import classNames from 'classnames';
-import CardTitleBanner from 'components/display/card/CardTitleBanner';
+import CardTitleBanner from 'components/display/card/title/CardTitleBanner';
 import Image from 'components/display/image/Image';
 import { MouseEventHandler } from 'react';
 import { BoxDto } from 'store/box/box.i';
