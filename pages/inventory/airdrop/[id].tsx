@@ -3,17 +3,14 @@ import { Box, Container, Flex, Heading, Text } from '@whammytechvn/wt-components
 import ButtonBack from 'components/buttons/ButtonBack';
 import { getLayoutDefault } from 'components/layouts/pages/default/getLayoutDefault';
 
-import _times from 'lodash/times';
 import { MOCK_CONTENT } from 'utils/mock';
 import ProgressBar from 'components/display/progress-bar/ProgressBar';
-import { useMemo } from 'react';
 import useAuthGuard from 'hooks/useAuthGuard';
 
 import imgItem from '/public/assets/inventory/airdrop/t-shirt.png';
 import CardItem from 'components/pages/inventory/airdrop/CardItem';
 import { getEllipsisTxt } from 'utils/format';
 import { GetServerSidePropsContext } from 'next';
-import { clientMarket } from 'utils/api';
 import DataTableHistory from 'components/table/DataTableHistory';
 import { useAppSelector } from 'store/store.hook';
 import { selectPaymentTokenData } from 'store/market/payment-token/paymentToken.slice';

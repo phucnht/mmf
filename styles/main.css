@@ -14,7 +14,6 @@ html {
 }
 
 @layer components {
-  // Linear gradient
   .main-bg {
     background: linear-gradient(180deg, #0b2f51 45.86%, rgba(11, 47, 81, 0) 100%);
   }
@@ -34,13 +33,11 @@ html {
     background: linear-gradient(180deg, #f5799e 0%, #de6585 100%);
   }
 
-  // Clip frame
   .character-frame-clip {
     clip-path: url(#characterFrameClip);
     -webkit-clip-path: url(#characterFrameClip);
   }
 
-  // Scroll bar
   ::-webkit-scrollbar {
     @apply w-4;
   }
@@ -55,7 +52,6 @@ html {
 }
 
 @layer utilities {
-  // Hide arrows of number input
   input[type='number']::-webkit-inner-spin-button,
   input[type='number']::-webkit-outer-spin-button {
     -webkit-appearance: none;

@@ -7,29 +7,8 @@ import _isEmpty from 'lodash/isEmpty';
 import { Box, GridBox } from '@whammytechvn/wt-components';
 import { useRouter } from 'next/router';
 import MarketplaceItemCard from './MarketplaceItemCard';
-import { getNftItems } from 'store/market/nft-item/nftItem.api';
-import { selectAuthData } from 'store/account/auth/auth.slice';
-
-import _random from 'lodash/random';
-import _sample from 'lodash/sample';
-
-import imgPants from '/public/assets/inventory/items/pants.png';
-import imgHair from '/public/assets/inventory/items/hair.png';
-import imgClothes from '/public/assets/inventory/items/clothes.png';
-import imgBoots from '/public/assets/inventory/items/boots.png';
-import { selectNftItemData } from 'store/market/nft-item/nftItem.slice';
-
-export const MOCK_ITEM = {
-  id: '#257578245',
-  stars: _random(1, 3),
-  element: 'Thunder',
-  name: 'Item',
-  rarity: _sample(['blue', 'green', 'pink', 'yellow']),
-  breedCount: 3,
-  imgSrc: _sample([imgPants, imgHair, imgClothes, imgBoots]),
-  priceBNB: 11356,
-  priceUSD: 1127
-};
+import { getNftSaleItems } from 'store/market/nft-item/nftItem.api';
+import { selectNftSaleItemData } from 'store/market/nft-item/nftSaleItem.slice';
 
 const MarketplaceItemCardList: FC = () => {
   const router = useRouter();
@@ -38,13 +17,13 @@ const MarketplaceItemCardList: FC = () => {
   };
 
   const dispatch = useAppDispatch();
-  const nftItems = useAppSelector(selectNftItemData);
+  const nftSaleItems = useAppSelector(selectNftSaleItemData);
 
   useEffect(() => {
-    dispatch(getNftItems({}));
+    dispatch(getNftSaleItems());
   }, [dispatch]);
 
-  if (_isEmpty(nftItems)) {
+  if (_isEmpty(nftSaleItems)) {
     return (
       <Box className="h-[48rem]">
         <EmptyBanner title="No items found" />
@@ -54,13 +33,8 @@ const MarketplaceItemCardList: FC = () => {
 
   return (
     <GridBox className="grid-cols-fluid-31 gap-4">
-      {_map(nftItems, _item => {
-        const item = { ...MOCK_ITEM, id: _item.id, name: _item.name };
-        return (
-          <>
-            <MarketplaceItemCard key={item.id} item={item} onClick={() => goTo(item.id)} />
-          </>
-        );
+      {_map(nftSaleItems, item => {
+        return <MarketplaceItemCard key={item.id} item={item} onClick={() => goTo(item.id)} />;
       })}
     </GridBox>
   );

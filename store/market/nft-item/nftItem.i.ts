@@ -104,31 +104,19 @@ export interface NftItemDto {
 }
 
 export interface NftSaleItemDto {
-  id: string;
-  createdAt: Date;
-  updatedAt: Date;
-  version: number;
-  marketType: NftItemMarketType;
-  listedOnMarket: boolean;
-  nativeNftToken: boolean;
-  attributes: AttributeDto[];
-  media: MediaDto[];
-  image: string;
-  collectionId: string;
-  status: number;
-  creator: BasicUserDto;
-  creatorAddress: string;
-  creatorUsername: string;
-  owner: BasicUserDto;
+  signedSignature: string;
+  paymentTokenId: string;
+  name: string;
+  nftItem: string;
   ownerAddress: string;
   nftContract: string;
   tokenId: string;
-  externalUrl: string;
-  description: string;
-  name: string;
-  sale: SaleDto;
-  saltNonce: number;
-  evolveSaltNonce: number;
+  type: number;
+  amount: number;
+  price: number;
+  createdAt: Date;
+  updatedAt: Date;
+  id: string;
 }
 
 export interface NftItemHistoryDto {
@@ -160,21 +148,32 @@ export type NftItemRequest = {
   elements?: string[];
   classes?: string[];
   qualitys?: string[];
-  minPrice?: string;
-  maxPrice?: string;
-  minTier?: string;
-  maxTier?: string;
-  minLevel?: string;
-  maxLevel?: string;
+  minPrice?: number;
+  maxPrice?: number;
+  minTier?: number;
+  maxTier?: number;
+  minLevel?: number;
+  maxLevel?: number;
 } & PaginationRequest;
 
+// Requests
 export type InventoryRequest = PaginationRequest;
+
 export type NftItemHistoryRequest = {
+  minPrice?: number;
+  maxPrice?: number;
+  categoryId?: string;
+  owner?: string;
+  elements?: string[];
+} & PaginationRequest;
+
+export type NftSaleItemRequest = {
   nftItemId: string;
   userAddress?: string;
   type?: HistoryType;
 } & PaginationRequest;
 
+// States
 export type NftItemState = GetState<BaseResultPagination<NftItemDto>>;
 export type NftSaleItemState = GetState<BaseResultPagination<NftSaleItemDto>>;
 export type InventoryState = GetState<BaseResultPagination<NftItemDto>>;

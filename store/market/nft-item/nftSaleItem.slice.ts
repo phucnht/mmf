@@ -2,10 +2,10 @@ import { handlePending, handleReject, handleFulfilledPagination } from 'store/st
 import { createSlice } from '@reduxjs/toolkit';
 import { AppState } from 'store/store';
 import { DEFAULT_BASE_STATE_PAGINATION } from 'store/store.utils';
-import { getNftItems } from './nftItem.api';
-import { NftItemsState } from './nftItem.i';
+import { getNftSaleItems } from './nftItem.api';
+import { NftSaleItemState } from './nftItem.i';
 
-export const initialState: NftSaleItemsState = DEFAULT_BASE_STATE_PAGINATION;
+export const initialState: NftSaleItemState = DEFAULT_BASE_STATE_PAGINATION;
 
 const nftSaleItemSlice = createSlice({
   name: 'nftSaleItem',

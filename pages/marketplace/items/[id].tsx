@@ -1,66 +1,25 @@
 import Head from 'next/head';
-// import DataTable from 'components/table/DataTable';
-import {
-  Box,
-  Container,
-  Heading
-  // Button, Flex, Text
-} from '@whammytechvn/wt-components';
+import { Box, Container, Flex, Heading, Text } from '@whammytechvn/wt-components';
 import ButtonBack from 'components/buttons/ButtonBack';
 import { getLayoutDefault } from 'components/layouts/pages/default/getLayoutDefault';
 
-// import _times from 'lodash/times';
-import _find from 'lodash/find';
-// import { MOCK_CONTENT } from 'utils/mock';
-// import ProgressBar from 'components/display/progress-bar/ProgressBar';
-// import { useMemo } from 'react';
 import { useAppSelector } from 'store/store.hook';
-import { selectNftItemState } from 'store/market/nft-item/nftItem.slice';
-import { useRouter } from 'next/router';
-// import { getEllipsisTxt } from 'utils/format';
-// import CardItem from './components/CardItem';
+import { GetServerSidePropsContext } from 'next';
+import DataTableHistory from 'components/table/DataTableHistory';
+import ProgressBar from 'components/display/progress-bar/ProgressBar';
+import { getEllipsisTxt } from 'utils/format';
+import CardItem from 'components/pages/marketplace/items/CardItem';
+import { selectPaymentTokenData } from 'store/market/payment-token/paymentToken.slice';
+import { ObjectProps } from 'utils/types';
+import { MOCK_CONTENT } from 'utils/mock';
+import imgClothes from '/public/assets/inventory/items/clothes.png';
 
-export default function InvnetoryItemDetail() {
-  const { query } = useRouter();
-  const { loading, data: nftItems } = useAppSelector(selectNftItemState);
-  const item = _find(nftItems, ['id', query.id]);
+export interface MarketplaceDetailDetailProps {
+  item: ObjectProps;
+}
 
-  // const data = useMemo(
-  //   () =>
-  //     _times(10, i => ({
-  //       id: i,
-  //       time: '25 Oct 2021 10:03',
-  //       amount: '0.12340000 BUSD',
-  //       from: '094373474873724890',
-  //       to: '094373474873724890'
-  //     })),
-  //   []
-  // );
-
-  // const columns = useMemo(
-  //   () => [
-  //     {
-  //       Header: 'Time',
-  //       accessor: 'time'
-  //     },
-  //     {
-  //       Header: 'Amount',
-  //       accessor: 'amount'
-  //     },
-  //     {
-  //       Header: 'From',
-  //       accessor: 'from'
-  //     },
-  //     {
-  //       Header: 'To',
-  //       accessor: 'to'
-  //     }
-  //   ],
-  //   []
-  // );
-
-  if (loading) return <Box>Loading...</Box>;
-  if (!item) return <Box>Error</Box>;
+export default function MarketplaceItemDetail({ item }: MarketplaceDetailDetailProps) {
+  const { BUSD } = useAppSelector(selectPaymentTokenData);
 
   return (
     <>
@@ -70,10 +29,9 @@ export default function InvnetoryItemDetail() {
       </Head>
       <Container className="max-w-screen-lg min-h-fit">
         <ButtonBack className="mb-8" />
-        <Heading className="text-white font-black text-lg items-baseline text-center">In development...</Heading>
-        {/* <Flex className="justify-between gap-20 p-28 rounded-[2rem] border-[3px] border-green-200 text-white">
-          <Flex className="col-span-3 flex-col items-center justify-between min-h-[48rem] w-full">
-            <CardItem content={item.name} />
+        <Flex className="justify-between gap-20 p-28 rounded-[2rem] border-[3px] border-green-200 text-white">
+          <Flex className="col-span-3 flex-col items-center justify-center min-h-[48rem] w-full">
+            <CardItem id={item.id} name={item.name} imgSrc={imgClothes} />
           </Flex>
           <Flex className="col-span-2 flex-col justify-between w-[34rem] min-w-[34rem]">
             <Box className="overflow-y-auto overflow-x-hidden max-h-[40rem] pr-12">
@@ -97,20 +55,26 @@ export default function InvnetoryItemDetail() {
                 <Heading as="h6" className="font-bold text-2xl">
                   Price
                 </Heading>
-                <Text className="font-black text-xl">0.361 IGL</Text>
+                <Text className="font-black text-xl">0.361 {BUSD?.symbol}</Text>
               </Flex>
-              <Button
+              {/* <Button
                 color="secondary"
                 className="text-red-100 py-3 px-4 min-w-fit xl:min-w-[20rem] text-xl"
                 content="Buy Now"
-              />
+              /> */}
             </Flex>
           </Flex>
         </Flex>
-        <DataTable title="Sale History" sortable data={data} columns={columns} className="my-24" /> */}
+        <DataTableHistory nftItemId={item.id} />
       </Container>
     </>
   );
 }
 
-InvnetoryItemDetail.getLayout = getLayoutDefault;
+export const getServerSideProps = async ({ query }: GetServerSidePropsContext) => {
+  const res = await fetch(`https://metafarm-api.onsky.services/market-apis/api/sale-items/${query.id}`);
+  const { data } = await res.json();
+  return { props: { item: data } };
+};
+
+MarketplaceItemDetail.getLayout = getLayoutDefault;
