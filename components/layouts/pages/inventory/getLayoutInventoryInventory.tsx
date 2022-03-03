@@ -13,22 +13,26 @@ const routes = [
   {
     icon: imgIconCharacters,
     label: 'Characters',
-    slug: 'characters'
+    slug: 'characters',
+    disabled: true
   },
   {
     icon: imgIconLands,
     label: 'Lands',
-    slug: 'lands'
+    slug: 'lands',
+    disabled: true
   },
   {
     icon: imgIconItems,
     label: 'Items',
-    slug: 'items'
+    slug: 'items',
+    disabled: true
   },
   {
     icon: imgIconEvents,
     label: 'Events',
-    slug: 'events'
+    slug: 'events',
+    disabled: true
   },
   {
     icon: imgIconAirdrop,
@@ -38,7 +42,8 @@ const routes = [
   {
     icon: imgIconBox,
     label: 'Box',
-    slug: 'box'
+    slug: 'box',
+    disabled: true
   }
 ];
 

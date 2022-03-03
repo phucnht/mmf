@@ -28,11 +28,12 @@ const items = _times(10, i => ({
 }));
 
 const InventoryItems: NextPageWithLayout = () => {
+  useAuthGuard();
+
   const router = useRouter();
   const goTo = (itemId: string) => {
     router.push(`/inventory/items/${itemId}`);
   };
-  useAuthGuard();
 
   return (
     <>

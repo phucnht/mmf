@@ -2,7 +2,16 @@ import { ObjectProps } from 'utils/types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export type ModalSize = 'md' | 'sm' | 'max' | 'min' | 'fit';
-export type ModalType = 'createGameProfile' | 'account' | 'confirm' | 'login' | 'checkout' | 'completed';
+export type ModalType =
+  | 'createGameProfile'
+  | 'account'
+  | 'confirm'
+  | 'login'
+  | 'checkout'
+  | 'listing'
+  | 'completed'
+  | 'failed'
+  | 'processing';
 
 export interface ModalConfirmationPayload {
   data?: ObjectProps;

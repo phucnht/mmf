@@ -18,7 +18,7 @@ export default function Image({ isExternal, src: _src, ...props }: any) {
     ...props,
     src,
     onError: () => {
-      setSrc('/assets/default/img_blank.svg');
+      setSrc('/assets/default/img-blank.svg');
     }
   };
 

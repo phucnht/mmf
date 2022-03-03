@@ -14,6 +14,7 @@ import MarketplaceFilterCheckbox from './MarketplaceFilterCheckbox';
 import { convertEnumToSelectOptions } from 'utils/convert';
 import { ObjectProps, Option } from 'utils/types';
 import { useRouter } from 'next/router';
+import { stringify } from 'querystring';
 
 export type FilterProps = {
   searchParams: ObjectProps;
@@ -31,12 +32,12 @@ export const SORT_BY = {
 export const SORT_BY_OPTIONS = convertEnumToSelectOptions(SORT_BY);
 
 const DEFAULT_SEARCH_PARAMS = {
-  searchTerms: '',
-  sortBy: undefined,
+  search: '',
+  orderBy: undefined,
   listedByMe: undefined,
   elements: [],
-  priceMin: '',
-  priceMax: ''
+  minPrice: '',
+  maxPrice: ''
 };
 
 export interface MarketplaceFilterProps {
@@ -63,6 +64,7 @@ export default function MarketplaceFilter({ elementOptions }: MarketplaceFilterP
 
   const handleSearchParams = () => {
     const values = method.getValues();
+
     const params = _keys(values).reduce((result: ObjectProps, key: string) => {
       const value = values[key];
       if (!_isEmpty(value) || _isBoolean(value) || (_isNumber(value) && value > 0)) {
@@ -70,18 +72,19 @@ export default function MarketplaceFilter({ elementOptions }: MarketplaceFilterP
       }
       return result;
     }, {});
+
     setSearchParams(params);
-    router.push(router.pathname, { query: params }, { shallow: true });
+    router.push(`${router.pathname}?${stringify(params)}`, undefined, { shallow: true });
   };
 
   return (
     <FormProvider {...method}>
-      <MarketplaceFilterSearch name="searchTerms" callback={handleSearchParams} />
+      <MarketplaceFilterSearch name="search" callback={handleSearchParams} />
       <MarketplaceFilterHeader onResetFilter={handleResetFilter} />
-      <MarketplaceFilterSelect name="sortBy" options={SORT_BY_OPTIONS} callback={handleSearchParams} />
+      <MarketplaceFilterSelect name="orderBy" options={SORT_BY_OPTIONS} callback={handleSearchParams} />
       <MarketplaceFilterSwitch name="listedByMe" callback={handleSearchParams} />
       <MarketplaceFilterCheckbox name="elements" options={elementOptions} callback={handleSearchParams} />
-      <MarketplaceFilterMinMax nameMin="priceMin" nameMax="priceMax" callback={handleSearchParams} />
+      <MarketplaceFilterMinMax nameMin="minPrice" nameMax="maxPrice" callback={handleSearchParams} />
     </FormProvider>
   );
 }

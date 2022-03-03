@@ -29,8 +29,6 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     return { notFound: true };
   }
 
-  console.log(data);
-
   return { props: { item: data } };
 };
 

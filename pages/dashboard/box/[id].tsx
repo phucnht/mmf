@@ -11,11 +11,10 @@ import { GetServerSidePropsContext } from 'next';
 import { BoxDto } from 'store/box/box.i';
 
 export interface DashboardBoxDetailProps {
-  box: BoxDto;
+  box?: BoxDto;
 }
 
-export default function DashboardBoxDetail({ box }: DashboardBoxDetailProps) {
-  console.log(box);
+export default function DashboardBoxDetail() {
   return (
     <>
       <Head>

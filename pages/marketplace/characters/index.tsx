@@ -23,16 +23,8 @@ const MarketplaceCharacters: NextPageWithLayout = () => {
   const nftSaleItems = useAppSelector(selectNftSaleItemData);
 
   useEffect(() => {
-    dispatch(getNftSaleItems());
-  }, [dispatch]);
-
-  if (_isEmpty(nftSaleItems)) {
-    return (
-      <Box className="h-[48rem]">
-        <EmptyBanner title="No items found" />
-      </Box>
-    );
-  }
+    dispatch(getNftSaleItems(router.query));
+  }, [dispatch, router.query]);
 
   return (
     <>
@@ -40,11 +32,17 @@ const MarketplaceCharacters: NextPageWithLayout = () => {
         <title>Marketplace - Characters | My Metafarm</title>
         <meta name="description" content="Marketplace - Characters | My Metafarm" />
       </Head>
-      <GridBox className="grid-cols-fluid-48 gap-8 -mt-8">
-        {_map(nftSaleItems, item => {
-          return <CardPanelCharacter key={item.id} item={item} onClick={() => goTo(item.id)} />;
-        })}
-      </GridBox>
+      {_isEmpty(nftSaleItems) ? (
+        <Box className="h-[48rem]">
+          <EmptyBanner title="No items found" />
+        </Box>
+      ) : (
+        <GridBox className="grid-cols-fluid-48 gap-8 -mt-8">
+          {_map(nftSaleItems, item => {
+            return <CardPanelCharacter key={item.id} item={item} onClick={() => goTo(item.id)} />;
+          })}
+        </GridBox>
+      )}
     </>
   );
 };

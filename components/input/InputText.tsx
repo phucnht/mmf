@@ -4,19 +4,27 @@ import { useFormContext } from 'react-hook-form';
 import classNames from 'classnames';
 
 interface InputTextProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
-  errors: any;
+  errors?: any;
   innerRef?: any;
   fullWidth?: boolean;
   className?: string;
+  prefix?: string;
+  suffix?: string;
 }
 
-export const InputText = ({ innerRef, fullWidth = false, className, ...props }: InputTextProps) => {
+export const InputText = ({ prefix, suffix, innerRef, fullWidth = false, className, ...props }: InputTextProps) => {
   const cxInputText = classNames(
-    'min-w-[27rem] w-[27rem] py-6 px-10 bg-blue-400 rounded-[2rem] text-lg focus:outline-blue-400',
+    'flex min-w-[27rem] w-[27rem] py-6 px-10 bg-blue-400 rounded-[2rem] text-lg',
     { 'w-full': fullWidth },
     className
   );
-  return <input ref={innerRef} className={cxInputText} {...props} />;
+  return (
+    <div className={cxInputText}>
+      {prefix && <span className="-ml-4 mr-6">{prefix}</span>}
+      <input ref={innerRef} className="bg-transparent text-lg outline-none focus:outline-blue-400" {...props} />
+      {suffix && <span className="-ml-4 mr-6">{suffix}</span>}
+    </div>
+  );
 };
 
 const InputTextWithRef = forwardRef<HTMLInputElement, InputTextProps>((props: InputTextProps, ref) => {
