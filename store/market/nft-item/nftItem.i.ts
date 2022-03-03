@@ -160,17 +160,17 @@ export type NftItemRequest = {
 export type InventoryRequest = PaginationRequest;
 
 export type NftItemHistoryRequest = {
+  nftItemId: string;
+  userAddress?: string;
+  type?: HistoryType;
+} & PaginationRequest;
+
+export type NftSaleItemRequest = {
   minPrice?: number;
   maxPrice?: number;
   categoryId?: string;
   owner?: string;
   elements?: string[];
-} & PaginationRequest;
-
-export type NftSaleItemRequest = {
-  nftItemId: string;
-  userAddress?: string;
-  type?: HistoryType;
 } & PaginationRequest;
 
 // States

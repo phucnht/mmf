@@ -53,9 +53,7 @@ export default function MarketplaceFilter({ elementOptions }: MarketplaceFilterP
   const handleResetFilter = useCallback(() => {
     setSearchParams({});
     method.reset(DEFAULT_SEARCH_PARAMS);
-    router.push(router.pathname, undefined, { shallow: true });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [method]);
 
   useEffect(() => {
     if (router.pathname) {

@@ -28,12 +28,12 @@ export const MOCK_ITEM = {
   priceUSD: 1127
 };
 
-export interface MarketplaceItemCardProps {
+export interface CardPanelItemProps {
   item: NftSaleItemDto;
   onClick?: MouseEventHandler<HTMLDivElement> | undefined;
 }
 
-export default function MarketplaceItemCard({ item, onClick }: MarketplaceItemCardProps) {
+export default function CardPanelItem({ item, onClick }: CardPanelItemProps) {
   const { BUSD } = useAppSelector(selectPaymentTokenData);
 
   const cxCardWrapper = classNames('flex flex-col text-white hover:opacity-90 transition', {

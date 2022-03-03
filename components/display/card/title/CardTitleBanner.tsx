@@ -9,7 +9,7 @@ export interface CardTitleBannerProps {
 }
 
 export default function CardTitleBanner({ className, content, children }: CardTitleBannerProps) {
-  const renderContent = children || <Text>{content}</Text>;
+  const renderContent = children || <Text className="text-center">{content}</Text>;
   const cxCardTitleBanner = classNames('relative justify-center', className);
 
   return (

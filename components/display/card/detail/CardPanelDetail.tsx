@@ -15,12 +15,12 @@ import CardImageLand from '../image/CardImageLand';
 
 export type CardItemType = 'item' | 'land' | 'character';
 
-export interface CardLayoutItemProps {
+export interface CardLayoutDetailProps {
   type: CardItemType;
   item: ObjectProps;
 }
 
-export default function CardLayoutItem({ type, item }: CardLayoutItemProps) {
+export default function CardLayoutDetail({ type, item }: CardLayoutDetailProps) {
   const { BUSD } = useAppSelector(selectPaymentTokenData);
 
   return (

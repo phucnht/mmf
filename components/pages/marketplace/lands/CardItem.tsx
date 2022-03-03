@@ -15,7 +15,7 @@ export default function CardItem({ imgSrc, className, content, children }: CardI
     "mx-auto relative h-[42rem] max-w-[48rem] items-start justify-center bg-[url('/assets/bg/bg-character.svg')] bg-[length:46.3rem_100%] bg-no-repeat bg-center",
     className
   );
-  const renderContent = children || <Text>{content}</Text>;
+  const renderContent = children || <Text className="text-center">{content}</Text>;
 
   return (
     <Box className="w-full">
