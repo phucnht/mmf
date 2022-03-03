@@ -7,9 +7,9 @@ import { useRouter } from 'next/router';
 
 import useAuthGuard from 'hooks/useAuthGuard';
 
-import imgCharacter1 from '/public/assets/inventory/characters/character-1.png';
-import imgCharacter2 from '/public/assets/inventory/characters/character-2.png';
-import imgCharacter3 from '/public/assets/inventory/characters/character-3.png';
+import imgCharacter1 from '/public/assets/items/characters/character-1.png';
+import imgCharacter2 from '/public/assets/items/characters/character-2.png';
+import imgCharacter3 from '/public/assets/items/characters/character-3.png';
 
 export const mockCharacters = [
   {

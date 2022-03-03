@@ -7,10 +7,10 @@ import _times from 'lodash/times';
 import _random from 'lodash/random';
 import _sample from 'lodash/sample';
 
-import imgPants from '/public/assets/inventory/items/pants.png';
-import imgHair from '/public/assets/inventory/items/hair.png';
-import imgClothes from '/public/assets/inventory/items/clothes.png';
-import imgBoots from '/public/assets/inventory/items/boots.png';
+import imgPants from '/public/assets/items/items/pants.png';
+import imgHair from '/public/assets/items/items/hair.png';
+import imgClothes from '/public/assets/items/items/clothes.png';
+import imgBoots from '/public/assets/items/items/boots.png';
 import InventoryItemCard from '../../../components/pages/inventory/items/InventoryItemCard';
 import { useRouter } from 'next/router';
 import useAuthGuard from 'hooks/useAuthGuard';

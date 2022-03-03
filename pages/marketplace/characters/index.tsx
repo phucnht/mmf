@@ -1,48 +1,38 @@
-import { GridBox } from '@whammytechvn/wt-components';
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
-import InventoryCharacterCard from '../../../components/pages/marketplace/characters/MarketplaceCharacterCard';
-import { useRouter } from 'next/router';
 import { getLayoutMarketplaceInventory } from 'components/layouts/pages/marketplace/getLayoutMarketplaceInventory';
-import imgCharacter1 from '/public/assets/inventory/characters/character-1.png';
-import imgCharacter2 from '/public/assets/inventory/characters/character-2.png';
-import imgCharacter3 from '/public/assets/inventory/characters/character-3.png';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from 'store/store.hook';
+import EmptyBanner from 'components/display/empty/EmptyBanner';
 
-export const mockCharacters = [
-  {
-    id: '123456781',
-    ownerId: '0x4873982792s',
-    name: 'Myrtle Huff',
-    rarity: 'pink',
-    imgSrc: imgCharacter1,
-    priceBNB: 11356,
-    priceUSD: 1127
-  },
-  {
-    id: '123456782',
-    ownerId: '0x4873982792s',
-    name: 'Caroline Logan',
-    rarity: 'pink',
-    imgSrc: imgCharacter2,
-    priceBNB: 11356,
-    priceUSD: 1127
-  },
-  {
-    id: '123456783',
-    ownerId: '0x4873982792s',
-    name: 'Jana Warner',
-    rarity: 'pink',
-    imgSrc: imgCharacter3,
-    priceBNB: 11356,
-    priceUSD: 1127
-  }
-];
+import _map from 'lodash/map';
+import _isEmpty from 'lodash/isEmpty';
+import { Box, GridBox } from '@whammytechvn/wt-components';
+import { useRouter } from 'next/router';
+import { getNftSaleItems } from 'store/market/nft-item/nftItem.api';
+import { selectNftSaleItemData } from 'store/market/nft-item/nftSaleItem.slice';
+import CardPanelCharacter from 'components/display/card/panel/CardPanelCharacter';
 
 const MarketplaceCharacters: NextPageWithLayout = () => {
   const router = useRouter();
   const goTo = (characterId: string) => {
     router.push(`/marketplace/characters/${characterId}`);
   };
+
+  const dispatch = useAppDispatch();
+  const nftSaleItems = useAppSelector(selectNftSaleItemData);
+
+  useEffect(() => {
+    dispatch(getNftSaleItems());
+  }, [dispatch]);
+
+  if (_isEmpty(nftSaleItems)) {
+    return (
+      <Box className="h-[48rem]">
+        <EmptyBanner title="No items found" />
+      </Box>
+    );
+  }
 
   return (
     <>
@@ -51,9 +41,9 @@ const MarketplaceCharacters: NextPageWithLayout = () => {
         <meta name="description" content="Marketplace - Characters | My Metafarm" />
       </Head>
       <GridBox className="grid-cols-fluid-48 gap-8 -mt-8">
-        {mockCharacters.map((item, index) => (
-          <InventoryCharacterCard key={index} item={item} onClick={() => goTo(item.id)} />
-        ))}
+        {_map(nftSaleItems, item => {
+          return <CardPanelCharacter key={item.id} item={item} onClick={() => goTo(item.id)} />;
+        })}
       </GridBox>
     </>
   );

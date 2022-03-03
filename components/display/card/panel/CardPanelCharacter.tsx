@@ -1,43 +1,62 @@
-import { Box, Flex, Stack, Text } from '@whammytechvn/wt-components';
+import { Stack, Text, Flex, Box } from '@whammytechvn/wt-components';
 import classNames from 'classnames';
 import Image from 'components/display/image/Image';
-import { ReactNode } from 'react';
+import { MouseEventHandler } from 'react';
+import { NftSaleItemDto } from 'store/market/nft-item/nftItem.i';
+import { getCurrencyToken, getCurrencyUSD } from 'utils/format';
+import imgCharacter1 from '/public/assets/items/characters/character-1.png';
 
-export interface CardCharacterProps {
-  imgSrc: StaticImageData | undefined;
-  className?: string;
-  content?: string;
-  children?: ReactNode;
+export const MOCK_CHARACTER = {
+  id: '123456781',
+  ownerId: '0x4873982792s',
+  name: 'Myrtle Huff',
+  rarity: 'pink',
+  imgSrc: imgCharacter1,
+  priceBNB: 11356,
+  priceUSD: 1127
+};
+
+export interface CardPanelCharacterProps {
+  item: NftSaleItemDto;
+  onClick?: MouseEventHandler<HTMLDivElement> | undefined;
 }
 
-export default function CardCharacter({ imgSrc, className, content, children }: CardCharacterProps) {
-  const cxCardWrapper = classNames(
-    "mx-auto relative h-[42rem] max-w-[48rem] items-start justify-center bg-[url('/assets/bg/bg-character.svg')] bg-[length:46.3rem_100%] bg-no-repeat bg-center",
-    className
+export default function CardPanelCharacter({ item, onClick }: CardPanelCharacterProps) {
+  const cxCardWrapper = classNames('flex flex-col text-white hover:opacity-90 transition', {
+    'cursor-pointer': onClick
+  });
+  const cxImageWrapper = classNames(
+    "mx-auto relative h-[42rem] max-w-[48rem] items-start justify-center bg-[url('/assets/bg/bg-character.svg')] bg-[length:46.3rem_100%] bg-no-repeat bg-center"
   );
-  const renderContent = children || <Text>{content}</Text>;
 
   return (
-    <Box className="w-full">
-      <Flex className={cxCardWrapper}>
-        <Image
-          alt={content}
-          src={imgSrc}
-          layout="fill"
-          objectFit="cover"
-          className="character-frame-clip scale-95 translate-x-3 translate-y-4"
-        />
-        <SvgCharacterFrame />
-        <span className='absolute bottom-14 left-20 bg-[url("/assets/inventory/characters/cf-flower-left.png")] w-[5.4rem] h-[4.6rem] bg-auto bg-no-repeat bg-center' />
-        <span className='absolute bottom-14 right-24 bg-[url("/assets/inventory/characters/cf-flower-right.png")] w-[4.8rem] h-[4.1rem] bg-auto bg-no-repeat bg-center' />
-        <Stack className="absolute bottom-0">
-          <Stack className="justify-center w-full">
-            <Box className="absolute text-2xl font-bold">{renderContent}</Box>
-            <SvgCharacterTitle />
+    <div className={cxCardWrapper} onClick={onClick}>
+      <Box className="w-full">
+        <Flex className={cxImageWrapper}>
+          <Image
+            alt={item.name}
+            src={imgCharacter1}
+            layout="fill"
+            objectFit="cover"
+            className="character-frame-clip scale-95 translate-x-3 translate-y-4"
+          />
+          <SvgCharacterFrame />
+          <span className='absolute bottom-14 left-20 bg-[url("/assets/items/characters/cf-flower-left.png")] w-[5.4rem] h-[4.6rem] bg-auto bg-no-repeat bg-center' />
+          <span className='absolute bottom-14 right-24 bg-[url("/assets/items/characters/cf-flower-right.png")] w-[4.8rem] h-[4.1rem] bg-auto bg-no-repeat bg-center' />
+          <Stack className="absolute bottom-0">
+            <Stack className="justify-center w-full">
+              <Box className="absolute text-2xl font-bold">{item.name}</Box>
+              <SvgCharacterTitle />
+            </Stack>
           </Stack>
-        </Stack>
-      </Flex>
-    </Box>
+        </Flex>
+      </Box>
+
+      <Stack className="flex-col text-2xl font-black mt-3">
+        <Text>{getCurrencyToken(item.price)} BNB</Text>
+        <Text>{getCurrencyUSD(item.price)}</Text>
+      </Stack>
+    </div>
   );
 }
 

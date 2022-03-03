@@ -6,7 +6,7 @@ import { IconStarList } from 'components/icon/IconStar';
 import { MouseEventHandler } from 'react';
 import { NftSaleItemDto } from 'store/market/nft-item/nftItem.i';
 import { getCurrencyToken, getCurrencyUSD } from 'utils/format';
-import imgLand from '/public/assets/inventory/lands/land-1.png';
+import imgLand from '/public/assets/items/lands/land-1.png';
 
 import _random from 'lodash/random';
 import _sample from 'lodash/sample';

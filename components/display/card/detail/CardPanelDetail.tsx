@@ -8,7 +8,6 @@ import { getEllipsisTxt } from 'utils/format';
 import { selectPaymentTokenData } from 'store/market/payment-token/paymentToken.slice';
 import { ObjectProps } from 'utils/types';
 import { MOCK_CONTENT } from 'utils/mock';
-import imgClothes from '/public/assets/inventory/items/clothes.png';
 import CardImageItem from '../image/CardImageItem';
 import CardImageCharacter from '../image/CardImageCharacter';
 import CardImageLand from '../image/CardImageLand';
@@ -28,9 +27,9 @@ export default function CardLayoutDetail({ type, item }: CardLayoutDetailProps) 
       <ButtonBack className="mb-8" />
       <Flex className="justify-between gap-20 p-28 rounded-[2rem] border-[3px] border-green-200 text-white">
         <Flex className="flex-col items-center justify-center min-h-[48rem] w-full">
-          {type === 'item' && <CardImageItem id={item.id} name={item.name} imgSrc={imgClothes} />}
-          {type === 'character' && <CardImageCharacter id={item.id} name={item.name} imgSrc={imgClothes} />}
-          {type === 'land' && <CardImageLand id={item.id} name={item.name} imgSrc={imgClothes} />}
+          {type === 'item' && <CardImageItem id={item.id} name={item.name} />}
+          {type === 'character' && <CardImageCharacter id={item.id} name={item.name} />}
+          {type === 'land' && <CardImageLand id={item.id} name={item.name} />}
         </Flex>
         <Flex className="flex-col justify-start gap-12 w-[34rem] min-w-[34rem]">
           <Box className="overflow-y-auto overflow-x-hidden max-h-[40rem] pr-12">

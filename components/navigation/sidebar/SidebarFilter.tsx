@@ -1,10 +1,10 @@
 import { Box, Flex, Grid } from '@whammytechvn/wt-components';
 import classNames from 'classnames';
-import MarketplaceFilter from 'components/pages/marketplace/filter/MarketplaceFilter';
 import { ReactNode } from 'react';
 import { useRouter } from 'next/router';
 import { ObjectProps } from 'utils/types';
 import { convertEnumToSelectOptions } from 'utils/convert';
+import MarketplaceFilter from 'components/filter/MarketplaceFilter';
 
 export const MARKETPLACE_ITEMS = {
   SHIRT: 'Shirt',

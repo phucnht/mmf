@@ -7,7 +7,7 @@ import { MOCK_CONTENT } from 'utils/mock';
 import ProgressBar from 'components/display/progress-bar/ProgressBar';
 import useAuthGuard from 'hooks/useAuthGuard';
 
-import imgItem from '/public/assets/inventory/airdrop/t-shirt.png';
+import imgItem from '/public/assets/items/airdrop/t-shirt.png';
 import CardItem from 'components/pages/inventory/airdrop/CardItem';
 import { getEllipsisTxt } from 'utils/format';
 import { GetServerSidePropsContext } from 'next';

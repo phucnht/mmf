@@ -5,7 +5,7 @@ import Image from 'components/display/image/Image';
 import { MouseEventHandler } from 'react';
 import { BoxDto } from 'store/box/box.i';
 
-import imgBox1 from '/public/assets/inventory/box/box-1.png';
+import imgBox1 from '/public/assets/items/box/box-1.png';
 
 export interface DashboardBoxCardProps {
   item: BoxDto;

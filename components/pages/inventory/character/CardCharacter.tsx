@@ -28,8 +28,8 @@ export default function CardCharacter({ imgSrc, className, content, children }: 
           className="character-frame-clip scale-95 translate-x-3 translate-y-4"
         />
         <SvgCharacterFrame />
-        <span className='absolute bottom-14 left-20 bg-[url("/assets/inventory/characters/cf-flower-left.png")] w-[5.4rem] h-[4.6rem] bg-auto bg-no-repeat bg-center' />
-        <span className='absolute bottom-14 right-24 bg-[url("/assets/inventory/characters/cf-flower-right.png")] w-[4.8rem] h-[4.1rem] bg-auto bg-no-repeat bg-center' />
+        <span className='absolute bottom-14 left-20 bg-[url("/assets/items/characters/cf-flower-left.png")] w-[5.4rem] h-[4.6rem] bg-auto bg-no-repeat bg-center' />
+        <span className='absolute bottom-14 right-24 bg-[url("/assets/items/characters/cf-flower-right.png")] w-[4.8rem] h-[4.1rem] bg-auto bg-no-repeat bg-center' />
         <Stack className="absolute bottom-0">
           <Stack className="justify-center w-full">
             <Box className="absolute text-2xl font-bold">{renderContent}</Box>

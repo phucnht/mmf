@@ -5,7 +5,7 @@ import { NextPageWithLayout } from 'pages/_app';
 import InventoryBoxCard from '../../../components/pages/inventory/box/InventoryBoxCard';
 
 import _times from 'lodash/times';
-import imgBox1 from '/public/assets/inventory/box/box-1.png';
+import imgBox1 from '/public/assets/items/box/box-1.png';
 import { useRouter } from 'next/router';
 import useAuthGuard from 'hooks/useAuthGuard';
 

@@ -8,10 +8,10 @@ import { getCurrencyToken, getCurrencyUSD } from 'utils/format';
 import _random from 'lodash/random';
 import _sample from 'lodash/sample';
 
-import imgPants from '/public/assets/inventory/items/pants.png';
-import imgHair from '/public/assets/inventory/items/hair.png';
-import imgClothes from '/public/assets/inventory/items/clothes.png';
-import imgBoots from '/public/assets/inventory/items/boots.png';
+import imgPants from '/public/assets/items/items/pants.png';
+import imgHair from '/public/assets/items/items/hair.png';
+import imgClothes from '/public/assets/items/items/clothes.png';
+import imgBoots from '/public/assets/items/items/boots.png';
 import { NftSaleItemDto } from 'store/market/nft-item/nftItem.i';
 import { useAppSelector } from 'store/store.hook';
 import { selectPaymentTokenData } from 'store/market/payment-token/paymentToken.slice';
