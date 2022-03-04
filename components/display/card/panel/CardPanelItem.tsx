@@ -66,7 +66,7 @@ export default function CardPanelItem({ item, onClick }: CardPanelItemProps) {
           </Flex>
           <Text>Breed count: {3}</Text>
         </Flex>
-        <Box className="relative w-full h-full">
+        <Box className="relative w-full h-full mt-4">
           <Image alt={item.name} src="/assets/img-video/item.png" layout="fill" objectFit="contains" />
         </Box>
       </Flex>
