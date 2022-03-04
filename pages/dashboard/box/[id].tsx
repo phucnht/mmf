@@ -4,7 +4,7 @@ import ButtonBack from 'components/buttons/ButtonBack';
 import { getLayoutDefaultSmall } from 'components/layouts/pages/default/getLayoutDefault';
 import Countdown from 'components/countdown/Countdown';
 import Image from 'components/display/image/Image';
-import imgDashboardBox from '/public/assets/dashboard/box.png';
+import imgDashboardBox from 'public/assets/dashboard/box.png';
 import { MOCK_CONTENT } from 'utils/mock';
 import FormBuyBox from 'components/forms/buy-box/FormBuyBox';
 import { GetServerSidePropsContext } from 'next';

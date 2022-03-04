@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import Image from 'components/display/image/Image';
 import { MouseEventHandler } from 'react';
 import { MediaDto } from 'store/market/nft-item/nftItem.i';
-import imgItem from '/public/assets/items/airdrop/t-shirt.png';
+import imgItem from 'public/assets/items/airdrop/t-shirt.png';
 
 export interface InventoryAirdropDto {
   id: string;

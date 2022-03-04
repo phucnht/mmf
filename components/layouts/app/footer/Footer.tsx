@@ -5,8 +5,8 @@ import Link from 'components/navigation/link/Link';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 
-import imgLogoEastFog from '/public/assets/home/home-footer-eastfog.png';
-import imgLogoStarpunk from '/public/assets/home/home-footer-starpunk.png';
+import imgLogoEastFog from 'public/assets/home/home-footer-eastfog.png';
+import imgLogoStarpunk from 'public/assets/home/home-footer-starpunk.png';
 
 const Footer = () => {
   const { pathname } = useRouter();

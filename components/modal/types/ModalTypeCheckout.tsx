@@ -4,9 +4,9 @@ import { MouseEventHandler } from 'react';
 import { selectPaymentTokenData } from 'store/market/payment-token/paymentToken.slice';
 import { useAppSelector } from 'store/store.hook';
 import { ObjectProps } from 'utils/types';
-import imgLand from '/public/assets/items/lands/land-2.png';
-import imgCharacter1 from '/public/assets/items/characters/character-1.png';
-import imgClothes from '/public/assets/items/items/clothes.png';
+import imgLand from 'public/assets/items/lands/land-2.png';
+import imgCharacter1 from 'public/assets/items/characters/character-1.png';
+import imgClothes from 'public/assets/items/items/clothes.png';
 export interface ModalTypeCheckoutProps {
   data?: ObjectProps;
   decline: MouseEventHandler<HTMLButtonElement> | undefined;

@@ -1,4 +1,4 @@
-import logo from '/public/assets/logos/logo.png';
+import logo from 'public/assets/logos/logo.png';
 
 import { Box, Scaffold } from '@whammytechvn/wt-components';
 import NavLink from 'components/navigation/link/NavLink';

@@ -1,8 +1,8 @@
 import { ReactElement } from 'react';
 
-import imgIconCharacters from '/public/assets/navbar/characters.png';
-import imgIconItems from '/public/assets/navbar/items.png';
-import imgIconLands from '/public/assets/navbar/lands.png';
+import imgIconCharacters from 'public/assets/navbar/characters.png';
+import imgIconItems from 'public/assets/navbar/items.png';
+import imgIconLands from 'public/assets/navbar/lands.png';
 import SidebarHorizontal from 'components/navigation/sidebar/SidebarHorizontal';
 import { getLayoutMarketplace } from './getLayoutMarketplace';
 

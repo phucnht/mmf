@@ -9,9 +9,10 @@ import _map from 'lodash/map';
 import { Box, GridBox } from '@whammytechvn/wt-components';
 import { useRouter } from 'next/router';
 import { getNftSaleItems } from 'store/market/nft-item/nftItem.api';
-import { selectNftSaleItemData } from 'store/market/nft-item/nftSaleItem.slice';
+import { nftSaleItemActions, selectNftSaleItemState } from 'store/market/nft-item/nftSaleItem.slice';
 import CardPanelItem from 'components/display/card/panel/CardPanelItem';
 import EmptyBanner from 'components/display/empty/EmptyBanner';
+import Pagination from 'components/pagination/Pagination';
 
 const MarketplaceItems: NextPageWithLayout = () => {
   const router = useRouter();
@@ -20,11 +21,15 @@ const MarketplaceItems: NextPageWithLayout = () => {
   };
 
   const dispatch = useAppDispatch();
-  const nftSaleItems = useAppSelector(selectNftSaleItemData);
+  const { data, currentPage, pages } = useAppSelector(selectNftSaleItemState);
+
+  const cb = (page: number) => {
+    dispatch(nftSaleItemActions.updatePageSaleItems(page));
+  };
 
   useEffect(() => {
-    dispatch(getNftSaleItems(router.query));
-  }, [dispatch, router.query]);
+    dispatch(getNftSaleItems({ ...router.query, page: currentPage }));
+  }, [dispatch, router.query, currentPage]);
 
   return (
     <>
@@ -32,17 +37,18 @@ const MarketplaceItems: NextPageWithLayout = () => {
         <title>Marketplace - Items | My Metafarm</title>
         <meta name="description" content="Marketplace - Items | My Metafarm" />
       </Head>
-      {_isEmpty(nftSaleItems) ? (
+      {_isEmpty(data) ? (
         <Box className="h-[48rem]">
           <EmptyBanner title="No items found" />
         </Box>
       ) : (
         <GridBox className="grid-cols-fluid-31 gap-4">
-          {_map(nftSaleItems, item => {
+          {_map(data, item => {
             return <CardPanelItem key={item.id} item={item} onClick={() => goTo(item.id)} />;
           })}
         </GridBox>
       )}
+      <Pagination index={currentPage} size={pages} cb={cb} className="mt-12" />
     </>
   );
 };

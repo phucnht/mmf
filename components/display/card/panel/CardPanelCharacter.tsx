@@ -4,7 +4,7 @@ import Image from 'components/display/image/Image';
 import { MouseEventHandler } from 'react';
 import { NftSaleItemDto } from 'store/market/nft-item/nftItem.i';
 import { getCurrencyToken, getCurrencyUSD } from 'utils/format';
-import imgCharacter1 from '/public/assets/items/characters/character-1.png';
+import imgCharacter1 from 'public/assets/items/characters/character-1.png';
 
 export const MOCK_CHARACTER = {
   id: '123456781',

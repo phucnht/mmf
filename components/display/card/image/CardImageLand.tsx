@@ -3,7 +3,7 @@ import Image from 'components/display/image/Image';
 import { IconStarList } from 'components/icon/IconStar';
 import { ReactNode } from 'react';
 import CardTitleBanner from '../title/CardTitleBanner';
-import imgLand from '/public/assets/items/lands/land-2.png';
+import imgLand from 'public/assets/items/lands/land-2.png';
 
 export interface CardImageLandProps {
   id?: string;

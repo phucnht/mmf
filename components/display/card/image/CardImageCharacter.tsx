@@ -2,7 +2,7 @@ import { Box, Flex, Stack, Text } from '@whammytechvn/wt-components';
 import classNames from 'classnames';
 import Image from 'components/display/image/Image';
 import { ReactNode } from 'react';
-import imgCharacter1 from '/public/assets/items/characters/character-1.png';
+import imgCharacter1 from 'public/assets/items/characters/character-1.png';
 
 export interface CardImageCharacterProps {
   id?: string;
