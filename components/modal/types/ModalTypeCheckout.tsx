@@ -8,6 +8,10 @@ import { ObjectProps } from 'utils/types';
 import imgLand from '/public/assets/items/lands/land-2.png';
 import imgCharacter1 from '/public/assets/items/characters/character-1.png';
 import imgClothes from '/public/assets/items/items/clothes.png';
+import { marketplaceContract } from 'utils/contract';
+import { selectSystemConfigData } from 'store/market/system-config/systemConfig.slice';
+import { selectAuthData } from 'store/account/auth/auth.slice';
+import { useDispatch } from 'react-redux';
 
 export interface ModalTypeCheckoutProps {
   data?: ObjectProps;
@@ -17,12 +21,49 @@ export interface ModalTypeCheckoutProps {
 
 const ModalTypeCheckout = ({ confirm, decline, data }: ModalTypeCheckoutProps) => {
   const [isProcessing, setIsProcessing] = useState(false);
+  const { address } = useAppSelector(selectAuthData);
   const { BUSD } = useAppSelector(selectPaymentTokenData);
+  const { marketplaceAddress } = useAppSelector(selectSystemConfigData);
   const symbolBUSD = BUSD?.symbol || 'BUSD';
+  const dispatch = useDispatch();
 
   const handleProcess = (e: any) => {
     setIsProcessing(true);
-    confirm(e);
+
+    marketplaceContract(marketplaceAddress).methods.matchTransaction1155().send({ from: address });
+    // .once('transactionHash', function () {
+    //   dispatch(showModal({ type: MODAL_TYPE.PROCESSING }));
+    // })
+    // .once('receipt', async function (receipt) {
+    //   await getBalance(address);
+    //   dispatch(showModal({ type: MODAL_TYPE.COMPLETED, data: { ...receipt, totalAmount } }));
+    // })
+    // .on('error', function (e) {
+    //   console.error(e);
+    //   dispatch(showModal({ type: MODAL_TYPE.FAILED, data: { subtitle: 'Transaction failed' } }));
+    // })
+    // .catch(function (e) {
+    //   console.error(e);
+    //   dispatch(showModal({ type: MODAL_TYPE.FAILED, data: { subtitle: 'Transaction failed' } }));
+    // });
+    // seasonContract(SEASON_ADDRESS)
+    //   .methods.buyPackage(SEASON_CODE, tokenIds)
+    //   .send({ from: address })
+    //   .once('transactionHash', function () {
+    //     dispatch(showModal({ type: MODAL_TYPE.PROCESSING }));
+    //   })
+    //   .once('receipt', async function (receipt) {
+    //     await getBalance(address);
+    //     dispatch(showModal({ type: MODAL_TYPE.COMPLETED, data: { ...receipt, totalAmount } }));
+    //   })
+    //   .on('error', function (e) {
+    //     console.error(e);
+    //     dispatch(showModal({ type: MODAL_TYPE.FAILED, data: { subtitle: 'Transaction failed' } }));
+    //   })
+    //   .catch(function (e) {
+    //     console.error(e);
+    //     dispatch(showModal({ type: MODAL_TYPE.FAILED, data: { subtitle: 'Transaction failed' } }));
+    //   });
   };
 
   const infos = [
