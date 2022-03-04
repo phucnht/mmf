@@ -13,13 +13,13 @@ const cloudflareImageLoader = (
 };
 
 export default function Image({ isExternal, src: _src, ...props }: any) {
-  const [src, setSrc] = useState(_src);
+  // const [src, setSrc] = useState(_src);
   const imgProps = {
     ...props,
-    src,
-    onError: () => {
-      setSrc('/assets/default/img-blank.svg');
-    }
+    src: _src
+    // onError: () => {
+    //   setSrc('/assets/default/img-blank.svg');
+    // }
   };
 
   if (process.env.NODE_ENV === 'development') {

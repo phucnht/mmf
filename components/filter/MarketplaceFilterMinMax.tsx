@@ -76,7 +76,7 @@ export default function MarketplaceFilterMinMax({
                   placeholder="Max"
                   onChange={handleChangeMaxPrice}
                 />
-              </Disclosure.Panel>{' '}
+              </Disclosure.Panel>
             </Transition>
           </>
         )}

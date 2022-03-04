@@ -15,7 +15,6 @@ import imgBoots from 'public/assets/items/items/boots.png';
 import { NftSaleItemDto } from 'store/market/nft-item/nftItem.i';
 import { useAppSelector } from 'store/store.hook';
 import { selectPaymentTokenData } from 'store/market/payment-token/paymentToken.slice';
-import imgBlank from 'public/assets/default/img-blank.svg';
 
 export const MOCK_ITEM = {
   id: '#257578245',
@@ -67,7 +66,7 @@ export default function CardPanelItem({ item, onClick }: CardPanelItemProps) {
           </Flex>
           <Text>Breed count: {3}</Text>
         </Flex>
-        <Image alt={item.name} src={imgClothes || imgBlank} />
+        <Image alt={item.name} src={imgClothes} />
       </Flex>
       <Stack className="flex-col text-2xl font-black mt-2">
         <Text>
