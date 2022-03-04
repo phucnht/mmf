@@ -6,7 +6,7 @@ import InventoryLandCard from '../../../components/pages/inventory/lands/Invento
 
 import _times from 'lodash/times';
 import _random from 'lodash/random';
-import imgLand1 from '/public/assets/inventory/lands/land-1.png';
+import imgLand1 from 'public/assets/items/lands/land-1.png';
 import { useRouter } from 'next/router';
 import useAuthGuard from 'hooks/useAuthGuard';
 

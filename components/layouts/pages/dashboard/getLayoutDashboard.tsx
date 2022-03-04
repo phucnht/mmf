@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 
-import imgIconBox from '/public/assets/navbar/box.png';
-import imgIconDashboard from '/public/assets/navbar/dashboard.png';
+import imgIconBox from 'public/assets/navbar/box.png';
+import imgIconDashboard from 'public/assets/navbar/dashboard.png';
 import SidebarHorizontal from 'components/navigation/sidebar/SidebarHorizontal';
 import { Grid } from '@whammytechvn/wt-components';
 

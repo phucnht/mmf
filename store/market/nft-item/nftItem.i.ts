@@ -1,3 +1,4 @@
+import { HistoryType } from './../../store.enum';
 import { PaymentTokenDto } from '../payment-token/paymentToken.i';
 import { BasicUserDto } from 'store/account/profile/profile.i';
 import { BaseResultPagination, GetState, PaginationRequest } from 'store/store.i';
@@ -12,9 +13,9 @@ export enum NftItemStatus {
 }
 
 export enum NftItemMarketType {
-  NotForSale,
-  Sale,
-  Auction
+  NotForSale = 0,
+  Sale = 10,
+  Auction = 20
 }
 
 export enum NftItemMarketStatus {
@@ -102,6 +103,40 @@ export interface NftItemDto {
   evolveSaltNonce: number;
 }
 
+export interface NftSaleItemDto {
+  signedSignature: string;
+  paymentTokenId: string;
+  name: string;
+  nftItem: string;
+  ownerAddress: string;
+  nftContract: string;
+  tokenId: string;
+  type: number;
+  amount: number;
+  price: number;
+  createdAt: Date;
+  updatedAt: Date;
+  id: string;
+}
+
+export interface NftItemHistoryDto {
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  version: number;
+  itemId: string;
+  fromAddress: string;
+  fromUser: BasicUserDto;
+  toAddress: string;
+  toUser: BasicUserDto;
+  tokenId: string;
+  nftContract: string;
+  amount: number;
+  paymentToken: PaymentTokenDto;
+  paymentTokenId: string;
+  type: HistoryType;
+}
+
 export type NftItemRequest = {
   status?: NftItemStatus;
   marketType?: NftItemMarketType;
@@ -113,15 +148,33 @@ export type NftItemRequest = {
   elements?: string[];
   classes?: string[];
   qualitys?: string[];
-  minPrice?: string;
-  maxPrice?: string;
-  minTier?: string;
-  maxTier?: string;
-  minLevel?: string;
-  maxLevel?: string;
+  minPrice?: number;
+  maxPrice?: number;
+  minTier?: number;
+  maxTier?: number;
+  minLevel?: number;
+  maxLevel?: number;
 } & PaginationRequest;
 
+// Requests
 export type InventoryRequest = PaginationRequest;
 
-export type NftItemsState = GetState<BaseResultPagination<NftItemDto>>;
+export type NftItemHistoryRequest = {
+  nftItemId: string;
+  userAddress?: string;
+  type?: HistoryType;
+} & PaginationRequest;
+
+export type NftSaleItemRequest = {
+  minPrice?: number;
+  maxPrice?: number;
+  categoryId?: string;
+  owner?: string;
+  elements?: string[];
+} & PaginationRequest;
+
+// States
+export type NftItemState = GetState<BaseResultPagination<NftItemDto>>;
+export type NftSaleItemState = GetState<BaseResultPagination<NftSaleItemDto>>;
 export type InventoryState = GetState<BaseResultPagination<NftItemDto>>;
+export type NftItemHistoryState = GetState<BaseResultPagination<NftItemHistoryDto>>;

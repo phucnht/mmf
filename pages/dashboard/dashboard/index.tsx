@@ -3,8 +3,8 @@ import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
 
 import _times from 'lodash/times';
-import imgTimberShoes from '/public/assets/timber/timber-shoes.png';
-import imgTimberClothes from '/public/assets/timber/timber-clothes.png';
+import imgTimberShoes from 'public/assets/timber/timber-shoes.png';
+import imgTimberClothes from 'public/assets/timber/timber-clothes.png';
 import { getLayoutDashboard } from 'components/layouts/pages/dashboard/getLayoutDashboard';
 
 import Stats from 'components/display/stats/Stats';

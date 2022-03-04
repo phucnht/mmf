@@ -10,6 +10,8 @@ import BackgroundFlare from 'components/bg/BackgroundFlare';
 import BackgroundFooterShadow from 'components/bg/BackgroundFooterShadow';
 import { useRouter } from 'next/router';
 import useWeb3Validate from 'hooks/useWeb3Validate';
+import { loginLoading, selectAuthData } from 'store/account/auth/auth.slice';
+import { selectPaymentTokenData } from 'store/market/payment-token/paymentToken.slice';
 
 interface AppLayoutProps {
   children: ReactNode;
@@ -19,14 +21,21 @@ export default function AppLayout({ children }: AppLayoutProps) {
   const { pathname } = useRouter();
   const dispatch = useAppDispatch();
   const { id } = useAppSelector(selectSystemConfigData);
+  const { accessToken } = useAppSelector(selectAuthData);
+  const { MMF } = useAppSelector(selectPaymentTokenData);
   useWeb3Validate();
 
   useEffect(() => {
     if (!id) {
       dispatch(getSystemConfig());
+    }
+    if (!accessToken) {
+      dispatch(loginLoading(false));
+    }
+    if (!MMF) {
       dispatch(getPaymentTokens());
     }
-  }, [id, dispatch]);
+  }, [id, accessToken, MMF, dispatch]);
 
   let renderChildren = (
     <Container className="mb-36 xl:max-w-[132rem] z-[5]">

@@ -2,12 +2,23 @@ import { ObjectProps } from 'utils/types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export type ModalSize = 'md' | 'sm' | 'max' | 'min' | 'fit';
-export type ModalType = 'createGameProfile' | 'account' | 'confirm' | 'login' | 'checkout';
+export type ModalType =
+  | 'createGameProfile'
+  | 'account'
+  | 'confirm'
+  | 'login'
+  | 'checkout'
+  | 'listing'
+  | 'cancel-listing'
+  | 'completed'
+  | 'failed'
+  | 'processing';
 
 export interface ModalConfirmationPayload {
   data?: ObjectProps;
   size?: ModalSize;
-  type: ModalType;
+  type?: ModalType;
+  isClosable?: boolean;
 }
 
 export type ModalConfirmationState = {
@@ -22,7 +33,8 @@ export const initialModalConfirmationState: ModalConfirmationState = {
   type: 'confirm',
   size: 'sm',
   isConfirmed: false,
-  isDeclined: false
+  isDeclined: false,
+  isClosable: true
 };
 
 export const modalConfirmationSlice = createSlice({
@@ -36,13 +48,19 @@ export const modalConfirmationSlice = createSlice({
       state.isOpened = true;
       state.isDeclined = false;
       state.isConfirmed = false;
+      state.isClosable = action.payload.isClosable;
     },
-    confirm: state => {
-      state.isConfirmed = true;
+    confirm: (state, action: PayloadAction<ModalConfirmationPayload>) => {
+      // if (action.payload.isOpened) {
+      // }
       state.isOpened = false;
+      state.isConfirmed = true;
     },
     decline: state => {
       state.isDeclined = true;
+      state.isOpened = false;
+    },
+    close: state => {
       state.isOpened = false;
     }
   }

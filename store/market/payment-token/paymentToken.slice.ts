@@ -1,4 +1,4 @@
-import { convertArrayToObject } from 'utils/convert';
+import { convertPaymentTokens } from 'utils/convert';
 import { handleReject, handlePending, DEFAULT_BASE_STATE } from 'store/store.utils';
 import { createSlice } from '@reduxjs/toolkit';
 import { AppState } from 'store/store';
@@ -15,7 +15,7 @@ const paymentTokenSlice = createSlice({
     builder
       .addCase(getPaymentTokens.pending, handlePending)
       .addCase(getPaymentTokens.fulfilled, (state: any, action: any) => {
-        return { ...DEFAULT_BASE_STATE, data: convertArrayToObject(action.payload, 'symbol') };
+        return { ...DEFAULT_BASE_STATE, data: convertPaymentTokens(action.payload, 'symbol') };
       })
       .addCase(getPaymentTokens.rejected, handleReject);
   }

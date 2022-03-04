@@ -1,71 +1,78 @@
-import { Box, Button, Flex, Grid, Heading, Stack, Text } from '@whammytechvn/wt-components';
-import Alert from 'components/display/alert/Alert';
+import { Button, Flex, Heading, Stack } from '@whammytechvn/wt-components';
 import Image from 'components/display/image/Image';
-import { MouseEventHandler, useState } from 'react';
+import { MouseEventHandler } from 'react';
 import { selectPaymentTokenData } from 'store/market/payment-token/paymentToken.slice';
 import { useAppSelector } from 'store/store.hook';
 import { ObjectProps } from 'utils/types';
-import imgDashboardBox from '/public/assets/dashboard/box.png';
+import imgLand from 'public/assets/items/lands/land-2.png';
+import imgCharacter1 from 'public/assets/items/characters/character-1.png';
+import imgClothes from 'public/assets/items/items/clothes.png';
 export interface ModalTypeCheckoutProps {
   data?: ObjectProps;
   decline: MouseEventHandler<HTMLButtonElement> | undefined;
+  confirm: MouseEventHandler<HTMLButtonElement>;
 }
 
-const ModalTypeCheckout = ({ decline, data }: ModalTypeCheckoutProps) => {
-  const [isProcessing, setIsProcessing] = useState(false);
-  const { MMF, BUSD } = useAppSelector(selectPaymentTokenData);
+const ModalTypeCheckout = ({ confirm, decline, data }: ModalTypeCheckoutProps) => {
+  const { BUSD } = useAppSelector(selectPaymentTokenData);
+  const symbolBUSD = BUSD?.symbol || 'BUSD';
 
-  const handleProcess = () => {
-    setIsProcessing(true);
+  const handleProcess = (e: any) => {
+    confirm(e);
   };
 
   const infos = [
     {
       name: 'Amount:',
-      value: `${data?.amount} ${BUSD.name}`
-    },
-    {
-      name: 'Gas Fee:',
-      value: `${data?.gasFee} ${BUSD.name}`
-    },
-    {
-      name: 'Total Price:',
-      value: `${data?.totalPrice} ${BUSD.name}`
+      value: `${data?.nftItemPrice || 200} ${symbolBUSD}`
     }
+    // {
+    //   name: 'Gas Fee:',
+    //   value: `${data?.gasFee || 7} ${symbolBUSD}`
+    // },
+    // {
+    //   name: 'Total Price:',
+    //   value: `${data?.totalPrice || 207} ${symbolBUSD}`
+    // }
   ];
+
+  const IMAGES = {
+    item: imgClothes,
+    land: imgLand,
+    character: imgCharacter1
+  } as any;
+
+  const imgSrc = IMAGES[data?.nftItemType];
 
   return (
     <Stack className="p-24 rounded-[2rem] shadow-lg relative flex-col w-full bg-blue-500 outline-none focus:outline-none border-[3px] border-green-200 text-white text-2xl font-bold">
       <Heading className="!text-[4rem] font-bold uppercase">Checkout</Heading>
       <Flex className="items-center w-full p-8 gap-12">
         <Flex className="flex-col items-center w-[22.8rem] h-[22.2rem]">
-          <Image alt="Buy Box" src={imgDashboardBox} />
+          <Image alt="Buy Box" src={imgSrc} />
         </Flex>
-        <Flex className="flex-col text-white gap-8 pl-12">
-          <Heading className="uppercase font-black text-lg">You are about to purchased #{data?.id}</Heading>
-          <table className={'w-full text-md'}>
+        <Flex className="flex-col text-white gap-8 pl-12 max-w-[32rem]">
+          <Heading className="uppercase font-bold text-lg">You are about to purchased #{data?.nftItemId}</Heading>
+          <table className="w-full font-normal text-md table-auto border-separate">
             <tbody>
               {infos.map(({ name, value }, index) => (
-                <tr key={index}>
-                  <td>{name}</td>
+                <tr key={index} className="h-12">
+                  <td className="text-left">{name}</td>
                   <td className="text-right">{value}</td>
                 </tr>
               ))}
             </tbody>
           </table>
+          {/* <Alert type="error" className="font-normal" content={'Your balance is not enough BNB'} /> */}
         </Flex>
       </Flex>
       <Stack className="items-center gap-8">
-        <Button
-          className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-          type="button"
-          onClick={decline}
-        >
+        <Button color="primary" className="py-4 min-w-[15rem] w-fit" onClick={decline}>
           Cancel
         </Button>
         <Button
-          className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-          type="button"
+          className="text-red-100 py-4 min-w-[15rem] w-fit disabled:bg-grey-400 disabled:cursor-not-allowed disabled:pointer-events-none"
+          color={'secondary'}
           onClick={handleProcess}
         >
           Checkout

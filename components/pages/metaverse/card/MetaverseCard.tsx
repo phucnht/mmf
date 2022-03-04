@@ -4,8 +4,8 @@ import { AirdropEventDto } from 'store/market/airdrop-event/airdropEvent.i';
 import MetaverseCardDescription from './MetaverseCardDescription';
 import MetaverseCardTitle from './MetaverseCardTitle';
 
-import imgMetaverseBackground from '/public/assets/metaverse/metaverse-card-1.png';
-import imgMetaverseItem from '/public/assets/metaverse/metaverse-card-sub-1.png';
+import imgMetaverseBackground from 'public/assets/metaverse/metaverse-card-1.png';
+import imgMetaverseItem from 'public/assets/metaverse/metaverse-card-sub-1.png';
 
 export interface MetaverseCardProps {
   metaverse: AirdropEventDto;

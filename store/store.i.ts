@@ -27,5 +27,6 @@ export interface PaginationRequest {
   page?: number;
   size?: number;
   orderBy?: string;
+  skipIndex?: string;
   desc?: boolean;
 }

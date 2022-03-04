@@ -1,8 +1,16 @@
 import { Box } from '@whammytechvn/wt-components';
 import { NextPage } from 'next';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 const Marketplace: NextPage = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push('/marketplace/items');
+  }, [router]);
+
   return (
     <>
       <Head>
@@ -12,15 +20,6 @@ const Marketplace: NextPage = () => {
       <Box className="text-white text-sm">Redirecting...</Box>
     </>
   );
-};
-
-export const getServerSideProps = () => {
-  return {
-    redirect: {
-      destination: '/',
-      permanent: true
-    }
-  };
 };
 
 export default Marketplace;

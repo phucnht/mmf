@@ -1,0 +1,80 @@
+import { Box, Button, Heading, Stack } from '@whammytechvn/wt-components';
+import { useRouter } from 'next/router';
+import { MouseEventHandler, useMemo } from 'react';
+import { useDispatch } from 'react-redux';
+import { selectPaymentTokenData } from 'store/market/payment-token/paymentToken.slice';
+import { modalConfirmationActions } from 'store/modal-confirmation/modalConfirmation.slice';
+import { useAppSelector } from 'store/store.hook';
+import { ObjectProps } from 'utils/types';
+export interface ModalTypeCheckoutProps {
+  data?: ObjectProps;
+  decline: MouseEventHandler<HTMLButtonElement> | undefined;
+}
+
+const ModalTypeCompleted = ({ data }: ModalTypeCheckoutProps) => {
+  const { BUSD } = useAppSelector(selectPaymentTokenData);
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const symbolBUSD = BUSD?.symbol || 'BUSD';
+
+  const infos = useMemo(
+    () => [
+      {
+        name: 'Amount:',
+        value: `${data?.amount || 200} ${symbolBUSD}`
+      },
+      {
+        name: 'Status:',
+        value: 'Processing'
+      },
+      {
+        name: 'Transaction ID:',
+        value: '0sms384948989189'
+      }
+    ],
+    [data?.amount, symbolBUSD]
+  );
+
+  const handleCheckInventory = () => {
+    dispatch(modalConfirmationActions.close());
+
+    if (data?.type === 'inventory') {
+      router.push('/inventory');
+    } else if (data?.type === 'marketplace') {
+      router.push('/marketplace');
+    }
+  };
+
+  return (
+    <Stack className="p-24 rounded-[2rem] shadow-lg relative flex-col w-full] bg-blue-500 outline-none focus:outline-none border-[3px] border-green-200 text-white text-2xl font-bold">
+      <Box className="text-center">
+        <Heading className="!text-[4rem] font-bold uppercase text-green-200 mb-12">Completed!</Heading>
+        {/* <Flex className="max-w-[36rem] flex-col items-center w-full p-8 gap-4">
+          <Heading className="font-bold text-lg">
+            You successfully purchased. You are about to purchase #{data?.id}
+          </Heading>
+          <table className="w-full font-normal text-md table-auto border-separate">
+            <tbody>
+              {infos.map(({ name, value }, index) => (
+                <tr key={index} className="h-12">
+                  <td className="text-left">{name}</td>
+                  <td className="text-right">{value}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Flex> */}
+      </Box>
+      <Button
+        className="py-4 max-w-[38rem] font-black text-white !bg-green-200"
+        color={'default'}
+        onClick={handleCheckInventory}
+        fullWidth
+      >
+        {data?.type === 'inventory' ? 'Check my inventory' : 'Go to marketplace'}
+      </Button>
+    </Stack>
+  );
+};
+
+export default ModalTypeCompleted;

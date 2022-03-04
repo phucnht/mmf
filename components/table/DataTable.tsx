@@ -41,7 +41,11 @@ const DataTable: FC<DataTableProps> = ({ title, sortable = false, data, columns,
         </Head>
         <Body {...getTableBodyProps()}>
           {_.isEmpty(rows) ? (
-            <TableEmpty />
+            <Row className="h-full border-none !bg-transparent">
+              <Cell>
+                <TableEmpty />
+              </Cell>
+            </Row>
           ) : (
             rows.map(row => {
               prepareRow(row);
@@ -53,7 +57,7 @@ const DataTable: FC<DataTableProps> = ({ title, sortable = false, data, columns,
                       <Cell
                         align="center"
                         {...cell.getCellProps()}
-                        isCopyable={['from', 'to'].includes(cell.column.id)}
+                        isCopyable={['from', 'to'].includes(cell.column.id) && cell.value}
                       >
                         {cell.render('Cell')}
                       </Cell>

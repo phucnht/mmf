@@ -1,15 +1,18 @@
 import Head from 'next/head';
-import { Box, Button, Container, Flex, Grid, Heading, Text } from '@whammytechvn/wt-components';
+import { Box, Container, Flex, Grid, Heading, Text } from '@whammytechvn/wt-components';
 import ButtonBack from 'components/buttons/ButtonBack';
 import { getLayoutDefaultSmall } from 'components/layouts/pages/default/getLayoutDefault';
 import Countdown from 'components/countdown/Countdown';
 import Image from 'components/display/image/Image';
-import imgDashboardBox from '/public/assets/dashboard/box.png';
+import imgDashboardBox from 'public/assets/dashboard/box.png';
 import { MOCK_CONTENT } from 'utils/mock';
-import Alert from 'components/display/alert/Alert';
 import FormBuyBox from 'components/forms/buy-box/FormBuyBox';
+import { GetServerSidePropsContext } from 'next';
+import { BoxDto } from 'store/box/box.i';
 
-const MOCK_AMOUNT = 500;
+export interface DashboardBoxDetailProps {
+  box?: BoxDto;
+}
 
 export default function DashboardBoxDetail() {
   return (
@@ -52,5 +55,11 @@ export default function DashboardBoxDetail() {
     </>
   );
 }
+
+export const getServerSideProps = async ({ query }: GetServerSidePropsContext) => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BOX}/${query.id}`);
+  const { data } = await res.json();
+  return { props: { box: data } };
+};
 
 DashboardBoxDetail.getLayout = getLayoutDefaultSmall;

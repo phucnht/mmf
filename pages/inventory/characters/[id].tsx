@@ -12,7 +12,7 @@ import { MOCK_CONTENT } from 'utils/mock';
 import ProgressBar from 'components/display/progress-bar/ProgressBar';
 import { useMemo } from 'react';
 import useAuthGuard from 'hooks/useAuthGuard';
-import { mockCharacters } from 'pages/marketplace/characters';
+import { mockCharacters } from '.';
 
 export interface InventoryCharacterDetailProps {
   character: {

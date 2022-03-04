@@ -7,10 +7,14 @@ import modalConfirmationReducer from './modal-confirmation/modalConfirmation.sli
 import authReducer, { logout } from './account/auth/auth.slice';
 import profileReducer from './account/profile/profile.slice';
 import nftItemReducer from './market/nft-item/nftItem.slice';
+import nftSaleItemReducer from './market/nft-item/nftSaleItem.slice';
+import nftItemHistoryReducer from './market/nft-item/nftItemHistory.slice';
 import inventoryReducer from './market/nft-item/inventory.slice';
 import systemConfigReducer from './market/system-config/systemConfig.slice';
 import paymentTokenReducer from './market/payment-token/paymentToken.slice';
 import airdropEventReducer from './market/airdrop-event/airdropEvent.slice';
+import boxReducer from './box/box.slice';
+import dashboardReducer from './dashboard/dashboard.slice';
 
 const appReducer = combineReducers({
   modalConfirmation: modalConfirmationReducer,
@@ -18,16 +22,23 @@ const appReducer = combineReducers({
   auth: authReducer,
   profile: profileReducer,
   nftItem: nftItemReducer,
+  nftSaleItem: nftSaleItemReducer,
+  nftItemHistory: nftItemHistoryReducer,
   inventory: inventoryReducer,
   systemConfig: systemConfigReducer,
   paymentToken: paymentTokenReducer,
-  airdropEvent: airdropEventReducer
+  airdropEvent: airdropEventReducer,
+  dashboard: dashboardReducer,
+  box: boxReducer
 });
 
 const rootReducer = (state: any, action: AnyAction) => {
   if (action.type === logout.type) {
     storage.removeItem('persist:root');
-    return appReducer({ ...state, auth: undefined, profile: undefined, inventory: undefined }, action);
+    return appReducer(
+      { ...state, systemConfig: undefined, auth: undefined, profile: undefined, inventory: undefined },
+      action
+    );
   }
   return appReducer(state, action);
 };

@@ -10,6 +10,8 @@ interface InputFieldProps extends DetailedHTMLProps<InputHTMLAttributes<HTMLInpu
   name: string;
   label?: string;
   type?: string;
+  prefix?: string;
+  suffix?: string;
   helperText?: string;
   fullWidth?: boolean;
   className?: string;
@@ -36,11 +38,13 @@ export function InputField({
   errors = {},
   options,
   isForm = false,
+  prefix,
+  suffix,
   ...props
 }: InputFieldProps) {
   const cxInputField = classNames('flex-col items-start relative', { 'w-full': fullWidth }, className);
   const cxInput = classNames({ '!w-full': fullWidth }, inputProps?.className);
-  const commonProps = { readOnly: !isForm, name, errors, ...props };
+  const commonProps = { readOnly: !isForm, name, errors, prefix, suffix, ...props };
 
   let ComponentInputText = InputText;
 

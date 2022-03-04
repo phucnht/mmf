@@ -12,7 +12,7 @@ interface TextCopyableProps {
 }
 
 const TextCopyable: FC<TextCopyableProps> = ({ value, className }) => {
-  const cxTextCopyable = classNames('justify-between items-center', className);
+  const cxTextCopyable = classNames('justify-center items-center gap-2', className);
   const [, setIsCopied] = useState(false);
 
   async function copyTextToClipboard(text: string) {

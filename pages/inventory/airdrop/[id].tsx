@@ -3,73 +3,42 @@ import { Box, Container, Flex, Heading, Text } from '@whammytechvn/wt-components
 import ButtonBack from 'components/buttons/ButtonBack';
 import { getLayoutDefault } from 'components/layouts/pages/default/getLayoutDefault';
 
-import _times from 'lodash/times';
 import { MOCK_CONTENT } from 'utils/mock';
 import ProgressBar from 'components/display/progress-bar/ProgressBar';
-import { useMemo } from 'react';
 import useAuthGuard from 'hooks/useAuthGuard';
 
-import imgItem from '/public/assets/inventory/airdrop/t-shirt.png';
+import imgItem from 'public/assets/items/airdrop/t-shirt.png';
 import CardItem from 'components/pages/inventory/airdrop/CardItem';
 import { getEllipsisTxt } from 'utils/format';
 import { GetServerSidePropsContext } from 'next';
-import { clientMarket } from 'utils/api';
+import DataTableHistory from 'components/table/DataTableHistory';
+import { useAppSelector } from 'store/store.hook';
+import { selectPaymentTokenData } from 'store/market/payment-token/paymentToken.slice';
+import FormListingButton from 'components/forms/listing/FormListingButton';
 export interface InventoryMetaverseDetailProps {
-  metaverseItem: any;
+  item: any;
 }
 
-export default function InventoryMetaverseDetail({ metaverseItem }: InventoryMetaverseDetailProps) {
+export default function InventoryMetaverseDetail({ item }: InventoryMetaverseDetailProps) {
   useAuthGuard();
-  const data = useMemo(
-    () =>
-      _times(10, i => ({
-        id: i,
-        time: '25 Oct 2021 10:03',
-        amount: '0.12340000 BUSD',
-        from: '094373474873724890',
-        to: '094373474873724890'
-      })),
-    []
-  );
-
-  const columns = useMemo(
-    () => [
-      {
-        Header: 'Time',
-        accessor: 'time'
-      },
-      {
-        Header: 'Amount',
-        accessor: 'amount'
-      },
-      {
-        Header: 'From',
-        accessor: 'from'
-      },
-      {
-        Header: 'To',
-        accessor: 'to'
-      }
-    ],
-    []
-  );
+  const { BUSD } = useAppSelector(selectPaymentTokenData);
 
   return (
     <>
       <Head>
-        <title>{metaverseItem.name} | My Metafarm</title>
-        <meta name="description" content={`${metaverseItem.name} | My Metafarm`} />
+        <title>{item.name} | My Metafarm</title>
+        <meta name="description" content={`${item.name} | My Metafarm`} />
       </Head>
       <Container className="max-w-screen-lg min-h-fit">
         <ButtonBack className="mb-8" />
         <Flex className="justify-between gap-20 p-28 rounded-[2rem] border-[3px] border-green-200 text-white">
           <Flex className="col-span-3 flex-col items-center justify-between min-h-[48rem] w-full">
-            <CardItem content={metaverseItem.name} imgSrc={imgItem} />
+            <CardItem id={item.id} name={item.name} imgSrc={imgItem} />
           </Flex>
-          <Flex className="col-span-2 flex-col justify-between w-[34rem] min-w-[34rem]">
+          <Flex className="col-span-2 flex-col justify-between gap-12 w-[34rem] min-w-[34rem]">
             <Box className="overflow-y-auto overflow-x-hidden max-h-[40rem] pr-12">
               <Heading className="font-black text-lg items-baseline">
-                Owner: {getEllipsisTxt(metaverseItem.ownerAddress)}
+                Owner: {getEllipsisTxt(item.ownerAddress)}
               </Heading>
               <Flex className="flex-col mt-9">
                 <Heading className="uppercase font-black text-md">Story</Heading>
@@ -88,26 +57,27 @@ export default function InventoryMetaverseDetail({ metaverseItem }: InventoryMet
                 <Heading as="h6" className="font-bold text-2xl">
                   Price
                 </Heading>
-                <Text className="font-black text-xl">0.361 IGL</Text>
+                <Text className="font-black text-xl">0.361 {BUSD?.symbol}</Text>
               </Flex>
-              {/* <Button
-                color="secondary"
-                className="text-red-100 py-3 px-4 min-w-fit xl:min-w-[20rem] text-xl"
-                content="Buy Now"
-              /> */}
+              <FormListingButton nftItemId={item.id} nftItemOwnerAddress={item.ownerAddress} nftItemImg={imgItem} />
             </Flex>
           </Flex>
         </Flex>
-        {/* <DataTable title="Sale History" sortable data={data} columns={columns} className="my-24" /> */}
+        <DataTableHistory nftItemId={item.id} />
       </Container>
     </>
   );
 }
 
 export const getServerSideProps = async ({ query }: GetServerSidePropsContext) => {
-  const res = await fetch(`https://metafarm-api.onsky.services/market-apis/api/items/${query.id}`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_MARKET}/items/${query.id}`);
   const { data } = await res.json();
-  return { props: { metaverseItem: data } };
+
+  if (!data) {
+    return { notFound: true };
+  }
+
+  return { props: { item: data } };
 };
 
 InventoryMetaverseDetail.getLayout = getLayoutDefault;
