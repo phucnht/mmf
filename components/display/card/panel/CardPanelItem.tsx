@@ -1,4 +1,4 @@
-import { Stack, Text, Flex } from '@whammytechvn/wt-components';
+import { Stack, Text, Flex, Box } from '@whammytechvn/wt-components';
 import classNames from 'classnames';
 import Image from 'components/display/image/Image';
 import { IconStarList } from 'components/icon/IconStar';
@@ -15,8 +15,6 @@ import imgBoots from 'public/assets/items/items/boots.png';
 import { NftSaleItemDto } from 'store/market/nft-item/nftItem.i';
 import { useAppSelector } from 'store/store.hook';
 import { selectPaymentTokenData } from 'store/market/payment-token/paymentToken.slice';
-
-import imgItem from 'public/assets/img-video/item.png';
 
 export const MOCK_ITEM = {
   id: '#257578245',
@@ -68,7 +66,9 @@ export default function CardPanelItem({ item, onClick }: CardPanelItemProps) {
           </Flex>
           <Text>Breed count: {3}</Text>
         </Flex>
-        <Image alt={item.name} src={imgItem} />
+        <Box className="relative w-full h-full">
+          <Image alt={item.name} src="/assets/img-video/item.png" layout="fill" objectFit="contains" />
+        </Box>
       </Flex>
       <Stack className="flex-col text-2xl font-black mt-2">
         <Text>
