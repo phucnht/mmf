@@ -3,18 +3,23 @@ import { Button } from '@whammytechvn/wt-components';
 
 export interface FormListingButtonProps {
   nftItemId: string;
+  nftItemOwnerAddress: string;
   nftItemImg: StaticImageData;
 }
 
-export default function FormListingButton({ nftItemId, nftItemImg }: FormListingButtonProps) {
+export default function FormListingButton({ nftItemId, nftItemOwnerAddress, nftItemImg }: FormListingButtonProps) {
   //   const dispatch = useAppDispatch();
   const { open } = useModalConfirmation();
 
   const handleOnClick = async () => {
-    const resultListing = await open({ type: 'listing', size: 'fit', data: { nftItemId, nftItemImg } });
+    const resultListing = await open({
+      type: 'listing',
+      size: 'fit',
+      data: { nftItemId, nftItemOwnerAddress, nftItemImg }
+    });
 
     if (resultListing) {
-      await open({ type: 'completed', size: 'md' });
+      await open({ type: 'completed', size: 'md', data: { type: 'inventory' } });
     }
   };
 

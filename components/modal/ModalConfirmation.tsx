@@ -29,7 +29,8 @@ export default function ModalConfirmation() {
         {type === 'account' && <ModalTypeAccount decline={decline} />}
         {type === 'login' && <ModalTypeLoginRequired decline={decline} />}
         {type === 'checkout' && <ModalTypeCheckout data={data} decline={decline} confirm={confirm} />}
-        {type === 'listing' && <ModalTypeListing data={data} decline={decline} confirm={confirm} />}
+        {type === 'listing' && <ModalTypeListing data={data} confirm={confirm} />}
+        {type === 'cancel-listing' && <ModalTypeListing data={data} confirm={confirm} isCancel />}
         {type === 'completed' && <ModalTypeCompleted data={data} decline={decline} />}
         {type === 'processing' && <ModalTypeProcessing />}
         {type === 'failed' && <ModalTypeFailed decline={decline} />}

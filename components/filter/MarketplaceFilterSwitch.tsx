@@ -6,13 +6,15 @@ import { Controller, useFormContext } from 'react-hook-form';
 interface FilterSwitchBoxProps {
   name: string;
   className?: string;
+  disabled?: boolean;
   callback?: () => void;
 }
 
-export default function MarketplaceFilterSwitch({ className, name, callback }: FilterSwitchBoxProps) {
+export default function MarketplaceFilterSwitch({ className, disabled, name, callback }: FilterSwitchBoxProps) {
   const method = useFormContext();
   const cxSwitchWrapper = classNames(
     'w-full items-center justify-between relative rounded-[1rem] bg-white pl-7 py-7 pr-5',
+    { '!bg-gray-400 disabled:cursor-not-allowed disabled:pointer-events-none': disabled },
     className
   );
 
@@ -28,9 +30,11 @@ export default function MarketplaceFilterSwitch({ className, name, callback }: F
           <Switch
             checked={value}
             onChange={e => {
-              onChange(e);
-              if (callback) {
-                callback();
+              if (!disabled) {
+                onChange(e);
+                if (callback) {
+                  callback();
+                }
               }
             }}
             className={`${value ? 'bg-green-500' : 'bg-[#7E0D0A]'}

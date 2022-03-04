@@ -9,6 +9,7 @@ export type ModalType =
   | 'login'
   | 'checkout'
   | 'listing'
+  | 'cancel-listing'
   | 'completed'
   | 'failed'
   | 'processing';

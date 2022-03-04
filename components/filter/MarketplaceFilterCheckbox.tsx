@@ -10,17 +10,25 @@ interface MarketplaceFilterCheckboxProps {
   className?: string;
   name: string;
   options: Option[];
+  disabled?: boolean;
   callback?: () => void;
 }
 
-export default function MarketplaceFilterCheckbox({ name, options, callback }: MarketplaceFilterCheckboxProps) {
+export default function MarketplaceFilterCheckbox({
+  name,
+  disabled,
+  options,
+  callback
+}: MarketplaceFilterCheckboxProps) {
   const method = useFormContext();
   const { onChange, ...rest } = method.register(name);
 
   const handleChange = (e: any) => {
-    onChange(e);
-    if (callback) {
-      callback();
+    if (!disabled) {
+      onChange(e);
+      if (callback) {
+        callback();
+      }
     }
   };
 
@@ -54,7 +62,8 @@ export default function MarketplaceFilterCheckbox({ name, options, callback }: M
                       <label className="flex items-center gap-6">
                         <input
                           {...rest}
-                          className="outline-none border-none w-[2.8rem] h-[2.8rem] !bg-brown-100 rounded-lg text-lg text-white font-bold placeholder:text-gray-200"
+                          disabled={disabled}
+                          className="outline-none border-none w-[2.8rem] h-[2.8rem] !bg-brown-100 rounded-lg text-lg text-white font-bold placeholder:text-gray-200 disabled:!bg-gray-400 disabled:cursor-not-allowed disabled:pointer-events-none"
                           type="checkbox"
                           value={option.value}
                           onChange={handleChange}

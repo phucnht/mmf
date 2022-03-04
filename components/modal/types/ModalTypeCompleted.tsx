@@ -37,14 +37,17 @@ const ModalTypeCompleted = ({ data }: ModalTypeCheckoutProps) => {
 
   const handleCheckInventory = () => {
     dispatch(modalConfirmationActions.close());
-    router.push('/inventory/box');
+
+    if (data?.type === 'inventory') {
+      router.push('/inventory');
+    }
   };
 
   return (
     <Stack className="p-24 rounded-[2rem] shadow-lg relative flex-col w-full] bg-blue-500 outline-none focus:outline-none border-[3px] border-green-200 text-white text-2xl font-bold">
       <Box className="text-center">
-        <Heading className="!text-[4rem] font-bold uppercase text-green-200">Completed!</Heading>
-        <Flex className="max-w-[36rem] flex-col items-center w-full p-8 gap-4">
+        <Heading className="!text-[4rem] font-bold uppercase text-green-200 mb-12">Completed!</Heading>
+        {/* <Flex className="max-w-[36rem] flex-col items-center w-full p-8 gap-4">
           <Heading className="font-bold text-lg">
             You successfully purchased. You are about to purchase #{data?.id}
           </Heading>
@@ -58,7 +61,7 @@ const ModalTypeCompleted = ({ data }: ModalTypeCheckoutProps) => {
               ))}
             </tbody>
           </table>
-        </Flex>
+        </Flex> */}
       </Box>
       <Button
         className="py-4 max-w-[38rem] font-black text-white !bg-green-200"

@@ -11,13 +11,15 @@ interface FilterSelectProps {
   className?: string;
   name: string;
   options: Option[];
+  disabled?: boolean;
   callback?: () => void;
 }
 
-export default function MarketplaceFilterSelect({ className, name, options, callback }: FilterSelectProps) {
+export default function MarketplaceFilterSelect({ disabled, className, name, options, callback }: FilterSelectProps) {
   const method = useFormContext();
   const cxSelectWrapper = classNames(
     'w-full items-center justify-between relative rounded-[1rem] bg-white pl-7 py-7 pr-5',
+    { '!bg-gray-400 disabled:cursor-not-allowed disabled:pointer-events-none mx-auto': disabled },
     className
   );
 
@@ -34,9 +36,11 @@ export default function MarketplaceFilterSelect({ className, name, options, call
             <Listbox
               value={value}
               onChange={e => {
-                onChange(e);
-                if (callback) {
-                  callback();
+                if (!disabled) {
+                  onChange(e);
+                  if (callback) {
+                    callback();
+                  }
                 }
               }}
             >
@@ -47,7 +51,7 @@ export default function MarketplaceFilterSelect({ className, name, options, call
                     <ChevronDownIcon className="h-6 text-blue-400" aria-hidden="true" />
                   </Listbox.Button>
                   <Transition
-                    show={open}
+                    show={!disabled && open}
                     enter="transition duration-100 ease-out"
                     enterFrom="transform scale-95 opacity-0"
                     enterTo="transform scale-100 opacity-100"

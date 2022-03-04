@@ -1,4 +1,4 @@
-import { Box, Button, Container, Flex, Heading, Text } from '@whammytechvn/wt-components';
+import { Box, Container, Flex, Heading, Text } from '@whammytechvn/wt-components';
 import ButtonBack from 'components/buttons/ButtonBack';
 
 import { useAppSelector } from 'store/store.hook';
@@ -11,6 +11,7 @@ import { MOCK_CONTENT } from 'utils/mock';
 import CardImageItem from '../image/CardImageItem';
 import CardImageCharacter from '../image/CardImageCharacter';
 import CardImageLand from '../image/CardImageLand';
+import FormBuyNowButton from 'components/forms/buy-now/FormBuyNowButton';
 
 export type CardItemType = 'item' | 'land' | 'character';
 
@@ -51,12 +52,15 @@ export default function CardLayoutDetail({ type, item }: CardLayoutDetailProps) 
               <Heading as="h6" className="font-bold text-2xl">
                 Price
               </Heading>
-              <Text className="font-black text-xl">0.361 {BUSD?.symbol}</Text>
+              <Text className="font-black text-xl">
+                {item.price} {BUSD?.symbol}
+              </Text>
             </Flex>
-            <Button
-              color="secondary"
-              className="text-red-100 py-3 px-4 min-w-fit xl:min-w-[20rem] text-xl"
-              content="Buy Now"
+            <FormBuyNowButton
+              nftItemId={item.id}
+              nftItemType={type}
+              nftItemPrice={item.price}
+              nftItemOwnerAddress={item.ownerAddress}
             />
           </Flex>
         </Flex>

@@ -5,7 +5,10 @@ import { MouseEventHandler, useState } from 'react';
 import { selectPaymentTokenData } from 'store/market/payment-token/paymentToken.slice';
 import { useAppSelector } from 'store/store.hook';
 import { ObjectProps } from 'utils/types';
-import imgDashboardBox from '/public/assets/dashboard/box.png';
+import imgLand from '/public/assets/items/lands/land-2.png';
+import imgCharacter1 from '/public/assets/items/characters/character-1.png';
+import imgClothes from '/public/assets/items/items/clothes.png';
+
 export interface ModalTypeCheckoutProps {
   data?: ObjectProps;
   decline: MouseEventHandler<HTMLButtonElement> | undefined;
@@ -25,27 +28,35 @@ const ModalTypeCheckout = ({ confirm, decline, data }: ModalTypeCheckoutProps) =
   const infos = [
     {
       name: 'Amount:',
-      value: `${data?.amount || 200} ${symbolBUSD}`
-    },
-    {
-      name: 'Gas Fee:',
-      value: `${data?.gasFee || 7} ${symbolBUSD}`
-    },
-    {
-      name: 'Total Price:',
-      value: `${data?.totalPrice || 207} ${symbolBUSD}`
+      value: `${data?.nftItemPrice || 200} ${symbolBUSD}`
     }
+    // {
+    //   name: 'Gas Fee:',
+    //   value: `${data?.gasFee || 7} ${symbolBUSD}`
+    // },
+    // {
+    //   name: 'Total Price:',
+    //   value: `${data?.totalPrice || 207} ${symbolBUSD}`
+    // }
   ];
+
+  const IMAGES = {
+    item: imgClothes,
+    land: imgLand,
+    character: imgCharacter1
+  } as any;
+
+  const imgSrc = IMAGES[data?.nftItemType];
 
   return (
     <Stack className="p-24 rounded-[2rem] shadow-lg relative flex-col w-full bg-blue-500 outline-none focus:outline-none border-[3px] border-green-200 text-white text-2xl font-bold">
       <Heading className="!text-[4rem] font-bold uppercase">Checkout</Heading>
       <Flex className="items-center w-full p-8 gap-12">
         <Flex className="flex-col items-center w-[22.8rem] h-[22.2rem]">
-          <Image alt="Buy Box" src={imgDashboardBox} />
+          <Image alt="Buy Box" src={imgSrc} />
         </Flex>
-        <Flex className="flex-col text-white gap-8 pl-12">
-          <Heading className="uppercase font-bold text-lg">You are about to purchased #{data?.id}</Heading>
+        <Flex className="flex-col text-white gap-8 pl-12 max-w-[32rem]">
+          <Heading className="uppercase font-bold text-lg">You are about to purchased #{data?.nftItemId}</Heading>
           <table className="w-full font-normal text-md table-auto border-separate">
             <tbody>
               {infos.map(({ name, value }, index) => (
@@ -56,7 +67,7 @@ const ModalTypeCheckout = ({ confirm, decline, data }: ModalTypeCheckoutProps) =
               ))}
             </tbody>
           </table>
-          <Alert type="error" className="font-normal" content={'Your balance is not enough BNB'} />
+          {/* <Alert type="error" className="font-normal" content={'Your balance is not enough BNB'} /> */}
         </Flex>
       </Flex>
       <Stack className="items-center gap-8">

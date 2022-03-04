@@ -59,7 +59,7 @@ export default function InventoryMetaverseDetail({ item }: InventoryMetaverseDet
                 </Heading>
                 <Text className="font-black text-xl">0.361 {BUSD?.symbol}</Text>
               </Flex>
-              <FormListingButton nftItemId={item.id} nftItemImg={imgItem} />
+              <FormListingButton nftItemId={item.id} nftItemOwnerAddress={item.ownerAddress} nftItemImg={imgItem} />
             </Flex>
           </Flex>
         </Flex>

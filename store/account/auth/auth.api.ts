@@ -55,8 +55,8 @@ export const connect = async (callback?: () => void) => {
         const signature = await web3.eth.personal.sign(message, address, '');
         const { accessToken } = await getToken({ address, signature });
 
-        const balance = await getBalance(address, MMF?.contractAddress, MMF?.decimals);
-        const balance2 = await getBalance(address, BUSD?.contractAddress, BUSD?.decimals);
+        const balance = await getBalance(address, MMF?.contractAddress);
+        const balance2 = await getBalance(address, BUSD?.contractAddress);
 
         store.dispatch(login({ accessToken, address, balance, balance2 }));
 

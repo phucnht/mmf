@@ -8,10 +8,16 @@ interface MarketplaceFilterMinMaxProps {
   className?: string;
   nameMin: string;
   nameMax: string;
+  disabled?: boolean;
   callback?: () => void;
 }
 
-export default function MarketplaceFilterMinMax({ nameMin, nameMax, callback }: MarketplaceFilterMinMaxProps) {
+export default function MarketplaceFilterMinMax({
+  nameMin,
+  nameMax,
+  disabled,
+  callback
+}: MarketplaceFilterMinMaxProps) {
   const method = useFormContext();
   const { onChange: onChangeMinPrice, ...restMin } = method.register(nameMin);
   const { onChange: onChangeMaxPrice, ...restMax } = method.register(nameMax);
@@ -56,14 +62,16 @@ export default function MarketplaceFilterMinMax({ nameMin, nameMax, callback }: 
               <Disclosure.Panel className="grid grid-cols-2 mt-3 gap-2">
                 <input
                   {...restMin}
-                  className="outline-none border-none bg-blue-100 rounded-xl text-lg text-white font-bold placeholder:text-gray-200"
+                  disabled={disabled}
+                  className="outline-none border-none bg-blue-100 rounded-xl text-lg text-white font-bold placeholder:text-gray-200 disabled:!bg-gray-400 disabled:cursor-not-allowed disabled:pointer-events-none"
                   type="text"
                   placeholder="Min"
                   onChange={handleChangeMinPrice}
                 />
                 <input
                   {...restMax}
-                  className="outline-none border-none bg-blue-100 rounded-xl text-lg text-white font-bold placeholder:text-gray-200"
+                  disabled={disabled}
+                  className="outline-none border-none bg-blue-100 rounded-xl text-lg text-white font-bold placeholder:text-gray-200 disabled:!bg-gray-400 disabled:cursor-not-allowed disabled:pointer-events-none"
                   type="text"
                   placeholder="Max"
                   onChange={handleChangeMaxPrice}
