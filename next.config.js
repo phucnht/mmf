@@ -38,10 +38,6 @@ const nextConfig = {
   //     }
   //   ];
   // },
-  images: {
-    loader: 'imgix',
-    path: ''
-  },
   eslint: {
     ignoreDuringBuilds: true
   }

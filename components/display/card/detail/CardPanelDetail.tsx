@@ -13,12 +13,21 @@ import CardImageCharacter from '../image/CardImageCharacter';
 import CardImageLand from '../image/CardImageLand';
 import FormBuyNowButton from 'components/forms/buy-now/FormBuyNowButton';
 
+import imgLand from 'public/assets/items/lands/land-2.png';
+import imgCharacter1 from 'public/assets/items/characters/character-1.png';
+import imgClothes from 'public/assets/items/items/clothes.png';
 export type CardItemType = 'item' | 'land' | 'character';
 
 export interface CardLayoutDetailProps {
   type: CardItemType;
   item: ObjectProps;
 }
+
+const IMAGES = {
+  item: imgClothes,
+  land: imgLand,
+  character: imgCharacter1
+} as any;
 
 export default function CardLayoutDetail({ type, item }: CardLayoutDetailProps) {
   const { BUSD } = useAppSelector(selectPaymentTokenData);
@@ -56,12 +65,7 @@ export default function CardLayoutDetail({ type, item }: CardLayoutDetailProps) 
                 {item.price} {BUSD?.symbol}
               </Text>
             </Flex>
-            <FormBuyNowButton
-              nftItemId={item.id}
-              nftItemType={type}
-              nftItemPrice={item.price}
-              nftItemOwnerAddress={item.ownerAddress}
-            />
+            <FormBuyNowButton nftItemType={type} item={item} nftItemImg={IMAGES[type]} />
           </Flex>
         </Flex>
       </Flex>

@@ -14,6 +14,6 @@ export const getNftItemHistory = createAsyncThunk('nftItem/inventory/get', async
   clientMarket.get(`/item-histories`, { params })
 );
 
-export const getNftSaleItems = createAsyncThunk('nftSaleItem/get', async (params?: NftSaleItemRequest) =>
-  clientMarket.get(`/sale-items`, { params })
-);
+export const getNftSaleItems = createAsyncThunk('nftSaleItem/get', async (params?: NftSaleItemRequest) => {
+  return clientMarket.get(`/sale-items`, { params });
+});

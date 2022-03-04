@@ -39,3 +39,31 @@ export const getWrappedNative = (chain: string): string | null => networkConfigs
 export const hasEthereum = typeof window !== 'undefined' && typeof window.ethereum !== 'undefined';
 
 export const isProduction = process.env.NODE_ENV === 'production';
+
+export function insertParam(key: string, value: any) {
+  key = encodeURIComponent(key);
+  value = encodeURIComponent(value);
+
+  // kvp looks like ['key1=value1', 'key2=value2', ...]
+  const kvp = document.location.search.substr(1).split('&');
+  let i = 0;
+
+  for (; i < kvp.length; i++) {
+    if (kvp[i].startsWith(key + '=')) {
+      const pair = kvp[i].split('=');
+      pair[1] = value;
+      kvp[i] = pair.join('=');
+      break;
+    }
+  }
+
+  if (i >= kvp.length) {
+    kvp[kvp.length] = [key, value].join('=');
+  }
+
+  // can return this or...
+  const params = kvp.join('&');
+
+  // reload page with new params
+  document.location.search = params;
+}

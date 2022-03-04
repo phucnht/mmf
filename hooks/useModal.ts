@@ -23,11 +23,15 @@ function useModal() {
   };
 
   const confirm = () => {
-    return dispatch(modalConfirmationActions.confirm());
+    return dispatch(modalConfirmationActions.confirm({}));
   };
 
   const decline = () => {
     return dispatch(modalConfirmationActions.decline());
+  };
+
+  const close = () => {
+    return dispatch(modalConfirmationActions.close());
   };
 
   return {
@@ -38,7 +42,8 @@ function useModal() {
     size,
     open,
     confirm,
-    decline
+    decline,
+    close
   };
 }
 

@@ -7,8 +7,6 @@ import * as yup from 'yup';
 import FormBuyBoxButton from './FormBuyBoxButton';
 import useModalConfirmation from 'hooks/useModal';
 import Alert from 'components/display/alert/Alert';
-import { selectSystemConfigData } from 'store/market/system-config/systemConfig.slice';
-import { marketplaceContract } from 'utils/contract';
 
 export interface FormBuyBoxProps {
   amount: number;
@@ -18,8 +16,7 @@ const MOCK_PRICE = 500;
 const MOCK_LIMIT_PER_TRANSACTION = 20;
 
 export default function FormBuyBox({ amount }: FormBuyBoxProps) {
-  const { address, accessToken } = useAppSelector(selectAuthData);
-  const { marketplaceAddress } = useAppSelector(selectSystemConfigData);
+  const { accessToken } = useAppSelector(selectAuthData);
 
   // Modal confirmation
   const { open } = useModalConfirmation();
@@ -47,28 +44,6 @@ export default function FormBuyBox({ amount }: FormBuyBoxProps) {
       if (!resultAuth) {
         return;
       }
-    }
-
-    const resultCheckout = await open({ type: 'checkout', size: 'fit' });
-
-    if (resultCheckout) {
-      marketplaceContract(marketplaceAddress)
-        .methods.matchTransaction1155()
-        .send({ from: address })
-        .once('transactionHash', function () {
-          open({ type: 'processing', size: 'md' });
-        })
-        .once('receipt', async function () {
-          open({ type: 'completed', size: 'md', data: { type: 'inventory' } });
-        })
-        .on('error', function () {
-          open({ type: 'failed' });
-        })
-        .catch(function (e: any) {
-          console.error(e);
-          open({ type: 'failed' });
-        });
-      await open({ type: 'completed', size: 'md', data: { type: 'inventory' } });
     }
   });
 
