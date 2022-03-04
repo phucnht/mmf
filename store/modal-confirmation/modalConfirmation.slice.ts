@@ -18,6 +18,7 @@ export interface ModalConfirmationPayload {
   data?: ObjectProps;
   size?: ModalSize;
   type: ModalType;
+  isClosable?: boolean;
 }
 
 export type ModalConfirmationState = {
@@ -32,7 +33,8 @@ export const initialModalConfirmationState: ModalConfirmationState = {
   type: 'confirm',
   size: 'sm',
   isConfirmed: false,
-  isDeclined: false
+  isDeclined: false,
+  isClosable: true
 };
 
 export const modalConfirmationSlice = createSlice({
@@ -46,6 +48,7 @@ export const modalConfirmationSlice = createSlice({
       state.isOpened = true;
       state.isDeclined = false;
       state.isConfirmed = false;
+      state.isClosable = action.payload.isClosable;
     },
     confirm: state => {
       state.isConfirmed = true;

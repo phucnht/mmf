@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading, Stack } from '@whammytechvn/wt-components';
+import { Box, Button, Heading, Stack } from '@whammytechvn/wt-components';
 import { useRouter } from 'next/router';
 import { MouseEventHandler, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
@@ -40,6 +40,8 @@ const ModalTypeCompleted = ({ data }: ModalTypeCheckoutProps) => {
 
     if (data?.type === 'inventory') {
       router.push('/inventory');
+    } else if (data?.type === 'marketplace') {
+      router.push('/marketplace');
     }
   };
 
@@ -69,7 +71,7 @@ const ModalTypeCompleted = ({ data }: ModalTypeCheckoutProps) => {
         onClick={handleCheckInventory}
         fullWidth
       >
-        Check my inventory
+        {data?.type === 'inventory' ? 'Check my inventory' : 'Go to marketplace'}
       </Button>
     </Stack>
   );

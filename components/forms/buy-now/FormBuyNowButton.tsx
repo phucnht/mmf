@@ -34,7 +34,7 @@ export default function FormBuyNowButton({
       });
 
       if (resultCancelListing) {
-        await open({ type: 'completed', size: 'md', data: { type: 'inventory' } });
+        await open({ type: 'completed', size: 'md', isClosable: false, data: { type: 'marketplace' } });
       }
     } else {
       const resultListing = await open({

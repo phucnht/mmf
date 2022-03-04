@@ -23,7 +23,7 @@ const Header = () => {
         </Box>
         <ul className="w-full col-span-3 flex gap-x-2 justify-end items-baseline">
           <NavLink href="/" exact content="Home" />
-          <NavLink disabled={isProduction} href="/dashboard/box" content="Dashboard" />
+          <NavLink href="/dashboard/box" content="Dashboard" />
           <NavLink disabled={isProduction} href="/marketplace/items" content="Marketplace" />
           <NavLink href="/metaverse" content="Metaverse" />
           <NavLink disabled href="/document" content="Document" />

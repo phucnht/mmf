@@ -123,7 +123,7 @@ const ModalTypeListing = ({ data, confirm, isCancel }: ModalTypeListingProps) =>
             color={'secondary'}
             fullWidth
           >
-            Cancel Listing
+            {isCancel ? 'Cancel Listing' : 'Post Your Listing'}
           </Button>
         </form>
       </FormProvider>

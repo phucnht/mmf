@@ -19,7 +19,7 @@ export default function FormListingButton({ nftItemId, nftItemOwnerAddress, nftI
     });
 
     if (resultListing) {
-      await open({ type: 'completed', size: 'md', data: { type: 'inventory' } });
+      await open({ type: 'completed', size: 'md', data: { type: 'marketplace' } });
     }
   };
 

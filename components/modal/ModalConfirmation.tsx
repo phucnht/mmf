@@ -15,7 +15,7 @@ import ModalTypeFailed from './types/ModalTypeFailed';
 import ModalTypeProcessing from './types/ModalTypeProcessing';
 
 export default function ModalConfirmation() {
-  const { isOpened, type, size, data, confirm, decline } = useModalConfirmation();
+  const { isOpened, type, size, data, confirm, decline, isClosable } = useModalConfirmation();
   const dispatch = useAppDispatch();
 
   useUnload(() => {
@@ -24,7 +24,7 @@ export default function ModalConfirmation() {
 
   return isOpened ? (
     <ModalOverlay>
-      <ModalContainer decline={decline} size={size}>
+      <ModalContainer decline={decline} size={size} isClosable={isClosable}>
         {type === 'createGameProfile' && <ModalTypeCreateGameProfile />}
         {type === 'account' && <ModalTypeAccount decline={decline} />}
         {type === 'login' && <ModalTypeLoginRequired decline={decline} />}
