@@ -8,7 +8,9 @@ const cloudflareImageLoader = (
   if (!quality) {
     quality = 75;
   }
-  const imgSrc = isExternal ? src : `https://mymetafarm.pages.dev${src}`;
+  const host = window.location.host;
+  const baseUrl = `https://${host}`;
+  const imgSrc = isExternal ? src : `${baseUrl}${src}`;
   return `https://images.mymetafarm.workers.dev?width=${width}&quality=${quality}&image=${imgSrc}`;
 };
 
@@ -22,9 +24,10 @@ export default function Image({ isExternal, src: _src, ...props }: any) {
     // }
   };
 
-  if (process.env.NODE_ENV === 'development') {
-    return <NextImage unoptimized={true} {...imgProps} />;
-  } else {
-    return <NextImage {...imgProps} loader={loader => cloudflareImageLoader(loader, isExternal)} />;
-  }
+  // if (process.env.NODE_ENV === 'development') {
+  //   return <NextImage unoptimized={true} {...imgProps} />;
+  // } else {
+  //   return <NextImage {...imgProps} />;
+  // }
+  return <NextImage {...imgProps} />;
 }
