@@ -23,6 +23,11 @@ const MetaverseCardDescription: FC<MetaverseCardDescriptionProps> = ({
   fromDate,
   toDate
 }) => {
+  const endDate = new Date(toDate).getTime();
+  const now = Date.now();
+
+  const isEventEnded = now > endDate;
+
   return (
     <Stack className="rounded-[2rem] bgg-black p-8 h-full flex-col divide-y divide-white/50">
       <Box className="w-full grow">
@@ -35,7 +40,7 @@ const MetaverseCardDescription: FC<MetaverseCardDescriptionProps> = ({
       </Box>
       <Stack className="flex-col w-full">
         <Text className="text-yellow-100 my-5 w-full">{condition}</Text>
-        <MetaverseCardButton whitelistContract={whitelistContract} onchainId={onchainId} />
+        <MetaverseCardButton whitelistContract={whitelistContract} onchainId={onchainId} isEventEnded={isEventEnded} />
       </Stack>
     </Stack>
   );

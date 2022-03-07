@@ -14,6 +14,9 @@ html {
 }
 
 @layer components {
+  .layout {
+    @apply max-w-[132rem] w-[95%] mx-auto;
+  }
   .main-bg {
     background: linear-gradient(180deg, #0b2f51 45.86%, rgba(11, 47, 81, 0) 100%);
   }
@@ -32,12 +35,10 @@ html {
   .bgg-pink {
     background: linear-gradient(180deg, #f5799e 0%, #de6585 100%);
   }
-
   .character-frame-clip {
     clip-path: url(#characterFrameClip);
     -webkit-clip-path: url(#characterFrameClip);
   }
-
   ::-webkit-scrollbar {
     @apply w-4;
   }

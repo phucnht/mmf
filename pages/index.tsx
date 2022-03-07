@@ -92,11 +92,11 @@ const Hero = () => {
     <>
       <Box className="absolute -mt-[11rem] w-full h-[80rem] bg-[#AED8FF] z-[2]">
         <Container className="relative h-full w-full">
-          <Box className="bg-[url('/assets/home/home-hero.png')] bg-auto bg-no-repeat w-[88rem] 2xl:w-[96rem] h-[55rem] absolute bottom-0 right-0"></Box>
+          <Box className="bg-[url('/assets/home/home-hero.png')] bg-auto bg-no-repeat bg-left w-full max-w-[88rem] h-full max-h-[55rem] absolute bottom-0 right-0"></Box>
         </Container>
       </Box>
       <Box className="-mt-[12rem] h-[70rem] pt-96 z-[5] relative">
-        <Container className="2xl:max-w-[132rem]">
+        <Box className="layout">
           <Flex className="flex-col items-start max-w-4xl 2xl:max-w-5xl">
             <Heading as="h1" className="hidden">
               My Meta Farm
@@ -110,7 +110,7 @@ const Hero = () => {
               Play
             </ButtonImage>
           </Flex>
-        </Container>
+        </Box>
       </Box>
     </>
   );
@@ -127,7 +127,7 @@ const HomeBlock: FC<{ title: string }> = ({ title, children }) => {
             {title}
           </Heading>
         </Stack>
-        <Container className="2xl:max-w-[132rem]">{children}</Container>
+        <Box className="layout">{children}</Box>
       </Box>
     </Box>
   );

@@ -12,3 +12,7 @@ export interface CheckBoxProps {
 export interface ObjectProps {
   [x: string]: any;
 }
+
+export interface CxProps {
+  className?: string;
+}
