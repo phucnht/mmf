@@ -79,12 +79,17 @@ export default function MarketplaceFilter({ elementOptions }: MarketplaceFilterP
 
   return (
     <FormProvider {...method}>
-      <MarketplaceFilterSearch disabled name="search" callback={handleSearchParams} />
+      <MarketplaceFilterSearch name="search" callback={handleSearchParams} />
       <MarketplaceFilterHeader onResetFilter={handleResetFilter} />
-      <MarketplaceFilterSelect disabled name="orderBy" options={SORT_BY_OPTIONS} callback={handleSearchParams} />
-      <MarketplaceFilterSwitch disabled name="listedByMe" callback={handleSearchParams} />
-      <MarketplaceFilterCheckbox disabled name="elements" options={elementOptions} callback={handleSearchParams} />
-      <MarketplaceFilterMinMax disabled nameMin="minPrice" nameMax="maxPrice" callback={handleSearchParams} />
+      <MarketplaceFilterSelect name="orderBy" options={SORT_BY_OPTIONS} callback={handleSearchParams} />
+      <MarketplaceFilterSwitch name="listedByMe" label="Listed By Me" callback={handleSearchParams} />
+      <MarketplaceFilterCheckbox
+        name="elements"
+        label="Elements"
+        options={elementOptions}
+        callback={handleSearchParams}
+      />
+      <MarketplaceFilterMinMax nameMin="minPrice" nameMax="maxPrice" callback={handleSearchParams} />
     </FormProvider>
   );
 }

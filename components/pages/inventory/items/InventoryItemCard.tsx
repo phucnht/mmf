@@ -45,7 +45,9 @@ export default function InventoryItemCard({ item, onClick }: InventoryItemCardPr
             <IconStarList count={item.stars} />
             <Text className="text-md font-black">{item.element}</Text>
           </Flex>
-          <Text>Breed count: {item.breedCount}</Text>
+          <Text>
+            Breed count: <b>{3}</b>
+          </Text>
         </Flex>
         <Image alt={item.name} src={item.imgSrc} />
       </Flex>

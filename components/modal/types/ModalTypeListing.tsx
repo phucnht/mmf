@@ -13,6 +13,8 @@ import { web3 } from 'utils/contract';
 import { selectAuthData } from 'store/account/auth/auth.slice';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import { validateInputNumber } from 'utils/validate';
+import InputNumber from 'components/input/InputNumber';
 export interface ModalTypeListingProps {
   data?: ObjectProps;
   confirm: () => void;
@@ -20,6 +22,7 @@ export interface ModalTypeListingProps {
 }
 
 export type FormValues = {
+  amount: number;
   price: number;
 };
 
@@ -29,41 +32,57 @@ const ModalTypeListing = ({ data, confirm, isCancel }: ModalTypeListingProps) =>
   const symbolBUSD = BUSD?.symbol || 'BUSD';
 
   const schema = yup.object({
-    price: yup.number().integer().required('Required').positive().min(0, 'The number of boxes cannot be smaller than 0')
+    amount: yup
+      .number()
+      .integer()
+      .required('Required')
+      .positive()
+      .min(0, 'The number of amount cannot be smaller than 0'),
+    price: yup.number().required('Required').positive().min(0, 'The number of boxes price be smaller than 0')
   });
 
   const methods = useForm<FormValues>({
-    defaultValues: { price: 0 },
+    defaultValues: { price: 0, amount: 1 },
     resolver: yupResolver(schema)
   });
 
   const { handleSubmit } = methods;
 
-  const onSubmit = handleSubmit(async ({ price }: FormValues) => {
+  const onSubmit = handleSubmit(async ({ amount, price }: FormValues) => {
     if (isCancel) {
-      const resDeleteSaleItem = await axios.delete(
-        `${process.env.NEXT_PUBLIC_API_MARKET}/sale-items/${data?.nftItemId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`
+      try {
+        const resDeleteSaleItem = await axios.delete(
+          `${process.env.NEXT_PUBLIC_API_MARKET}/sale-items/${data?.nftItemId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`
+            }
           }
+        );
+        if (resDeleteSaleItem) {
+          confirm();
         }
-      );
-      if (resDeleteSaleItem) {
-        confirm();
+      } catch (e: any) {
+        toast.error(e.message);
+        return;
       }
     } else {
+      if (amount <= 0) {
+        toast.error('Amount must be larger than 0!');
+        return;
+      }
       if (price <= 0) {
         toast.error('Price must be larger than 0!');
+        return;
       }
-      if (data && price > 0) {
+      if (data) {
         const saltNonce = new Date().getTime();
         const paramsHashMessage = {
           nftItemId: data.nftItemId,
           paymentTokenId: BUSD.id,
           price,
           saltNonce,
-          amount: 1,
+          amount,
           ownerAccept: true
         };
 
@@ -78,21 +97,33 @@ const ModalTypeListing = ({ data, confirm, isCancel }: ModalTypeListingProps) =>
             signedSignature,
             paymentTokenId: BUSD.id,
             price,
-            amount: 1,
+            amount,
             saltNonce
           };
 
-          const resCreateSaleItem = await clientMarket.post('/sale-items/create', {
-            ...paramsCreateSaleItem
-          });
+          console.log('seller saltnonce: ', saltNonce);
 
-          if (resCreateSaleItem) {
-            confirm();
+          try {
+            const resCreateSaleItem = await clientMarket.post('/sale-items/create', {
+              ...paramsCreateSaleItem
+            });
+
+            if (resCreateSaleItem) {
+              confirm();
+            }
+          } catch (e: any) {
+            toast.error(e.message);
+            return;
           }
         }
       }
     }
   });
+
+  const handleValidateInput = (e: any) => {
+    return !validateInputNumber(e) && e.preventDefault();
+  };
+  const handleFocus = (e: any) => e.target.select();
 
   return (
     <Stack className="p-24 rounded-[2rem] shadow-lg relative flex-col w-full bg-blue-500 outline-none focus:outline-none border-[3px] border-green-200 text-white text-2xl font-bold">
@@ -110,10 +141,24 @@ const ModalTypeListing = ({ data, confirm, isCancel }: ModalTypeListingProps) =>
                   : `You are about to list your item on Marketplace #${data?.nftItemId}`}
               </Heading>
               {!isCancel && (
-                <>
-                  <Text className="text-xl">Set price:</Text>
-                  <InputField isForm name="price" prefix={symbolBUSD} />
-                </>
+                <Flex className="flex-col gap-4">
+                  <Flex className="flex-col gap-2">
+                    <Text className="text-xl">Set amount:</Text>
+                    <InputNumber name="amount" onKeyDown={handleValidateInput} onFocus={handleFocus} />
+                  </Flex>
+                  <Flex className="flex-col gap-2">
+                    <Text className="text-xl">Set price:</Text>
+                    <InputField
+                      isForm
+                      type="text"
+                      name="price"
+                      fullWidth
+                      prefix={symbolBUSD}
+                      onKeyDown={handleValidateInput}
+                      onFocus={handleFocus}
+                    />
+                  </Flex>
+                </Flex>
               )}
             </Flex>
           </Flex>

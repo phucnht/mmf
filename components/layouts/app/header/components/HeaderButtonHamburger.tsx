@@ -8,11 +8,11 @@ import { Button } from '@whammytechvn/wt-components';
 
 export default function HeaderButtonHamburger({ className }: CxProps) {
   return (
-    <Popover className={classNames('m-auto', className)}>
+    <Popover className={classNames('my-auto', className)}>
       <Popover.Button
         as={ButtonImageRef}
         imgSrc="/assets/icons/hamburger.svg"
-        className="m-auto h-14 w-14 rounded-none"
+        className="m-auto h-12 w-12 mr-2 xl:mr-1 xl:h-14 xl:w-14 rounded-none"
       />
       <Transition
         as="div"

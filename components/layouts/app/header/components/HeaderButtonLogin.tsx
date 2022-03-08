@@ -9,7 +9,7 @@ const HeaderButtonLogin = () => {
   return (
     <ButtonImage
       imgSrc="/assets/bg/bg-header-user.png"
-      className="bg-contain h-[9rem] xl:h-[10rem] w-[16rem] xl:w-[19.3rem] pt-6"
+      className="bg-contain h-[8rem] w-[16rem] xl:h-[10rem] xl:w-[19.3rem] pt-6"
       onClick={() => connect()}
       disabled={loading}
     >

@@ -50,7 +50,7 @@ export default function FormBuyBox({ amount }: FormBuyBoxProps) {
   return (
     <FormProvider {...methods}>
       <form onSubmit={onSubmit} className="flex flex-col gap-8">
-        <InputNumber name="amount" />
+        <InputNumber name="amount" showMax />
         {methods.formState.errors['amount'] && <Alert type="error" content={'Your balance is not enough BNB'} />}
         <FormBuyBoxButton name="amount" price={MOCK_PRICE} min={0} max={MOCK_LIMIT_PER_TRANSACTION} />
       </form>

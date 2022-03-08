@@ -39,7 +39,7 @@ export default function CardPanelItem({ item, onClick }: CardPanelItemProps) {
   const cxCardWrapper = classNames('flex flex-col text-white hover:opacity-90 transition', {
     'cursor-pointer': onClick
   });
-  const cxId = classNames('bg-blue-300 text-xs font-black py-2 px-5 rounded-[2rem]', {
+  const cxId = classNames('bg-blue-300 text-xs font-black py-2 px-5 rounded-[2rem] flex items-center', {
     // 'bg-blue-300': item.rarity === 'blue',
     // 'bg-green-500': item.rarity === 'green',
     // 'bg-pink-200': item.rarity === 'pink',
@@ -61,10 +61,12 @@ export default function CardPanelItem({ item, onClick }: CardPanelItemProps) {
         <Flex className="flex-col items-start gap-2">
           <Text className={cxId}>#{item.id}</Text>
           <Flex className="justify-center items-end gap-2">
-            <IconStarList count={3} />
+            <IconStarList count={3} className="mt-2" />
             <Text className="text-md font-black">{item.name}</Text>
           </Flex>
-          <Text>Breed count: {3}</Text>
+          <Text>
+            Breed count: <b>{3}</b> | Amount: <b>{item.amount}</b>
+          </Text>
         </Flex>
         <Box className="relative w-full h-full mt-4">
           <Image alt={item.name} src="/assets/img-video/item.png" layout="fill" objectFit="contains" />

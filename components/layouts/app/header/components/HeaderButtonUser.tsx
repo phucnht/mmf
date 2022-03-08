@@ -45,8 +45,12 @@ export default function HeaderButtonUser({ className }: CxProps) {
 
   return (
     <Popover className={classNames('relative', className)}>
-      <Popover.Button as={ButtonImageRef} imgSrc="/assets/bg/bg-header-user.png" className="h-[10rem] w-[19.3rem] pt-6">
-        <Text className="truncate capitalize font-bold">{formatUsername(username)}</Text>
+      <Popover.Button
+        as={ButtonImageRef}
+        imgSrc="/assets/bg/bg-header-user.png"
+        className="h-[6rem] w-[16rem] xl:h-[9rem] xl:w-[19.3rem] pt-6"
+      >
+        <Text className="text-sm xl:text-md truncate capitalize font-bold">{formatUsername(username)}</Text>
       </Popover.Button>
       <Transition
         as="div"

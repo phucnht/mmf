@@ -40,6 +40,9 @@ export default function CardLayoutDetail({ type, item }: CardLayoutDetailProps) 
           {type === 'item' && <CardImageItem id={item.id} name={item.name} />}
           {type === 'character' && <CardImageCharacter id={item.id} name={item.name} />}
           {type === 'land' && <CardImageLand id={item.id} name={item.name} />}
+          <Heading as="h6" className="font-bold text-xl mt-4">
+            Amount: <b>{item.amount}</b>
+          </Heading>
         </Flex>
         <Flex className="flex-col justify-start gap-12 w-[34rem] min-w-[34rem]">
           <Box className="overflow-y-auto overflow-x-hidden max-h-[40rem] pr-12">

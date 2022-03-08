@@ -8,10 +8,20 @@ import { PlusIcon, MinusIcon } from '@heroicons/react/outline';
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   amount?: number;
+  showMax?: boolean;
   className?: string;
 }
 
-const InputNumber = ({ type = 'number', min = 0, max = 40, disabled, className, name, ...props }: InputProps) => {
+const InputNumber = ({
+  type = 'number',
+  min = 0,
+  max = 1000,
+  showMax = false,
+  disabled,
+  className,
+  name,
+  ...props
+}: InputProps) => {
   const { register, watch, setValue } = useFormContext();
 
   const handleValidateInput = (e: any) => {
@@ -81,13 +91,15 @@ const InputNumber = ({ type = 'number', min = 0, max = 40, disabled, className, 
           <PlusIcon className={`text-white h-8 m-auto`} />
         </button>
       </Flex>
-      <button
-        type="button"
-        className="focus:outline-none text-blue-100 uppercase text-lg font-bold ml-6 cursor-pointer"
-        onClick={handleSetMax}
-      >
-        MAX
-      </button>
+      {showMax && (
+        <button
+          type="button"
+          className="focus:outline-none text-blue-100 uppercase text-lg font-bold ml-6 cursor-pointer"
+          onClick={handleSetMax}
+        >
+          MAX
+        </button>
+      )}
     </Flex>
   );
 };
