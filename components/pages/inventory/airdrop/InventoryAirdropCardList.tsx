@@ -43,7 +43,7 @@ const InventoryAirdropCardList: FC = () => {
     <>
       <GridBox className="grid-cols-fluid-32 gap-4">
         {_map(data, item => (
-          <InventoryAirdropCard key={item.id} item={item} onClick={() => goTo(item.id)} />
+          <InventoryAirdropCard key={item.tokenId} item={item} onClick={() => goTo(item.id)} />
         ))}
       </GridBox>
       <Pagination index={currentPage} size={pages} cb={cb} className="mt-12" />

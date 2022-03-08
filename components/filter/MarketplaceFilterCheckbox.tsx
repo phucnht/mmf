@@ -36,10 +36,13 @@ export default function MarketplaceFilterCheckbox({
 
   return (
     <Box className="w-full mx-auto">
-      <Disclosure defaultOpen={true}>
+      <Disclosure defaultOpen={!disabled}>
         {({ open }) => (
           <>
-            <Disclosure.Button className="flex justify-between w-full text-xl uppercase font-black text-white bg-blue-100 rounded-2xl px-8 py-6">
+            <Disclosure.Button
+              disabled={disabled}
+              className="flex justify-between w-full text-xl uppercase font-black text-white bg-blue-100 disabled:!bg-gray-400 disabled:cursor-not-allowed disabled:pointer-events-none rounded-2xl px-8 py-6"
+            >
               <Heading as="h6" className="text-xl uppercase !font-black text-white">
                 {label}
               </Heading>

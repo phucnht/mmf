@@ -1,6 +1,6 @@
 export interface Option {
   key: string;
-  value: string;
+  value: any;
   text: string;
 }
 

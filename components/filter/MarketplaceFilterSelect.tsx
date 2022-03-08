@@ -47,7 +47,9 @@ export default function MarketplaceFilterSelect({ disabled, className, name, opt
               {({ open }) => (
                 <Box className="relative z-[1]">
                   <Listbox.Button className="flex items-center gap-2 font-bold text-lg text-blue-400 p-2 hover:bg-black/5 rounded-[1rem]">
-                    <span className="truncate">{_find(options, ['key', value || SORT_BY.RECENTLY_LISTED])?.text}</span>
+                    <span className="truncate">
+                      {_find(options, ['value', value || { orderBy: 'createdAt', desc: true }])?.text}
+                    </span>
                     <ChevronDownIcon className="h-6 text-blue-400" aria-hidden="true" />
                   </Listbox.Button>
                   <Transition

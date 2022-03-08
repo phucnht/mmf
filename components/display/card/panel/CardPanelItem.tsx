@@ -30,10 +30,11 @@ export const MOCK_ITEM = {
 
 export interface CardPanelItemProps {
   item: NftSaleItemDto;
+  exchange: string;
   onClick?: MouseEventHandler<HTMLDivElement> | undefined;
 }
 
-export default function CardPanelItem({ item, onClick }: CardPanelItemProps) {
+export default function CardPanelItem({ item, exchange, onClick }: CardPanelItemProps) {
   const { BUSD } = useAppSelector(selectPaymentTokenData);
 
   const cxCardWrapper = classNames('flex flex-col text-white hover:opacity-90 transition', {
@@ -59,7 +60,7 @@ export default function CardPanelItem({ item, onClick }: CardPanelItemProps) {
     <div className={cxCardWrapper} onClick={onClick}>
       <Flex className={cxWrapper}>
         <Flex className="flex-col items-start gap-2">
-          <Text className={cxId}>#{item.id}</Text>
+          <Text className={cxId}>#{item.tokenId}</Text>
           <Flex className="justify-center items-end gap-2">
             <IconStarList count={3} className="mt-2" />
             <Text className="text-md font-black">{item.name}</Text>
@@ -76,7 +77,7 @@ export default function CardPanelItem({ item, onClick }: CardPanelItemProps) {
         <Text>
           {getCurrencyToken(item.price)} {BUSD.symbol}
         </Text>
-        <Text>{getCurrencyUSD(item.price)}</Text>
+        <Text>{getCurrencyUSD(item.price * +exchange)}</Text>
       </Stack>
     </div>
   );

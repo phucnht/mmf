@@ -3,9 +3,10 @@ import Image from 'components/display/image/Image';
 import { MouseEventHandler } from 'react';
 import { MediaDto } from 'store/market/nft-item/nftItem.i';
 import imgItem from 'public/assets/img-video/item.png';
+import { Text } from '@whammytechvn/wt-components';
 
 export interface InventoryAirdropDto {
-  id: string;
+  tokenId: string;
   name: string;
   media: MediaDto[];
 }
@@ -19,6 +20,7 @@ export default function InventoryAirdropCard({ item, onClick }: InventoryAirdrop
 
   return (
     <div className={cxCardWrapper} onClick={onClick}>
+      <Text className={'bg-blue-300 text-xs font-black py-2 px-5 rounded-[2rem] w-fit'}>#{item.tokenId}</Text>
       <Image alt={item.name} src={imgItem} />
     </div>
   );

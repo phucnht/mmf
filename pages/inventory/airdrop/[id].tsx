@@ -30,7 +30,7 @@ export default function InventoryMetaverseDetail({ item }: InventoryMetaverseDet
         <ButtonBack className="mb-8" />
         <Flex className="justify-between gap-20 p-28 rounded-[2rem] border-[3px] border-green-200 text-white">
           <Flex className="col-span-3 flex-col items-center justify-between min-h-[48rem] w-full">
-            <CardItem id={item.id} name={item.name} imgSrc={imgItem} />
+            <CardItem id={item.tokenId} name={item.name} imgSrc={imgItem} />
           </Flex>
           <Flex className="col-span-2 flex-col justify-between gap-12 w-[34rem] min-w-[34rem]">
             <Box className="overflow-y-auto overflow-x-hidden max-h-[40rem] pr-12">

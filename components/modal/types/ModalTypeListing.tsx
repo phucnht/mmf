@@ -91,25 +91,31 @@ const ModalTypeListing = ({ data, confirm, isCancel }: ModalTypeListingProps) =>
         })) as any;
 
         if (resHashMessage) {
-          const signedSignature = await web3.eth.personal.sign(resHashMessage.hashMessage, address, '');
-          const paramsCreateSaleItem = {
-            nftItemId: data.nftItemId,
-            signedSignature,
-            paymentTokenId: BUSD.id,
-            price,
-            amount,
-            saltNonce
-          };
-
-          console.log('seller saltnonce: ', saltNonce);
-
           try {
-            const resCreateSaleItem = await clientMarket.post('/sale-items/create', {
-              ...paramsCreateSaleItem
-            });
+            const signedSignature = await web3.eth.personal.sign(resHashMessage.hashMessage, address, '');
+            const paramsCreateSaleItem = {
+              nftItemId: data.nftItemId,
+              signedSignature,
+              paymentTokenId: BUSD.id,
+              price,
+              amount,
+              saltNonce
+            };
 
-            if (resCreateSaleItem) {
+            const resCreateSaleItem = (await axios.post(
+              `${process.env.NEXT_PUBLIC_API_MARKET}/sale-items/create`,
+              paramsCreateSaleItem,
+              {
+                headers: {
+                  Authorization: `Bearer ${accessToken}`
+                }
+              }
+            )) as any;
+
+            if (resCreateSaleItem.data.success) {
               confirm();
+            } else {
+              toast.error(resCreateSaleItem.data.errors.error);
             }
           } catch (e: any) {
             toast.error(e.message);
@@ -147,7 +153,7 @@ const ModalTypeListing = ({ data, confirm, isCancel }: ModalTypeListingProps) =>
                     <InputNumber name="amount" onKeyDown={handleValidateInput} onFocus={handleFocus} />
                   </Flex>
                   <Flex className="flex-col gap-2">
-                    <Text className="text-xl">Set price:</Text>
+                    <Text className="text-xl">Set price (all items):</Text>
                     <InputField
                       isForm
                       type="text"

@@ -41,7 +41,7 @@ export default function MarketplaceFilterMinMax({
       <Disclosure defaultOpen={true}>
         {({ open }) => (
           <>
-            <Disclosure.Button className="flex justify-between w-full rounded-lg">
+            <Disclosure.Button disabled={disabled} className="flex justify-between w-full rounded-lg">
               <Heading as="h6" className="text-xl uppercase !font-black text-white">
                 Price (BNB)
               </Heading>
