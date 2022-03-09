@@ -5,12 +5,13 @@ import { Controller, useFormContext } from 'react-hook-form';
 
 interface FilterSwitchBoxProps {
   name: string;
+  label?: string;
   className?: string;
   disabled?: boolean;
   callback?: () => void;
 }
 
-export default function MarketplaceFilterSwitch({ className, disabled, name, callback }: FilterSwitchBoxProps) {
+export default function MarketplaceFilterSwitch({ className, disabled, name, label, callback }: FilterSwitchBoxProps) {
   const method = useFormContext();
   const cxSwitchWrapper = classNames(
     'w-full items-center justify-between relative rounded-[1rem] bg-white pl-7 py-7 pr-5',
@@ -21,7 +22,7 @@ export default function MarketplaceFilterSwitch({ className, disabled, name, cal
   return (
     <Flex className={cxSwitchWrapper}>
       <Heading as="h6" className="text-blue-400 !font-extrabold text-xl uppercase">
-        LISTED BY ME
+        {label}
       </Heading>
       <Controller
         control={method.control}

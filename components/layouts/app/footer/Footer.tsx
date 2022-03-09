@@ -12,7 +12,7 @@ const Footer = () => {
   const { pathname } = useRouter();
 
   let renderFooter = (
-    <Grid className="container xl:max-w-[132rem] grid-cols-4 text-md">
+    <Grid className="layout grid-cols-4 text-md">
       <Link href="https://www.mymetafarm.com" target="_blank" rel="noopener">
         https://www.mymetafarm.com
       </Link>
@@ -35,7 +35,7 @@ const Footer = () => {
 
   if (pathname === '/') {
     renderFooter = (
-      <Flex className="flex-col items-center gap-6 container xl:max-w-[132rem] text-white">
+      <Flex className="layout flex-col items-center gap-6 text-white">
         <Flex className="items-center gap-4">
           <Link href="https://www.eastfog.com/" target="_blank" rel="noopener">
             <Image alt="East Fog" src={imgLogoEastFog} />

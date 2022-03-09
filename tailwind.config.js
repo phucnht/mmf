@@ -20,6 +20,9 @@ module.exports = {
       btn: ['1.6rem', '3.2rem']
     },
     extend: {
+      // screens: {
+      //   xl: '132rem'
+      // },
       gridTemplateColumns: {
         'fluid-31': 'repeat(auto-fill, minmax(31rem, 1fr))',
         'fluid-32': 'repeat(auto-fill, minmax(32rem, 1fr))',

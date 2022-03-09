@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
 import { getLayoutMarketplaceInventory } from 'components/layouts/pages/marketplace/getLayoutMarketplaceInventory';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'store/store.hook';
 
 import _isEmpty from 'lodash/isEmpty';
@@ -13,11 +13,21 @@ import { nftSaleItemActions, selectNftSaleItemState } from 'store/market/nft-ite
 import CardPanelItem from 'components/display/card/panel/CardPanelItem';
 import EmptyBanner from 'components/display/empty/EmptyBanner';
 import Pagination from 'components/pagination/Pagination';
+import axios from 'axios';
 
 const MarketplaceItems: NextPageWithLayout = () => {
   const router = useRouter();
   const goTo = (itemId: string) => {
     router.push(`/marketplace/items/${itemId}`);
+  };
+  const [exchange, setExchange] = useState('1');
+
+  const getBNBUSDT = async () => {
+    const resBnbToUsdt = await axios.get('https://api.binance.com/api/v3/ticker/price?symbol=BNBUSDT');
+
+    if (resBnbToUsdt) {
+      setExchange(resBnbToUsdt.data.price);
+    }
   };
 
   const dispatch = useAppDispatch();
@@ -28,8 +38,12 @@ const MarketplaceItems: NextPageWithLayout = () => {
   };
 
   useEffect(() => {
+    if (!router.isReady) {
+      return;
+    }
+    getBNBUSDT();
     dispatch(getNftSaleItems({ ...router.query, page: currentPage }));
-  }, [dispatch, router.query, currentPage]);
+  }, [dispatch, router.isReady, router.query, currentPage]);
 
   return (
     <>
@@ -44,7 +58,7 @@ const MarketplaceItems: NextPageWithLayout = () => {
       ) : (
         <GridBox className="grid-cols-fluid-31 gap-4">
           {_map(data, item => {
-            return <CardPanelItem key={item.id} item={item} onClick={() => goTo(item.id)} />;
+            return <CardPanelItem key={item.id} item={item} onClick={() => goTo(item.id)} exchange={exchange} />;
           })}
         </GridBox>
       )}

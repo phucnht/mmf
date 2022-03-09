@@ -1,7 +1,7 @@
 import { ReactNode, useEffect } from 'react';
 import Header from './header/Header';
 import Footer from './footer/Footer';
-import { Box, Container, Scaffold } from '@whammytechvn/wt-components';
+import { Box, Flex, Scaffold } from '@whammytechvn/wt-components';
 import { useAppDispatch, useAppSelector } from 'store/store.hook';
 import { getSystemConfig } from 'store/market/system-config/systemConfig.api';
 import { selectSystemConfigData } from 'store/market/system-config/systemConfig.slice';
@@ -38,9 +38,9 @@ export default function AppLayout({ children }: AppLayoutProps) {
   }, [id, accessToken, MMF, dispatch]);
 
   let renderChildren = (
-    <Container className="mb-36 xl:max-w-[132rem] z-[5]">
-      <Box className="w-full relative grow">{children}</Box>
-    </Container>
+    <Box className="layout mb-36 z-[5]">
+      <Flex className="flex-col justify-center w-full relative grow">{children}</Flex>
+    </Box>
   );
 
   if (pathname === '/') {

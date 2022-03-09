@@ -12,8 +12,6 @@ import CardItem from 'components/pages/inventory/airdrop/CardItem';
 import { getEllipsisTxt } from 'utils/format';
 import { GetServerSidePropsContext } from 'next';
 import DataTableHistory from 'components/table/DataTableHistory';
-import { useAppSelector } from 'store/store.hook';
-import { selectPaymentTokenData } from 'store/market/payment-token/paymentToken.slice';
 import FormListingButton from 'components/forms/listing/FormListingButton';
 export interface InventoryMetaverseDetailProps {
   item: any;
@@ -21,7 +19,6 @@ export interface InventoryMetaverseDetailProps {
 
 export default function InventoryMetaverseDetail({ item }: InventoryMetaverseDetailProps) {
   useAuthGuard();
-  const { BUSD } = useAppSelector(selectPaymentTokenData);
 
   return (
     <>
@@ -33,7 +30,7 @@ export default function InventoryMetaverseDetail({ item }: InventoryMetaverseDet
         <ButtonBack className="mb-8" />
         <Flex className="justify-between gap-20 p-28 rounded-[2rem] border-[3px] border-green-200 text-white">
           <Flex className="col-span-3 flex-col items-center justify-between min-h-[48rem] w-full">
-            <CardItem id={item.id} name={item.name} imgSrc={imgItem} />
+            <CardItem id={item.tokenId} name={item.name} imgSrc={imgItem} />
           </Flex>
           <Flex className="col-span-2 flex-col justify-between gap-12 w-[34rem] min-w-[34rem]">
             <Box className="overflow-y-auto overflow-x-hidden max-h-[40rem] pr-12">
@@ -54,10 +51,10 @@ export default function InventoryMetaverseDetail({ item }: InventoryMetaverseDet
             </Box>
             <Flex className="justify-between">
               <Flex className="flex-col price-block">
-                <Heading as="h6" className="font-bold text-2xl">
+                {/* <Heading as="h6" className="font-bold text-2xl">
                   Price
                 </Heading>
-                <Text className="font-black text-xl">0.361 {BUSD?.symbol}</Text>
+                <Text className="font-black text-xl">0.361 {BUSD?.symbol}</Text> */}
               </Flex>
               <FormListingButton nftItemId={item.id} nftItemOwnerAddress={item.ownerAddress} nftItemImg={imgItem} />
             </Flex>

@@ -1,4 +1,4 @@
-import { Container, Flex } from '@whammytechvn/wt-components';
+import { Box, Container, Flex } from '@whammytechvn/wt-components';
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
 
@@ -42,7 +42,7 @@ const DashboardDashboard: NextPageWithLayout = () => {
         <title>Dashboard - Buy Box | My Metafarm</title>
         <meta name="description" content="Dashboard - Buy Box | My Metafarm" />
       </Head>
-      <Container className="2xl:max-w-[132rem] border-blue-100 border-[3px] rounded-[2rem] px-20 py-[4.5rem]">
+      <Box className="layout border-blue-100 border-[3px] rounded-[2rem] px-20 py-[4.5rem]">
         <Flex className="w-full items-start justify-between mb-10">
           {_times(3, i => (
             <Stats
@@ -56,7 +56,7 @@ const DashboardDashboard: NextPageWithLayout = () => {
           <RecentListLevelBadges items={data1} />
           <RecentListBuyerSeller items={data2} />
         </Flex>
-      </Container>
+      </Box>
     </>
   );
 };

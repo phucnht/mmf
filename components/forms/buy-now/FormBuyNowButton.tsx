@@ -4,10 +4,10 @@ import { CardItemType } from 'components/display/card/detail/CardPanelDetail';
 import { selectAuthData } from 'store/account/auth/auth.slice';
 import { useAppSelector } from 'store/store.hook';
 import { selectSystemConfigData } from 'store/market/system-config/systemConfig.slice';
-import { marketplaceContract, web3 } from 'utils/contract';
+import { erc1155Contract, erc20Contract, marketplaceContract, MAX_INT, web3 } from 'utils/contract';
 import { ObjectProps } from 'utils/types';
 import { selectPaymentTokenData } from 'store/market/payment-token/paymentToken.slice';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export interface FormBuyNowButtonProps {
   item: ObjectProps;
@@ -17,6 +17,7 @@ export interface FormBuyNowButtonProps {
 
 export default function FormBuyNowButton({ item, nftItemType, nftItemImg }: FormBuyNowButtonProps) {
   //   const dispatch = useAppDispatch();
+  const [isProcessing, setIsProcessing] = useState(false);
   const { open, close, type } = useModalConfirmation();
   const { address, accessToken } = useAppSelector(selectAuthData);
   const { marketplaceAddress } = useAppSelector(selectSystemConfigData);
@@ -61,18 +62,43 @@ export default function FormBuyNowButton({ item, nftItemType, nftItemImg }: Form
       });
 
       if (resultCheckout) {
-        const saltNonce = new Date().getTime();
+        // Approve Seller
+        const isApprovedForAll = await erc1155Contract(item.nftContract)
+          .methods.isApprovedForAll(item.ownerAddress, marketplaceAddress)
+          .call();
 
+        if (!isApprovedForAll) {
+          setIsProcessing(true);
+          await erc1155Contract(item.nftContract)
+            .methods.setApprovalForAll(marketplaceAddress, true)
+            .send({ from: address });
+          setIsProcessing(false);
+        }
+
+        // Approve Buyer
+        const allowance = await erc20Contract(BUSD.contractAddress)
+          .methods.allowance(address, marketplaceAddress)
+          .call();
+        const approvePrice = (item.price * 10 ** BUSD.decimals).toLocaleString('fullwide', { useGrouping: false });
+
+        if (Number(allowance) < Number(approvePrice)) {
+          setIsProcessing(true);
+          await erc20Contract(BUSD.contractAddress)
+            .methods.approve(marketplaceAddress, MAX_INT)
+            .send({ from: address });
+          setIsProcessing(false);
+        }
+
+        // Match Transaction
         const addresses = [item.ownerAddress, item.nftContract, BUSD.contractAddress];
         const values = [
           item.tokenId,
           web3.utils.toWei(`${item.price}`, 'ether'),
-          saltNonce,
-          web3.utils.toBN(`1`).toString()
+          item.saltNonce,
+          web3.utils.toBN(`${item.amount}`).toString()
         ];
         const signature = item.signedSignature;
 
-        console.log(address, addresses, values, signature);
         marketplaceContract(marketplaceAddress)
           .methods.matchTransaction1155(addresses, values, signature)
           .send({ from: address })
@@ -95,8 +121,9 @@ export default function FormBuyNowButton({ item, nftItemType, nftItemImg }: Form
 
   return (
     <Button
-      color="secondary"
-      className="text-red-100 py-3 px-4 min-w-fit xl:min-w-[20rem] text-xl"
+      disabled={isProcessing}
+      color={isProcessing ? 'default' : 'secondary'}
+      className="text-red-100 max-h-24 py-3 px-4 min-w-fit xl:min-w-[20rem] text-xl disabled:bg-grey-400 disabled:cursor-not-allowed disabled:pointer-events-none"
       content={listedByMe ? 'Cancel listing' : 'Buy Now'}
       onClick={handleOnClick}
     />

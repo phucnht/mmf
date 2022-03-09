@@ -16,29 +16,37 @@ const ButtonType = {
   SUCCESS: 'success'
 };
 
-const MetaverseCardButton: FC<{ whitelistContract: string; onchainId: string }> = ({
+const MetaverseCardButton: FC<{ isEventEnded: boolean; whitelistContract: string; onchainId: string }> = ({
   whitelistContract,
-  onchainId
+  onchainId,
+  isEventEnded
 }) => {
   const { accessToken, address } = useAppSelector(selectAuthData);
   const { metaverseContractAddress } = useAppSelector(selectSystemConfigData);
   const [isClaimable, setIsClaimable] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
 
-  const toggleClaimable = useCallback(async () => {
-    const result = await checkIsInWhitelist(whitelistContract, address);
-    const alreadyClaimed = await metaverseContract(metaverseContractAddress)
-      .methods.metaverseEventClaims(onchainId, address)
-      .call();
+  const toggleClaimable = useCallback(
+    async (address: string, isEventEnded: boolean) => {
+      if (isEventEnded) {
+        setIsClaimable(false);
+      } else {
+        if (address) {
+          const result = await checkIsInWhitelist(whitelistContract, address);
+          const alreadyClaimed = await metaverseContract(metaverseContractAddress)
+            .methods.metaverseEventClaims(onchainId, address)
+            .call();
 
-    setIsClaimable(result && alreadyClaimed === false);
-  }, [metaverseContractAddress, onchainId, whitelistContract, address]);
+          setIsClaimable(result && alreadyClaimed === false);
+        }
+      }
+    },
+    [metaverseContractAddress, onchainId, whitelistContract]
+  );
 
   useEffect(() => {
-    if (address) {
-      toggleClaimable();
-    }
-  }, [address, toggleClaimable]);
+    toggleClaimable(address, isEventEnded);
+  }, [toggleClaimable, address, isEventEnded]);
 
   const router = useRouter();
   const [type, setType] = useState(ButtonType.IDLE);
@@ -89,7 +97,7 @@ const MetaverseCardButton: FC<{ whitelistContract: string; onchainId: string }> 
     renderButton = (
       <Button
         color={isClaimable && !isProcessing ? 'secondary' : 'default'}
-        disabled={!isClaimable || isProcessing}
+        disabled={isClaimable === false || (isClaimable && isProcessing)}
         content="Claim"
         fullWidth
         className="py-5 text-red-100 disabled:bg-grey-400 disabled:cursor-not-allowed disabled:pointer-events-none"

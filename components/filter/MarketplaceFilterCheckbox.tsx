@@ -10,12 +10,14 @@ interface MarketplaceFilterCheckboxProps {
   className?: string;
   name: string;
   options: Option[];
+  label?: string;
   disabled?: boolean;
   callback?: () => void;
 }
 
 export default function MarketplaceFilterCheckbox({
   name,
+  label,
   disabled,
   options,
   callback
@@ -34,12 +36,15 @@ export default function MarketplaceFilterCheckbox({
 
   return (
     <Box className="w-full mx-auto">
-      <Disclosure defaultOpen={true}>
+      <Disclosure defaultOpen={!disabled}>
         {({ open }) => (
           <>
-            <Disclosure.Button className="flex justify-between w-full text-xl uppercase font-black text-white bg-blue-100 rounded-2xl px-8 py-6">
+            <Disclosure.Button
+              disabled={disabled}
+              className="flex justify-between w-full text-xl uppercase font-black text-white bg-blue-100 disabled:!bg-gray-400 disabled:cursor-not-allowed disabled:pointer-events-none rounded-2xl px-8 py-6"
+            >
               <Heading as="h6" className="text-xl uppercase !font-black text-white">
-                Element
+                {label}
               </Heading>
               <Box className="flex items-center justify-center w-[2.8rem] h-[2.8rem] bg-brown-100 rounded-lg">
                 {open && <PlusIcon className={'text-white h-8'} />}

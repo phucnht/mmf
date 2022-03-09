@@ -8,6 +8,9 @@ import erc1155 from './abis/ERC1155.json';
 import whitelist from './abis/whitelist.json';
 import metaverse from './abis/metaverse.json';
 import marketplace from './abis/marketplace.json';
+import season from './abis/season.json';
+
+export const SEASON_ADDRESS = '0x5B315294E4701cF269d9607b9a68f7E2f4B31B59';
 
 export const web3 = new Web3(Web3.givenProvider || 'ws://localhost:8545');
 
@@ -22,3 +25,4 @@ export const marketplaceContract = (address?: string): Contract =>
   new web3.eth.Contract(marketplace as AbiItem[], address);
 export const whitelistContract = (address?: string): Contract => new web3.eth.Contract(whitelist as AbiItem[], address);
 export const metaverseContract = (address?: string): Contract => new web3.eth.Contract(metaverse as AbiItem[], address);
+export const seasonContract = (address?: string): Contract => new web3.eth.Contract(season as AbiItem[], address);

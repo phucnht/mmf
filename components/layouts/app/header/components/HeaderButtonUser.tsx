@@ -1,13 +1,12 @@
 import { useRouter } from 'next/router';
 import { Popover, Transition } from '@headlessui/react';
 
-import { ButtonImage, Text } from '@whammytechvn/wt-components';
+import { Text } from '@whammytechvn/wt-components';
 
 import HeaderBalance from '../HeaderBalance';
 import TextCopyable from 'components/display/text/TextCopyable';
 import HeaderButtonLogin from './HeaderButtonLogin';
-import { forwardRef, useEffect } from 'react';
-import { ButtonImageProps } from '@whammytechvn/wt-components/dist/controls/button-image/ButtonImage.i';
+import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from 'store/store.hook';
 import { logout, selectAuthData } from 'store/account/auth/auth.slice';
 import { selectProfileData } from 'store/account/profile/profile.slice';
@@ -15,18 +14,10 @@ import { getProfileByAddress } from 'store/account/profile/profile.api';
 import { formatUsername } from 'utils/format';
 import classNames from 'classnames';
 import Divider from 'components/display/divider/Divider';
+import ButtonImageRef from './ButtonImageRef';
+import { CxProps } from 'utils/types';
 
-const ButtonImageRef = forwardRef<any, ButtonImageProps>(({ children, ...props }: ButtonImageProps, ref) => {
-  return (
-    <div ref={ref}>
-      <ButtonImage {...props}>{children}</ButtonImage>
-    </div>
-  );
-});
-
-ButtonImageRef.displayName = 'ButtonImageRef';
-
-const HeaderButtonUser = () => {
+export default function HeaderButtonUser({ className }: CxProps) {
   const { pathname } = useRouter();
   const dispatch = useAppDispatch();
   const { accessToken, address, balance, balance2 } = useAppSelector(selectAuthData);
@@ -53,9 +44,13 @@ const HeaderButtonUser = () => {
   }
 
   return (
-    <Popover className="relative">
-      <Popover.Button as={ButtonImageRef} imgSrc="/assets/bg/bg-header-user.png" className="h-[10rem] w-[19.3rem] pt-6">
-        <Text className="truncate capitalize font-bold">{formatUsername(username)}</Text>
+    <Popover className={classNames('relative', className)}>
+      <Popover.Button
+        as={ButtonImageRef}
+        imgSrc="/assets/bg/bg-header-user.png"
+        className="h-[6rem] w-[16rem] xl:h-[9rem] xl:w-[19.3rem] pt-6"
+      >
+        <Text className="text-sm xl:text-md truncate capitalize font-bold">{formatUsername(username)}</Text>
       </Popover.Button>
       <Transition
         as="div"
@@ -93,6 +88,4 @@ const HeaderButtonUser = () => {
       </Transition>
     </Popover>
   );
-};
-
-export default HeaderButtonUser;
+}

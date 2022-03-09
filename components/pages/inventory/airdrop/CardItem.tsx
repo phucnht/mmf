@@ -34,7 +34,7 @@ export default function CardItem({ imgSrc, className, name, id, children }: Card
         />
         <Stack className="flex-col justify-center w-full gap-7 mt-4">
           <Box className="text-2xl font-bold">{renderContent}</Box>
-          <Text className={'bg-blue-100 text-md font-black py-3 px-6 rounded-[2rem]'}>#{id}</Text>
+          <Text className={'bg-blue-100 text-md font-black py-3 px-6 rounded-[2rem] flex items-center'}>#{id}</Text>
         </Stack>
       </Flex>
     </Box>
