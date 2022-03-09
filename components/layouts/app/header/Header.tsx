@@ -17,9 +17,9 @@ const HeaderDesktop = () => {
 const HeaderMobile = () => {
   return (
     <>
-      <HeaderButtonHamburger />
+      <HeaderButtonHamburger className="mr-auto lg:mr-0" />
       <HeaderLogo />
-      <HeaderButtonUser />
+      <HeaderButtonUser className="ml-auto lg:ml-0" />
     </>
   );
 };
@@ -30,8 +30,8 @@ export default function Header() {
   return (
     <>
       <BackgroundHeaderShadow />
-      <nav className="z-40 layout grid grid-cols-3 sm:grid-cols-4 gap-x-6 relative my-4 !px-0">
-        {windowSize?.width < 960 ? <HeaderMobile /> : <HeaderDesktop />}
+      <nav className="z-40 layout grid grid-cols-4 gap-x-6 relative my-4 !px-0">
+        {windowSize?.width < 1024 ? <HeaderMobile /> : <HeaderDesktop />}
       </nav>
     </>
   );
