@@ -7,7 +7,6 @@ import Image from 'components/display/image/Image';
 import imgDashboardBox from 'public/assets/dashboard/box.png';
 import { MOCK_CONTENT } from 'utils/mock';
 import FormBuyBox from 'components/forms/buy-box/FormBuyBox';
-import { GetServerSidePropsContext } from 'next';
 import { BoxDto } from 'store/box/box.i';
 
 export interface DashboardBoxDetailProps {
@@ -55,11 +54,5 @@ export default function DashboardBoxDetail() {
     </>
   );
 }
-
-export const getServerSideProps = async ({ query }: GetServerSidePropsContext) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BOX}/${query.id}`);
-  const { data } = await res.json();
-  return { props: { box: data } };
-};
 
 DashboardBoxDetail.getLayout = getLayoutDefaultSmall;

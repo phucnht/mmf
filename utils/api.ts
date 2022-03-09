@@ -64,4 +64,3 @@ export const client = (baseURL?: string): AxiosInstance => {
 export const clientMarket = client(process.env.NEXT_PUBLIC_API_MARKET);
 export const clientAccount = client(process.env.NEXT_PUBLIC_API_ACCOUNT);
 export const clientDashboard = client(process.env.NEXT_PUBLIC_API_DASHBOARD);
-export const clientBox = client(process.env.NEXT_PUBLIC_API_BOX);
