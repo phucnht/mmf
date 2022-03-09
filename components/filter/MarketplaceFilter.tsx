@@ -92,8 +92,6 @@ export const convertQueryToFormaValues = (query: ObjectProps) => {
     }
   }
 
-  console.log(result);
-
   return result;
 };
 
