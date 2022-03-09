@@ -16,7 +16,7 @@ const Metaverse: NextPageWithLayout = () => {
         <meta name="description" content="Metaverse | My Metafarm" />
       </Head>
       <Stack className="flex-col gap-16 layout mx-auto lg:mt-32 z-10">
-        <Box className="-mt-56 flex flex-col">
+        <Box className="-mt-48 lg:-mt-56 flex flex-col max-w-[85%] h-auto">
           <Image alt="Welcome Metaverse" src={imgMetaverse} />
         </Box>
         <MetaverseCardList />

@@ -48,7 +48,7 @@ export default function HeaderButtonUser({ className }: CxProps) {
       <Popover.Button
         as={ButtonImageRef}
         imgSrc="/assets/bg/bg-header-user.png"
-        className="h-[6rem] w-[16rem] xl:h-[9rem] xl:w-[19.3rem] pt-6"
+        className="h-[6rem] w-[10.5rem] sm:w-[16rem] xl:h-[9rem] xl:w-[19.3rem] pt-6"
       >
         <Text className="text-sm xl:text-md truncate capitalize font-bold">{formatUsername(username)}</Text>
       </Popover.Button>
