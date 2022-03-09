@@ -16,6 +16,7 @@ import { useRouter } from 'next/router';
 import { stringify } from 'querystring';
 import { useAppSelector } from 'store/store.hook';
 import { selectAuthData } from 'store/account/auth/auth.slice';
+import { convertEnumToSelectOptions } from 'utils/convert';
 
 export type FilterProps = {
   searchParams: ObjectProps;
@@ -30,13 +31,14 @@ export const SORT_BY = {
   RECENTLY_LISTED: 'Recently Listed'
 };
 
-export const SORT_BY_OPTIONS = [
-  { key: 'Lowest ID', text: 'Lowest ID', value: { orderBy: 'id', desc: false } },
-  { key: 'Highest ID', text: 'Highest ID', value: { orderBy: 'id', desc: true } },
-  { key: 'Lowest Price', text: 'Lowest Price', value: { orderBy: 'price', desc: false } },
-  { key: 'Highest Price', text: 'Highest Price', value: { orderBy: 'price', desc: true } },
-  { key: 'Recently Listed', text: 'Recently Listed', value: { orderBy: 'createdAt', desc: true } }
-];
+export const SORT_BY_OPTIONS = convertEnumToSelectOptions(SORT_BY);
+// export const SORT_BY_OPTIONS = [
+//   { key: 'Lowest ID', text: 'Lowest ID', value: { orderBy: 'id', desc: false } },
+//   { key: 'Highest ID', text: 'Highest ID', value: { orderBy: 'id', desc: true } },
+//   { key: 'Lowest Price', text: 'Lowest Price', value: { orderBy: 'price', desc: false } },
+//   { key: 'Highest Price', text: 'Highest Price', value: { orderBy: 'price', desc: true } },
+//   { key: 'Recently Listed', text: 'Recently Listed', value: { orderBy: 'createdAt', desc: true } }
+// ];
 
 export type searchParamsProps = {
   search: string;
@@ -124,8 +126,33 @@ export default function MarketplaceFilter({ elementOptions }: MarketplaceFilterP
         if (key === 'listedByMe') {
           if (value) result['owner'] = address;
         } else if (key === 'orderBy') {
-          result['orderBy'] = value.orderBy;
-          result['desc'] = value.desc;
+          switch (value) {
+            case SORT_BY.LOWEST_ID: {
+              result['orderBy'] = 'id';
+              result['desc'] = false;
+              break;
+            }
+            case SORT_BY.HIGHEST_ID: {
+              result['orderBy'] = 'id';
+              result['desc'] = true;
+              break;
+            }
+            case SORT_BY.LOWEST_PRICE: {
+              result['orderBy'] = 'price';
+              result['desc'] = false;
+              break;
+            }
+            case SORT_BY.HIGHEST_PRICE: {
+              result['orderBy'] = 'price';
+              result['desc'] = true;
+              break;
+            }
+            default: {
+              result['orderBy'] = 'createdAt';
+              result['desc'] = true;
+              break;
+            }
+          }
         } else {
           result[key] = value;
         }
