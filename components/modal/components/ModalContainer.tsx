@@ -13,7 +13,7 @@ export interface ModalContainerProps {
 }
 
 const ModalContainer: FC<ModalContainerProps> = ({ size = 'sm', decline, children, isClosable }) => {
-  const cxModalContainer = classNames(`relative w-full my-6 mx-auto`, {
+  const cxModalContainer = classNames(`relative w-3/4 my-6 mx-auto`, {
     'max-w-3xl': size === 'sm',
     'max-w-[68rem]': size === 'md',
     'max-w-max': size === 'max',

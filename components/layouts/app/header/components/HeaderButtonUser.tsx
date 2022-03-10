@@ -23,7 +23,7 @@ export default function HeaderButtonUser({ className }: CxProps) {
   const { accessToken, address, balance, balance2 } = useAppSelector(selectAuthData);
   const { username } = useAppSelector(selectProfileData);
   const cxTab = (path?: string, isLast = false) =>
-    classNames('px-8 py-4 uppercase font-bold hover:bg-green-500/70 cursor-pointer', {
+    classNames('px-8 py-4 uppercase font-bold hover:bg-green-500/70 cursor-pointer w-full text-center lg:text-left', {
       'bg-green-500': path ? pathname.startsWith(path) : false,
       'hover:rounded-b-[2rem]': isLast
     });
@@ -44,7 +44,7 @@ export default function HeaderButtonUser({ className }: CxProps) {
   }
 
   return (
-    <Popover className={classNames('relative', className)}>
+    <Popover className={classNames('my-auto lg:relative', className)}>
       <Popover.Button
         as={ButtonImageRef}
         imgSrc="/assets/bg/bg-header-user.png"
@@ -60,15 +60,16 @@ export default function HeaderButtonUser({ className }: CxProps) {
         leave="transition duration-75 ease-out"
         leaveFrom="transform scale-100 opacity-100"
         leaveTo="transform scale-95 opacity-0"
-        className="absolute right-0"
+        className="absolute right-0 w-full z-50 mt-8 lg:mt-0 min-w-[20rem]"
       >
-        <Popover.Panel className="text-white text-md bg-blue-400 rounded-[2rem] min-w-[20rem]">
+        <Popover.Panel className="text-white text-md bg-blue-400 rounded-[2rem] flex flex-col items-center lg:items-start">
           {({ close }) => (
             <>
               <TextCopyable className="px-8 py-4 justify-between" value={address} />
-              <Divider />
+              <Divider className="w-full" />
               <HeaderBalance className="px-8 py-4" value={balance} />
               <HeaderBalance className="px-8 py-4" value={balance2} />
+              <Divider className="w-full" />
               <div
                 role="navigation"
                 onClick={() => {

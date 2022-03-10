@@ -55,7 +55,7 @@ export default function MetaverseCard({ metaverse }: MetaverseCardProps) {
         objectFit="cover"
         className="rounded-[2rem]"
       />
-      <Box className="absolute left-2 bottom-2 lg:bottom-0 lg:left-4 2xl:left-4 w-1/2 h-full max-w-[16rem] max-h-64 lg:w-1/2 lg:h-1/2">
+      <Box className="absolute left-1 lg:bottom-0 lg:left-4 2xl:left-4 w-1/2 h-full max-w-[16rem] max-h-64 lg:w-1/2 lg:h-1/2">
         {/* <Image
       src={metaverse.itemImage}
       alt={metaverse.description}
@@ -79,7 +79,7 @@ export default function MetaverseCard({ metaverse }: MetaverseCardProps) {
     <Grid className="w-full lg:grid-cols-11 gap-4 text-white text-xl font-bold">
       <Flex className="flex-col lg:col-span-6 gap-4">
         <MetaverseCardTitle title={metaverse.name} />
-        <Center className="flex lg:hidden justify-center items-center relative w-full h-full min-h-[13.5rem]">
+        <Center className="flex lg:hidden justify-center items-center relative w-full h-full min-h-[12.5rem]">
           {metaverseCardImageMobile}
         </Center>
         <MetaverseCardDescription
