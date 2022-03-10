@@ -3,6 +3,7 @@ import { Box } from '@whammytechvn/wt-components';
 import { useRouter } from 'next/router';
 import _find from 'lodash/find';
 import { SidebarRoutesProps } from '../sidebar/sidebar.typings';
+import Image from 'next/image';
 
 export default function NavbarMobileSelect({ routes, levelSlug = 1 }: SidebarRoutesProps) {
   const router = useRouter();
@@ -42,14 +43,16 @@ export default function NavbarMobileSelect({ routes, levelSlug = 1 }: SidebarRou
                   value={route.slug}
                   disabled={route.disabled}
                   className={({ active }) =>
-                    `relative p-4 ${active && 'bg-green-200'} ${
+                    `flex gap-4 items-center relative p-4 ${active && 'bg-green-200'} ${
                       route.disabled ? 'text-gray-300 cursor-not-allowed' : 'cursor-pointer text-white'
                     }`
                   }
                 >
-                  <span className={`block uppercase truncate font-black`}>{route.label}</span>
+                  {route.icon && <Image src={route.icon} alt={route.label} />}
+                  <span className={`uppercase truncate font-black`}>{route.label}</span>
                 </Listbox.Option>
               ))}
+              <span className="block ml-auto my-auto bg-[url('/assets/icons/select-icon.svg')] bg-center bg-auto bg-no-repeat w-5 h-4 text-white mr-5 mb-5 scale-[-1]" />
             </Listbox.Options>
           </Transition>
         </Box>
