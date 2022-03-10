@@ -91,11 +91,11 @@ const Hero = () => {
   return (
     <>
       <Box className="absolute -mt-[11rem] w-full h-[80rem] bg-[#AED8FF] z-[2]">
-        <Container className="relative h-full w-full">
+        <Box className="layout relative h-full w-full">
           <Box className="bg-[url('/assets/home/home-hero.png')] bg-auto bg-no-repeat bg-left w-full max-w-[88rem] h-full max-h-[55rem] absolute bottom-0 right-0"></Box>
-        </Container>
+        </Box>
       </Box>
-      <Box className="-mt-[12rem] h-[70rem] pt-96 z-[5] relative">
+      <Box className="-mt-[24rem] h-[70rem] pt-96 z-[5] relative">
         <Box className="layout">
           <Flex className="flex-col items-start max-w-4xl 2xl:max-w-5xl">
             <Heading as="h1" className="hidden">

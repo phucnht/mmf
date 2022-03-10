@@ -78,7 +78,7 @@ const Footer = () => {
     );
   }
 
-  const cxFooter = classNames('relative lg:absolute !bg-transparent lg:!bg-black/40 lg:mb-0 z-10 h-auto p-8', {
+  const cxFooter = classNames('relative !bg-transparent lg:!bg-black/40 lg:mb-0 z-10 h-auto p-8', {
     'lg:!h-[22rem] relative': pathname === '/'
   });
 

@@ -77,9 +77,9 @@ export default function MetaverseCard({ metaverse }: MetaverseCardProps) {
 
   return (
     <Grid className="w-full lg:grid-cols-11 gap-4 text-white text-xl font-bold">
-      <Flex className="flex-col col-span-6 gap-4">
+      <Flex className="flex-col lg:col-span-6 gap-4">
         <MetaverseCardTitle title={metaverse.name} />
-        <Center className="flex lg:hidden justify-center items-center relative h-full w-full max-h-[17rem]">
+        <Center className="flex lg:hidden justify-center items-center relative w-full h-full min-h-[13.5rem]">
           {metaverseCardImageMobile}
         </Center>
         <MetaverseCardDescription
@@ -91,7 +91,9 @@ export default function MetaverseCard({ metaverse }: MetaverseCardProps) {
           whitelistContract={metaverse.whitelistContract}
         />
       </Flex>
-      <Center className="hidden lg:flex col-span-5 justify-center items-center relative">{metaverseCardImage}</Center>
+      <Center className="hidden lg:flex lg:col-span-5 justify-center items-center relative">
+        {metaverseCardImage}
+      </Center>
     </Grid>
   );
 }
