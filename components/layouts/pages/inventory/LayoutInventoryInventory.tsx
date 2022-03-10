@@ -7,9 +7,9 @@ import imgIconEvents from 'public/assets/navbar/events.png';
 import imgIconItems from 'public/assets/navbar/items.png';
 import imgIconLands from 'public/assets/navbar/lands.png';
 import SidebarHorizontal from 'components/navigation/sidebar/SidebarHorizontal';
-import { getLayoutInventory } from './getLayoutInventory';
+import { LayoutInventory } from './LayoutInventory';
 
-const routes = [
+export const routesInventorySub = [
   {
     icon: imgIconCharacters,
     label: 'Characters',
@@ -47,9 +47,9 @@ const routes = [
   }
 ];
 
-export function getLayoutInventoryInventory(page: ReactElement) {
-  return getLayoutInventory(
-    <SidebarHorizontal routes={routes} baseSlug="/inventory">
+export function LayoutInventoryInventory(page: ReactElement) {
+  return LayoutInventory(
+    <SidebarHorizontal routes={routesInventorySub} baseSlug="/inventory">
       {page}
     </SidebarHorizontal>
   );

@@ -24,7 +24,7 @@ export default function SidebarHorizontal({
 
   const cxTabWrapper = classNames('w-full text-white text-sm', className);
   const cxTabs = classNames(
-    'justify-start gap-20 text-white w-full py-6 px-8 xl:py-10 xl:px-12 rounded-[2rem] bg-green-300'
+    'hidden lg:flex justify-start gap-20 text-white w-full py-6 px-8 xl:py-10 xl:px-12 rounded-[2rem] bg-green-300'
   );
   const cxTab = classNames('flex items-center relative uppercase font-black text-md');
 
@@ -52,7 +52,7 @@ export default function SidebarHorizontal({
           </Tab>
         ))}
       </Tab.List>
-      <Tab.Panels as={Box} className="w-full text-white text-sm mt-12">
+      <Tab.Panels as={Box} className="w-full text-white text-sm mt-4 lg:mt-12">
         {children}
       </Tab.Panels>
     </Tab.Group>

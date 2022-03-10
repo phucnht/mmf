@@ -38,7 +38,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
   }, [id, accessToken, MMF, dispatch]);
 
   let renderChildren = (
-    <Box className="layout mb-36 z-[5]">
+    <Box className="layout  z-[5] grow">
       <Flex className="flex-col justify-center w-full relative grow">{children}</Flex>
     </Box>
   );

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Box, Button, Flex, Heading, Text } from '@whammytechvn/wt-components';
 import Divider from 'components/display/divider/Divider';
 import { InputField } from 'components/input/InputField';
-import { getLayoutInventoryOffset } from 'components/layouts/pages/inventory/getLayoutInventory';
+import { LayoutInventoryOffset } from 'components/layouts/pages/inventory/LayoutInventory';
 import FormChangeName from 'components/forms/FormChangeName';
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
@@ -26,19 +26,19 @@ const MarketplaceAccount: NextPageWithLayout = () => {
         <meta name="description" content="Account | My Metafarm" />
       </Head>
       <Box className="border-green-200 border-[3px] rounded-[2rem] w-full p-28 pr-48">
-        <Heading as="h1" className="text-2xl font-extrabold">
+        <Heading as="h1" className="text-white text-2xl font-extrabold">
           Account Settings
         </Heading>
         <Divider className="mt-10" />
         <Box className="w-2/3">
           <Box className="mt-12">
-            <Heading as="h2" className="!text-xl font-bold uppercase mb-8">
+            <Heading as="h2" className="text-white !text-xl font-bold uppercase mb-8">
               General Settings
             </Heading>
             <FormChangeName />
           </Box>
           <Box className="mt-12">
-            <Heading as="h2" className="!text-xl font-bold uppercase mb-8">
+            <Heading as="h2" className="text-white !text-xl font-bold uppercase mb-8">
               Game Profile
             </Heading>
             {userCreated ? (
@@ -64,6 +64,6 @@ const MarketplaceAccount: NextPageWithLayout = () => {
   );
 };
 
-MarketplaceAccount.getLayout = getLayoutInventoryOffset;
+MarketplaceAccount.getLayout = LayoutInventoryOffset;
 
 export default MarketplaceAccount;

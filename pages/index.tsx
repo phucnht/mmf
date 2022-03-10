@@ -95,7 +95,7 @@ const Hero = () => {
           <Box className="bg-[url('/assets/home/home-hero.png')] bg-auto bg-no-repeat bg-left w-full max-w-[88rem] h-full max-h-[55rem] absolute bottom-0 right-0"></Box>
         </Box>
       </Box>
-      <Box className="-mt-[24rem] h-[70rem] pt-96 z-[5] relative">
+      <Box className="-mt-48 h-[70rem] pt-96 z-[5] relative">
         <Box className="layout">
           <Flex className="flex-col items-start max-w-4xl 2xl:max-w-5xl">
             <Heading as="h1" className="hidden">

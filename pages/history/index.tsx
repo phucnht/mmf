@@ -1,5 +1,5 @@
 import EmptyBanner from 'components/display/empty/EmptyBanner';
-import { getLayoutInventoryOffset } from 'components/layouts/pages/inventory/getLayoutInventory';
+import { LayoutInventoryOffset } from 'components/layouts/pages/inventory/LayoutInventory';
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
 
@@ -15,6 +15,6 @@ const MarketplaceHistory: NextPageWithLayout = () => {
   );
 };
 
-MarketplaceHistory.getLayout = getLayoutInventoryOffset;
+MarketplaceHistory.getLayout = LayoutInventoryOffset;
 
 export default MarketplaceHistory;

@@ -25,7 +25,7 @@ export default function HeaderButtonUser({ className }: CxProps) {
   const cxTab = (path?: string, isLast = false) =>
     classNames('px-8 py-4 uppercase font-bold hover:bg-green-500/70 cursor-pointer w-full text-center lg:text-left', {
       'bg-green-500': path ? pathname.startsWith(path) : false,
-      'hover:rounded-b-[2rem]': isLast
+      'hover:rounded-b-2xl lg:hover:rounded-b-[2rem]': isLast
     });
 
   useEffect(() => {
@@ -62,7 +62,7 @@ export default function HeaderButtonUser({ className }: CxProps) {
         leaveTo="transform scale-95 opacity-0"
         className="absolute right-0 w-full z-50 mt-8 lg:mt-0 min-w-[20rem]"
       >
-        <Popover.Panel className="text-white text-md bg-blue-400 rounded-[2rem] flex flex-col items-center lg:items-start">
+        <Popover.Panel className="text-white text-md bg-blue-400 rounded-2xl lg:rounded-[2rem] flex flex-col items-center lg:items-start">
           {({ close }) => (
             <>
               <TextCopyable className="px-8 py-4 justify-between" value={address} />

@@ -1,5 +1,5 @@
 import { Box } from '@whammytechvn/wt-components';
-import { getLayoutInventoryInventory } from 'components/layouts/pages/inventory/getLayoutInventoryInventory';
+import { LayoutInventoryInventory } from 'components/layouts/pages/inventory/LayoutInventoryInventory';
 import useAuthGuard from 'hooks/useAuthGuard';
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
@@ -18,6 +18,6 @@ const InventoryEvents: NextPageWithLayout = () => {
   );
 };
 
-InventoryEvents.getLayout = getLayoutInventoryInventory;
+InventoryEvents.getLayout = LayoutInventoryInventory;
 
 export default InventoryEvents;
