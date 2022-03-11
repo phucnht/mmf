@@ -1,5 +1,8 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const withTM = require('next-transpile-modules')(['three']);
+
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+module.exports = withTM({
   reactStrictMode: true,
   exportPathMap: function () {
     return {
@@ -41,6 +44,4 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true
   }
-};
-
-module.exports = nextConfig;
+});

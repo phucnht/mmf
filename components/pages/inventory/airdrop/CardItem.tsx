@@ -1,9 +1,10 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import { Box, Flex, Stack, Text } from '@whammytechvn/wt-components';
 import classNames from 'classnames';
+import Canvas3D from 'components/3d/Canvas3D';
 // import Image from 'components/display/image/Image';
 import { ReactNode } from 'react';
-import ReactPlayer from 'react-player';
+// import ReactPlayer from 'react-player';
 
 export interface CardItemProps {
   imgSrc?: StaticImageData | undefined;
@@ -21,7 +22,7 @@ export default function CardItem({ imgSrc, className, name, id, children }: Card
     <Box className="w-full">
       <Flex className={cxCardWrapper}>
         {/* <Image alt={content} src={imgSrc} /> */}
-        <ReactPlayer
+        {/* <ReactPlayer
           url="/assets/img-video/item.mp4"
           style={{ borderRadius: '2rem' }}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -31,7 +32,8 @@ export default function CardItem({ imgSrc, className, name, id, children }: Card
           playing={true}
           controls={false}
           muted
-        />
+        /> */}
+        <Canvas3D />
         <Stack className="flex-col justify-center w-full gap-7 mt-4">
           <Box className="text-2xl font-bold">{renderContent}</Box>
           <Text className={'bg-blue-100 text-md font-black py-3 px-6 rounded-[2rem] flex items-center'}>#{id}</Text>
