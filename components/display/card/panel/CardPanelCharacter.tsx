@@ -1,6 +1,6 @@
 import { Stack, Text, Flex, Box } from '@whammytechvn/wt-components';
 import classNames from 'classnames';
-import Image from 'components/display/image/Image';
+import Image from 'components/display/image/CustomImage';
 import { MouseEventHandler } from 'react';
 import { NftSaleItemDto } from 'store/market/nft-item/nftItem.i';
 import { getCurrencyToken, getCurrencyUSD } from 'utils/format';

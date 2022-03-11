@@ -1,12 +1,12 @@
 import { Button, Flex, Heading, Stack } from '@whammytechvn/wt-components';
-import Image from 'components/display/image/Image';
+import Image from 'components/display/image/CustomImage';
 import { MouseEventHandler } from 'react';
 import { selectPaymentTokenData } from 'store/market/payment-token/paymentToken.slice';
 import { useAppSelector } from 'store/store.hook';
 import { ObjectProps } from 'utils/types';
 import imgLand from 'public/assets/items/lands/land-2.png';
 import imgCharacter1 from 'public/assets/items/characters/character-1.png';
-import imgClothes from 'public/assets/items/items/clothes.png';
+import imgItem from 'public/assets/img-video/item.png';
 export interface ModalTypeCheckoutProps {
   data?: ObjectProps;
   decline: MouseEventHandler<HTMLButtonElement> | undefined;
@@ -37,7 +37,7 @@ const ModalTypeCheckout = ({ confirm, decline, data }: ModalTypeCheckoutProps) =
   ];
 
   const IMAGES = {
-    item: imgClothes,
+    item: imgItem,
     land: imgLand,
     character: imgCharacter1
   } as any;
@@ -51,8 +51,10 @@ const ModalTypeCheckout = ({ confirm, decline, data }: ModalTypeCheckoutProps) =
         <Flex className="flex-col items-center w-[22.8rem] h-[22.2rem]">
           <Image alt="Buy Box" src={imgSrc} />
         </Flex>
-        <Flex className="flex-col text-white gap-8 pl-12 max-w-[32rem]">
-          <Heading className="uppercase font-bold text-lg">You are about to purchased #{data?.nftItemId}</Heading>
+        <Flex className="flex-col justify-start text-white gap-8 pl-12 max-w-[32rem]">
+          <Heading className="text-lg font-normal">
+            You are about to purchased <span className="font-bold">#{data?.nftItemId}</span>
+          </Heading>
           <table className="w-full font-normal text-md table-auto border-separate">
             <tbody>
               {infos.map(({ name, value }, index) => (

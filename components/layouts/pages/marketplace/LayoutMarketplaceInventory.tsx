@@ -4,7 +4,7 @@ import imgIconCharacters from 'public/assets/navbar/characters.png';
 import imgIconItems from 'public/assets/navbar/items.png';
 import imgIconLands from 'public/assets/navbar/lands.png';
 import SidebarHorizontal from 'components/navigation/sidebar/SidebarHorizontal';
-import { getLayoutMarketplace } from './getLayoutMarketplace';
+import { LayoutMarketplace } from './LayoutMarketplace';
 
 const routes = [
   {
@@ -26,8 +26,8 @@ const routes = [
   }
 ];
 
-export function getLayoutMarketplaceInventory(page: ReactElement) {
-  return getLayoutMarketplace(
+export function LayoutMarketplaceInventory(page: ReactElement) {
+  return LayoutMarketplace(
     <SidebarHorizontal routes={routes} baseSlug="/marketplace">
       {page}
     </SidebarHorizontal>

@@ -1,6 +1,6 @@
 import _map from 'lodash/map';
 import List from 'components/display/list/List';
-import Image from 'components/display/image/Image';
+import Image from 'components/display/image/CustomImage';
 import { ObjectProps } from 'utils/types';
 import { IconStarList } from 'components/icon/IconStar';
 

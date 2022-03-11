@@ -3,7 +3,7 @@ import logo from 'public/assets/logos/logo.png';
 import { Box } from '@whammytechvn/wt-components';
 
 import Link from 'next/link';
-import Image from 'components/display/image/Image';
+import Image from 'components/display/image/CustomImage';
 
 export default function HeaderLogo() {
   return (

@@ -5,6 +5,8 @@ import ButtonImageRef from './ButtonImageRef';
 import { CxProps } from 'utils/types';
 import Link from 'next/link';
 import { Button } from '@whammytechvn/wt-components';
+import { SidebarRouteProps } from 'components/navigation/sidebar/sidebar.typings';
+import { useRouter } from 'next/router';
 
 const mobileRoutes = [
   {
@@ -38,7 +40,23 @@ const desktopRoutes = [
   }
 ];
 
+const HeaderButtonRoute = ({ route, onClick }: { route: SidebarRouteProps; onClick?: () => void }) => (
+  <Button
+    disabled={route.disabled}
+    onClick={onClick}
+    className="text-sm !leading-[3.2rem] xl:text-btn p-1 w-full xl:p-3 lg:w-[9rem] !min-w-fit xl:w-[15rem] bg-transparent hover:bg-blue-100/10 font-black text-white uppercase disabled:pointer-events-none"
+  >
+    {route.label}
+  </Button>
+);
+
 export default function HeaderButtonHamburger({ className }: CxProps) {
+  const router = useRouter();
+
+  const goTo = (path: string) => {
+    router.push(path);
+  };
+
   return (
     <Popover className={classNames('my-auto', className)}>
       <Popover.Button
@@ -57,28 +75,36 @@ export default function HeaderButtonHamburger({ className }: CxProps) {
         className="absolute left-0 mt-8 w-full z-50"
       >
         <Popover.Panel className="hidden lg:block text-white text-md bg-blue-400 rounded-[2rem] w-full p-2 xl:p-4">
-          {desktopRoutes.map(({ slug, label, disabled }) => (
-            <Link key={slug} href={slug} passHref>
-              <Button
-                disabled={disabled}
-                className="text-sm !leading-[3.2rem] xl:text-btn p-1 xl:p-3 w-[9rem] !min-w-fit xl:w-[15rem] bg-transparent hover:bg-blue-100/10 font-black text-white uppercase disabled:pointer-events-none"
-              >
-                {label}
-              </Button>
-            </Link>
-          ))}
+          {({ close }) => (
+            <>
+              {desktopRoutes.map(route => (
+                <HeaderButtonRoute
+                  key={route.slug}
+                  route={route}
+                  onClick={() => {
+                    goTo(route.slug);
+                    close();
+                  }}
+                />
+              ))}
+            </>
+          )}
         </Popover.Panel>
         <Popover.Panel className="lg:hidden text-white flex flex-col text-md bg-blue-400 rounded-2xl lg:rounded-[2rem] w-full p-2 xl:p-4 z-50">
-          {mobileRoutes.map(({ slug, label, disabled }) => (
-            <Link key={slug} href={slug} passHref>
-              <Button
-                disabled={disabled}
-                className="text-sm p-4 w-full bg-transparent hover:bg-blue-100/10 font-black text-white uppercase disabled:pointer-events-none"
-              >
-                {label}
-              </Button>
-            </Link>
-          ))}
+          {({ close }) => (
+            <>
+              {mobileRoutes.map(route => (
+                <HeaderButtonRoute
+                  key={route.slug}
+                  route={route}
+                  onClick={() => {
+                    goTo(route.slug);
+                    close();
+                  }}
+                />
+              ))}
+            </>
+          )}
         </Popover.Panel>
       </Transition>
     </Popover>

@@ -1,6 +1,6 @@
 import { Box, Flex, Grid, Scaffold, Text } from '@whammytechvn/wt-components';
 import classNames from 'classnames';
-import Image from 'components/display/image/Image';
+import Image from 'components/display/image/CustomImage';
 import Link from 'components/navigation/link/Link';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';

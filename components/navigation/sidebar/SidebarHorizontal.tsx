@@ -3,7 +3,7 @@ import { Box, Flex, Text } from '@whammytechvn/wt-components';
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
 import { Fragment } from 'react';
-import Image from 'components/display/image/Image';
+import Image from 'components/display/image/CustomImage';
 import _findIndex from 'lodash/findIndex';
 import { SidebarRoutesProps } from './sidebar.typings';
 

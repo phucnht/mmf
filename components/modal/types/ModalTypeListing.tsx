@@ -1,10 +1,8 @@
 import { Button, Flex, Heading, Stack, Text } from '@whammytechvn/wt-components';
-import Image from 'components/display/image/Image';
 import { FormProvider, useForm } from 'react-hook-form';
 import { selectPaymentTokenData } from 'store/market/payment-token/paymentToken.slice';
 import { useAppSelector } from 'store/store.hook';
 import { ObjectProps } from 'utils/types';
-import imgBlank from 'public/assets/default/img-blank.svg';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { InputField } from 'components/input/InputField';
@@ -15,6 +13,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import { validateInputNumber } from 'utils/validate';
 import InputNumber from 'components/input/InputNumber';
+import CustomImage from 'components/display/image/CustomImage';
 export interface ModalTypeListingProps {
   data?: ObjectProps;
   confirm: () => void;
@@ -138,7 +137,7 @@ const ModalTypeListing = ({ data, confirm, isCancel }: ModalTypeListingProps) =>
         <form onSubmit={onSubmit} className="flex flex-col gap-8">
           <Flex className="items-center w-full p-8 gap-12">
             <Flex className="flex-col items-center justify-center w-[22.8rem] h-[22.2rem]">
-              <Image alt={`#${data?.nftItemId}`} src={data?.nftItemImg || imgBlank} />
+              <CustomImage alt={`#${data?.nftItemId}`} src={data?.nftItemImg} />
             </Flex>
             <Flex className="flex-col text-white gap-8 pl-12 max-w-[32rem]">
               <Heading className="font-bold text-lg">

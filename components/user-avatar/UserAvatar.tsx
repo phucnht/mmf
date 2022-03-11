@@ -1,5 +1,5 @@
 import TextCopyable from 'components/display/text/TextCopyable';
-import Image from 'components/display/image/Image';
+import Image from 'components/display/image/CustomImage';
 import { FC } from 'react';
 import { formatUsername, getEllipsisTxt } from 'utils/format';
 import imgAvatar from 'public/assets/sidebar/avatar.png';
