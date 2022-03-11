@@ -1,5 +1,5 @@
 import { Box } from '@whammytechvn/wt-components';
-import { getLayoutInventoryOffset } from 'components/layouts/pages/inventory/getLayoutInventory';
+import { LayoutInventoryOffset } from 'components/layouts/pages/inventory/LayoutInventory';
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
 
@@ -24,6 +24,6 @@ export const getServerSideProps = () => {
   };
 };
 
-MarketplaceUpgrade.getLayout = getLayoutInventoryOffset;
+MarketplaceUpgrade.getLayout = LayoutInventoryOffset;
 
 export default MarketplaceUpgrade;

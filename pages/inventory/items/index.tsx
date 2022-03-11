@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
 import { GridBox } from '@whammytechvn/wt-components';
-import { getLayoutInventoryInventory } from 'components/layouts/pages/inventory/getLayoutInventoryInventory';
+import { LayoutInventoryInventory } from 'components/layouts/pages/inventory/LayoutInventoryInventory';
 
 import _times from 'lodash/times';
 import _random from 'lodash/random';
@@ -50,6 +50,6 @@ const InventoryItems: NextPageWithLayout = () => {
   );
 };
 
-InventoryItems.getLayout = getLayoutInventoryInventory;
+InventoryItems.getLayout = LayoutInventoryInventory;
 
 export default InventoryItems;

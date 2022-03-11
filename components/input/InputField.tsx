@@ -55,7 +55,7 @@ export function InputField({
   return (
     <Flex className={cxInputField}>
       {label && (
-        <label htmlFor={name} className="text-md mb-5">
+        <label htmlFor={name} className="text-md mb-5 text-white">
           {label}
         </label>
       )}

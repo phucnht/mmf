@@ -38,7 +38,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
   }, [id, accessToken, MMF, dispatch]);
 
   let renderChildren = (
-    <Box className="layout mb-36 z-[5]">
+    <Box className="layout  z-[5] grow">
       <Flex className="flex-col justify-center w-full relative grow">{children}</Flex>
     </Box>
   );
@@ -56,7 +56,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
   );
 
   return (
-    <Scaffold className="bg-[#0B2F51] bg-[url('/assets/bg/bg-main.png')] bg-[length:100%_51rem] bg-no-repeat bg-bottom flex flex-col overflow-x-auto">
+    <Scaffold className="bg-[#0B2F51] bg-[url('/assets/bg/bg-main.png')] bg-[length:100%_51rem] bg-no-repeat bg-bottom flex flex-col overflow-x-auto min-w-[36rem]">
       {content}
       <BackgroundFooterShadow />
       <BackgroundFlare />

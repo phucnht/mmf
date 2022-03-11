@@ -1,5 +1,5 @@
 import { GridBox } from '@whammytechvn/wt-components';
-import { getLayoutInventoryInventory } from 'components/layouts/pages/inventory/getLayoutInventoryInventory';
+import { LayoutInventoryInventory } from 'components/layouts/pages/inventory/LayoutInventoryInventory';
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
 import InventoryCharacterCard from '../../../components/pages/inventory/character/InventoryCharacterCard';
@@ -63,6 +63,6 @@ const InventoryCharacters: NextPageWithLayout = () => {
   );
 };
 
-InventoryCharacters.getLayout = getLayoutInventoryInventory;
+InventoryCharacters.getLayout = LayoutInventoryInventory;
 
 export default InventoryCharacters;

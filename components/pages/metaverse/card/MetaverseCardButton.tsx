@@ -87,7 +87,7 @@ const MetaverseCardButton: FC<{ isEventEnded: boolean; whitelistContract: string
       color="primary"
       content="I want to receive it"
       fullWidth
-      className="py-5"
+      className="text-sm lg:text-xl py-3 lg:py-5"
       disabled={isProcessing}
       onClick={handleOpenDialogAuthRequired}
     />
@@ -100,7 +100,7 @@ const MetaverseCardButton: FC<{ isEventEnded: boolean; whitelistContract: string
         disabled={isClaimable === false || (isClaimable && isProcessing)}
         content="Claim"
         fullWidth
-        className="py-5 text-red-100 disabled:bg-grey-400 disabled:cursor-not-allowed disabled:pointer-events-none"
+        className="text-sm lg:text-xl py-3 lg:py-5 text-red-100 disabled:bg-grey-400 disabled:cursor-not-allowed disabled:pointer-events-none"
         onClick={handleProcess}
       />
     );
@@ -112,14 +112,19 @@ const MetaverseCardButton: FC<{ isEventEnded: boolean; whitelistContract: string
         disabled
         content="Processing..."
         fullWidth
-        className="py-5 bg-grey-400 cursor-not-allowed pointer-events-none"
+        className="text-sm lg:text-xl py-3 lg:py-5 bg-grey-400 cursor-not-allowed pointer-events-none"
       />
     );
   }
 
   if (type === ButtonType.SUCCESS) {
     renderButton = (
-      <Button content="Check My Inventory" fullWidth className="py-5 !bg-green-200" onClick={handleSuccess} />
+      <Button
+        content="Check My Inventory"
+        fullWidth
+        className="text-sm lg:text-xl py-3 lg:py-5 !bg-green-200"
+        onClick={handleSuccess}
+      />
     );
   }
 

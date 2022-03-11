@@ -12,11 +12,11 @@ const Footer = () => {
   const { pathname } = useRouter();
 
   let renderFooter = (
-    <Grid className="layout grid-cols-4 text-md">
-      <Link href="https://www.mymetafarm.com" target="_blank" rel="noopener">
+    <div className="layout flex flex-col items-center lg:grid lg:grid-cols-4 text-sm lg:text-md">
+      <Link className="hidden lg:block" href="https://www.mymetafarm.com" target="_blank" rel="noopener">
         https://www.mymetafarm.com
       </Link>
-      <ul className="flex justify-end gap-24 col-span-3">
+      <ul className="flex flex-col gap-8 lg:flex-row lg:justify-end lg:gap-24 col-span-3 text-center">
         <NextLink href="/contact" passHref>
           <Link disabled>Contact</Link>
         </NextLink>
@@ -29,8 +29,11 @@ const Footer = () => {
         <NextLink href="/token" passHref>
           <Link disabled>Buy Token</Link>
         </NextLink>
+        <Link className="block lg:hidden" href="https://www.mymetafarm.com" target="_blank" rel="noopener">
+          https://www.mymetafarm.com
+        </Link>
       </ul>
-    </Grid>
+    </div>
   );
 
   if (pathname === '/') {
@@ -75,7 +78,9 @@ const Footer = () => {
     );
   }
 
-  const cxFooter = classNames('bg-black/40 z-10', { '!h-[22rem] relative': pathname === '/' });
+  const cxFooter = classNames('relative !bg-transparent lg:!bg-black/40 lg:mb-0 z-10 h-auto p-8', {
+    'lg:!h-[22rem] relative': pathname === '/'
+  });
 
   return <Scaffold.Footer className={cxFooter}>{renderFooter}</Scaffold.Footer>;
 };

@@ -4,9 +4,10 @@ import classNames from 'classnames';
 import { FC } from 'react';
 import { zeroPad } from 'utils/convert';
 import { Flex } from '@whammytechvn/wt-components';
+import clsxm from 'utils/clsxm';
 
 const CountdownTitle: FC<{ className?: string }> = ({ className, children }) => {
-  const countdownTitleClassName = classNames('text-white font-bold text-2xl', className);
+  const countdownTitleClassName = classNames('text-white font-bold text-md lg:text-2xl', className);
   return <span className={countdownTitleClassName}>{children}</span>;
 };
 
@@ -20,7 +21,7 @@ const CountdownInProgress = ({ endDate }: { endDate: number }) => {
   return (
     <>
       <CountdownTitle>In Progress...</CountdownTitle>
-      <span className="font-bold text-title text-2xl text-white tracking-wider">
+      <span className="font-bold text-md lg:text-2xl text-white tracking-wider">
         {zeroPad(days)}:{zeroPad(hours)}:{zeroPad(minutes)}:{zeroPad(seconds)}
       </span>
     </>
@@ -29,8 +30,8 @@ const CountdownInProgress = ({ endDate }: { endDate: number }) => {
 
 const CountdownComingBlock = ({ value, unit }: { value: string; unit: string }) => (
   <Flex className="flex-col text-white">
-    <span className="text-2xl font-bold justify-center text-center">{value}</span>
-    <span className="text-md font-normal text-center">{unit}</span>
+    <span className="text-md lg:text-2xl font-bold justify-center text-center">{value}</span>
+    <span className="text-sm lg:text-md font-normal text-center">{unit}</span>
   </Flex>
 );
 
@@ -70,8 +71,8 @@ export default function Countdown({ fromDate, toDate, className }: CountdownProp
     renderCountdown = <CountdownEnded />;
   }
 
-  const cxCountdown = classNames(
-    'flex items-center justify-evenly w-full h-36 bgg-green rounded-[2rem] p-8',
+  const cxCountdown = clsxm(
+    'flex items-center justify-evenly w-full h-[5rem] lg:h-[9.3rem] bgg-green rounded-[2rem] p-4',
     className
   );
 

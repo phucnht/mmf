@@ -30,7 +30,7 @@ export default function FormChangeName() {
       <form onSubmit={onSubmit} className="flex gap-6" style={styles}>
         <FormInputField fullWidth name="username" label="Name" placeholder="Name" errors={errors} />
         <Button type="submit" compact className="!bg-blue-300 min-w-0 py-6 hover:!bg-blue-300">
-          <Text className="font-normal capitalize">Change Name</Text>
+          <Text className="font-normal capitalize text-white">Change Name</Text>
         </Button>
       </form>
     </FormProvider>

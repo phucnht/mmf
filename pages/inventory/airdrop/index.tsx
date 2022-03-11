@@ -1,4 +1,4 @@
-import { getLayoutInventoryInventory } from 'components/layouts/pages/inventory/getLayoutInventoryInventory';
+import { LayoutInventoryInventory } from 'components/layouts/pages/inventory/LayoutInventoryInventory';
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
 import useAuthGuard from 'hooks/useAuthGuard';
@@ -17,6 +17,6 @@ const InventoryAirdrop: NextPageWithLayout = () => {
   );
 };
 
-InventoryAirdrop.getLayout = getLayoutInventoryInventory;
+InventoryAirdrop.getLayout = LayoutInventoryInventory;
 
 export default InventoryAirdrop;
