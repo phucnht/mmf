@@ -13,21 +13,12 @@ import CardImageCharacter from '../image/CardImageCharacter';
 import CardImageLand from '../image/CardImageLand';
 import FormBuyNowButton from 'components/forms/buy-now/FormBuyNowButton';
 
-import imgLand from 'public/assets/items/lands/land-2.png';
-import imgCharacter1 from 'public/assets/items/characters/character-1.png';
-import imgClothes from 'public/assets/items/items/clothes.png';
 export type CardItemType = 'item' | 'land' | 'character';
 
 export interface CardLayoutDetailProps {
   type: CardItemType;
   item: ObjectProps;
 }
-
-const IMAGES = {
-  item: imgClothes,
-  land: imgLand,
-  character: imgCharacter1
-} as any;
 
 export default function CardLayoutDetail({ type, item }: CardLayoutDetailProps) {
   const { BUSD } = useAppSelector(selectPaymentTokenData);
@@ -37,7 +28,7 @@ export default function CardLayoutDetail({ type, item }: CardLayoutDetailProps) 
       <ButtonBack className="mb-8" />
       <Flex className="justify-between gap-20 p-28 rounded-[2rem] border-[3px] border-green-200 text-white">
         <Flex className="flex-col items-center justify-center min-h-[48rem] w-full">
-          {type === 'item' && <CardImageItem id={item.id} name={item.name} />}
+          {type === 'item' && <CardImageItem item={item} />}
           {type === 'character' && <CardImageCharacter id={item.id} name={item.name} />}
           {type === 'land' && <CardImageLand id={item.id} name={item.name} />}
           <Heading as="h6" className="font-bold text-xl mt-4">
@@ -68,7 +59,7 @@ export default function CardLayoutDetail({ type, item }: CardLayoutDetailProps) 
                 {item.price} {BUSD?.symbol}
               </Text>
             </Flex>
-            <FormBuyNowButton nftItemType={type} item={item} nftItemImg={IMAGES[type]} />
+            <FormBuyNowButton nftItemType={type} item={item} />
           </Flex>
         </Flex>
       </Flex>

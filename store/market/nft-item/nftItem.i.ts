@@ -86,6 +86,9 @@ export interface NftItemDto {
   attributes: AttributeDto[];
   media: MediaDto[];
   image: string;
+  externalUrl: string;
+  amount: number;
+  amountSale: number;
   collectionId: string;
   status: number;
   creatorAddress: string;
@@ -95,7 +98,6 @@ export interface NftItemDto {
   owner: BasicUserDto;
   nftContract: string;
   tokenId: string;
-  externalUrl: string;
   description: string;
   name: string;
   sale: SaleDto;
@@ -108,6 +110,7 @@ export interface NftSaleItemDto {
   paymentTokenId: string;
   name: string;
   nftItem: string;
+  image: string;
   ownerAddress: string;
   nftContract: string;
   tokenId: string;

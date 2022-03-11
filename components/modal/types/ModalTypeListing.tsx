@@ -13,7 +13,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import { validateInputNumber } from 'utils/validate';
 import InputNumber from 'components/input/InputNumber';
-import CustomImage from 'components/display/image/CustomImage';
+import CustomImage, { externaImageLoader } from 'components/display/image/CustomImage';
 export interface ModalTypeListingProps {
   data?: ObjectProps;
   confirm: () => void;
@@ -50,14 +50,11 @@ const ModalTypeListing = ({ data, confirm, isCancel }: ModalTypeListingProps) =>
   const onSubmit = handleSubmit(async ({ amount, price }: FormValues) => {
     if (isCancel) {
       try {
-        const resDeleteSaleItem = await axios.delete(
-          `${process.env.NEXT_PUBLIC_API_MARKET}/sale-items/${data?.nftItemId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`
-            }
+        const resDeleteSaleItem = await axios.delete(`${process.env.NEXT_PUBLIC_API_MARKET}/sale-items/${data?.id}`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`
           }
-        );
+        });
         if (resDeleteSaleItem) {
           confirm();
         }
@@ -77,7 +74,7 @@ const ModalTypeListing = ({ data, confirm, isCancel }: ModalTypeListingProps) =>
       if (data) {
         const saltNonce = new Date().getTime();
         const paramsHashMessage = {
-          nftItemId: data.nftItemId,
+          nftItemId: data.id,
           paymentTokenId: BUSD.id,
           price,
           saltNonce,
@@ -93,7 +90,7 @@ const ModalTypeListing = ({ data, confirm, isCancel }: ModalTypeListingProps) =>
           try {
             const signedSignature = await web3.eth.personal.sign(resHashMessage.hashMessage, address, '');
             const paramsCreateSaleItem = {
-              nftItemId: data.nftItemId,
+              nftItemId: data.id,
               signedSignature,
               paymentTokenId: BUSD.id,
               price,
@@ -130,20 +127,26 @@ const ModalTypeListing = ({ data, confirm, isCancel }: ModalTypeListingProps) =>
   };
   const handleFocus = (e: any) => e.target.select();
 
+  console.log(data);
+
   return (
     <Stack className="p-24 rounded-[2rem] shadow-lg relative flex-col w-full bg-blue-500 outline-none focus:outline-none border-[3px] border-green-200 text-white text-2xl font-bold">
       <Heading className="!text-[4rem] font-bold uppercase">{isCancel ? 'Cancel Listing' : 'List Item'}</Heading>
       <FormProvider {...methods}>
         <form onSubmit={onSubmit} className="flex flex-col gap-8">
           <Flex className="items-center w-full p-8 gap-12">
-            <Flex className="flex-col items-center justify-center w-[22.8rem] h-[22.2rem]">
-              <CustomImage alt={`#${data?.nftItemId}`} src={data?.nftItemImg} />
+            <Flex className="relative flex-col items-center justify-center w-[22.8rem] h-[22.2rem]">
+              <CustomImage alt={`#${data?.id}`} src={data?.image} layout="fill" />
             </Flex>
             <Flex className="flex-col text-white gap-8 pl-12 max-w-[32rem]">
-              <Heading className="font-bold text-lg">
-                {isCancel
-                  ? 'You are about to cancel your listing on marketplace. To sell this item again, you will need to relist this for sale.'
-                  : `You are about to list your item on Marketplace #${data?.nftItemId}`}
+              <Heading className="font-normal text-lg">
+                {isCancel ? (
+                  'You are about to cancel your listing on marketplace. To sell this item again, you will need to relist this for sale.'
+                ) : (
+                  <>
+                    You are about to list your item on Marketplace: <span className="font-bold">#{data?.id}</span>
+                  </>
+                )}
               </Heading>
               {!isCancel && (
                 <Flex className="flex-col gap-4">

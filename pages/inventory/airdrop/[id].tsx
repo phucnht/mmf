@@ -7,14 +7,14 @@ import { MOCK_CONTENT } from 'utils/mock';
 import ProgressBar from 'components/display/progress-bar/ProgressBar';
 import useAuthGuard from 'hooks/useAuthGuard';
 
-import imgItem from 'public/assets/items/airdrop/t-shirt.png';
 import CardItem from 'components/pages/inventory/airdrop/CardItem';
 import { getEllipsisTxt } from 'utils/format';
 import { GetServerSidePropsContext } from 'next';
 import DataTableHistory from 'components/table/DataTableHistory';
 import FormListingButton from 'components/forms/listing/FormListingButton';
+import { NftItemDto } from 'store/market/nft-item/nftItem.i';
 export interface InventoryMetaverseDetailProps {
-  item: any;
+  item: NftItemDto;
 }
 
 export default function InventoryMetaverseDetail({ item }: InventoryMetaverseDetailProps) {
@@ -30,7 +30,7 @@ export default function InventoryMetaverseDetail({ item }: InventoryMetaverseDet
         <ButtonBack className="mb-8" />
         <Flex className="justify-between gap-20 p-28 rounded-[2rem] border-[3px] border-green-200 text-white">
           <Flex className="col-span-3 flex-col items-center justify-between min-h-[48rem] w-full">
-            <CardItem id={item.tokenId} name={item.name} imgSrc={imgItem} />
+            <CardItem item={item} />
           </Flex>
           <Flex className="col-span-2 flex-col justify-between gap-12 w-[34rem] min-w-[34rem]">
             <Box className="overflow-y-auto overflow-x-hidden max-h-[40rem] pr-12">
@@ -56,7 +56,7 @@ export default function InventoryMetaverseDetail({ item }: InventoryMetaverseDet
                 </Heading>
                 <Text className="font-black text-xl">0.361 {BUSD?.symbol}</Text> */}
               </Flex>
-              <FormListingButton nftItemId={item.id} nftItemOwnerAddress={item.ownerAddress} nftItemImg={imgItem} />
+              <FormListingButton item={item} />
             </Flex>
           </Flex>
         </Flex>
