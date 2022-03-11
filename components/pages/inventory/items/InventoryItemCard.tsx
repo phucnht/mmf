@@ -1,6 +1,6 @@
 import { Stack, Text, Flex } from '@whammytechvn/wt-components';
 import classNames from 'classnames';
-import Image from 'components/display/image/Image';
+import Image from 'components/display/image/CustomImage';
 import { IconStarList } from 'components/icon/IconStar';
 import { MouseEventHandler } from 'react';
 import { getCurrencyToken, getCurrencyUSD } from 'utils/format';

@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
-import { getLayoutMarketplaceInventory } from 'components/layouts/pages/marketplace/getLayoutMarketplaceInventory';
+import { LayoutMarketplaceInventory } from 'components/layouts/pages/marketplace/LayoutMarketplaceInventory';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'store/store.hook';
 
@@ -56,7 +56,7 @@ const MarketplaceItems: NextPageWithLayout = () => {
           <EmptyBanner title="No items found" />
         </Box>
       ) : (
-        <GridBox className="grid-cols-fluid-31 gap-4">
+        <GridBox className="grid-cols-2 lg:grid-cols-fluid-31 gap-8 lg:gap-4">
           {_map(data, item => {
             return <CardPanelItem key={item.id} item={item} onClick={() => goTo(item.id)} exchange={exchange} />;
           })}
@@ -67,6 +67,6 @@ const MarketplaceItems: NextPageWithLayout = () => {
   );
 };
 
-MarketplaceItems.getLayout = getLayoutMarketplaceInventory;
+MarketplaceItems.getLayout = LayoutMarketplaceInventory;
 
 export default MarketplaceItems;

@@ -1,4 +1,4 @@
-import Image from 'components/display/image/Image';
+import Image from 'components/display/image/CustomImage';
 import { FC } from 'react';
 import { Flex, Heading, Stack } from '@whammytechvn/wt-components';
 

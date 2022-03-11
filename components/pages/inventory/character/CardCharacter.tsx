@@ -1,6 +1,6 @@
 import { Box, Flex, Stack, Text } from '@whammytechvn/wt-components';
 import classNames from 'classnames';
-import Image from 'components/display/image/Image';
+import Image from 'components/display/image/CustomImage';
 import { ReactNode } from 'react';
 
 export interface CardCharacterProps {

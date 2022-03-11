@@ -8,7 +8,7 @@ export default function Canvas3D() {
     <Canvas dpr={[1, 2]} camera={{ position: [-2, 2, 4], fov: 50 }}>
       <Suspense fallback={<Loader />}>
         <ambientLight intensity={1} />
-        <Model position-y={-3} scale={[0.7, 0.7, 0.7]} url="/assets/3d/vay_low.fbx" />
+        <Model position-y={-3.5} scale={[0.7, 0.7, 0.7]} url="/assets/3d/vay_low.fbx" />
         <OrbitControls autoRotate />
       </Suspense>
     </Canvas>

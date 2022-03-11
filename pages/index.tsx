@@ -9,7 +9,7 @@ import imgHomeSys3 from 'public/assets/home/home-sys-3.png';
 import imgHomeSys4 from 'public/assets/home/home-sys-4.png';
 import imgHomeSys5 from 'public/assets/home/home-sys-5.png';
 import imgHomeSys6 from 'public/assets/home/home-sys-6.png';
-import Image from 'components/display/image/Image';
+import Image from 'components/display/image/CustomImage';
 import classNames from 'classnames';
 import ReactPlayer from 'react-player/lazy';
 

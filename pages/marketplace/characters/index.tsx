@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
-import { getLayoutMarketplaceInventory } from 'components/layouts/pages/marketplace/getLayoutMarketplaceInventory';
+import { LayoutMarketplaceInventory } from 'components/layouts/pages/marketplace/LayoutMarketplaceInventory';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from 'store/store.hook';
 import EmptyBanner from 'components/display/empty/EmptyBanner';
@@ -47,6 +47,6 @@ const MarketplaceCharacters: NextPageWithLayout = () => {
   );
 };
 
-MarketplaceCharacters.getLayout = getLayoutMarketplaceInventory;
+MarketplaceCharacters.getLayout = LayoutMarketplaceInventory;
 
 export default MarketplaceCharacters;

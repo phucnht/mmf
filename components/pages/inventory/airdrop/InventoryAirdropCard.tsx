@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import Image from 'components/display/image/Image';
+import Image from 'components/display/image/CustomImage';
 import { MouseEventHandler } from 'react';
 import { MediaDto } from 'store/market/nft-item/nftItem.i';
 import imgItem from 'public/assets/img-video/item.png';

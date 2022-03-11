@@ -1,5 +1,5 @@
 import { Button, Stack } from '@whammytechvn/wt-components';
-import Image from 'components/display/image/Image';
+import Image from 'components/display/image/CustomImage';
 import imgProcessing from 'public/assets/default/img-processing.png';
 
 const ModalTypeProcessing = () => {

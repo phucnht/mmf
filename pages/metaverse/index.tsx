@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import Image from 'components/display/image/Image';
+import Image from 'components/display/image/CustomImage';
 
 import { Box, Stack } from '@whammytechvn/wt-components';
 

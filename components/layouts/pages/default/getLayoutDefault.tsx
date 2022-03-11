@@ -8,7 +8,7 @@ interface LayoutDefaultProps {
 }
 
 export function LayoutDefault({ className, children }: LayoutDefaultProps) {
-  const cxLayoutDefault = classNames(className, 'mt-48 mb-32 lg:mt-64 lg:mb-48 lg:mx-auto');
+  const cxLayoutDefault = classNames(className, 'w-full mt-48 mb-32 lg:mt-64 lg:mb-48 lg:mx-auto');
   return <Box className={cxLayoutDefault}>{children}</Box>;
 }
 

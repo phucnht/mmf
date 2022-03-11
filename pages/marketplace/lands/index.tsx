@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { NextPageWithLayout } from 'pages/_app';
 
 import { useRouter } from 'next/router';
-import { getLayoutMarketplaceInventory } from 'components/layouts/pages/marketplace/getLayoutMarketplaceInventory';
+import { LayoutMarketplaceInventory } from 'components/layouts/pages/marketplace/LayoutMarketplaceInventory';
 import { useAppDispatch, useAppSelector } from 'store/store.hook';
 import { useEffect } from 'react';
 import _map from 'lodash/map';
@@ -47,6 +47,6 @@ const MarketplaceLands: NextPageWithLayout = () => {
   );
 };
 
-MarketplaceLands.getLayout = getLayoutMarketplaceInventory;
+MarketplaceLands.getLayout = LayoutMarketplaceInventory;
 
 export default MarketplaceLands;

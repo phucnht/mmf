@@ -1,5 +1,5 @@
 import { Box, Flex, Stack, Text } from '@whammytechvn/wt-components';
-import Image from 'components/display/image/Image';
+import Image from 'components/display/image/CustomImage';
 import { IconStarList } from 'components/icon/IconStar';
 import { ReactNode } from 'react';
 import CardTitleBanner from '../title/CardTitleBanner';
