@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import Sidebar from 'components/navigation/sidebar/Sidebar';
 import { Box } from '@whammytechvn/wt-components';
 import useWindowSize from 'hooks/useWindowSize';
-import NavbarMobile from 'components/navigation/navbar-mobile/NavBarMobile';
+import NavbarMobile from 'components/navigation/navbar-mobile/NavbarMobile';
 
 export const routesInventory = [
   {
