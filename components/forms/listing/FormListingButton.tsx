@@ -1,13 +1,12 @@
 import useModalConfirmation from 'hooks/useModal';
 import { Button } from '@whammytechvn/wt-components';
+import { ObjectProps } from 'utils/types';
 
 export interface FormListingButtonProps {
-  nftItemId: string;
-  nftItemOwnerAddress: string;
-  nftItemImg: StaticImageData;
+  item: ObjectProps;
 }
 
-export default function FormListingButton({ nftItemId, nftItemOwnerAddress, nftItemImg }: FormListingButtonProps) {
+export default function FormListingButton({ item }: FormListingButtonProps) {
   //   const dispatch = useAppDispatch();
   const { open } = useModalConfirmation();
 
@@ -15,7 +14,7 @@ export default function FormListingButton({ nftItemId, nftItemOwnerAddress, nftI
     const resultListing = await open({
       type: 'listing',
       size: 'fit',
-      data: { nftItemId, nftItemOwnerAddress, nftItemImg }
+      data: { ...item }
     });
 
     if (resultListing) {

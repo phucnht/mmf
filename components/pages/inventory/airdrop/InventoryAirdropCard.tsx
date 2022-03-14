@@ -1,27 +1,42 @@
 import classNames from 'classnames';
-import Image from 'components/display/image/CustomImage';
+import CustomImage, { externaImageLoader } from 'components/display/image/CustomImage';
 import { MouseEventHandler } from 'react';
-import { MediaDto } from 'store/market/nft-item/nftItem.i';
-import imgItem from 'public/assets/img-video/item.png';
-import { Text } from '@whammytechvn/wt-components';
+import { Box, Flex, Text } from '@whammytechvn/wt-components';
+import { NftItemDto } from 'store/market/nft-item/nftItem.i';
 
-export interface InventoryAirdropDto {
-  tokenId: string;
-  name: string;
-  media: MediaDto[];
-}
 export interface InventoryAirdropCardProps {
-  item: InventoryAirdropDto;
+  item: NftItemDto;
   onClick?: MouseEventHandler<HTMLDivElement> | undefined;
 }
 
 export default function InventoryAirdropCard({ item, onClick }: InventoryAirdropCardProps) {
-  const cxCardWrapper = classNames('hover:opacity-90 transition', { 'cursor-pointer': onClick });
+  const cxCardWrapper = classNames('flex flex-col text-white hover:opacity-90 transition', {
+    'cursor-pointer': onClick
+  });
+  const cxId = classNames('bg-blue-300 text-xs font-black py-2 px-5 rounded-[2rem]');
+  const cxWrapper = classNames(
+    'border-blue-300 flex-col justify-between items-start p-2 rounded-[2rem] border-[5px] h-[36rem] gap-4'
+  );
 
   return (
     <div className={cxCardWrapper} onClick={onClick}>
-      <Text className={'bg-blue-300 text-xs font-black py-2 px-5 rounded-[2rem] w-fit'}>#{item.tokenId}</Text>
-      <Image alt={item.name} src={imgItem} />
+      <Flex className={cxWrapper}>
+        <Flex className="flex-col items-start gap-2">
+          <Text className={cxId}>#{item.tokenId}</Text>
+          <Text>
+            Total: <b>{item.amount}</b> | Sale: <b>{item.amountSale}</b> | Rest: <b>{item.amount - item.amountSale}</b>
+          </Text>
+        </Flex>
+        <Box className="relative w-full h-full">
+          <CustomImage
+            loader={externaImageLoader}
+            alt={item.name}
+            src={item.image}
+            className="rounded-[2rem]"
+            layout="fill"
+          />
+        </Box>
+      </Flex>
     </div>
   );
 }

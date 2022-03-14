@@ -1,6 +1,6 @@
 import { Stack, Text, Flex, Box } from '@whammytechvn/wt-components';
 import classNames from 'classnames';
-import Image from 'components/display/image/CustomImage';
+import CustomImage, { externaImageLoader } from 'components/display/image/CustomImage';
 import { IconStarList } from 'components/icon/IconStar';
 import { MouseEventHandler } from 'react';
 import { getCurrencyToken, getCurrencyUSD } from 'utils/format';
@@ -66,11 +66,17 @@ export default function CardPanelItem({ item, exchange, onClick }: CardPanelItem
             <Text className="text-md font-black">{item.name}</Text>
           </Flex>
           <Text>
-            Breed count: <b>{3}</b> | Amount: <b>{item.amount}</b>
+            Amount: <b>{item.amount}</b>
           </Text>
         </Flex>
         <Box className="relative w-full h-full mt-4">
-          <Image alt={item.name} src="/assets/img-video/item.png" layout="fill" objectFit="contains" />
+          <CustomImage
+            loader={externaImageLoader}
+            alt={item.name}
+            src={item.image}
+            layout="fill"
+            objectFit="contains"
+          />
         </Box>
       </Flex>
       <Stack className="flex-col text-2xl font-black mt-2">
