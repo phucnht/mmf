@@ -56,9 +56,10 @@ export default function AppLayout({ children }: AppLayoutProps) {
   );
 
   return (
-    <Scaffold className="bg-[#0B2F51] bg-[url('/assets/bg/bg-main.png')] bg-[length:100%_51rem] bg-no-repeat bg-bottom flex flex-col overflow-x-auto min-w-[36rem]">
+    // <Scaffold className="bg-[#0B2F51] bg-[url('/assets/bg/bg-main.png')] bg-[length:100%_51rem] bg-no-repeat bg-bottom flex flex-col overflow-x-auto min-w-[36rem]">
+    <Scaffold className="flex flex-col overflow-x-auto min-w-[36rem]">
       {content}
-      <BackgroundFooterShadow />
+      {/* <BackgroundFooterShadow /> */}
       <BackgroundFlare />
     </Scaffold>
   );

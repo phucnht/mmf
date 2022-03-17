@@ -30,7 +30,7 @@ export default function Header() {
   return (
     <>
       <BackgroundHeaderShadow />
-      <nav className="z-40 items-center lg:items-start layout grid grid-cols-3 lg:grid-cols-4 gap-x-6 relative my-4 !px-0">
+      <nav className="z-40 flex items-center justify-between py-2 bg-black/30 p-[3%] fixed top-0 w-full">
         {windowSize?.width < 1024 ? <HeaderMobile /> : <HeaderDesktop />}
       </nav>
     </>

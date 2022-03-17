@@ -1,4 +1,4 @@
-import { Box, Flex, Grid, Scaffold, Text } from '@whammytechvn/wt-components';
+import { Box, Flex, Scaffold, Text } from '@whammytechvn/wt-components';
 import classNames from 'classnames';
 import Image from 'components/display/image/CustomImage';
 import Link from 'components/navigation/link/Link';
@@ -44,7 +44,7 @@ const Footer = () => {
             <Image alt="East Fog" src={imgLogoEastFog} />
           </Link>
           <Link href="https://starpunk.io/" target="_blank" rel="noopener">
-            <Image alt="Starpunk" src={imgLogoStarpunk} />
+            <Image alt="Starpunk" src={imgLogoStarpunk} height={43} width={170} />
           </Link>
         </Flex>
         <Text className="text-xl text-center font-normal">
