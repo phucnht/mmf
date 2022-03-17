@@ -17,8 +17,9 @@ import Image from 'components/display/image/CustomImage';
 import classNames from 'classnames';
 import imgWelcome from 'public/media/landing/welcome.png';
 import Canvas3D from 'components/3d/Canvas3D';
-
-import { AnimationOnScroll } from 'react-animation-on-scroll';
+import Bounce from 'react-reveal/Bounce';
+import Fade from 'react-reveal/Fade';
+import Tada from 'react-reveal/Tada';
 
 const mocks = [
   {
@@ -58,13 +59,13 @@ const Home: NextPageWithLayout = () => {
       <Box className="grow bg-white">
         <LandingVideo />
         <WelcomeToMMF />
-        <AnimationOnScroll animateIn="animate__bounceIn" animateOnce>
+        <Fade right>
           <MetaverseCity />
-        </AnimationOnScroll>
+        </Fade>
         <MiniGame />
-        <AnimationOnScroll animateIn="animate__fadeInLeft" animateOnce>
+        <Bounce>
           <Marketplace />
-        </AnimationOnScroll>
+        </Bounce>
       </Box>
     </>
   );
@@ -86,10 +87,12 @@ const WelcomeToMMF = () => {
       <Box className="z-1 bg-[url('/media/landing/bg-cloud.png')] bg-[length:100%] bg-no-repeat bg-top h-full w-full absolute top-[5%]" />
       <Box className="bg-[url('/assets/home/home-border.png')] bg-auto bg-left h-[17rem] w-full absolute -top-[5rem]" />
       {/* <Box className="bg-[url('/media/home/home-border.png')] bg-auto bg-left h-[17rem] w-full absolute top-0" /> */}
-      <AnimationOnScroll animateIn="animate__tada" animateOnce>
+      <Tada>
         <Box className="relative w-[70%] mx-auto -mt-[15%] h-[54rem]">
           <Image alt="Welcome" src={imgWelcome} fill="layout" objectFit="cover" />
         </Box>
+      </Tada>
+      <Fade>
         <Flex className="relative flex-col items-center justify-center mx-auto">
           <h1 className="font-['Exo'] font-black uppercase bgg-orange text-clip text-stroke-white text-[6vw] leading-tight">
             Events
@@ -105,7 +108,7 @@ const WelcomeToMMF = () => {
             ))}
           </GridBox>
         </Box>
-      </AnimationOnScroll>
+      </Fade>
     </Box>
   );
 };
@@ -174,7 +177,7 @@ const MetaverseCity = () => {
 const MiniGame = () => {
   return (
     <Box className="relative">
-      <AnimationOnScroll animateIn="animate__fadeIn" animateOnce>
+      <Fade left>
         <Flex className="z-[15] relative bgg-rose py-40 pb-64 px-[5%] h-full w-ful gap-20">
           <Flex className="relative flex-col items-start mx-auto gap-6 max-w-3xl">
             <Flex className="items-center justify-center gap-9 whitespace">
@@ -192,7 +195,7 @@ const MiniGame = () => {
             <source src={'https://d1cqw9qrof1e8g.cloudfront.net/MiniGame.mp4'} type="video/mp4" />
           </video>
         </Flex>
-      </AnimationOnScroll>
+      </Fade>
       <Box className="z-[20] bg-[url('/media/landing/border-3-left.png')] bg-[length:50%] bg-no-repeat bg-left h-3/4 w-1/2 absolute left-0 -bottom-[19%]" />
       <Box className="z-[20] bg-[url('/media/landing/border-3-right.png')] bg-[length:50%] bg-no-repeat bg-right h-3/4 w-1/2 absolute right-0 -bottom-[30%]" />
     </Box>
