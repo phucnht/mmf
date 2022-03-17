@@ -1,4 +1,4 @@
-import { Box, Flex, GridBox, Heading, Text } from '@whammytechvn/wt-components';
+import { Box, Flex, Grid, GridBox, Heading, Text } from '@whammytechvn/wt-components';
 import Head from 'next/head';
 import { NextPageWithLayout } from './_app';
 import _map from 'lodash/map';
@@ -83,18 +83,18 @@ const WelcomeToMMF = () => {
       <Box className="z-1 bg-[url('/media/landing/bg-cloud.png')] bg-[length:100%] bg-no-repeat bg-top h-full w-full absolute top-[5%]" />
       <Box className="bg-[url('/assets/home/home-border.png')] bg-auto bg-left h-[17rem] w-full absolute -top-[5rem]" />
       {/* <Box className="bg-[url('/media/home/home-border.png')] bg-auto bg-left h-[17rem] w-full absolute top-0" /> */}
-
-      <Box className="relative w-[70%] mx-auto -mt-[15%] h-[54rem]">
-        <Image alt="Welcome" src={imgWelcome} fill="layout" objectFit="cover" />
-      </Box>
-
+      <Bounce>
+        <Box className="relative w-[70%] mx-auto -mt-[15%] h-[54rem] text-center">
+          <Image alt="Welcome" src={imgWelcome} fill="layout" objectFit="cover" />
+        </Box>
+      </Bounce>
       <Flex className="relative flex-col items-center justify-center mx-auto">
         <h1 className="font-['Exo'] font-black uppercase bgg-orange text-clip text-stroke-white text-[6vw] leading-tight">
           Events
         </h1>
         <Text className="font-bold text-[1.4vw] uppercase">Latest update about My Meta Farm&#39;s events and news</Text>
       </Flex>
-      <Box className="px-[15%] mx-auto mt-20">
+      <Box className="layout mx-auto mt-20">
         <GridBox className="grid-cols-3 gap-20">
           {_map(mocks, item => (
             <LandingEventCard key={item.id} item={item} />
@@ -116,14 +116,12 @@ function LandingEventCard({ item }: { item: any }) {
       </Box>
       <Flex className="flex-col items-start text-black gap-2 mt-11">
         <Text className="uppercase text-blue-100 text-lg font-black">{item.tag}</Text>
-        <Flex className="gap-4">
-          <Heading as="h3" className="uppercase text-[1.4vw] !font-black">
+        <Flex className="gap-4 items-center">
+          <Heading as="h3" className="uppercase !text-[1vw] !font-black">
             {item.title}
           </Heading>
           {item.badge && (
-            <Text className="italic text-red-600 animate-pulse duration-50 uppercase text-[1.4vw] font-black">
-              {item.badge}
-            </Text>
+            <Text className="italic text-red-600 animate-pulse uppercase !text-[1vw] font-black">{item.badge}</Text>
           )}
         </Flex>
         <Text className="text-[1vw]">{item.content}</Text>
@@ -137,8 +135,7 @@ const MetaverseCity = () => {
   return (
     <Box className="relative">
       <Box className="z-[20] bg-[url('/media/landing/border-2.png')] bg-[length:100%] bg-no-repeat bg-top h-full w-full absolute -top-[25%]" />
-      <Box className="z-[15] relative bg-[url('/media/landing/metaverse-city-1.png')] bg-[length:100%] bg-no-repeat bg-bottom h-full w-ful">
-        <Box className="bg-[url('/media/landing/border-2.png')] bg-auto bg-left h-[17rem] w-full absolute top-0" />
+      <Box className="z-[15] relative bg-[url('/media/landing/metaverse-city-1.png')] bg-[length:100%] bg-no-repeat bg-bottom h-full w-full">
         <Box className="relative bgg-rose py-40">
           <Flex className="px-[5%] relative flex-col items-end justify-center mx-auto gap-8">
             <Fade right>
@@ -154,10 +151,12 @@ const MetaverseCity = () => {
               exchanging, socializing seamlessly with multi other worlds
             </Text>
             <Flex className="items-center mx-auto mt-20">
-              <VideoAutoPlayback
-                url="https://d1cqw9qrof1e8g.cloudfront.net/Metaverse_City.mp4"
-                videoClassName="w-full rounded-[2rem]"
-              />
+              <Fade>
+                <VideoAutoPlayback
+                  url="https://d1cqw9qrof1e8g.cloudfront.net/Metaverse_City.mp4"
+                  videoClassName="w-full rounded-[2rem]"
+                />
+              </Fade>
               <Box className="relative h-full w-[80rem]">
                 <Image alt={'Metaverse City 2'} src={imgMetaverseCity2} />
               </Box>
@@ -172,27 +171,29 @@ const MetaverseCity = () => {
 const MiniGame = () => {
   return (
     <Box className="relative">
-      <Fade left>
-        <Flex className="z-[15] relative bgg-rose py-40 pb-64 px-[5%] h-full w-ful gap-20">
-          <Flex className="relative flex-col items-start mx-auto gap-6 max-w-3xl">
+      <Grid className="z-[15] grid-cols-2 relative bgg-rose py-40 pb-64 2xl:pb-[30rem] px-[5%] h-full w-full gap-20">
+        <Flex className="relative flex-col items-start gap-6">
+          <Fade left>
             <Flex className="items-center justify-center gap-9 whitespace">
               <Box className="h-[8vw] w-4 bgg-orange" />
               <h1 className="font-['Exo'] font-black uppercase bgg-orange text-clip text-stroke-brown text-[6vw] leading-tight">
                 Minigame
               </h1>
             </Flex>
-            <Text className="text-left font-bold text-[1.4vw] text-red-100">
-              With fun and diverse gameplays, minigames completely become a playground where citizens can relax, make
-              new friends, and earn NFTs.
-            </Text>
-          </Flex>
+          </Fade>
+          <Text className="text-left font-bold text-[1.4vw] text-red-100">
+            With fun and diverse gameplays, minigames completely become a playground where citizens can relax, make new
+            friends, and earn NFTs.
+          </Text>
+        </Flex>
+        <Fade>
           <VideoAutoPlayback
             url="https://d1cqw9qrof1e8g.cloudfront.net/MiniGame.mp4"
             className=" m-10"
             videoClassName="w-full rounded-[2rem]"
           />
-        </Flex>
-      </Fade>
+        </Fade>
+      </Grid>
       <Box className="z-[20] bg-[url('/media/landing/border-3-left.png')] bg-[length:50%] bg-no-repeat bg-left h-3/4 w-1/2 absolute left-0 -bottom-[19%]" />
       <Box className="z-[20] bg-[url('/media/landing/border-3-right.png')] bg-[length:50%] bg-no-repeat bg-right h-3/4 w-1/2 absolute right-0 -bottom-[30%]" />
     </Box>
