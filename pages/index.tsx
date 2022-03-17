@@ -20,6 +20,8 @@ import Canvas3D from 'components/3d/Canvas3D';
 import Bounce from 'react-reveal/Bounce';
 import Fade from 'react-reveal/Fade';
 import Tada from 'react-reveal/Tada';
+import ReactPlayer from 'react-player';
+import VideoAutoPlayback from 'components/video/VideoAutoPlayback';
 
 const mocks = [
   {
@@ -59,13 +61,9 @@ const Home: NextPageWithLayout = () => {
       <Box className="grow bg-white">
         <LandingVideo />
         <WelcomeToMMF />
-        <Fade right>
-          <MetaverseCity />
-        </Fade>
+        <MetaverseCity />
         <MiniGame />
-        <Bounce>
-          <Marketplace />
-        </Bounce>
+        <Marketplace />
       </Box>
     </>
   );
@@ -74,9 +72,7 @@ const Home: NextPageWithLayout = () => {
 const LandingVideo = () => {
   return (
     <Box className="relative aspect-video h-full w-screen z-10">
-      <video loop autoPlay className="w-full" muted>
-        <source src={'https://d1cqw9qrof1e8g.cloudfront.net/HomePage.mp4'} type="video/mp4" />
-      </video>
+      <VideoAutoPlayback url="https://d1cqw9qrof1e8g.cloudfront.net/HomePage.mp4" videoClassName="w-full" />
     </Box>
   );
 };
@@ -87,28 +83,24 @@ const WelcomeToMMF = () => {
       <Box className="z-1 bg-[url('/media/landing/bg-cloud.png')] bg-[length:100%] bg-no-repeat bg-top h-full w-full absolute top-[5%]" />
       <Box className="bg-[url('/assets/home/home-border.png')] bg-auto bg-left h-[17rem] w-full absolute -top-[5rem]" />
       {/* <Box className="bg-[url('/media/home/home-border.png')] bg-auto bg-left h-[17rem] w-full absolute top-0" /> */}
-      <Tada>
-        <Box className="relative w-[70%] mx-auto -mt-[15%] h-[54rem]">
-          <Image alt="Welcome" src={imgWelcome} fill="layout" objectFit="cover" />
-        </Box>
-      </Tada>
-      <Fade>
-        <Flex className="relative flex-col items-center justify-center mx-auto">
-          <h1 className="font-['Exo'] font-black uppercase bgg-orange text-clip text-stroke-white text-[6vw] leading-tight">
-            Events
-          </h1>
-          <Text className="font-bold text-[1.4vw] uppercase">
-            Latest update about My Meta Farm&#39;s events and news
-          </Text>
-        </Flex>
-        <Box className="px-[15%] mx-auto mt-20">
-          <GridBox className="grid-cols-3 gap-20">
-            {_map(mocks, item => (
-              <LandingEventCard key={item.id} item={item} />
-            ))}
-          </GridBox>
-        </Box>
-      </Fade>
+
+      <Box className="relative w-[70%] mx-auto -mt-[15%] h-[54rem]">
+        <Image alt="Welcome" src={imgWelcome} fill="layout" objectFit="cover" />
+      </Box>
+
+      <Flex className="relative flex-col items-center justify-center mx-auto">
+        <h1 className="font-['Exo'] font-black uppercase bgg-orange text-clip text-stroke-white text-[6vw] leading-tight">
+          Events
+        </h1>
+        <Text className="font-bold text-[1.4vw] uppercase">Latest update about My Meta Farm&#39;s events and news</Text>
+      </Flex>
+      <Box className="px-[15%] mx-auto mt-20">
+        <GridBox className="grid-cols-3 gap-20">
+          {_map(mocks, item => (
+            <LandingEventCard key={item.id} item={item} />
+          ))}
+        </GridBox>
+      </Box>
     </Box>
   );
 };
@@ -149,20 +141,23 @@ const MetaverseCity = () => {
         <Box className="bg-[url('/media/landing/border-2.png')] bg-auto bg-left h-[17rem] w-full absolute top-0" />
         <Box className="relative bgg-rose py-40">
           <Flex className="px-[5%] relative flex-col items-end justify-center mx-auto gap-8">
-            <Flex className="items-center justify-center gap-9 h-full">
-              <h1 className="font-['Exo'] font-black uppercase bgg-orange text-clip text-stroke-brown text-[6vw] leading-tight">
-                Metaverse - City
-              </h1>
-              <Box className="h-[8vw] w-4 bgg-orange" />
-            </Flex>
+            <Fade right>
+              <Flex className="items-center justify-center gap-9 h-full">
+                <h1 className="font-['Exo'] font-black uppercase bgg-orange text-clip text-stroke-brown text-[6vw] leading-tight">
+                  Metaverse - City
+                </h1>
+                <Box className="h-[8vw] w-4 bgg-orange" />
+              </Flex>
+            </Fade>
             <Text className="w-1/2 text-right font-bold text-[1.4vw] text-red-100">
               Where citizens can play, build, own, and monetize virtual experiences. A virtual world allows interacting,
               exchanging, socializing seamlessly with multi other worlds
             </Text>
             <Flex className="items-center mx-auto mt-20">
-              <video loop autoPlay className="w-full rounded-[2rem]" muted>
-                <source src={'https://d1cqw9qrof1e8g.cloudfront.net/Metaverse_City.mp4'} type="video/mp4" />
-              </video>
+              <VideoAutoPlayback
+                url="https://d1cqw9qrof1e8g.cloudfront.net/Metaverse_City.mp4"
+                videoClassName="w-full rounded-[2rem]"
+              />
               <Box className="relative h-full w-[80rem]">
                 <Image alt={'Metaverse City 2'} src={imgMetaverseCity2} />
               </Box>
@@ -191,9 +186,11 @@ const MiniGame = () => {
               new friends, and earn NFTs.
             </Text>
           </Flex>
-          <video loop autoPlay className="w-full rounded-[2rem] m-10" muted>
-            <source src={'https://d1cqw9qrof1e8g.cloudfront.net/MiniGame.mp4'} type="video/mp4" />
-          </video>
+          <VideoAutoPlayback
+            url="https://d1cqw9qrof1e8g.cloudfront.net/MiniGame.mp4"
+            className=" m-10"
+            videoClassName="w-full rounded-[2rem]"
+          />
         </Flex>
       </Fade>
       <Box className="z-[20] bg-[url('/media/landing/border-3-left.png')] bg-[length:50%] bg-no-repeat bg-left h-3/4 w-1/2 absolute left-0 -bottom-[19%]" />
