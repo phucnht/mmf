@@ -1,6 +1,5 @@
-import { Box, ButtonImage, Container, Flex, GridBox, Heading, Stack, Text } from '@whammytechvn/wt-components';
+import { Box, Flex, GridBox, Heading, Text } from '@whammytechvn/wt-components';
 import Head from 'next/head';
-import { FC } from 'react';
 import { NextPageWithLayout } from './_app';
 import _map from 'lodash/map';
 
@@ -8,16 +7,18 @@ import imgEvent1 from 'public/media/landing/event-1.png';
 import imgEvent2 from 'public/media/landing/event-2.png';
 import imgEvent3 from 'public/media/landing/event-3.png';
 
-import imgMetaverseCity1 from 'public/media/landing/metaverse-city-1.png';
 import imgMetaverseCity2 from 'public/media/landing/metaverse-city-2.png';
+
+import imgMarketplaceItems from 'public/media/landing/marketplace-items.png';
+import imgMarketplaceCharacter from 'public/media/landing/marketplace-character.png';
+import imgMarketplaceProgress from 'public/media/landing/marketplace-progress.png';
+
+import imgBorder2 from 'public/media/landing/border-2.png';
+import imgBorder3 from 'public/media/landing/border-3.png';
 
 import Image from 'components/display/image/CustomImage';
 import classNames from 'classnames';
-import ReactPlayer from 'react-player/lazy';
 import imgWelcome from 'public/media/landing/welcome.png';
-
-const HOME_CONTENT =
-  'Donec nec congue turpis. Nullam feugiat mi consequat interdum tempus. Etiam lorem nisl, semper at convallis ac, dictum eu magna. Praesent non urna tempus, hendrerit nulla sit amet, interdum sapien. Nunc pretium ';
 
 const mocks = [
   {
@@ -57,6 +58,8 @@ const Home: NextPageWithLayout = () => {
         <LandingVideo />
         <WelcomeToMMF />
         <MetaverseCity />
+        <MiniGame />
+        <Marketplace />
         {/* <SystemInformation /> */}
         {/* <Hero />
       <SystemInformation />
@@ -69,31 +72,26 @@ const Home: NextPageWithLayout = () => {
 const LandingVideo = () => {
   return (
     <Box className="relative aspect-video h-full w-screen z-10">
-      <ReactPlayer
-        url="https://www.youtube.com/embed/qoyYn01QDT8"
-        title="My Meta Farm Trailer"
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-        playing
-        width="100%"
-        height="100%"
-      />
+      <video loop autoPlay className="w-full" muted>
+        <source src={'https://d1cqw9qrof1e8g.cloudfront.net/HomePage.mp4'} type="video/mp4" />
+      </video>
     </Box>
   );
 };
 
 const WelcomeToMMF = () => {
   return (
-    <Box className="z-[15] relative py-40 bgg-sky h-full">
+    <Box className="z-[15] relative py-40 pb-64 bgg-sky h-full">
       <Box className="bg-[url('/assets/home/home-border.png')] bg-auto bg-left h-[17rem] w-full absolute -top-[5rem]" />
       {/* <Box className="bg-[url('/media/home/home-border.png')] bg-auto bg-left h-[17rem] w-full absolute top-0" /> */}
       <Box className="relative w-[70%] mx-auto -mt-[20%] h-[54rem]">
         <Image alt="Welcome" src={imgWelcome} fill="layout" objectFit="cover" />
       </Box>
       <Flex className="relative flex-col items-center justify-center mx-auto">
-        <h1 className="font-['Exo'] font-black uppercase bgg-text-orange-white text-[9.6rem] leading-tight">Events</h1>
-        <Text className="font-bold text-2xl uppercase">Latest update about My Meta Farm&#39;s events and news</Text>
+        <h1 className="font-['Exo'] font-black uppercase bgg-orange text-clip text-stroke-white text-[6vw] leading-tight">
+          Events
+        </h1>
+        <Text className="font-bold text-[1.4vw] uppercase">Latest update about My Meta Farm&#39;s events and news</Text>
       </Flex>
       <Box className="px-[15%] mx-auto mt-20">
         <GridBox className="grid-cols-3 gap-20">
@@ -129,25 +127,88 @@ function LandingEventCard({ item }: { item: any }) {
 
 const MetaverseCity = () => {
   return (
-    <Box className="z-[15] relative bg-[url('/media/landing/metaverse-city-1.png')] bg-[length:120%_120%] bg-no-repeat bg-bottom h-full w-ful">
-      <Box className="relative bgg-rose py-40">
-        <Box className="z-[15] bg-[url('/media/landing/side-tree.png')] bg-[length:80%_80%] bg-no-repeat bg-left h-[52.1rem] w-[27.5rem] absolute left-0 -top-[20%]" />
-        <Flex className="px-[5%] relative flex-col items-end justify-center mx-auto">
-          <h1 className="font-['Exo'] font-black uppercase bgg-text-orange-brown text-[9.6rem] leading-tight">
-            Metaverse - City
-          </h1>
-          <Text className="w-1/2 text-right font-bold text-xl uppercase text-red-100">
-            Where citizens can play, build, own, and monetize virtual experiences. A virtual world allows interacting,
-            exchanging, socializing seamlessly with multi other worlds
-          </Text>
-          <Flex className="items-center mx-auto mt-20">
-            <Image alt={'Metaverse City 1'} src={imgMetaverseCity1} />
-            <Box className="relative h-full w-[80rem]">
-              <Image alt={'Metaverse City 2'} src={imgMetaverseCity2} />
-            </Box>
+    <Box className="relative">
+      <Box className="z-[20] bg-[url('/media/landing/border-2.png')] bg-[length:100%] bg-no-repeat bg-top h-full w-full absolute -top-[25%]" />
+      <Box className="z-[15] relative bg-[url('/media/landing/metaverse-city-1.png')] bg-[length:100%] bg-no-repeat bg-bottom h-full w-ful">
+        <Box className="bg-[url('/media/landing/border-2.png')] bg-auto bg-left h-[17rem] w-full absolute top-0" />
+        <Box className="relative bgg-rose py-40">
+          <Flex className="px-[5%] relative flex-col items-end justify-center mx-auto gap-8">
+            <Flex className="items-center justify-center gap-9 h-full">
+              <h1 className="font-['Exo'] font-black uppercase bgg-orange text-clip text-stroke-brown text-[6vw] leading-tight">
+                Metaverse - City
+              </h1>
+              <Box className="h-[8vw] w-4 bgg-orange" />
+            </Flex>
+            <Text className="w-1/2 text-right font-bold text-[1.4vw] text-red-100">
+              Where citizens can play, build, own, and monetize virtual experiences. A virtual world allows interacting,
+              exchanging, socializing seamlessly with multi other worlds
+            </Text>
+            <Flex className="items-center mx-auto mt-20">
+              <video loop autoPlay className="w-full rounded-[2rem]" muted>
+                <source src={'https://d1cqw9qrof1e8g.cloudfront.net/Metaverse_City.mp4'} type="video/mp4" />
+              </video>
+              <Box className="relative h-full w-[80rem]">
+                <Image alt={'Metaverse City 2'} src={imgMetaverseCity2} />
+              </Box>
+            </Flex>
           </Flex>
-        </Flex>
+        </Box>
       </Box>
+    </Box>
+  );
+};
+
+const MiniGame = () => {
+  return (
+    <Box className="relative">
+      <Flex className="z-[15] relative bgg-rose py-40 pb-64 px-[5%] h-full w-ful gap-20">
+        <Flex className="relative flex-col items-start mx-auto gap-6 max-w-3xl">
+          <Flex className="items-center justify-center gap-9 whitespace">
+            <Box className="h-[8vw] w-4 bgg-orange" />
+            <h1 className="font-['Exo'] font-black uppercase bgg-orange text-clip text-stroke-brown text-[6vw] leading-tight">
+              Minigame
+            </h1>
+          </Flex>
+          <Text className="text-left font-bold text-[1.4vw] text-red-100">
+            With fun and diverse gameplays, minigames completely become a playground where citizens can relax, make new
+            friends, and earn NFTs.
+          </Text>
+        </Flex>
+        <video loop autoPlay className="w-full rounded-[2rem] m-10" muted>
+          <source src={'https://d1cqw9qrof1e8g.cloudfront.net/MiniGame.mp4'} type="video/mp4" />
+        </video>
+      </Flex>
+      <Box className="z-[20] bg-[url('/media/landing/border-3-left.png')] bg-[length:60%] bg-no-repeat bg-left h-3/4 w-1/2 absolute left-0 -bottom-[15%]" />
+      <Box className="z-[20] bg-[url('/media/landing/border-3-right.png')] bg-[length:60%] bg-no-repeat bg-right h-3/4 w-1/2 absolute right-0 -bottom-[30%]" />
+    </Box>
+  );
+};
+
+const Marketplace = () => {
+  return (
+    <Box className="z-[15] relative bg-[url('/media/landing/marketplace-bg.png')] bg-[length:110%_110%] bg-no-repeat bg-top h-full w-ful gap-20">
+      <Flex className="flex-col relative bgg-blue-both py-40 w-full h-full px-[5%] gap-40">
+        <Flex className="relative flex-col items-center justify-center mx-auto">
+          <h1 className="font-['Exo'] font-black uppercase bgg-orange text-clip text-stroke-white text-[9.6rem] leading-tight">
+            Marketplace
+          </h1>
+          <Text className="w-1/2 font-bold text-[1.4vw] text-center">
+            Where players exchange various digital assets generated in the Metaverse and experience the trading platform
+            on the website or even in the game.
+          </Text>
+        </Flex>
+        <Flex className="relative items-center justify-center mx-auto">
+          <Box className="relative w-full h-full px-[5%] pr-[15%]">
+            <Image alt="Welcome" src={imgMarketplaceItems} fill="layout" objectFit="cover" />
+          </Box>
+          <Box className="absolute right-0 -top-[20%] w-1/4">
+            <Image alt="Welcome" src={imgMarketplaceCharacter} />
+          </Box>
+        </Flex>
+        <Box className="relative w-1/2 mx-auto">
+          <Image alt="Welcome" src={imgMarketplaceProgress} fill="layout" objectFit="cover" />
+        </Box>
+      </Flex>
     </Box>
   );
 };
