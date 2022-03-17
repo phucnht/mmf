@@ -12,6 +12,8 @@ import { useRouter } from 'next/router';
 import useWeb3Validate from 'hooks/useWeb3Validate';
 import { loginLoading, selectAuthData } from 'store/account/auth/auth.slice';
 import { selectPaymentTokenData } from 'store/market/payment-token/paymentToken.slice';
+import useWindowSize from 'hooks/useWindowSize';
+import Warning from 'components/display/warning/Warning';
 
 interface AppLayoutProps {
   children: ReactNode;
@@ -24,6 +26,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
   const { accessToken } = useAppSelector(selectAuthData);
   const { MMF } = useAppSelector(selectPaymentTokenData);
   useWeb3Validate();
+  const windowSize = useWindowSize();
 
   useEffect(() => {
     if (!id) {
@@ -55,10 +58,15 @@ export default function AppLayout({ children }: AppLayoutProps) {
     </>
   );
 
+  if (windowSize?.width < 1024) {
+    return <Warning />;
+  }
+
   return (
-    <Scaffold className="bg-[#0B2F51] bg-[url('/assets/bg/bg-main.png')] bg-[length:100%_51rem] bg-no-repeat bg-bottom flex flex-col overflow-x-auto min-w-[36rem]">
+    // <Scaffold className="bg-[#0B2F51] bg-[url('/assets/bg/bg-main.png')] bg-[length:100%_51rem] bg-no-repeat bg-bottom flex flex-col overflow-x-auto min-w-[36rem]">
+    <Scaffold className="flex flex-col overflow-x-auto min-w-[36rem]">
       {content}
-      <BackgroundFooterShadow />
+      {/* <BackgroundFooterShadow /> */}
       <BackgroundFlare />
     </Scaffold>
   );

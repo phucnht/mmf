@@ -11,18 +11,18 @@ module.exports = withTM({
     return {
       '/': { page: '/' },
       '/404': { page: '/404' },
-      '/500': { page: '/500' },
-      '/metaverse': { page: '/metaverse' },
-      '/marketplace': { page: '/marketplace' },
-      '/marketplace/items': { page: '/marketplace/items' },
-      '/marketplace/lands': { page: '/marketplace/lands' },
-      '/marketplace/characters': { page: '/marketplace/characters' },
-      '/dashboard': { page: '/dashboard' },
-      '/dashboard/box': { page: '/dashboard/box' },
-      '/dashboard/dashboard': { page: '/dashboard/dashboard' },
-      '/account': { page: '/account' },
-      '/inventory': { page: '/inventory' },
-      '/inventory/airdrop': { page: '/inventory/airdrop' }
+      '/500': { page: '/500' }
+      // '/metaverse': { page: '/metaverse' },
+      // '/marketplace': { page: '/marketplace' },
+      // '/marketplace/items': { page: '/marketplace/items' },
+      // '/marketplace/lands': { page: '/marketplace/lands' },
+      // '/marketplace/characters': { page: '/marketplace/characters' },
+      // '/dashboard': { page: '/dashboard' },
+      // '/dashboard/box': { page: '/dashboard/box' },
+      // '/dashboard/dashboard': { page: '/dashboard/dashboard' },
+      // '/account': { page: '/account' },
+      // '/inventory': { page: '/inventory' },
+      // '/inventory/airdrop': { page: '/inventory/airdrop' }
     };
   },
   // async redirects() {

@@ -9,7 +9,7 @@ export interface LinkProps extends DetailedHTMLProps<AnchorHTMLAttributes<HTMLAn
 
 const Link = forwardRef<any, LinkProps>(({ disabled, href, className, children, ...props }: LinkProps, ref) => {
   const cxLink = classNames(
-    { 'hover:opacity-70': !disabled, 'cursor-not-allowed pointer-events-none opacity-50': disabled },
+    { 'hover:opacity-90': !disabled, 'cursor-not-allowed pointer-events-none opacity-50': disabled },
     className
   );
 

@@ -1,5 +1,7 @@
 import '../styles/main.css';
 import 'react-toastify/dist/ReactToastify.css';
+import 'node_modules/video-react/dist/video-react.css';
+import 'animate.css/animate.min.css';
 
 import type { AppProps } from 'next/app';
 import { persistor, store } from '../store/store';
