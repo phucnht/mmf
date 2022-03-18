@@ -3,10 +3,10 @@ import { Popover, Transition } from '@headlessui/react';
 import classNames from 'classnames';
 import ButtonImageRef from './ButtonImageRef';
 import { CxProps } from 'utils/types';
-import Link from 'next/link';
-import { Button } from '@whammytechvn/wt-components';
+import { Box, Button } from '@whammytechvn/wt-components';
 import { SidebarRouteProps } from 'components/navigation/sidebar/sidebar.typings';
 import { useRouter } from 'next/router';
+import ReactTooltip from 'react-tooltip';
 
 const mobileRoutes = [
   {
@@ -37,18 +37,30 @@ const desktopRoutes = [
     slug: '/document',
     label: 'Document',
     disabled: true
+  },
+  {
+    slug: 'https://news.mymetafarm.com',
+    label: 'News'
   }
 ];
 
-const HeaderButtonRoute = ({ route, onClick }: { route: SidebarRouteProps; onClick?: () => void }) => (
-  <Button
-    disabled={route.disabled}
-    onClick={onClick}
-    className="text-sm !leading-[3.2rem] xl:text-btn p-1 w-full xl:p-3 lg:w-[9rem] !min-w-fit xl:w-[15rem] bg-transparent hover:bg-blue-100/10 font-black text-white uppercase disabled:pointer-events-none"
-  >
-    {route.label}
-  </Button>
-);
+const HeaderButtonRoute = ({ route, onClick }: { route: SidebarRouteProps; onClick?: () => void }) => {
+  const cxButton = classNames(
+    'text-sm !leading-[3.2rem] xl:text-btn p-1 w-full xl:p-3 lg:w-[9rem] !min-w-fit xl:w-[15rem] bg-transparent hover:bg-blue-100/10 font-black text-white uppercase',
+    {
+      '!bg-gray-400 !cursor-not-allowed': route.disabled
+    }
+  );
+
+  return (
+    <Box className="relative">
+      <Button onClick={onClick} className={cxButton} data-tip={route.disabled && 'Coming Soon'}>
+        {route.label}
+      </Button>
+      <ReactTooltip place="bottom" className="z-[100]" />
+    </Box>
+  );
+};
 
 export default function HeaderButtonHamburger({ className }: CxProps) {
   const router = useRouter();
@@ -74,7 +86,7 @@ export default function HeaderButtonHamburger({ className }: CxProps) {
         leaveTo="transform scale-95 opacity-0"
         className="absolute left-0 mt-8 w-full z-50"
       >
-        <Popover.Panel className="hidden lg:block text-white text-md bg-blue-400 rounded-[2rem] w-full p-2 xl:p-4">
+        <Popover.Panel className="hidden lg:flex text-white text-md bg-blue-400 rounded-[2rem] w-full p-2 xl:p-4">
           {({ close }) => (
             <>
               {desktopRoutes.map(route => (
