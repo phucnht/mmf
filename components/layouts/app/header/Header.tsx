@@ -1,4 +1,4 @@
-import BackgroundHeaderShadow from 'components/bg/BackgroundHeaderShadow';
+// import BackgroundHeaderShadow from 'components/bg/BackgroundHeaderShadow';
 import HeaderLogo from './components/HeaderLogo';
 import HeaderNav from './components/HeaderNav';
 import useWindowSize from 'hooks/useWindowSize';
@@ -29,7 +29,7 @@ export default function Header() {
 
   return (
     <>
-      <BackgroundHeaderShadow />
+      {/* <BackgroundHeaderShadow /> */}
       <nav className="z-40 flex items-center justify-between py-2 bg-black/30 p-[3%] fixed top-0 w-full">
         {windowSize?.width < 1024 ? <HeaderMobile /> : <HeaderDesktop />}
       </nav>

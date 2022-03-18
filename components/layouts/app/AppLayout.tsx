@@ -7,13 +7,14 @@ import { getSystemConfig } from 'store/market/system-config/systemConfig.api';
 import { selectSystemConfigData } from 'store/market/system-config/systemConfig.slice';
 import { getPaymentTokens } from 'store/market/payment-token/paymentToken.api';
 import BackgroundFlare from 'components/bg/BackgroundFlare';
-import BackgroundFooterShadow from 'components/bg/BackgroundFooterShadow';
+// import BackgroundFooterShadow from 'components/bg/BackgroundFooterShadow';
 import { useRouter } from 'next/router';
 import useWeb3Validate from 'hooks/useWeb3Validate';
 import { loginLoading, selectAuthData } from 'store/account/auth/auth.slice';
 import { selectPaymentTokenData } from 'store/market/payment-token/paymentToken.slice';
 import useWindowSize from 'hooks/useWindowSize';
 import Warning from 'components/display/warning/Warning';
+import Spinner from 'components/display/spinner/Spinner';
 
 interface AppLayoutProps {
   children: ReactNode;
@@ -58,7 +59,11 @@ export default function AppLayout({ children }: AppLayoutProps) {
     </>
   );
 
-  if (windowSize?.width < 1024) {
+  if (!windowSize) {
+    return <Spinner />;
+  }
+
+  if (windowSize.width > 0 && windowSize.width < 1024) {
     return <Warning />;
   }
 
