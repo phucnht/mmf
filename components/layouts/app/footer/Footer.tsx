@@ -38,7 +38,7 @@ const Footer = () => {
 
   if (pathname === '/') {
     renderFooter = (
-      <Flex className="layout flex-col items-center gap-6 text-white">
+      <Flex className="layout flex-col items-center gap-8 lg:gap-6 text-white">
         <Flex className="items-center gap-4">
           <Link href="https://www.eastfog.com/" target="_blank" rel="noopener">
             <Image alt="East Fog" src={imgLogoEastFog} />
@@ -47,10 +47,10 @@ const Footer = () => {
             <Image alt="Starpunk" src={imgLogoStarpunk} height={43} width={170} />
           </Link>
         </Flex>
-        <Text className="text-xl text-center font-normal">
+        <Text className="text-sm lg:text-xl text-center font-normal">
           This product is cooperated by<span className="block">EASTFOG company and STARPUNK corporation.</span>
         </Text>
-        <Flex className="items-center text-lg gap-6">
+        <Flex className="flex-col lg:flex-row items-center text-sm lg:text-lg gap-10 lg:gap-6">
           <Flex className="gap-4 min-w-[10rem] items-center justify-center bg-[#186123] rounded-full p-3 shadow-md shadow-gray-700">
             <Link href="https://t.me/MyMetaFarm" target="_blank" rel="noopener">
               <Box className="bg-[url('/assets/icons/telegram.svg')] bg-auto bg-center bg-no-repeat w-7 h-8 mr-auto " />
