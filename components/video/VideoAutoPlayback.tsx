@@ -20,10 +20,12 @@ export default function VideoAutoPlayback({
   });
 
   return (
-    <section ref={containerRef} className={cxSection}>
-      <video playsInline muted loop ref={videoRef} className={cxVideo}>
-        <source type="video/mp4" src={url} />
-      </video>
-    </section>
+    <>
+      <section ref={containerRef} className={cxSection}>
+        <video playsInline muted loop preload="auto" ref={videoRef} className={cxVideo} autoPlay>
+          <source type="video/mp4" src={url} />
+        </video>
+      </section>
+    </>
   );
 }

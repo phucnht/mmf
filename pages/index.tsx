@@ -16,11 +16,8 @@ import imgMarketplaceProgress from 'public/media/landing/marketplace-progress.pn
 import Image from 'components/display/image/CustomImage';
 import classNames from 'classnames';
 import imgWelcome from 'public/media/landing/welcome.png';
-import Canvas3D from 'components/3d/Canvas3D';
 import Bounce from 'react-reveal/Bounce';
 import Fade from 'react-reveal/Fade';
-import Tada from 'react-reveal/Tada';
-import ReactPlayer from 'react-player';
 import VideoAutoPlayback from 'components/video/VideoAutoPlayback';
 
 const mocks = [
@@ -88,19 +85,25 @@ const WelcomeToMMF = () => {
           <Image alt="Welcome" src={imgWelcome} fill="layout" objectFit="cover" />
         </Box>
       </Bounce>
-      <Flex className="relative flex-col items-center justify-center mx-auto">
-        <h1 className="font-['Exo'] font-black uppercase bgg-orange text-clip text-stroke-white text-[6vw] leading-tight">
-          Events
-        </h1>
-        <Text className="font-bold text-[1.4vw] uppercase">Latest update about My Meta Farm&#39;s events and news</Text>
-      </Flex>
-      <Box className="layout mx-auto mt-20">
-        <GridBox className="grid-cols-3 gap-20">
-          {_map(mocks, item => (
-            <LandingEventCard key={item.id} item={item} />
-          ))}
-        </GridBox>
-      </Box>
+      <Fade>
+        <Flex className="relative flex-col items-center justify-center mx-auto">
+          <h1 className="font-['Exo'] font-black uppercase bgg-orange text-clip text-stroke-white text-[6vw] leading-tight">
+            Events
+          </h1>
+          <Text className="font-bold text-[1.4vw] uppercase">
+            Latest update about My Meta Farm&#39;s events and news
+          </Text>
+        </Flex>
+      </Fade>
+      <Fade>
+        <Box className="layout mx-auto mt-20">
+          <GridBox className="grid-cols-3 gap-20">
+            {_map(mocks, item => (
+              <LandingEventCard key={item.id} item={item} />
+            ))}
+          </GridBox>
+        </Box>
+      </Fade>
     </Box>
   );
 };
@@ -147,8 +150,10 @@ const MetaverseCity = () => {
               </Flex>
             </Fade>
             <Text className="w-1/2 text-right font-bold text-[1.4vw] text-red-100">
-              Where citizens can play, build, own, and monetize virtual experiences. A virtual world allows interacting,
-              exchanging, socializing seamlessly with multi other worlds
+              <Fade right>
+                Where citizens can play, build, own, and monetize virtual experiences. A virtual world allows
+                interacting, exchanging, socializing seamlessly with multi other worlds
+              </Fade>
             </Text>
             <Flex className="items-center mx-auto mt-20">
               <Fade>
@@ -158,7 +163,9 @@ const MetaverseCity = () => {
                 />
               </Fade>
               <Box className="relative h-full w-[80rem]">
-                <Image alt={'Metaverse City 2'} src={imgMetaverseCity2} />
+                <Fade right>
+                  <Image alt={'Metaverse City 2'} src={imgMetaverseCity2} />
+                </Fade>
               </Box>
             </Flex>
           </Flex>
@@ -182,8 +189,10 @@ const MiniGame = () => {
             </Flex>
           </Fade>
           <Text className="text-left font-bold text-[1.4vw] text-red-100">
-            With fun and diverse gameplays, minigames completely become a playground where citizens can relax, make new
-            friends, and earn NFTs.
+            <Fade left>
+              With fun and diverse gameplays, minigames completely become a playground where citizens can relax, make
+              new friends, and earn NFTs.
+            </Fade>
           </Text>
         </Flex>
         <Fade>
@@ -205,20 +214,28 @@ const Marketplace = () => {
     <Box className="z-[15] relative bg-[url('/media/landing/marketplace-bg.png')] bg-[length:110%_110%] bg-no-repeat bg-top h-full w-ful gap-20">
       <Flex className="flex-col relative bgg-blue-both py-40 w-full h-full px-[5%] gap-40">
         <Flex className="relative flex-col items-center justify-center mx-auto">
-          <h1 className="font-['Exo'] font-black uppercase bgg-orange text-clip text-stroke-white text-[9.6rem] leading-tight">
-            Marketplace
-          </h1>
+          <Bounce>
+            <h1 className="font-['Exo'] font-black uppercase bgg-orange text-clip text-stroke-white text-[9.6rem] leading-tight">
+              Marketplace
+            </h1>
+          </Bounce>
           <Text className="w-1/2 font-bold text-[1.4vw] text-center">
-            Where players exchange various digital assets generated in the Metaverse and experience the trading platform
-            on the website or even in the game.
+            <Fade>
+              Where players exchange various digital assets generated in the Metaverse and experience the trading
+              platform on the website or even in the game.
+            </Fade>
           </Text>
         </Flex>
         <Flex className="relative items-center justify-center mx-auto">
           <Box className="relative w-full h-full px-[5%] pr-[15%]">
-            <Image alt="Welcome" src={imgMarketplaceItems} fill="layout" objectFit="cover" />
+            <Bounce>
+              <Image alt="Welcome" src={imgMarketplaceItems} fill="layout" objectFit="cover" />
+            </Bounce>
           </Box>
           <Box className="absolute right-0 -top-[20%] w-1/4">
-            <Image alt="Welcome" src={imgMarketplaceCharacter} />
+            <Bounce>
+              <Image alt="Welcome" src={imgMarketplaceCharacter} />
+            </Bounce>
             {/* <Canvas3D
               url="https://master.mymetafarm.com/Items/9/9_model.fbx"
               alt="Character"
