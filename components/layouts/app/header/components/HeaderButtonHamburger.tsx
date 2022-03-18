@@ -14,22 +14,29 @@ const mobileRoutes = [
     label: 'Home'
   },
   {
-    slug: '/dashboard/box',
-    label: 'Dashboard'
-  },
-  {
-    slug: '/marketplace/items',
-    label: 'Marketplace'
-  },
-  {
-    slug: '/metaverse',
-    label: 'Metaverse'
-  },
-  {
-    slug: '/document',
-    label: 'Document',
-    disabled: true
+    slug: 'https://news.mymetafarm.com',
+    label: 'News'
   }
+  // {
+  //   slug: '/dashboard/box',
+  //   label: 'Dashboard',
+  //   disabled: true
+  // },
+  // {
+  //   slug: '/marketplace/items',
+  //   label: 'Marketplace',
+  //   disabled: true
+  // },
+  // {
+  //   slug: '/metaverse',
+  //   label: 'Metaverse',
+  //   disabled: true
+  // },
+  // {
+  //   slug: '/document',
+  //   label: 'Document',
+  //   disabled: true
+  // }
 ];
 
 const desktopRoutes = [
@@ -86,7 +93,7 @@ export default function HeaderButtonHamburger({ className }: CxProps) {
         leaveTo="transform scale-95 opacity-0"
         className="absolute left-0 mt-8 w-full z-50"
       >
-        <Popover.Panel className="hidden lg:flex text-white text-md bg-blue-400 rounded-[2rem] w-full p-2 xl:p-4">
+        <Popover.Panel className="hidden lg:flex text-white text-md bg-blue-400 rounded-none lg:rounded-[2rem] w-full p-2 xl:p-4">
           {({ close }) => (
             <>
               {desktopRoutes.map(route => (
@@ -102,7 +109,7 @@ export default function HeaderButtonHamburger({ className }: CxProps) {
             </>
           )}
         </Popover.Panel>
-        <Popover.Panel className="lg:hidden text-white flex flex-col text-md bg-blue-400 rounded-2xl lg:rounded-[2rem] w-full p-2 xl:p-4 z-50">
+        <Popover.Panel className="lg:hidden text-white flex flex-col text-md bg-blue-400 rounded-none lg:rounded-[2rem] w-full p-2 xl:p-4 z-50 divide-y-[1px]">
           {({ close }) => (
             <>
               {mobileRoutes.map(route => (
