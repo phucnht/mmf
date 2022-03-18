@@ -19,6 +19,7 @@ import imgWelcome from 'public/media/landing/welcome.png';
 import Bounce from 'react-reveal/Bounce';
 import Fade from 'react-reveal/Fade';
 import VideoAutoPlayback from 'components/video/VideoAutoPlayback';
+import Link from 'components/navigation/link/Link';
 
 const mocks = [
   {
@@ -28,7 +29,8 @@ const mocks = [
     title: 'Event Updates',
     badge: 'Hot',
     content: 'Airdrop is happening - Join to get attractive NFTs.',
-    date: '13:56 15/03/2022'
+    date: '13:56 15/03/2022',
+    href: 'http://news.mymetafarm.com/category/events/'
   },
   {
     id: 2,
@@ -36,7 +38,8 @@ const mocks = [
     tag: 'News',
     title: 'Global Ambassador Program',
     content: 'This is an opportunity for you to get deeply integrated into My Meta Farm and our growth journey.',
-    date: '13:56 15/03/2022'
+    date: '13:56 15/03/2022',
+    href: 'http://news.mymetafarm.com/2022/03/18/the-global-ambassador-program/'
   },
   {
     id: 3,
@@ -44,7 +47,8 @@ const mocks = [
     tag: 'Update',
     title: 'Outstanding Prize',
     content: 'My Meta Farm- The second winner of the GameFi track  in Metathon Hackathon.',
-    date: '13:56 15/03/2022'
+    date: '13:56 15/03/2022',
+    href: 'http://news.mymetafarm.com/'
   }
 ];
 
@@ -81,7 +85,7 @@ const WelcomeToMMF = () => {
       <Box className="bg-[url('/assets/home/home-border.png')] bg-auto bg-left h-[17rem] w-full absolute -top-[5rem]" />
       {/* <Box className="bg-[url('/media/home/home-border.png')] bg-auto bg-left h-[17rem] w-full absolute top-0" /> */}
       <Bounce>
-        <Box className="relative w-[70%] mx-auto -mt-[15%] h-[54rem] text-center">
+        <Box className="relative w-[70%] mx-auto -mt-[18%] h-[54rem] text-center">
           <Image alt="Welcome" src={imgWelcome} fill="layout" objectFit="cover" />
         </Box>
       </Bounce>
@@ -96,7 +100,7 @@ const WelcomeToMMF = () => {
         </Flex>
       </Fade>
       <Fade>
-        <Box className="layout mx-auto mt-20">
+        <Box className="px-[10%] layout mx-auto mt-20">
           <GridBox className="grid-cols-3 gap-20">
             {_map(mocks, item => (
               <LandingEventCard key={item.id} item={item} />
@@ -112,25 +116,27 @@ function LandingEventCard({ item }: { item: any }) {
   const cxCardWrapper = classNames('hover:opacity-90 transition cursor-pointer');
 
   return (
-    <div className={cxCardWrapper}>
-      <Box className="relative">
-        <Image alt={item.title} src={item.imgSrc} />
-        <Box className="absolute left-4 top-4 bg-transparent w-full h-full rounded-[2rem] border-2 border-white" />
-      </Box>
-      <Flex className="flex-col items-start text-black gap-2 mt-11">
-        <Text className="uppercase text-blue-100 text-lg font-black">{item.tag}</Text>
-        <Flex className="gap-4 items-center">
-          <Heading as="h3" className="uppercase !text-[1vw] !font-black">
-            {item.title}
-          </Heading>
-          {item.badge && (
-            <Text className="italic text-red-600 animate-pulse uppercase !text-[1vw] font-black">{item.badge}</Text>
-          )}
+    <Link href={item.href} target="_blank" rel="noopener">
+      <div className={cxCardWrapper}>
+        <Box className="relative">
+          <Image alt={item.title} src={item.imgSrc} />
+          <Box className="absolute left-4 top-4 bg-transparent w-full h-full rounded-[2rem] border-2 border-white" />
+        </Box>
+        <Flex className="flex-col items-start text-black gap-2 mt-11">
+          <Text className="uppercase text-blue-100 text-lg font-black">{item.tag}</Text>
+          <Flex className="gap-4 items-center">
+            <Heading as="h3" className="uppercase !text-[1vw] !font-black">
+              {item.title}
+            </Heading>
+            {item.badge && (
+              <Text className="italic text-red-600 animate-pulse uppercase !text-[1vw] font-black">{item.badge}</Text>
+            )}
+          </Flex>
+          <Text className="text-[1vw]">{item.content}</Text>
+          <Text className="text-[1vw]">{item.date}</Text>
         </Flex>
-        <Text className="text-[1vw]">{item.content}</Text>
-        <Text className="text-[1vw]">{item.date}</Text>
-      </Flex>
-    </div>
+      </div>
+    </Link>
   );
 }
 
@@ -215,7 +221,7 @@ const Marketplace = () => {
       <Flex className="flex-col relative bgg-blue-both py-40 w-full h-full px-[5%] gap-40">
         <Flex className="relative flex-col items-center justify-center mx-auto">
           <Bounce>
-            <h1 className="font-['Exo'] font-black uppercase bgg-orange text-clip text-stroke-white text-[9.6rem] leading-tight">
+            <h1 className="font-['Exo'] font-black uppercase bgg-orange text-clip text-stroke-white text-[6vw] leading-tight">
               Marketplace
             </h1>
           </Bounce>

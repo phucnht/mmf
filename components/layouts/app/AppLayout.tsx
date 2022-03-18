@@ -13,7 +13,7 @@ import useWeb3Validate from 'hooks/useWeb3Validate';
 import { loginLoading, selectAuthData } from 'store/account/auth/auth.slice';
 import { selectPaymentTokenData } from 'store/market/payment-token/paymentToken.slice';
 import useWindowSize from 'hooks/useWindowSize';
-import Warning from 'components/display/warning/Warning';
+// import Warning from 'components/display/warning/Warning';
 import Spinner from 'components/display/spinner/Spinner';
 
 interface AppLayoutProps {
@@ -63,13 +63,13 @@ export default function AppLayout({ children }: AppLayoutProps) {
     return <Spinner />;
   }
 
-  if (windowSize.width > 0 && windowSize.width < 1024) {
-    return <Warning />;
-  }
+  // if (windowSize.width > 0 && windowSize.width < 1024) {
+  //   return <Warning />;
+  // }
 
   return (
     // <Scaffold className="bg-[#0B2F51] bg-[url('/assets/bg/bg-main.png')] bg-[length:100%_51rem] bg-no-repeat bg-bottom flex flex-col overflow-x-auto min-w-[36rem]">
-    <Scaffold className="flex flex-col overflow-x-auto min-w-[36rem]">
+    <Scaffold className="flex flex-col overflow-x-hidden min-w-[36rem]">
       {content}
       {/* <BackgroundFooterShadow /> */}
       <BackgroundFlare />
