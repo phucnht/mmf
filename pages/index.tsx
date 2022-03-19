@@ -157,7 +157,7 @@ const MetaverseCity = () => {
     <Box className="bg-[url('/media/landing/metaverse-city-1.png')] bg-[length:100%] bg-no-repeat bg-bottom h-full w-full">
       <Box className="relative bgg-rose py-20 pb-0 lg:py-40">
         <Flex className="px-[5%] flex-col items-end justify-center mx-auto gap-8">
-          <Box className="z-[0] bg-[url('/media/landing/border-2.png')] bg-[length:100%] bg-no-repeat bg-top w-full h-[40rem] absolute -top-[10%]" />
+          <Box className="z-[0] bg-[url('/media/landing/border-2.png')] bg-[length:100%] bg-no-repeat bg-left-top w-full h-[40rem] absolute -top-[15%] lg:-top-[20%]" />
           <Fade right>
             <Flex className="items-center justify-center gap-9 h-full">
               <h1 className="font-['Exo'] font-black uppercase bgg-orange text-clip text-stroke-brown text-[9vw] lg:text-[6.5vw] leading-tight">
@@ -237,8 +237,8 @@ const MiniGame = () => {
           />
         </Fade>
       </Box>
-      <Box className="z-[20] bg-[url('/media/landing/border-3-left.png')] bg-[length:50%] bg-no-repeat bg-left h-3/4 w-1/2 absolute left-0 -bottom-[19%]" />
-      <Box className="z-[20] bg-[url('/media/landing/border-3-right.png')] bg-[length:50%] bg-no-repeat bg-right h-3/4 w-1/2 absolute right-0 -bottom-[30%]" />
+      <Box className="z-[20] bg-[url('/media/landing/border-3-left.png')] bg-[length:70%] lg:bg-[length:50%] bg-no-repeat bg-left-bottom h-3/4 w-1/2 absolute left-0 -bottom-[5%] lg:-bottom-[10%]" />
+      <Box className="z-[20] bg-[url('/media/landing/border-3-right.png')] bg-[length:70%] lg:bg-[length:50%] bg-no-repeat bg-right-bottom h-3/4 w-1/2 absolute right-0 -bottom-[4%] lg:-bottom-[8%]" />
     </Box>
   );
 };
