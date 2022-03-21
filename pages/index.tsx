@@ -20,6 +20,7 @@ import Bounce from 'react-reveal/Bounce';
 import Fade from 'react-reveal/Fade';
 import VideoAutoPlayback from 'components/video/VideoAutoPlayback';
 import Link from 'components/navigation/link/Link';
+// import Canvas3D from 'components/3d/Canvas3D';
 
 const mocks = [
   {
@@ -72,7 +73,7 @@ const Home: NextPageWithLayout = () => {
 
 const LandingVideo = () => {
   return (
-    <Box className="relative aspect-video h-[100vh] lg:h-full w-screen z-10">
+    <Box className="relative aspect-video h-screen w-screen z-10">
       <VideoAutoPlayback
         url="https://d1cqw9qrof1e8g.cloudfront.net/HomePage.mp4"
         videoClassName="w-full h-full absolute object-cover"
@@ -84,27 +85,26 @@ const LandingVideo = () => {
 
 const WelcomeToMMF = () => {
   return (
-    <Box className="z-[15] relative py-40 pb-64 bgg-sky h-full">
-      <Box className="z-1 bg-[url('/media/landing/bg-cloud.png')] bg-[length:100%] bg-no-repeat bg-top h-full w-full absolute top-[5%]" />
-      <Box className="bg-[url('/assets/home/home-border.png')] bg-[length:100%] bg-no-repeat bg-top h-full w-full absolute -top-[1%] lg:-top-[3%]" />
-      {/* <Box className="bg-[url('/media/home/home-border.png')] bg-auto bg-left h-[17rem] w-full absolute top-0" /> */}
-      <Bounce>
-        <Box className="relative w-[90%] lg:w-[70%] mx-auto -mt-[25%] lg:-mt-[18%] lg:h-[54rem] text-center">
-          <Image alt="Welcome" src={imgWelcome} fill="layout" objectFit="cover" />
-        </Box>
-      </Bounce>
-      <Fade>
-        <Flex className="relative flex-col items-center justify-center mx-auto">
-          <h1 className="font-['Exo'] font-black uppercase bgg-orange text-clip text-stroke-white text-[9vw] lg:text-[6.5vw] leading-tight">
+    <Box className="z-[15] relative pb-64 bgg-sky h-full">
+      <Box className="z-1 bg-[url('/media/landing/bg-cloud.png')] bg-[length:100%] bg-no-repeat bg-top h-[28vw] max-h-[48.5rem] w-full absolute top-[5vw]" />
+      <Box className="bg-[url('/assets/home/home-border.png')] bg-[length:100%] bg-no-repeat bg-top h-[10vw] w-full absolute -top-[3vw]" />
+      <Box className="relative w-[70%] mx-auto text-center h-auto min-h-[15rem] max-h-[50rem] -top-[8vw] xl:-top-[6vw] 2xl:-top-[5vw] -mb-[10vw] xl:-mb-[4vw] 2xl:-mb-0">
+        <Bounce>
+          <Image alt="Welcome" src={imgWelcome} />
+        </Bounce>
+      </Box>
+      <Flex className="relative flex-col items-center justify-center mx-auto">
+        <Fade>
+          <h1 className="font-['Exo'] font-black uppercase bgg-orange text-clip text-stroke-white text-[9vw] sm:text-[6.5vw] leading-tight">
             Events
           </h1>
           <Text className="text-center font-bold text-[2.4vw] lg:text-[1.8vw] uppercase">
             Latest update about My Meta Farm&#39;s events and news
           </Text>
-        </Flex>
-      </Fade>
+        </Fade>
+      </Flex>
       <Fade>
-        <Box className="px-[10%] layout mx-auto mt-14 lg:mt-20">
+        <Box className="layout mx-auto mt-14 lg:mt-20">
           <GridBox className="lg:grid-cols-3 gap-20">
             {_map(mocks, item => (
               <LandingEventCard key={item.id} item={item} />
@@ -144,8 +144,8 @@ function LandingEventCard({ item }: { item: any }) {
               </Text>
             )}
           </Flex>
-          <Text className="text-sm 2xl:text-[1vw]">{item.content}</Text>
-          <Text className="text-sm 2xl:text-[1vw]">{item.date}</Text>
+          <Text className="text-sm sm:text-lg xl:text-[1vw] !leading-[1.25]">{item.content}</Text>
+          <Text className="text-sm sm:text-lg xl:text-[1vw] !leading-[1.25]">{item.date}</Text>
         </Flex>
       </div>
     </Link>
@@ -166,7 +166,7 @@ const MetaverseCity = () => {
               <Box className="h-[8vw] w-2 lg:w-4 bgg-orange" />
             </Flex>
           </Fade>
-          <Text className="w-3/4 lg:w-1/2 text-right font-bold text-sm lg:text-[1.4vw] leading-[1.25] text-red-100">
+          <Text className="w-3/4 lg:w-1/2 text-right font-bold text-sm sm:text-lg xl:text-[1.4vw] !leading-[1.25] text-red-100">
             <Fade right>
               Where citizens can play, build, own, and monetize virtual experiences. A virtual world allows interacting,
               exchanging, socializing seamlessly with multi other worlds
@@ -212,7 +212,7 @@ const MiniGame = () => {
               </h1>
             </Flex>
           </Fade>
-          <Text className="text-left font-bold text-sm lg:text-[1.4vw] leading-[1.25] text-red-100">
+          <Text className="text-left font-bold text-sm sm:text-lg xl:text-[1.4vw] !leading-[1.25] text-red-100">
             <Fade left>
               With fun and diverse gameplays, minigames completely become a playground where citizens can relax, make
               new friends, and earn NFTs.
@@ -253,7 +253,7 @@ const Marketplace = () => {
               Marketplace
             </h1>
           </Bounce>
-          <Text className="w-3/4 lg:w-1/2 font-bold text-sm lg:text-[1.4vw] text-center">
+          <Text className="w-3/4 lg:w-1/2 font-bold text-sm sm:text-lg xl:text-[1.4vw] !leading-[1.25] text-center">
             <Fade>
               Where players exchange various digital assets generated in the Metaverse and experience the trading
               platform on the website or even in the game.
