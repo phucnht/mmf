@@ -88,7 +88,7 @@ const WelcomeToMMF = () => {
     <Box className="z-[15] relative pb-64 bgg-sky h-full">
       <Box className="z-1 bg-[url('/media/landing/bg-cloud.png')] bg-[length:100%] bg-no-repeat bg-top h-[28vw] max-h-[48.5rem] w-full absolute top-[5vw]" />
       <Box className="bg-[url('/assets/home/home-border.png')] bg-[length:100%] bg-no-repeat bg-top h-[10vw] w-full absolute -top-[3vw]" />
-      <Box className="relative w-[70%] mx-auto text-center h-auto min-h-[15rem] max-h-[50rem] -top-[8vw] xl:-top-[6vw] 2xl:-top-[5vw]">
+      <Box className="relative w-[70%] mx-auto text-center h-auto min-h-[15rem] max-h-[50rem] -top-[8vw] xl:-top-[6vw] 2xl:-top-[5vw] -mb-[10vw] xl:-mb-[4vw] 2xl:-mb-0">
         <Bounce>
           <Image alt="Welcome" src={imgWelcome} />
         </Bounce>
