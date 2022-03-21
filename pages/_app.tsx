@@ -14,6 +14,7 @@ import { ReactElement, ReactNode } from 'react';
 import AppLayout from 'components/layouts/app/AppLayout';
 import NextNProgress from 'nextjs-progressbar';
 import { PersistGate } from 'redux-persist/integration/react';
+import Script from 'next/script';
 
 export type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -28,6 +29,27 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <>
+      {/* <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', ${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS});
+        `}
+      </Script> */}
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-P734JPJ');
+        `}
+      </Script>
       <Head>
         <link rel="shortcut icon" href="/assets/logos/favicon.ico" />
       </Head>
