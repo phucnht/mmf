@@ -1,13 +1,11 @@
 import React, { Suspense, useMemo } from 'react';
-import { Canvas, useLoader } from '@react-three/fiber';
-import { OrbitControls, useFBX, Html, useProgress } from '@react-three/drei';
+import { OrbitControls, useFBX, Html, useProgress, useTexture } from '@react-three/drei';
 import { ObjectProps } from 'utils/types';
 import CustomImage, { externaImageLoader } from 'components/display/image/CustomImage';
 import { Box } from '@whammytechvn/wt-components';
-// import { useTexture } from '@react-three/drei';
-import { TextureLoader } from 'three/src/loaders/TextureLoader';
-import { Mesh, Texture } from 'three';
 import clsxm from 'utils/clsxm';
+import { Mesh } from 'three/src/objects/Mesh';
+import { Canvas } from '@react-three/fiber';
 
 export default function Canvas3D({
   url,
@@ -52,7 +50,7 @@ export default function Canvas3D({
 function Model({ url, urlTexture, ...props }: ObjectProps) {
   // const texture = useTexture({ map: urlTexture });
   const obj = useFBX(url);
-  const texture = useLoader(TextureLoader, urlTexture) as Texture;
+  const texture = useTexture({ map: urlTexture });
 
   const geometry = useMemo(() => {
     let g;
@@ -67,7 +65,7 @@ function Model({ url, urlTexture, ...props }: ObjectProps) {
 
   return (
     <mesh geometry={geometry} {...props}>
-      <meshPhysicalMaterial map={texture} />
+      <meshPhysicalMaterial {...texture} />
     </mesh>
   );
 }
