@@ -18,7 +18,7 @@ export type CardItemType = 'item' | 'land' | 'character';
 export interface CardLayoutDetailProps {
   type: CardItemType;
   item: ObjectProps;
-  external: ObjectProps;
+  external?: ObjectProps;
 }
 
 export default function CardLayoutDetail({ type, item, external }: CardLayoutDetailProps) {

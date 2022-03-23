@@ -6,7 +6,7 @@ import { ObjectProps } from 'utils/types';
 
 export interface CardImageItemProps {
   item: ObjectProps;
-  external: ObjectProps;
+  external?: ObjectProps;
   className?: string;
   children?: ReactNode;
 }
@@ -29,12 +29,14 @@ export default function CardImageItem({ item, external, className, children }: C
         controls={false}
         muted
       /> */}
-      <Canvas3D
-        url={external.model_url}
-        urlTexture={external.uv_url}
-        alt={item.name}
-        imgFallback={external.background_url}
-      />
+      {external && (
+        <Canvas3D
+          url={external.model_url}
+          urlTexture={external.uv_url}
+          alt={item.name}
+          imgFallback={external.background_url}
+        />
+      )}
       <Stack className="flex-col justify-center w-full gap-7 mt-4">
         <Box className="text-[4.8rem] font-black">{renderContent}</Box>
         <Text className={'bg-blue-100 text-md font-black py-3 px-6 rounded-[2rem] flex items-center'}>
