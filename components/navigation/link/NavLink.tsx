@@ -22,12 +22,12 @@ export default function NavLink({ content, href, exact, disabled, className }: N
   );
 
   return (
-    <Link href={href} passHref>
-      <>
+    <>
+      <Link href={href} passHref>
         <Button className={cxNavLink} color="primary" content={content} data-tip={disabled && 'Coming Soon'} />
-        <ReactTooltip place="bottom" />
-      </>
-    </Link>
+      </Link>
+      <ReactTooltip place="bottom" />
+    </>
   );
 }
 
