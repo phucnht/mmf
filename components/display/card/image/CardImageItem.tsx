@@ -6,11 +6,12 @@ import { ObjectProps } from 'utils/types';
 
 export interface CardImageItemProps {
   item: ObjectProps;
+  external?: ObjectProps;
   className?: string;
   children?: ReactNode;
 }
 
-export default function CardImageItem({ item, className, children }: CardImageItemProps) {
+export default function CardImageItem({ item, external, className, children }: CardImageItemProps) {
   const cxCardWrapper = classNames('w-full flex-col h-[42rem] max-w-[48rem] items-center justify-center', className);
   const renderContent = children || <Text>{item.name}</Text>;
 
@@ -28,7 +29,14 @@ export default function CardImageItem({ item, className, children }: CardImageIt
         controls={false}
         muted
       /> */}
-      <Canvas3D url={item.externalUrl} alt={item.name} imgFallback={item.image} />
+      {external && (
+        <Canvas3D
+          url={external.model_url}
+          urlTexture={external.uv_url}
+          alt={item.name}
+          imgFallback={external.background_url}
+        />
+      )}
       <Stack className="flex-col justify-center w-full gap-7 mt-4">
         <Box className="text-[4.8rem] font-black">{renderContent}</Box>
         <Text className={'bg-blue-100 text-md font-black py-3 px-6 rounded-[2rem] flex items-center'}>

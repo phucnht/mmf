@@ -7,7 +7,7 @@ const useVideoAutoPlayback = (options: any) => {
   const cb = (entries: any) => {
     const [entry] = entries;
     if (entry.isIntersecting) (videoRef.current as any).play();
-    else (videoRef.current as any).pause();
+    else (videoRef.current as any)?.pause();
   };
 
   useEffect(() => {

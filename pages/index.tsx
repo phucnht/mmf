@@ -10,7 +10,6 @@ import imgEvent3 from 'public/media/landing/event-3.png';
 import imgMetaverseCity2 from 'public/media/landing/metaverse-city-2.png';
 
 import imgMarketplaceItems from 'public/media/landing/marketplace-items.png';
-import imgMarketplaceCharacter from 'public/media/landing/marketplace-character.png';
 import imgMarketplaceProgress from 'public/media/landing/marketplace-progress.png';
 
 import Image from 'components/display/image/CustomImage';
@@ -20,7 +19,7 @@ import Bounce from 'react-reveal/Bounce';
 import Fade from 'react-reveal/Fade';
 import VideoAutoPlayback from 'components/video/VideoAutoPlayback';
 import Link from 'components/navigation/link/Link';
-// import Canvas3D from 'components/3d/Canvas3D';
+import Canvas3D from 'components/3d/Canvas3D';
 
 const mocks = [
   {
@@ -166,12 +165,12 @@ const MetaverseCity = () => {
               <Box className="h-[8vw] w-2 lg:w-4 bgg-orange" />
             </Flex>
           </Fade>
-          <Text className="w-3/4 lg:w-1/2 text-right font-bold text-sm sm:text-lg xl:text-[1.4vw] !leading-[1.25] text-red-100">
-            <Fade right>
+          <Fade right className="w-3/4 lg:w-1/2">
+            <Text className="ml-auto w-3/4 lg:w-1/2 text-right font-bold text-sm sm:text-lg xl:text-[1.4vw] !leading-[1.25] text-red-100">
               Where citizens can play, build, own, and monetize virtual experiences. A virtual world allows interacting,
               exchanging, socializing seamlessly with multi other worlds
-            </Fade>
-          </Text>
+            </Text>
+          </Fade>
           <Flex className="hidden lg:flex items-center mx-auto mt-10 lg:mt-20 w-full">
             <Fade>
               <VideoAutoPlayback
@@ -212,12 +211,12 @@ const MiniGame = () => {
               </h1>
             </Flex>
           </Fade>
-          <Text className="text-left font-bold text-sm sm:text-lg xl:text-[1.4vw] !leading-[1.25] text-red-100">
-            <Fade left>
+          <Fade left>
+            <Text className="text-left font-bold text-sm sm:text-lg xl:text-[1.4vw] !leading-[1.25] text-red-100">
               With fun and diverse gameplays, minigames completely become a playground where citizens can relax, make
               new friends, and earn NFTs.
-            </Fade>
-          </Text>
+            </Text>
+          </Fade>
         </Flex>
         <Box className="hidden lg:block">
           <Fade>
@@ -253,12 +252,12 @@ const Marketplace = () => {
               Marketplace
             </h1>
           </Bounce>
-          <Text className="w-3/4 lg:w-1/2 font-bold text-sm sm:text-lg xl:text-[1.4vw] !leading-[1.25] text-center">
-            <Fade>
+          <Fade>
+            <Text className="mx-auto w-3/4 lg:w-1/2 font-bold text-sm sm:text-lg xl:text-[1.4vw] !leading-[1.25] text-center">
               Where players exchange various digital assets generated in the Metaverse and experience the trading
               platform on the website or even in the game.
-            </Fade>
-          </Text>
+            </Text>
+          </Fade>
         </Flex>
         <Flex className="relative items-center justify-center mx-auto">
           <Box className="relative w-full h-full px-[5%] pr-[15%]">
@@ -266,15 +265,16 @@ const Marketplace = () => {
               <Image alt="Welcome" src={imgMarketplaceItems} fill="layout" objectFit="cover" />
             </Bounce>
           </Box>
-          <Box className="absolute right-0 -top-[20%] w-1/4">
-            <Bounce>
-              <Image alt="Welcome" src={imgMarketplaceCharacter} />
+          <Box className="absolute right-0 -top-[20%] w-1/4 h-full">
+            <Bounce className="h-full">
+              <Canvas3D
+                url="https://master.mymetafarm.com/Items/9/9_model.fbx"
+                urlTexture="https://master.mymetafarm.com/Items/9/9_texture.png"
+                alt="Character"
+                imgFallback={'https://master.mymetafarm.com/BG.png'}
+                className="min-h-[28vw]"
+              />
             </Bounce>
-            {/* <Canvas3D
-              url="https://master.mymetafarm.com/Items/9/9_model.fbx"
-              alt="Character"
-              imgFallback="https://master.mymetafarm.com/BG.png"
-            /> */}
           </Box>
         </Flex>
         <Box className="relative w-1/2 mx-auto">

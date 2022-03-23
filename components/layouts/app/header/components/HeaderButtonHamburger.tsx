@@ -16,27 +16,27 @@ const mobileRoutes = [
   {
     slug: 'https://news.mymetafarm.com',
     label: 'News'
+  },
+  {
+    slug: '/marketplace/items',
+    label: 'Marketplace',
+    disabled: true
+  },
+  {
+    slug: '/metaverse',
+    label: 'Metaverse',
+    disabled: true
+  },
+  {
+    slug: '/dashboard/box',
+    label: 'Dashboard',
+    disabled: true
+  },
+  {
+    slug: '/document',
+    label: 'Document',
+    disabled: true
   }
-  // {
-  //   slug: '/dashboard/box',
-  //   label: 'Dashboard',
-  //   disabled: true
-  // },
-  // {
-  //   slug: '/marketplace/items',
-  //   label: 'Marketplace',
-  //   disabled: true
-  // },
-  // {
-  //   slug: '/metaverse',
-  //   label: 'Metaverse',
-  //   disabled: true
-  // },
-  // {
-  //   slug: '/document',
-  //   label: 'Document',
-  //   disabled: true
-  // }
 ];
 
 const desktopRoutes = [
