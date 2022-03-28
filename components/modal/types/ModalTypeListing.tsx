@@ -13,7 +13,8 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import { validateInputNumber } from 'utils/validate';
 import InputNumber from 'components/input/InputNumber';
-import CustomImage, { externaImageLoader } from 'components/display/image/CustomImage';
+import CustomImage from 'components/display/image/CustomImage';
+
 export interface ModalTypeListingProps {
   data?: ObjectProps;
   confirm: () => void;
@@ -29,6 +30,7 @@ const ModalTypeListing = ({ data, confirm, isCancel }: ModalTypeListingProps) =>
   const { address, accessToken } = useAppSelector(selectAuthData);
   const { BUSD } = useAppSelector(selectPaymentTokenData);
   const symbolBUSD = BUSD?.symbol || 'BUSD';
+  const amountRest = data ? data.amount - data.amountSale : 0;
 
   const schema = yup.object({
     amount: yup
@@ -36,7 +38,8 @@ const ModalTypeListing = ({ data, confirm, isCancel }: ModalTypeListingProps) =>
       .integer()
       .required('Required')
       .positive()
-      .min(0, 'The number of amount cannot be smaller than 0'),
+      .min(0, 'The number of amount cannot be smaller than 0')
+      .max(amountRest, 'The number of amount cannot be bigger than than ' + amountRest),
     price: yup.number().required('Required').positive().min(0, 'The number of boxes price be smaller than 0')
   });
 
@@ -45,78 +48,81 @@ const ModalTypeListing = ({ data, confirm, isCancel }: ModalTypeListingProps) =>
     resolver: yupResolver(schema)
   });
 
-  const { handleSubmit } = methods;
-
-  const onSubmit = handleSubmit(async ({ amount, price }: FormValues) => {
-    if (isCancel) {
-      try {
-        const resDeleteSaleItem = await axios.delete(`${process.env.NEXT_PUBLIC_API_MARKET}/sale-items/${data?.id}`, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`
-          }
-        });
-        if (resDeleteSaleItem) {
-          confirm();
+  const onSubmitCancel = async (e: any) => {
+    if (e) e.preventDefault();
+    try {
+      const resDeleteSaleItem = await axios.delete(`${process.env.NEXT_PUBLIC_API_MARKET}/sale-items/${data?.id}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
         }
-      } catch (e: any) {
-        toast.error(e.message);
-        return;
+      });
+      if (resDeleteSaleItem) {
+        confirm();
       }
-    } else {
-      if (amount <= 0) {
-        toast.error('Amount must be larger than 0!');
-        return;
-      }
-      if (price <= 0) {
-        toast.error('Price must be larger than 0!');
-        return;
-      }
-      if (data) {
-        const saltNonce = new Date().getTime();
-        const paramsHashMessage = {
-          nftItemId: data.id,
-          paymentTokenId: BUSD.id,
-          price,
-          saltNonce,
-          amount,
-          ownerAccept: true
-        };
+    } catch (e: any) {
+      toast.error(e.message);
+      return;
+    }
+  };
 
-        const resHashMessage = (await clientMarket.get('/sale-items/hash-message', {
-          params: paramsHashMessage
-        })) as any;
+  const onSubmit = methods.handleSubmit(async ({ amount, price }: FormValues) => {
+    if (amount <= 0) {
+      toast.error('Amount must be larger than 0!');
+      return;
+    }
+    if (amount > amountRest) {
+      toast.error('You have only ' + amountRest + ' to list');
+      return;
+    }
+    if (price <= 0) {
+      toast.error('Price must be larger than 0!');
+      return;
+    }
+    if (data) {
+      const saltNonce = new Date().getTime();
+      const paramsHashMessage = {
+        nftItemId: data.id,
+        paymentTokenId: BUSD.id,
+        price,
+        saltNonce,
+        amount,
+        ownerAccept: true
+      };
 
-        if (resHashMessage) {
-          try {
-            const signedSignature = await web3.eth.personal.sign(resHashMessage.hashMessage, address, '');
-            const paramsCreateSaleItem = {
-              nftItemId: data.id,
-              signedSignature,
-              paymentTokenId: BUSD.id,
-              price,
-              amount,
-              saltNonce
-            };
+      const resHashMessage = (await clientMarket.get('/sale-items/hash-message', {
+        params: paramsHashMessage
+      })) as any;
 
-            const resCreateSaleItem = (await axios.post(
-              `${process.env.NEXT_PUBLIC_API_MARKET}/sale-items/create`,
-              paramsCreateSaleItem,
-              {
-                headers: {
-                  Authorization: `Bearer ${accessToken}`
-                }
+      if (resHashMessage) {
+        try {
+          const signedSignature = await web3.eth.personal.sign(resHashMessage.hashMessage, address, '');
+          const paramsCreateSaleItem = {
+            nftItemId: data.id,
+            signedSignature,
+            paymentTokenId: BUSD.id,
+            price,
+            amount,
+            saltNonce
+          };
+
+          const resCreateSaleItem = (await axios.post(
+            `${process.env.NEXT_PUBLIC_API_MARKET}/sale-items/create`,
+            paramsCreateSaleItem,
+            {
+              headers: {
+                Authorization: `Bearer ${accessToken}`
               }
-            )) as any;
-
-            if (resCreateSaleItem.data.success) {
-              confirm();
-            } else {
-              toast.error(resCreateSaleItem.data.errors.error);
             }
-          } catch (e: any) {
-            toast.error(e.message);
-            return;
+          )) as any;
+
+          if (resCreateSaleItem.data.success) {
+            confirm();
+          } else {
+            toast.error(resCreateSaleItem.data.errors.error);
           }
+        } catch (e: any) {
+          toast.error(e.message);
+          return;
         }
       }
     }
@@ -127,18 +133,16 @@ const ModalTypeListing = ({ data, confirm, isCancel }: ModalTypeListingProps) =>
   };
   const handleFocus = (e: any) => e.target.select();
 
-  console.log(data);
-
   return (
     <Stack className="p-24 rounded-[2rem] shadow-lg relative flex-col w-full bg-blue-500 outline-none focus:outline-none border-[3px] border-green-200 text-white text-2xl font-bold">
       <Heading className="!text-[4rem] font-bold uppercase">{isCancel ? 'Cancel Listing' : 'List Item'}</Heading>
       <FormProvider {...methods}>
-        <form onSubmit={onSubmit} className="flex flex-col gap-8">
+        <form onSubmit={isCancel ? onSubmitCancel : onSubmit} className="flex flex-col gap-8">
           <Flex className="items-center w-full p-8 gap-12">
             <Flex className="relative flex-col items-center justify-center w-[22.8rem] h-[22.2rem]">
-              <CustomImage alt={`#${data?.id}`} src={data?.image} layout="fill" />
+              <CustomImage alt={`#${data?.id}`} src={data?.external.backgroundUrl} layout="fill" objectFit="cover" />
             </Flex>
-            <Flex className="flex-col text-white gap-8 pl-12 max-w-[32rem]">
+            <Flex className="flex-col text-white gap-8 max-w-[32rem]">
               <Heading className="font-normal text-lg">
                 {isCancel ? (
                   'You are about to cancel your listing on marketplace. To sell this item again, you will need to relist this for sale.'
@@ -152,7 +156,13 @@ const ModalTypeListing = ({ data, confirm, isCancel }: ModalTypeListingProps) =>
                 <Flex className="flex-col gap-4">
                   <Flex className="flex-col gap-2">
                     <Text className="text-xl">Set amount:</Text>
-                    <InputNumber name="amount" onKeyDown={handleValidateInput} onFocus={handleFocus} />
+                    <InputNumber
+                      name="amount"
+                      onKeyDown={handleValidateInput}
+                      onFocus={handleFocus}
+                      max={amountRest}
+                      showMax
+                    />
                   </Flex>
                   <Flex className="flex-col gap-2">
                     <Text className="text-xl">Set price (all items):</Text>
@@ -172,7 +182,7 @@ const ModalTypeListing = ({ data, confirm, isCancel }: ModalTypeListingProps) =>
           </Flex>
           <Button
             type="submit"
-            className="text-red-100 py-4 min-w-[15rem] max-w-[38rem] disabled:bg-grey-400 disabled:cursor-not-allowed disabled:pointer-events-none mx-auto"
+            className="text-red-100 py-4 min-w-[15rem] max-w-[38rem] mx-auto"
             color={'secondary'}
             fullWidth
           >

@@ -1,12 +1,9 @@
 import { Button, Flex, Heading, Stack } from '@whammytechvn/wt-components';
-import Image from 'components/display/image/CustomImage';
+import CustomImage from 'components/display/image/CustomImage';
 import { MouseEventHandler } from 'react';
 import { selectPaymentTokenData } from 'store/market/payment-token/paymentToken.slice';
 import { useAppSelector } from 'store/store.hook';
 import { ObjectProps } from 'utils/types';
-import imgLand from 'public/assets/items/lands/land-2.png';
-import imgCharacter1 from 'public/assets/items/characters/character-1.png';
-import imgItem from 'public/assets/img-video/item.png';
 export interface ModalTypeCheckoutProps {
   data?: ObjectProps;
   decline: MouseEventHandler<HTMLButtonElement> | undefined;
@@ -24,7 +21,7 @@ const ModalTypeCheckout = ({ confirm, decline, data }: ModalTypeCheckoutProps) =
   const infos = [
     {
       name: 'Amount:',
-      value: `${data?.nftItemPrice || 200} ${symbolBUSD}`
+      value: `${data?.price || 200} ${symbolBUSD}`
     }
     // {
     //   name: 'Gas Fee:',
@@ -36,24 +33,16 @@ const ModalTypeCheckout = ({ confirm, decline, data }: ModalTypeCheckoutProps) =
     // }
   ];
 
-  const IMAGES = {
-    item: imgItem,
-    land: imgLand,
-    character: imgCharacter1
-  } as any;
-
-  const imgSrc = IMAGES[data?.nftItemType];
-
   return (
     <Stack className="p-24 rounded-[2rem] shadow-lg relative flex-col w-full bg-blue-500 outline-none focus:outline-none border-[3px] border-green-200 text-white text-2xl font-bold">
       <Heading className="!text-[4rem] font-bold uppercase">Checkout</Heading>
       <Flex className="items-center w-full p-8 gap-12">
-        <Flex className="flex-col items-center w-[22.8rem] h-[22.2rem]">
-          <Image alt="Buy Box" src={imgSrc} />
+        <Flex className="relative flex-col items-center justify-center w-[22.8rem] h-[22.2rem]">
+          <CustomImage alt={`#${data?.id}`} src={data?.external.backgroundUrl} layout="fill" objectFit="cover" />
         </Flex>
         <Flex className="flex-col justify-start text-white gap-8 pl-12 max-w-[32rem]">
           <Heading className="text-lg font-normal">
-            You are about to purchased <span className="font-bold">#{data?.nftItemId}</span>
+            You are about to purchased <span className="font-bold">#{data?.id}</span>
           </Heading>
           <table className="w-full font-normal text-md table-auto border-separate">
             <tbody>

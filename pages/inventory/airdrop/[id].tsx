@@ -13,13 +13,11 @@ import { GetServerSidePropsContext } from 'next';
 import DataTableHistory from 'components/table/DataTableHistory';
 import FormListingButton from 'components/forms/listing/FormListingButton';
 import { NftItemDto } from 'store/market/nft-item/nftItem.i';
-import { ObjectProps } from 'utils/types';
 export interface InventoryMetaverseDetailProps {
   item: NftItemDto;
-  external: ObjectProps;
 }
 
-export default function InventoryMetaverseDetail({ item, external }: InventoryMetaverseDetailProps) {
+export default function InventoryMetaverseDetail({ item }: InventoryMetaverseDetailProps) {
   useAuthGuard();
 
   return (
@@ -28,11 +26,11 @@ export default function InventoryMetaverseDetail({ item, external }: InventoryMe
         <title>{item.name} | My Metafarm</title>
         <meta name="description" content={`${item.name} | My Metafarm`} />
       </Head>
-      <Container className="max-w-screen-lg min-h-fit">
+      <Container className="max-w-screen-lg min-h-fit mx-auto">
         <ButtonBack className="mb-8" />
         <Flex className="justify-between gap-20 p-28 rounded-[2rem] border-[3px] border-green-200 text-white">
           <Flex className="col-span-3 flex-col items-center justify-between min-h-[48rem] w-full">
-            <CardItem item={item} external={external} />
+            <CardItem item={item} />
           </Flex>
           <Flex className="col-span-2 flex-col justify-between gap-12 w-[34rem] min-w-[34rem]">
             <Box className="overflow-y-auto overflow-x-hidden max-h-[40rem] pr-12">
@@ -76,10 +74,7 @@ export const getServerSideProps = async ({ query }: GetServerSidePropsContext) =
     return { notFound: true };
   }
 
-  const resExternal = await fetch(`https://metafarm-api.onsky.services/market-apis/api/items/external/${data.tokenId}`);
-  const { data: dataExternal } = await resExternal.json();
-
-  return { props: { item: data, external: dataExternal } };
+  return { props: { item: data } };
 };
 
 InventoryMetaverseDetail.getLayout = getLayoutDefault;

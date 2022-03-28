@@ -18,18 +18,17 @@ export type CardItemType = 'item' | 'land' | 'character';
 export interface CardLayoutDetailProps {
   type: CardItemType;
   item: ObjectProps;
-  external?: ObjectProps;
 }
 
-export default function CardLayoutDetail({ type, item, external }: CardLayoutDetailProps) {
+export default function CardLayoutDetail({ type, item }: CardLayoutDetailProps) {
   const { BUSD } = useAppSelector(selectPaymentTokenData);
 
   return (
-    <Container className="max-w-screen-lg min-h-fit">
+    <Container className="max-w-screen-lg min-h-fit mx-auto">
       <ButtonBack className="mb-8" />
       <Flex className="justify-between gap-20 p-28 rounded-[2rem] border-[3px] border-green-200 text-white">
         <Flex className="flex-col items-center justify-center min-h-[48rem] w-full">
-          {type === 'item' && <CardImageItem item={item} external={external} />}
+          {type === 'item' && <CardImageItem item={item} />}
           {type === 'character' && <CardImageCharacter id={item.id} name={item.name} />}
           {type === 'land' && <CardImageLand id={item.id} name={item.name} />}
           <Heading as="h6" className="font-bold text-xl mt-4">
@@ -60,7 +59,7 @@ export default function CardLayoutDetail({ type, item, external }: CardLayoutDet
                 {item.price} {BUSD?.symbol}
               </Text>
             </Flex>
-            <FormBuyNowButton nftItemType={type} item={item} />
+            <FormBuyNowButton item={item} />
           </Flex>
         </Flex>
       </Flex>

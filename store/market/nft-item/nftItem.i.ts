@@ -85,7 +85,7 @@ export interface NftItemDto {
   nativeNftToken: boolean;
   attributes: AttributeDto[];
   media: MediaDto[];
-  image: string;
+  external: ItemExternalDto;
   externalUrl: string;
   amount: number;
   amountSale: number;
@@ -105,6 +105,15 @@ export interface NftItemDto {
   evolveSaltNonce: number;
 }
 
+export interface ItemExternalDto {
+  iconUrl: string;
+  modelUrl: string;
+  uvUrl: string;
+  backgroundUrl: string;
+  itemType: string;
+  description: string;
+}
+
 export interface NftSaleItemDto {
   signedSignature: string;
   paymentTokenId: string;
@@ -120,6 +129,7 @@ export interface NftSaleItemDto {
   createdAt: Date;
   updatedAt: Date;
   id: string;
+  external: ItemExternalDto;
 }
 
 export interface NftItemHistoryDto {

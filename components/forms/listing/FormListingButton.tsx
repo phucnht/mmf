@@ -1,6 +1,8 @@
 import useModalConfirmation from 'hooks/useModal';
 import { Button } from '@whammytechvn/wt-components';
 import { ObjectProps } from 'utils/types';
+import ReactTooltip from 'react-tooltip';
+import clsxm from 'utils/clsxm';
 
 export interface FormListingButtonProps {
   item: ObjectProps;
@@ -10,24 +12,39 @@ export default function FormListingButton({ item }: FormListingButtonProps) {
   //   const dispatch = useAppDispatch();
   const { open } = useModalConfirmation();
 
-  const handleOnClick = async () => {
-    const resultListing = await open({
-      type: 'listing',
-      size: 'fit',
-      data: { ...item }
-    });
+  const isFullListing = item.amount === item.amountSale;
 
-    if (resultListing) {
-      await open({ type: 'completed', size: 'md', data: { type: 'marketplace' } });
+  const handleOnClick = async (e: any) => {
+    if (e) e.preventDefault();
+
+    if (!isFullListing) {
+      const resultListing = await open({
+        type: 'listing',
+        size: 'fit',
+        data: { ...item }
+      });
+
+      if (resultListing) {
+        await open({ type: 'completed', size: 'md', data: { type: 'marketplace' } });
+      }
     }
   };
 
+  const cxBtn = clsxm('py-3 px-4 min-w-fit xl:min-w-[20rem] text-xl', {
+    '!bg-gray-400 !cursor-not-allowed': isFullListing,
+    'text-red-100': !isFullListing
+  });
+
   return (
-    <Button
-      color="secondary"
-      className="text-red-100 py-3 px-4 min-w-fit xl:min-w-[20rem] text-xl"
-      content="Listing Now"
-      onClick={handleOnClick}
-    />
+    <>
+      <Button
+        color={isFullListing ? 'default' : 'secondary'}
+        className={cxBtn}
+        content="Listing Now"
+        onClick={handleOnClick}
+        data-tip={isFullListing ? 'All items are listed' : undefined}
+      />
+      <ReactTooltip place="bottom" />
+    </>
   );
 }
