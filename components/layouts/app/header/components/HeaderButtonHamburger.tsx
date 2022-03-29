@@ -19,13 +19,11 @@ const mobileRoutes = [
   },
   {
     slug: '/marketplace/items',
-    label: 'Marketplace',
-    disabled: true
+    label: 'Marketplace'
   },
   {
     slug: '/metaverse',
-    label: 'Metaverse',
-    disabled: true
+    label: 'Metaverse'
   },
   {
     slug: '/dashboard/box',
