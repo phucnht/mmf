@@ -34,7 +34,7 @@ export default function InventoryAirdropCard({ item, onClick }: InventoryAirdrop
           <CustomImage
             loader={externaImageLoader}
             alt={item.name}
-            src={item.external.backgroundUrl}
+            src={item?.external.backgroundUrl}
             className="rounded-[2rem]"
             layout="fill"
             objectFit="cover"

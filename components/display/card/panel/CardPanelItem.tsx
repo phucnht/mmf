@@ -73,7 +73,7 @@ export default function CardPanelItem({ item, exchange, onClick }: CardPanelItem
           <CustomImage
             loader={externaImageLoader}
             alt={item.name}
-            src={item.external.backgroundUrl}
+            src={item?.external.backgroundUrl}
             layout="fill"
             objectFit="cover"
           />

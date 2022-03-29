@@ -7,7 +7,6 @@ import ProgressBar from 'components/display/progress-bar/ProgressBar';
 import { getEllipsisTxt } from 'utils/format';
 import { selectPaymentTokenData } from 'store/market/payment-token/paymentToken.slice';
 import { ObjectProps } from 'utils/types';
-import { MOCK_CONTENT } from 'utils/mock';
 import CardImageItem from '../image/CardImageItem';
 import CardImageCharacter from '../image/CardImageCharacter';
 import CardImageLand from '../image/CardImageLand';
@@ -40,7 +39,7 @@ export default function CardLayoutDetail({ type, item }: CardLayoutDetailProps) 
             <Heading className="font-black text-lg items-baseline">Owner: {getEllipsisTxt(item.ownerAddress)}</Heading>
             <Flex className="flex-col mt-9">
               <Heading className="uppercase font-black text-md">Story</Heading>
-              <Text className="mt-4 text-md whitespace-normal	break-normal">{MOCK_CONTENT}</Text>
+              <Text className="mt-4 text-md whitespace-normal	break-normal">{item?.external.description}</Text>
             </Flex>
             <Flex className="flex-col mt-9">
               <Heading className="uppercase font-black text-md">Stats</Heading>

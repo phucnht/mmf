@@ -37,7 +37,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
         <link rel="shortcut icon" href="/assets/logos/favicon.ico" />
       </Head>
       <NextNProgress
-        color="#0B2F51"
+        color="#ffc400dd"
         startPosition={0.3}
         stopDelayMs={200}
         height={3}

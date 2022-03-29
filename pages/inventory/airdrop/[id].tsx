@@ -3,7 +3,6 @@ import { Box, Container, Flex, Heading, Text } from '@whammytechvn/wt-components
 import ButtonBack from 'components/buttons/ButtonBack';
 import { getLayoutDefault } from 'components/layouts/pages/default/getLayoutDefault';
 
-import { MOCK_CONTENT } from 'utils/mock';
 import ProgressBar from 'components/display/progress-bar/ProgressBar';
 import useAuthGuard from 'hooks/useAuthGuard';
 
@@ -39,7 +38,7 @@ export default function InventoryMetaverseDetail({ item }: InventoryMetaverseDet
               </Heading>
               <Flex className="flex-col mt-9">
                 <Heading className="uppercase font-black text-md">Story</Heading>
-                <Text className="mt-4 text-md whitespace-normal	break-normal">{MOCK_CONTENT}</Text>
+                <Text className="mt-4 text-md whitespace-normal	break-normal">{item?.external.description}</Text>
               </Flex>
               <Flex className="flex-col mt-9">
                 <Heading className="uppercase font-black text-md">Stats</Heading>
