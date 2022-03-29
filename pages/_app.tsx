@@ -10,11 +10,11 @@ import ModalConfirmation from 'components/modal/ModalConfirmation';
 import Head from 'next/head';
 import { Provider as ProviderRedux } from 'react-redux';
 import { NextPage } from 'next';
-import { ReactElement, ReactNode } from 'react';
+import { ReactElement, ReactNode, useEffect } from 'react';
 import AppLayout from 'components/layouts/app/AppLayout';
 import NextNProgress from 'nextjs-progressbar';
 import { PersistGate } from 'redux-persist/integration/react';
-import Script from 'next/script';
+import TagManager from 'react-gtm-module';
 
 export type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -27,19 +27,12 @@ export type AppPropsWithLayout = AppProps & {
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout || (page => page);
 
+  useEffect(() => {
+    TagManager.initialize({ gtmId: 'GTM-P734JPJ' });
+  }, []);
+
   return (
     <>
-      {/* Google Tag Manager */}
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','GTM-P734JPJ');
-        `}
-      </Script>
-      {/* End Google Tag Manager */}
       <Head>
         <link rel="shortcut icon" href="/assets/logos/favicon.ico" />
       </Head>
