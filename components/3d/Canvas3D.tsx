@@ -20,7 +20,7 @@ export default function Canvas3D({
   className?: string;
   imgFallback: StaticImageData | string;
 }) {
-  const cxCanvas = clsxm("bg-[url('/media/landing/frame-3d.png')] bg-[length:100%] bg-center bg-no-repeat", className);
+  const cxCanvas = clsxm('bg-blue-300/30 rounded-[2rem]', className);
 
   if (!url)
     return (
@@ -40,7 +40,7 @@ export default function Canvas3D({
     <Canvas dpr={[1, 2]} camera={{ position: [-2, 2, 4], fov: 50 }} className={cxCanvas}>
       <ambientLight intensity={1} />
       <OrbitControls autoRotate />
-      <Suspense fallback={<Loader />}>
+      <Suspense fallback={<>...</>}>
         <Model position-y={-2} scale={[0.4, 0.4, 0.4]} url={url} urlTexture={urlTexture} />
       </Suspense>
     </Canvas>

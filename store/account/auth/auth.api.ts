@@ -1,5 +1,4 @@
-import _find from 'lodash/find';
-import { web3, erc20Contract, whitelistContract } from 'utils/contract';
+import { web3, erc20Contract, plgWhitelistContract } from 'utils/contract';
 import { clientAccount } from 'utils/api';
 import { NonceDto, NonceRequest, TokenDto, TokenRequest } from './auth.i';
 import { fetchBalance, login, loginLoading } from './auth.slice';
@@ -12,7 +11,7 @@ export const getNonce = (params: NonceRequest): Promise<NonceDto> =>
 export const getToken = (data: TokenRequest): Promise<TokenDto> => clientAccount.post(`/authentication/token`, data);
 
 export const checkIsInWhitelist = async (whitelistAddress: string, userAddress: string) => {
-  const contract = whitelistContract(whitelistAddress);
+  const contract = plgWhitelistContract(whitelistAddress);
   const result = await contract.methods.isInWhitelist(userAddress).call();
   return result;
 };

@@ -15,23 +15,21 @@ export interface MetaverseCardProps {
 
 export default function MetaverseCard({ metaverse }: MetaverseCardProps) {
   const metaverseCardImage = (
-    <Box className="relative">
+    <Box className="relative w-full h-full min-h-[60rem] bg-gray-100/30 border-[3px] border-gray-300 rounded-[2rem]">
       <CustomImage
         loader={externaImageLoader}
         src={metaverse.backgroundImage}
         alt={metaverse.description}
-        className="rounded-[2rem]"
-        width={638}
-        height={776}
+        layout="fill"
+        objectFit="cover"
       />
-      <Box className="absolute left-12 bottom-0 lg:left-4 lg:bottom-4 w-1/2 h-1/2">
+      <Box className="absolute left-12 bottom-0 lg:left-4 lg:bottom-4 w-1/2 h-1/2 bg-blue-100/90 border-[3px] border-blue-300 rounded-[2rem]">
         <CustomImage
           loader={externaImageLoader}
           src={metaverse.itemImage}
           alt={metaverse.description}
-          width={300}
-          height={360}
-          className="rounded-[2rem] w-full h-full"
+          layout="fill"
+          objectFit="contain"
         />
       </Box>
     </Box>
@@ -63,7 +61,7 @@ export default function MetaverseCard({ metaverse }: MetaverseCardProps) {
   return (
     <Grid className="w-full lg:grid-cols-11 gap-4 text-white text-xl font-bold">
       <Flex className="flex-col lg:col-span-6 gap-4">
-        <MetaverseCardTitle title={metaverse.name} />
+        <MetaverseCardTitle title={metaverse.name} logo={metaverse.logo} />
         <Center className="flex lg:hidden justify-center items-center relative w-full h-full min-h-[12.5rem]">
           {metaverseCardImageMobile}
         </Center>

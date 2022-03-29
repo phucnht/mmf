@@ -49,19 +49,31 @@ export const modalConfirmationSlice = createSlice({
       state.isDeclined = false;
       state.isConfirmed = false;
       state.isClosable = action.payload.isClosable;
+      if (!document.body.classList.contains('modal-opened')) {
+        document.body.classList.add('modal-opened');
+      }
     },
     confirm: (state, action: PayloadAction<ModalConfirmationPayload>) => {
       // if (action.payload.isOpened) {
       // }
       state.isOpened = false;
       state.isConfirmed = true;
+      if (document.body.classList.contains('modal-opened')) {
+        document.body.classList.remove('modal-opened');
+      }
     },
     decline: state => {
       state.isDeclined = true;
       state.isOpened = false;
+      if (document.body.classList.contains('modal-opened')) {
+        document.body.classList.remove('modal-opened');
+      }
     },
     close: state => {
       state.isOpened = false;
+      if (document.body.classList.contains('modal-opened')) {
+        document.body.classList.remove('modal-opened');
+      }
     }
   }
 });

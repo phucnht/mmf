@@ -10,6 +10,11 @@ import metaverse from './abis/metaverse.json';
 import marketplace from './abis/marketplace.json';
 import season from './abis/season.json';
 
+import plgMetafarm from './abis/plg_metafarm.json';
+import plgMetaverse from './abis/plg_metaverse.json';
+import plgMarketplace from './abis/plg_marketplace.json';
+import plgWhitelist from './abis/plg_whitelist.json';
+
 export const SEASON_ADDRESS = '0x5B315294E4701cF269d9607b9a68f7E2f4B31B59';
 
 export const web3 = new Web3(Web3.givenProvider || 'ws://localhost:8545');
@@ -26,3 +31,12 @@ export const marketplaceContract = (address?: string): Contract =>
 export const whitelistContract = (address?: string): Contract => new web3.eth.Contract(whitelist as AbiItem[], address);
 export const metaverseContract = (address?: string): Contract => new web3.eth.Contract(metaverse as AbiItem[], address);
 export const seasonContract = (address?: string): Contract => new web3.eth.Contract(season as AbiItem[], address);
+
+export const plgMetafarmContract = (address?: string): Contract =>
+  new web3.eth.Contract(plgMetafarm as AbiItem[], address);
+export const plgMarketplaceContract = (address?: string): Contract =>
+  new web3.eth.Contract(plgMarketplace as AbiItem[], address);
+export const plgMetaverseContract = (address?: string): Contract =>
+  new web3.eth.Contract(plgMetaverse as AbiItem[], address);
+export const plgWhitelistContract = (address?: string): Contract =>
+  new web3.eth.Contract(plgWhitelist as AbiItem[], address);

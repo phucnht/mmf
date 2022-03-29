@@ -1,21 +1,18 @@
 import useModalConfirmation from 'hooks/useModal';
 import { Button } from '@whammytechvn/wt-components';
-import { CardItemType } from 'components/display/card/detail/CardPanelDetail';
 import { selectAuthData } from 'store/account/auth/auth.slice';
 import { useAppSelector } from 'store/store.hook';
 import { selectSystemConfigData } from 'store/market/system-config/systemConfig.slice';
-import { erc1155Contract, erc20Contract, marketplaceContract, MAX_INT, web3 } from 'utils/contract';
+import { plgMetafarmContract, erc20Contract, plgMarketplaceContract, MAX_INT, web3 } from 'utils/contract';
 import { ObjectProps } from 'utils/types';
 import { selectPaymentTokenData } from 'store/market/payment-token/paymentToken.slice';
 import { useEffect, useState } from 'react';
 
 export interface FormBuyNowButtonProps {
   item: ObjectProps;
-  nftItemType: CardItemType;
-  nftItemImg?: StaticImageData;
 }
 
-export default function FormBuyNowButton({ item, nftItemType, nftItemImg }: FormBuyNowButtonProps) {
+export default function FormBuyNowButton({ item }: FormBuyNowButtonProps) {
   //   const dispatch = useAppDispatch();
   const [isProcessing, setIsProcessing] = useState(false);
   const { open, close, type } = useModalConfirmation();
@@ -42,9 +39,8 @@ export default function FormBuyNowButton({ item, nftItemType, nftItemImg }: Form
       const resultCancelListing = await open({
         type: 'cancel-listing',
         size: 'fit',
-        data: { nftItemId: item.id, nftItemOwnerAddress: item.ownerAddress, nftItemType, nftItemImg }
+        data: { ...item }
       });
-
       if (resultCancelListing) {
         await open({ type: 'completed', size: 'md', isClosable: false, data: { type: 'marketplace' } });
       }
@@ -52,24 +48,16 @@ export default function FormBuyNowButton({ item, nftItemType, nftItemImg }: Form
       const resultCheckout = await open({
         type: 'checkout',
         size: 'fit',
-        data: {
-          nftItemId: item.id,
-          nftItemOwnerAddress: item.ownerAddress,
-          nftItemType,
-          nftItemPrice: item.price,
-          nftItemImg
-        }
+        data: { ...item }
       });
-
       if (resultCheckout) {
-        // Approve Seller
-        const isApprovedForAll = await erc1155Contract(item.nftContract)
+        const isApprovedForAll = await plgMetafarmContract(item.nftContract)
           .methods.isApprovedForAll(item.ownerAddress, marketplaceAddress)
           .call();
 
         if (!isApprovedForAll) {
           setIsProcessing(true);
-          await erc1155Contract(item.nftContract)
+          await plgMetafarmContract(item.nftContract)
             .methods.setApprovalForAll(marketplaceAddress, true)
             .send({ from: address });
           setIsProcessing(false);
@@ -99,7 +87,7 @@ export default function FormBuyNowButton({ item, nftItemType, nftItemImg }: Form
         ];
         const signature = item.signedSignature;
 
-        marketplaceContract(marketplaceAddress)
+        plgMarketplaceContract(marketplaceAddress)
           .methods.matchTransaction1155(addresses, values, signature)
           .send({ from: address })
           .once('transactionHash', function () {

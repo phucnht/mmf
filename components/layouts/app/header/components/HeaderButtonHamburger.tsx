@@ -61,7 +61,7 @@ const HeaderButtonRoute = ({ route, onClick }: { route: SidebarRouteProps; onCli
 
   return (
     <Box className="relative">
-      <Button onClick={onClick} className={cxButton} data-tip={route.disabled && 'Coming Soon'}>
+      <Button onClick={onClick} className={cxButton} data-tip={route.disabled ? 'Coming Soon' : undefined}>
         {route.label}
       </Button>
       <ReactTooltip place="bottom" className="z-[100]" />

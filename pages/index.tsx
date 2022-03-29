@@ -263,7 +263,7 @@ const Marketplace = () => {
         <Flex className="relative items-center justify-center mx-auto">
           <Box className="relative w-full h-full px-[5%] pr-[15%]">
             <Bounce>
-              <Image alt="Welcome" src={imgMarketplaceItems} fill="layout" objectFit="cover" />
+              <Image alt="Welcome" src={imgMarketplaceItems} />
             </Bounce>
           </Box>
           <Box className="absolute right-0 -top-[20%] w-1/4 h-full">
@@ -282,7 +282,7 @@ const Marketplace = () => {
           </Box>
         </Flex>
         <Box className="relative w-1/2 mx-auto">
-          <Image alt="Welcome" src={imgMarketplaceProgress} fill="layout" objectFit="cover" />
+          <Image alt="Welcome" src={imgMarketplaceProgress} />
         </Box>
       </Flex>
     </Box>

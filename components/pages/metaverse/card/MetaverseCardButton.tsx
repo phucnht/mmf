@@ -5,10 +5,10 @@ import useModalConfirmation from 'hooks/useModal';
 import { useRouter } from 'next/router';
 import { useAppSelector } from 'store/store.hook';
 import { selectAuthData } from 'store/account/auth/auth.slice';
-import { checkIsInWhitelist } from 'store/account/auth/auth.api';
-import { metaverseContract } from 'utils/contract';
+import { plgMetaverseContract } from 'utils/contract';
 import { selectSystemConfigData } from 'store/market/system-config/systemConfig.slice';
 import { toast } from 'react-toastify';
+import { checkIsInWhitelist } from 'store/account/auth/auth.api';
 
 const ButtonType = {
   IDLE: 'idle',
@@ -33,7 +33,7 @@ const MetaverseCardButton: FC<{ isEventEnded: boolean; whitelistContract: string
       } else {
         if (address) {
           const result = await checkIsInWhitelist(whitelistContract, address);
-          const alreadyClaimed = await metaverseContract(metaverseContractAddress)
+          const alreadyClaimed = await plgMetaverseContract(metaverseContractAddress)
             .methods.metaverseEventClaims(onchainId, address)
             .call();
 
@@ -59,7 +59,7 @@ const MetaverseCardButton: FC<{ isEventEnded: boolean; whitelistContract: string
 
   const handleProcess = () => {
     setIsProcessing(true);
-    metaverseContract(metaverseContractAddress)
+    plgMetaverseContract(metaverseContractAddress)
       .methods.claim1155Event(onchainId)
       .send({ from: address })
       .once('transactionHash', function () {

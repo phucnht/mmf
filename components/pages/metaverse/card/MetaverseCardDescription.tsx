@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Button, Text, Stack, Flex } from '@whammytechvn/wt-components';
+import { Button, Text, Stack, Flex, Box } from '@whammytechvn/wt-components';
 
 import imgMeteverseSmall from 'public/assets/metaverse/metaverse-sm.png';
 import Countdown from 'components/countdown/Countdown';
@@ -34,9 +34,9 @@ const MetaverseCardDescription: FC<MetaverseCardDescriptionProps> = ({
         <Countdown fromDate={fromDate} toDate={toDate} />
         <Flex className="items-center gap-6 lg:gap-12 relative h-full min-h-[5rem] max-h-[8rem]">
           <Button compact content="Play To Earn" className="text-sm p-3 lg:p-4 min-w-max bgg-pink" />
-          <div className="relative h-[5rem] lg:h-full w-40 lg:w-60">
-            <Image src={imgMeteverseSmall} alt="Metaverse" layout="fill" />
-          </div>
+          <Box className="relative h-[5rem] lg:h-full w-40 lg:w-60">
+            <Image src={imgMeteverseSmall} alt="Metaverse" layout="fill" objectFit="cover" />
+          </Box>
         </Flex>
         <Text className="text-sm lg:text-xl uppercase">{description}</Text>
       </Flex>

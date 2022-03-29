@@ -24,16 +24,20 @@ export default function InventoryAirdropCard({ item, onClick }: InventoryAirdrop
         <Flex className="flex-col items-start gap-2">
           <Text className={cxId}>#{item.tokenId}</Text>
           <Text>
-            Total: <b>{item.amount}</b> | Sale: <b>{item.amountSale}</b> | Rest: <b>{item.amount - item.amountSale}</b>
+            Amount sale:
+            <b>
+              {item.amountSale}/{item.amount}
+            </b>
           </Text>
         </Flex>
         <Box className="relative w-full h-full">
           <CustomImage
             loader={externaImageLoader}
             alt={item.name}
-            src={item.image}
+            src={item.external.backgroundUrl}
             className="rounded-[2rem]"
             layout="fill"
+            objectFit="cover"
           />
         </Box>
       </Flex>

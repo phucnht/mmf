@@ -4,7 +4,7 @@ const withTM = require('next-transpile-modules')(['three']);
 /** @type {import('next').NextConfig} */
 module.exports = withTM({
   images: {
-    domains: ['vicapay-test.sgp1.digitaloceanspaces.com', 'master.mymetafarm.com']
+    domains: ['vicapay-test.sgp1.digitaloceanspaces.com', 'master.mymetafarm.com', 'pegaxy.io']
   },
   reactStrictMode: true,
   exportPathMap: function () {

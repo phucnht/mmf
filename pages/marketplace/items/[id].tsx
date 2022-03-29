@@ -7,17 +7,16 @@ import CardLayoutDetail from 'components/display/card/detail/CardPanelDetail';
 
 export interface MarketplaceDetailDetailProps {
   item: ObjectProps;
-  external: ObjectProps;
 }
 
-export default function MarketplaceItemDetail({ item, external }: MarketplaceDetailDetailProps) {
+export default function MarketplaceItemDetail({ item }: MarketplaceDetailDetailProps) {
   return (
     <>
       <Head>
         <title>{item.name} | My Metafarm</title>
         <meta name="description" content={`${item.name} | My Metafarm`} />
       </Head>
-      <CardLayoutDetail type="item" item={item} external={external} />
+      <CardLayoutDetail type="item" item={item} />
     </>
   );
 }
@@ -30,10 +29,7 @@ export const getServerSideProps = async ({ query }: GetServerSidePropsContext) =
     return { notFound: true };
   }
 
-  const resExternal = await fetch(`https://metafarm-api.onsky.services/market-apis/api/items/external/${data.tokenId}`);
-  const { data: dataExternal } = await resExternal.json();
-
-  return { props: { item: data, external: dataExternal } };
+  return { props: { item: data } };
 };
 
 MarketplaceItemDetail.getLayout = getLayoutDefault;

@@ -18,6 +18,7 @@ export interface AirdropEventDto {
   nft1155Contract: string | null;
   itemImage: string;
   backgroundImage: string;
+  logo: string;
 }
 
 export interface AirdropEventRequest {

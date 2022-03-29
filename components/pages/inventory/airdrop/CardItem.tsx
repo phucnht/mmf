@@ -5,20 +5,19 @@ import Canvas3D from 'components/3d/Canvas3D';
 // import Image from 'components/display/image/Image';
 import { ReactNode } from 'react';
 import { NftItemDto } from 'store/market/nft-item/nftItem.i';
-import { ObjectProps } from 'utils/types';
 
 // import ReactPlayer from 'react-player';
 
 export interface CardItemProps {
   item: NftItemDto;
-  external: ObjectProps;
   className?: string;
   children?: ReactNode;
 }
 
-export default function CardItem({ item, external, className, children }: CardItemProps) {
+export default function CardItem({ item, className, children }: CardItemProps) {
   const cxCardWrapper = classNames('flex-col h-[42rem] max-w-[48rem] items-center justify-center', className);
   const renderContent = children || <Text className="text-center">{item.name}</Text>;
+  const { external } = item;
 
   return (
     <Box className="w-full">
@@ -36,10 +35,10 @@ export default function CardItem({ item, external, className, children }: CardIt
           muted
         /> */}
         <Canvas3D
-          url={external.model_url}
-          urlTexture={external.uv_url}
+          url={external.modelUrl}
+          urlTexture={external.uvUrl}
           alt={item.name}
-          imgFallback={external.background_url}
+          imgFallback={external.backgroundUrl}
         />
         <Stack className="flex-col justify-center w-full gap-7 mt-4">
           <Box className="text-2xl font-bold">{renderContent}</Box>
