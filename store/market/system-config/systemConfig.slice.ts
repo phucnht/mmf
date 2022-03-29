@@ -11,6 +11,7 @@ export const initialState: SystemConfigState = {
     chainId: '',
     chainName: '',
     marketplaceAddress: '',
+    nftContractAddress: '',
     marketplaceBlock: '',
     userMintEnable: false,
     multipleMintEnable: false,

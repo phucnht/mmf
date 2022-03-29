@@ -1,8 +1,8 @@
 import { ReactElement } from 'react';
 import Sidebar from 'components/navigation/sidebar/Sidebar';
 import { Box } from '@whammytechvn/wt-components';
-import useWindowSize from 'hooks/useWindowSize';
-import NavbarMobile from 'components/navigation/navbar-mobile/NavbarMobile';
+// import useWindowSize from 'hooks/useWindowSize';
+// import NavbarMobile from 'components/navigation/navbar-mobile/NavbarMobile';
 
 export const routesInventory = [
   {
@@ -31,12 +31,18 @@ export const routesInventory = [
 ];
 
 export function LayoutInventory(page: ReactElement) {
-  const { width } = useWindowSize();
-  return width < 1024 ? (
-    <NavbarMobile routes={routesInventory} baseSlug="/inventory">
-      {page}
-    </NavbarMobile>
-  ) : (
+  // const { width } = useWindowSize();
+  // return width < 1024 ? (
+  //   <NavbarMobile routes={routesInventory} baseSlug="/inventory">
+  //     {page}
+  //   </NavbarMobile>
+  // ) : (
+  //   <Sidebar routes={routesInventory} baseSlug="/inventory">
+  //     {page}
+  //   </Sidebar>
+  // );
+
+  return (
     <Sidebar routes={routesInventory} baseSlug="/inventory">
       {page}
     </Sidebar>
@@ -44,12 +50,18 @@ export function LayoutInventory(page: ReactElement) {
 }
 
 export function LayoutInventoryOffset(page: ReactElement) {
-  const { width } = useWindowSize();
-  return width < 1024 ? (
-    <NavbarMobile routes={routesInventory} baseSlug="/inventory">
-      {page}
-    </NavbarMobile>
-  ) : (
+  // const { width } = useWindowSize();
+  // return width < 1024 ? (
+  //   <NavbarMobile routes={routesInventory} baseSlug="/inventory">
+  //     {page}
+  //   </NavbarMobile>
+  // ) : (
+  //   <Sidebar routes={routesInventory} baseSlug="/inventory">
+  //     <Box className="my-48 h-full">{page}</Box>
+  //   </Sidebar>
+  // );
+
+  return (
     <Sidebar routes={routesInventory} baseSlug="/inventory">
       <Box className="my-48 h-full">{page}</Box>
     </Sidebar>
