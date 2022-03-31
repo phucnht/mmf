@@ -23,7 +23,7 @@ export default function NavLink({ content, href, exact, disabled, className }: N
 
   return (
     <>
-      <Link href={href} passHref>
+      <Link href={disabled ? '#' : href} passHref>
         <Button
           className={cxNavLink}
           color="primary"

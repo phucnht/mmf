@@ -6,13 +6,14 @@ import HeaderButtonHamburger from './components/HeaderButtonHamburger';
 import HeaderButtonUser from './components/HeaderButtonUser';
 import clsxm from 'utils/clsxm';
 import { useRouter } from 'next/router';
+import { Flex } from '@whammytechvn/wt-components';
 
 const HeaderDesktop = () => {
   return (
-    <>
+    <Flex className="layout">
       <HeaderLogo />
       <HeaderNav />
-    </>
+    </Flex>
   );
 };
 

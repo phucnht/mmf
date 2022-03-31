@@ -87,6 +87,8 @@ export default function FormBuyNowButton({ item }: FormBuyNowButtonProps) {
         ];
         const signature = item.signedSignature;
 
+        // console.log(addresses, values, signature);
+
         plgMarketplaceContract(marketplaceAddress)
           .methods.matchTransaction1155(addresses, values, signature)
           .send({ from: address })

@@ -4,6 +4,7 @@ export interface SystemConfigDto {
   chainId: string;
   chainName: string;
   marketplaceAddress: string;
+  nftContractAddress: string;
   marketplaceBlock: string;
   userMintEnable: boolean;
   multipleMintEnable: boolean;

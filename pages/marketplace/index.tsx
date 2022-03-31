@@ -8,7 +8,8 @@ const Marketplace: NextPage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    router.push('/marketplace/items');
+    // router.push('/marketplace/items');
+    router.push('/');
   }, [router]);
 
   return (

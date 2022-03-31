@@ -20,7 +20,7 @@ export default function DashboardBoxDetail() {
         <title>Buy Box | My Metafarm</title>
         <meta name="description" content={`Buy Box | My Metafarm`} />
       </Head>
-      <Container className="max-w-[113rem] min-h-fit">
+      <Container className="mx-auto max-w-[113rem] min-h-fit">
         <ButtonBack className="mb-8" />
         <Box className="relative h-[86rem] w-full rounded-[2rem] border-[3px] border-green-200">
           <Box className="absolute h-full w-full bg-[url('/assets/bg/bg-buy-box.jpeg')] bg-cover bg-center bg-no-repeat opacity-30" />

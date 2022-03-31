@@ -98,7 +98,7 @@ const MetaverseCardButton: FC<{ isEventEnded: boolean; whitelistContract: string
       <Button
         color={isClaimable && !isProcessing ? 'secondary' : 'default'}
         disabled={isClaimable === false || (isClaimable && isProcessing)}
-        content="Claim"
+        content={isClaimable === false ? 'Claimed' : 'Claim'}
         fullWidth
         className="text-sm lg:text-xl py-3 lg:py-5 text-red-100 disabled:bg-grey-400 disabled:cursor-not-allowed disabled:pointer-events-none"
         onClick={handleProcess}

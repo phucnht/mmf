@@ -8,7 +8,8 @@ const Dashboard: NextPage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    router.push('/dashboard/box');
+    // router.push('/dashboard/box');
+    router.push('/');
   }, [router]);
 
   return (
