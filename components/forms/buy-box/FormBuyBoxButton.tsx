@@ -16,25 +16,25 @@ interface FormBuyBoxButtonrops {
   max: number;
 }
 
-/**
- * Check if the user allowance is enough to make a purchase
- */
-export const isEnoughAllowance = async (
-  amount: number,
-  userAddress: string | null,
-  tokenAddress = TOKEN_ADDRESS
-): Promise<boolean> => {
-  if (!userAddress) {
-    return false;
-  }
+// /**
+//  * Check if the user allowance is enough to make a purchase
+//  */
+// export const isEnoughAllowance = async (
+//   amount: number,
+//   userAddress: string | null,
+//   tokenAddress = TOKEN_ADDRESS
+// ): Promise<boolean> => {
+//   if (!userAddress) {
+//     return false;
+//   }
 
-  const { price } = store.getState().season;
+//   const { price } = store.getState().season;
 
-  const allowance = await erc20Contract(tokenAddress).methods.allowance(userAddress, SEASON_ADDRESS).call();
-  const totalAmount = amount * price;
+//   const allowance = await erc20Contract(tokenAddress).methods.allowance(userAddress, SEASON_ADDRESS).call();
+//   const totalAmount = amount * price;
 
-  return +web3.utils.fromWei(allowance, 'ether') >= totalAmount;
-};
+//   return +web3.utils.fromWei(allowance, 'ether') >= totalAmount;
+// };
 
 const FormBuyBoxButton = ({ name, price, min, max }: FormBuyBoxButtonrops) => {
   const { watch } = useFormContext();
