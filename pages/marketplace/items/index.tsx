@@ -22,7 +22,6 @@ const MarketplaceItems: NextPageWithLayout = () => {
     router.push('/');
   }, [router]);
 
-  const router = useRouter();
   const goTo = (itemId: string) => {
     router.push(`/marketplace/items/${itemId}`);
   };
