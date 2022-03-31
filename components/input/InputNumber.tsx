@@ -27,7 +27,7 @@ const InputNumber = ({
   const handleValidateInput = (e: any) => {
     // Prevent number is over max value
     const isOverMax = +(watch(name) + e.key) > max;
-    return (validateInputNumber(e) || isOverMax) && e.preventDefault();
+    return (!validateInputNumber(e) || isOverMax) && e.preventDefault();
   };
 
   const handleDecrease = () => {

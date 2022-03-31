@@ -8,7 +8,8 @@ const Inventory: NextPage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    router.push('/inventory/airdrop');
+    // router.push('/inventory/airdrop');
+    router.push('/');
   }, [router]);
 
   return (
