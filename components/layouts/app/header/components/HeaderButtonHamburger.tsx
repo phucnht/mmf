@@ -101,6 +101,9 @@ export default function HeaderButtonHamburger({ className }: CxProps) {
                   key={route.slug}
                   route={route}
                   onClick={() => {
+                    if (route.disabled) {
+                      return;
+                    }
                     goTo(route.slug);
                     close();
                   }}
@@ -117,6 +120,9 @@ export default function HeaderButtonHamburger({ className }: CxProps) {
                   key={route.slug}
                   route={route}
                   onClick={() => {
+                    if (route.disabled) {
+                      return;
+                    }
                     goTo(route.slug);
                     close();
                   }}
