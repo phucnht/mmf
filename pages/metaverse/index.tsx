@@ -13,10 +13,10 @@ import { useEffect } from 'react';
 const Metaverse: NextPageWithLayout = () => {
   const router = useRouter();
 
-  useEffect(() => {
-    // router.push('/marketplace/items');
-    router.push('/');
-  }, [router]);
+  // useEffect(() => {
+  //   // router.push('/marketplace/items');
+  //   router.push('/');
+  // }, [router]);
 
   return (
     <>

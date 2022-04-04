@@ -10,10 +10,10 @@ import Web3 from 'web3';
 import { selectPaymentTokenData } from 'store/market/payment-token/paymentToken.slice';
 
 export interface DataTableHistoryProps {
-  nftItemId: string;
+  tokenId: string;
 }
 
-export default function DataTableHistory({ nftItemId }: DataTableHistoryProps) {
+export default function DataTableHistory({ tokenId }: DataTableHistoryProps) {
   const dispatch = useAppDispatch();
   const nftItemHistory = useAppSelector(selectNftItemHistoryData);
   const { BUSD } = useAppSelector(selectPaymentTokenData);
@@ -55,10 +55,10 @@ export default function DataTableHistory({ nftItemId }: DataTableHistoryProps) {
   );
 
   useEffect(() => {
-    if (nftItemId) {
-      dispatch(getNftItemHistory({ nftItemId }));
+    if (tokenId) {
+      dispatch(getNftItemHistory({ tokenId }));
     }
-  }, [dispatch, nftItemId]);
+  }, [dispatch, tokenId]);
 
   return <DataTable title="Sale History" sortable data={data} columns={columns} className="my-24" />;
 }

@@ -62,7 +62,7 @@ export default function CardLayoutDetail({ type, item }: CardLayoutDetailProps) 
           </Flex>
         </Flex>
       </Flex>
-      <DataTableHistory nftItemId={item.tokenId} />
+      <DataTableHistory tokenId={item.tokenId} />
     </Container>
   );
 }

@@ -173,7 +173,7 @@ export type NftItemRequest = {
 export type InventoryRequest = PaginationRequest;
 
 export type NftItemHistoryRequest = {
-  nftItemId: string;
+  tokenId: string;
   userAddress?: string;
   type?: HistoryType;
 } & PaginationRequest;

@@ -17,10 +17,10 @@ import axios from 'axios';
 
 const MarketplaceItems: NextPageWithLayout = () => {
   const router = useRouter();
-  useEffect(() => {
-    // router.push('/marketplace/items');
-    router.push('/');
-  }, [router]);
+  // useEffect(() => {
+  //   // router.push('/marketplace/items');
+  //   router.push('/');
+  // }, [router]);
 
   const goTo = (itemId: string) => {
     router.push(`/marketplace/items/${itemId}`);

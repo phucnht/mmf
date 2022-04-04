@@ -13,8 +13,8 @@ const HeaderButtonLogin = ({ className }: CxProps) => {
       imgSrc="/assets/bg/bg-header-user.png"
       className={clsxm('h-[6rem] w-[10.5rem] sm:w-[16rem] xl:h-[9rem] xl:w-[19.3rem] pt-5 lg:pt-6', className)}
       onClick={() => connect()}
-      // disabled={loading}
-      disabled
+      disabled={loading}
+      // disabled
     >
       <Text className="text-sm xl:text-md font-bold">Login</Text>
     </ButtonImage>

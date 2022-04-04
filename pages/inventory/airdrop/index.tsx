@@ -8,11 +8,11 @@ import { useEffect } from 'react';
 
 const InventoryAirdrop: NextPageWithLayout = () => {
   useAuthGuard();
-  const router = useRouter();
-  useEffect(() => {
-    // router.push('/marketplace/items');
-    router.push('/');
-  }, [router]);
+  // const router = useRouter();
+  // useEffect(() => {
+  //   // router.push('/marketplace/items');
+  //   router.push('/');
+  // }, [router]);
 
   return (
     <>

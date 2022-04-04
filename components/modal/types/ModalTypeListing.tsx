@@ -40,7 +40,12 @@ const ModalTypeListing = ({ data, confirm, isCancel }: ModalTypeListingProps) =>
       .positive()
       .min(0, 'The number of amount cannot be smaller than 0')
       .max(amountRest, 'The number of amount cannot be bigger than than ' + amountRest),
-    price: yup.number().required('Required').positive().min(0, 'The number of boxes price be smaller than 0')
+    price: yup
+      .string()
+      .required('Required')
+      // .positive()
+      // .min(0, 'The price cannot be smaller than 0')
+      .matches(/^[0-9]{0,9}(?:\.[0-9]{0,6})?$/, 'This price is not available')
   });
 
   const methods = useForm<FormValues>({

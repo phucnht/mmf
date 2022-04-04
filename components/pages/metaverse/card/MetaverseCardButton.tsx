@@ -58,6 +58,7 @@ const MetaverseCardButton: FC<{ isEventEnded: boolean; whitelistContract: string
   };
 
   const handleProcess = () => {
+    console.log(onchainId);
     setIsProcessing(true);
     plgMetaverseContract(metaverseContractAddress)
       .methods.claim1155Event(onchainId)
