@@ -17,18 +17,6 @@ export default function CardImageItem({ item, className, children }: CardImageIt
 
   return (
     <Flex className={cxCardWrapper}>
-      {/* <Image alt={name} src={imgSrc || imgClothes} /> */}
-      {/* <ReactPlayer
-        url="/assets/img-video/item.mp4"
-        style={{ borderRadius: '2rem' }}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        width="100%"
-        height="100%"
-        loop={true}
-        playing={true}
-        controls={false}
-        muted
-      /> */}
       {external && (
         <Canvas3D
           url={external.modelUrl}
@@ -38,7 +26,7 @@ export default function CardImageItem({ item, className, children }: CardImageIt
         />
       )}
       <Stack className="flex-col justify-center w-full gap-7 mt-4">
-        <Box className="text-[4.8rem] font-black">{renderContent}</Box>
+        <Box className="text-2xl font-bold">{renderContent}</Box>
         <Text className={'bg-blue-100 text-md font-black py-3 px-6 rounded-[2rem] flex items-center'}>
           #{item.tokenId}
         </Text>

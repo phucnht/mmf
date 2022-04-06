@@ -8,8 +8,8 @@ import { getEllipsisTxt } from 'utils/format';
 import { selectPaymentTokenData } from 'store/market/payment-token/paymentToken.slice';
 import { ObjectProps } from 'utils/types';
 import CardImageItem from '../image/CardImageItem';
-import CardImageCharacter from '../image/CardImageCharacter';
-import CardImageLand from '../image/CardImageLand';
+// import CardImageCharacter from '../image/CardImageCharacter';
+// import CardImageLand from '../image/CardImageLand';
 import FormBuyNowButton from 'components/forms/buy-now/FormBuyNowButton';
 
 export type CardItemType = 'item' | 'land' | 'character';
@@ -28,8 +28,8 @@ export default function CardLayoutDetail({ type, item }: CardLayoutDetailProps) 
       <Flex className="justify-between gap-20 p-28 rounded-[2rem] border-[3px] border-green-200 text-white">
         <Flex className="flex-col items-center justify-center min-h-[48rem] w-full">
           {type === 'item' && <CardImageItem item={item} />}
-          {type === 'character' && <CardImageCharacter id={item.id} name={item.name} />}
-          {type === 'land' && <CardImageLand id={item.id} name={item.name} />}
+          {/* {type === 'character' && <CardImageCharacter id={item.id} name={item.name} />}
+          {type === 'land' && <CardImageLand id={item.id} name={item.name} />} */}
           <Heading as="h6" className="font-bold text-xl mt-4">
             Amount: <b>{item.amount}</b>
           </Heading>

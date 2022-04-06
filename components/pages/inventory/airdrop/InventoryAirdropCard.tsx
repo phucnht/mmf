@@ -38,6 +38,8 @@ export default function InventoryAirdropCard({ item, onClick }: InventoryAirdrop
             className="rounded-[2rem]"
             layout="fill"
             objectFit="cover"
+            unoptimized={true}
+            placeholder="blur"
           />
         </Box>
       </Flex>

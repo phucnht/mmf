@@ -267,7 +267,7 @@ const Marketplace = () => {
             </Bounce>
           </Box>
           <Box className="absolute right-0 -top-[20%] w-1/4 h-full">
-            {/* <Bounce className="h-full">
+            <Bounce className="h-full">
               <Canvas3D
                 url="https://master.mymetafarm.com/Items/9/9_model.fbx"
                 urlTexture="https://master.mymetafarm.com/Items/9/9_texture.png"
@@ -275,10 +275,10 @@ const Marketplace = () => {
                 imgFallback={'https://master.mymetafarm.com/BG.png'}
                 className="min-h-[28vw]"
               />
-            </Bounce> */}
-            <Bounce>
-              <Image alt="Welcome" src={imgMarketplaceCharacter} />
             </Bounce>
+            {/* <Bounce>
+              <Image alt="Welcome" src={imgMarketplaceCharacter} />
+            </Bounce> */}
           </Box>
         </Flex>
         <Box className="relative w-1/2 mx-auto">

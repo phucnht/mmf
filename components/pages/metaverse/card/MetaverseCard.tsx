@@ -22,6 +22,8 @@ export default function MetaverseCard({ metaverse }: MetaverseCardProps) {
         alt={metaverse.description}
         layout="fill"
         objectFit="cover"
+        placeholder="blur"
+        unoptimized={true}
       />
       <Box className="absolute left-12 bottom-0 lg:left-4 lg:bottom-4 w-1/2 h-1/2 bg-blue-100/90 border-[3px] border-blue-300 rounded-[2rem]">
         <CustomImage
@@ -30,6 +32,8 @@ export default function MetaverseCard({ metaverse }: MetaverseCardProps) {
           alt={metaverse.description}
           layout="fill"
           objectFit="contain"
+          placeholder="blur"
+          unoptimized={true}
         />
       </Box>
     </Box>
@@ -44,6 +48,7 @@ export default function MetaverseCard({ metaverse }: MetaverseCardProps) {
         layout="fill"
         objectFit="cover"
         className="rounded-[2rem]"
+        unoptimized={true}
       />
       <Box className="absolute left-1 lg:bottom-0 lg:left-4 2xl:left-4 w-1/2 h-full max-w-[16rem] max-h-64 lg:w-1/2 lg:h-1/2">
         <Image
@@ -53,6 +58,7 @@ export default function MetaverseCard({ metaverse }: MetaverseCardProps) {
           layout="fill"
           objectFit="cover"
           className="rounded-[2rem]"
+          unoptimized={true}
         />
       </Box>
     </>

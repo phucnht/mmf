@@ -38,7 +38,7 @@ const MetaverseCardDescription: FC<MetaverseCardDescriptionProps> = ({
             <Image src={imgMeteverseSmall} alt="Metaverse" layout="fill" objectFit="cover" />
           </Box>
         </Flex>
-        <Text className="text-sm lg:text-xl uppercase">{description}</Text>
+        <Text className="text-sm lg:text-xl mb-8">{description}</Text>
       </Flex>
       <Stack className="flex-col w-full">
         <Text className="text-sm lg:text-xl text-yellow-100 my-5 w-full">{condition}</Text>

@@ -76,6 +76,8 @@ export default function CardPanelItem({ item, exchange, onClick }: CardPanelItem
             src={item?.external.backgroundUrl}
             layout="fill"
             objectFit="cover"
+            unoptimized={true}
+            placeholder="blur"
           />
         </Box>
       </Flex>

@@ -7,6 +7,7 @@ import { Box, Button } from '@whammytechvn/wt-components';
 import { SidebarRouteProps } from 'components/navigation/sidebar/sidebar.typings';
 import { useRouter } from 'next/router';
 import ReactTooltip from 'react-tooltip';
+import { MouseEventHandler } from 'react';
 
 const mobileRoutes = [
   {
@@ -51,7 +52,13 @@ const desktopRoutes = [
   }
 ];
 
-const HeaderButtonRoute = ({ route, onClick }: { route: SidebarRouteProps; onClick?: () => void }) => {
+const HeaderButtonRoute = ({
+  route,
+  onClick
+}: {
+  route: SidebarRouteProps;
+  onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
+}) => {
   const cxButton = classNames(
     'text-sm !leading-[3.2rem] xl:text-btn p-1 w-full xl:p-3 lg:w-[9rem] !min-w-fit xl:w-[15rem] bg-transparent hover:bg-blue-100/10 font-black text-white uppercase',
     {
@@ -73,6 +80,7 @@ export default function HeaderButtonHamburger({ className }: CxProps) {
   const router = useRouter();
 
   const goTo = (path: string) => {
+    console.log(path);
     router.push(path);
   };
 
@@ -100,7 +108,11 @@ export default function HeaderButtonHamburger({ className }: CxProps) {
                 <HeaderButtonRoute
                   key={route.slug}
                   route={route}
-                  onClick={() => {
+                  onClick={(e: any) => {
+                    if (e) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                    }
                     if (route.disabled) {
                       return;
                     }
@@ -119,7 +131,11 @@ export default function HeaderButtonHamburger({ className }: CxProps) {
                 <HeaderButtonRoute
                   key={route.slug}
                   route={route}
-                  onClick={() => {
+                  onClick={(e: any) => {
+                    if (e) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                    }
                     if (route.disabled) {
                       return;
                     }

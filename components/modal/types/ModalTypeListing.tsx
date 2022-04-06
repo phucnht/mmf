@@ -43,8 +43,6 @@ const ModalTypeListing = ({ data, confirm, isCancel }: ModalTypeListingProps) =>
     price: yup
       .string()
       .required('Required')
-      // .positive()
-      // .min(0, 'The price cannot be smaller than 0')
       .matches(/^[0-9]{0,9}(?:\.[0-9]{0,6})?$/, 'This price is not available')
   });
 
@@ -70,68 +68,76 @@ const ModalTypeListing = ({ data, confirm, isCancel }: ModalTypeListingProps) =>
     }
   };
 
-  const onSubmit = methods.handleSubmit(async ({ amount, price }: FormValues) => {
-    if (amount <= 0) {
-      toast.error('Amount must be larger than 0!');
-      return;
-    }
-    if (amount > amountRest) {
-      toast.error('You have only ' + amountRest + ' to list');
-      return;
-    }
-    if (price <= 0) {
-      toast.error('Price must be larger than 0!');
-      return;
-    }
-    if (data) {
-      const saltNonce = new Date().getTime();
-      const paramsHashMessage = {
-        nftItemId: data.id,
-        paymentTokenId: BUSD.id,
-        price,
-        saltNonce,
-        amount,
-        ownerAccept: true
-      };
+  const onSubmit = methods.handleSubmit(
+    async ({ amount, price }: FormValues) => {
+      if (amount <= 0) {
+        toast.error('Amount must be larger than 0!');
+        return;
+      }
+      if (amount > amountRest) {
+        toast.error('You have only ' + amountRest + ' to list');
+        return;
+      }
+      if (price <= 0) {
+        toast.error('Price must be larger than 0!');
+        return;
+      }
+      if (data) {
+        const saltNonce = new Date().getTime();
+        const paramsHashMessage = {
+          nftItemId: data.id,
+          paymentTokenId: BUSD.id,
+          price,
+          saltNonce,
+          amount,
+          ownerAccept: true
+        };
 
-      const resHashMessage = (await clientMarket.get('/sale-items/hash-message', {
-        params: paramsHashMessage
-      })) as any;
+        const resHashMessage = (await clientMarket.get('/sale-items/hash-message', {
+          params: paramsHashMessage
+        })) as any;
 
-      if (resHashMessage) {
-        try {
-          const signedSignature = await web3.eth.personal.sign(resHashMessage.hashMessage, address, '');
-          const paramsCreateSaleItem = {
-            nftItemId: data.id,
-            signedSignature,
-            paymentTokenId: BUSD.id,
-            price,
-            amount,
-            saltNonce
-          };
+        if (resHashMessage) {
+          try {
+            const signedSignature = await web3.eth.personal.sign(resHashMessage.hashMessage, address, '');
+            const paramsCreateSaleItem = {
+              nftItemId: data.id,
+              signedSignature,
+              paymentTokenId: BUSD.id,
+              price,
+              amount,
+              saltNonce
+            };
 
-          const resCreateSaleItem = (await axios.post(
-            `${process.env.NEXT_PUBLIC_API_MARKET}/sale-items/create`,
-            paramsCreateSaleItem,
-            {
-              headers: {
-                Authorization: `Bearer ${accessToken}`
+            const resCreateSaleItem = (await axios.post(
+              `${process.env.NEXT_PUBLIC_API_MARKET}/sale-items/create`,
+              paramsCreateSaleItem,
+              {
+                headers: {
+                  Authorization: `Bearer ${accessToken}`
+                }
               }
-            }
-          )) as any;
+            )) as any;
 
-          if (resCreateSaleItem.data.success) {
-            confirm();
-          } else {
-            toast.error(resCreateSaleItem.data.errors.error);
+            if (resCreateSaleItem.data.success) {
+              confirm();
+            } else {
+              toast.error(resCreateSaleItem.data.errors.error);
+            }
+          } catch (e: any) {
+            toast.error(e.message);
+            return;
           }
-        } catch (e: any) {
-          toast.error(e.message);
-          return;
         }
       }
+    },
+    errors => {
+      if (errors) {
+        errors['price'] && toast.error(errors['price'].message);
+        errors['amount'] && toast.error(errors['amount'].message);
+      }
     }
-  });
+  );
 
   const handleValidateInput = (e: any) => {
     return !validateInputNumber(e) && e.preventDefault();
@@ -145,7 +151,13 @@ const ModalTypeListing = ({ data, confirm, isCancel }: ModalTypeListingProps) =>
         <form onSubmit={isCancel ? onSubmitCancel : onSubmit} className="flex flex-col gap-8">
           <Flex className="items-center w-full p-8 gap-12">
             <Flex className="relative flex-col items-center justify-center w-[22.8rem] h-[22.2rem]">
-              <CustomImage alt={`#${data?.id}`} src={data?.external.backgroundUrl} layout="fill" objectFit="cover" />
+              <CustomImage
+                alt={`#${data?.id}`}
+                src={data?.external.backgroundUrl}
+                layout="fill"
+                objectFit="cover"
+                unoptimized={true}
+              />
             </Flex>
             <Flex className="flex-col text-white gap-8 max-w-[32rem]">
               <Heading className="font-normal text-lg">

@@ -38,7 +38,13 @@ const ModalTypeCheckout = ({ confirm, decline, data }: ModalTypeCheckoutProps) =
       <Heading className="!text-[4rem] font-bold uppercase">Checkout</Heading>
       <Flex className="items-center w-full p-8 gap-12">
         <Flex className="relative flex-col items-center justify-center w-[22.8rem] h-[22.2rem]">
-          <CustomImage alt={`#${data?.id}`} src={data?.external.backgroundUrl} layout="fill" objectFit="cover" />
+          <CustomImage
+            alt={`#${data?.id}`}
+            src={data?.external.backgroundUrl}
+            layout="fill"
+            objectFit="cover"
+            unoptimized={true}
+          />
         </Flex>
         <Flex className="flex-col justify-start text-white gap-8 pl-12 max-w-[32rem]">
           <Heading className="text-lg font-normal">

@@ -13,7 +13,6 @@ export default function CustomImage({ alt, ...props }: any) {
       src={src || imgBlank}
       alt={alt} // To fix lint warning
       onError={() => setSrc('/assets/default/img-blank.png')}
-      placeholder="blur"
       blurDataURL="/assets/default/img-blank.png"
     />
   );

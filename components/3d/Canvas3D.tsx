@@ -6,6 +6,7 @@ import { Box } from '@whammytechvn/wt-components';
 import clsxm from 'utils/clsxm';
 import { Mesh } from 'three/src/objects/Mesh';
 import { Canvas } from '@react-three/fiber';
+import { ErrorBoundary } from 'react-error-boundary';
 
 export default function Canvas3D({
   url,
@@ -32,18 +33,26 @@ export default function Canvas3D({
           className="rounded-[2rem]"
           layout="fill"
           object="contain"
+          unoptimized={true}
         />
       </Box>
     );
 
   return (
-    <Canvas dpr={[1, 2]} camera={{ position: [-2, 2, 4], fov: 50 }} className={cxCanvas}>
-      <ambientLight intensity={1} />
-      <OrbitControls autoRotate />
-      <Suspense fallback={<>...</>}>
-        <Model position-y={-2} scale={[0.4, 0.4, 0.4]} url={url} urlTexture={urlTexture} />
-      </Suspense>
-    </Canvas>
+    <ErrorBoundary
+      FallbackComponent={ErrorFallback}
+      onReset={() => {
+        // reset the state of your app so the error doesn't happen again
+      }}
+    >
+      <Canvas dpr={[1, 2]} camera={{ position: [-2, 2, 4], fov: 50 }} className={cxCanvas}>
+        <ambientLight intensity={1} />
+        <OrbitControls autoRotate />
+        <Suspense fallback={null}>
+          <Model position-y={-2} scale={[0.4, 0.4, 0.4]} url={url} urlTexture={urlTexture} />
+        </Suspense>
+      </Canvas>
+    </ErrorBoundary>
   );
 }
 
@@ -70,7 +79,18 @@ function Model({ url, urlTexture, ...props }: ObjectProps) {
   );
 }
 
-function Loader() {
-  const { progress } = useProgress();
-  return <Html center>{progress} % loaded</Html>;
+// TODO: It's better to have a Loader but it gets some errors. Need to investigate.
+// function Loader() {
+//   const { progress } = useProgress();
+//   return <Html center>{progress} % loaded</Html>;
+// }
+
+function ErrorFallback({ error, resetErrorBoundary }: { error: any; resetErrorBoundary: any }) {
+  return (
+    <div role="alert">
+      <p>Something went wrong:</p>
+      <pre>{error.message}</pre>
+      <button onClick={resetErrorBoundary}>Try again</button>
+    </div>
+  );
 }

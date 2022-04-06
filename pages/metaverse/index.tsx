@@ -7,17 +7,8 @@ import imgMetaverse from 'public/assets/metaverse/metaverse.png';
 import { NextPageWithLayout } from 'pages/_app';
 import { getLayoutDefault } from 'components/layouts/pages/default/getLayoutDefault';
 import MetaverseCardList from 'components/pages/metaverse/MetaverseCardList';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 
 const Metaverse: NextPageWithLayout = () => {
-  const router = useRouter();
-
-  // useEffect(() => {
-  //   // router.push('/marketplace/items');
-  //   router.push('/');
-  // }, [router]);
-
   return (
     <>
       <Head>
