@@ -273,7 +273,7 @@ const Marketplace = () => {
                 urlTexture="https://master.mymetafarm.com/Items/9/9_texture.png"
                 alt="Character"
                 imgFallback={'https://master.mymetafarm.com/BG.png'}
-                className="min-h-[28vw]"
+                className="min-h-[28vw] 2xl:min-h-[40rem]"
               />
             </Bounce>
             {/* <Bounce>
