@@ -13,10 +13,7 @@ export interface TableHeaderCellProps
 }
 
 const TableHeaderCell: FC<TableHeaderCellProps> = ({ column, sortable = false, className, children, ...props }) => {
-  const thClassName = classNames(
-    'p-6 font-black text-md lg:table-cell w-full text-white bg-blue-400 min-w-[20rem]',
-    className
-  );
+  const thClassName = classNames('p-6 font-black text-md lg:table-cell w-full text-white bg-blue-400 ', className);
 
   // Sort properties
   const { isSorted, isSortedDesc } = column as any;

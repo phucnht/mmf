@@ -145,6 +145,7 @@ export interface NftItemHistoryDto {
   tokenId: string;
   nftContract: string;
   amount: number;
+  price: number;
   paymentToken: PaymentTokenDto;
   paymentTokenId: string;
   type: HistoryType;
