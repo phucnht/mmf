@@ -11,6 +11,7 @@ import imgMetaverseCity2 from 'public/media/landing/metaverse-city-2.png';
 
 import imgMarketplaceItems from 'public/media/landing/marketplace-items.png';
 import imgMarketplaceProgress from 'public/media/landing/marketplace-progress.png';
+import imgMarketplaceCharacter from 'public/media/landing/marketplace-character.png';
 
 import Image from 'components/display/image/CustomImage';
 import classNames from 'classnames';
@@ -266,7 +267,7 @@ const Marketplace = () => {
             </Bounce>
           </Box>
           <Box className="absolute right-0 -top-[20%] w-1/4 h-full">
-            <Bounce className="h-full">
+            {/* <Bounce className="h-full">
               <Canvas3D
                 url="https://master.mymetafarm.com/Items/9/9_model.fbx"
                 urlTexture="https://master.mymetafarm.com/Items/9/9_texture.png"
@@ -274,10 +275,10 @@ const Marketplace = () => {
                 imgFallback={'https://master.mymetafarm.com/BG.png'}
                 className="min-h-[28vw] 2xl:min-h-[40rem]"
               />
-            </Bounce>
-            {/* <Bounce>
-              <Image alt="Welcome" src={imgMarketplaceCharacter} />
             </Bounce> */}
+            <Bounce>
+              <Image alt="Welcome" src={imgMarketplaceCharacter} />
+            </Bounce>
           </Box>
         </Flex>
         <Box className="relative w-1/2 mx-auto">
