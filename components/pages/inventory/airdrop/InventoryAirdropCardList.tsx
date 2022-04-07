@@ -27,6 +27,7 @@ const InventoryAirdropCardList: FC = () => {
 
   useEffect(() => {
     if (address) {
+      console.log(currentPage);
       dispatch(getInventory({ page: currentPage }));
     }
   }, [dispatch, address, currentPage]);
@@ -38,6 +39,8 @@ const InventoryAirdropCardList: FC = () => {
       </Box>
     );
   }
+
+  console.log(data);
 
   return (
     <>

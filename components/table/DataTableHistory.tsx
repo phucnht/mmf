@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { getNftItemHistory } from 'store/market/nft-item/nftItem.api';
 import { selectNftItemHistoryData } from 'store/market/nft-item/nftItemHistory.slice';
 import { useAppDispatch, useAppSelector } from 'store/store.hook';
@@ -8,26 +8,29 @@ import { format } from 'date-fns';
 import TextCopyable from 'components/display/text/TextCopyable';
 import Web3 from 'web3';
 import { selectPaymentTokenData } from 'store/market/payment-token/paymentToken.slice';
+import { clientMarket } from 'utils/api';
+import { NftItemHistoryDto } from 'store/market/nft-item/nftItem.i';
 
 export interface DataTableHistoryProps {
   tokenId: string;
 }
 
 export default function DataTableHistory({ tokenId }: DataTableHistoryProps) {
-  const dispatch = useAppDispatch();
-  const nftItemHistory = useAppSelector(selectNftItemHistoryData);
+  // const dispatch = useAppDispatch();
+  // const nftItemHistory = useAppSelector(selectNftItemHistoryData);
+  const [history, setHistory] = useState<NftItemHistoryDto[]>([]);
   const { BUSD } = useAppSelector(selectPaymentTokenData);
 
   const data = useMemo(
     () =>
-      _map(nftItemHistory, history => ({
-        id: history.id,
-        time: history.createdAt,
-        amount: history.amount,
-        from: history.fromAddress,
-        to: history.toAddress
+      _map(history, h => ({
+        id: h.id,
+        time: h.createdAt,
+        amount: h.amount,
+        from: h.fromAddress,
+        to: h.toAddress
       })),
-    [nftItemHistory]
+    [history]
   );
 
   const columns = useMemo(
@@ -54,11 +57,14 @@ export default function DataTableHistory({ tokenId }: DataTableHistoryProps) {
     [BUSD]
   );
 
+  const getNftItemHistory = useCallback(async (tokenId: string) => {
+    const history = await clientMarket.get(`/item-histories`, { params: { tokenId } });
+    setHistory((history as any).items as any);
+  }, []);
+
   useEffect(() => {
-    if (tokenId) {
-      dispatch(getNftItemHistory({ tokenId }));
-    }
-  }, [dispatch, tokenId]);
+    getNftItemHistory(tokenId);
+  }, [getNftItemHistory, tokenId]);
 
   return <DataTable title="Sale History" sortable data={data} columns={columns} className="my-24" />;
 }

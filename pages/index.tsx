@@ -47,7 +47,7 @@ const mocks = [
     imgSrc: imgEvent3,
     tag: 'Update',
     title: 'Outstanding Prize',
-    content: 'My Meta Farm- The second winner of the GameFi track  in Metathon Hackathon.',
+    content: 'My Meta Farm - The second winner of the GameFi track  in Metathon Hackathon.',
     date: '13:56 15/03/2022',
     href: 'http://news.mymetafarm.com/'
   }
