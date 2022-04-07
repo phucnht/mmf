@@ -20,7 +20,6 @@ import Fade from 'react-reveal/Fade';
 import VideoAutoPlayback from 'components/video/VideoAutoPlayback';
 import Link from 'components/navigation/link/Link';
 import Canvas3D from 'components/3d/Canvas3D';
-import imgMarketplaceCharacter from 'public/media/landing/marketplace-character.png';
 
 const mocks = [
   {
@@ -31,7 +30,7 @@ const mocks = [
     badge: 'Hot',
     content: 'Airdrop is happening - Join to get attractive NFTs.',
     date: '13:56 15/03/2022',
-    href: 'http://news.mymetafarm.com/category/events/'
+    href: 'https://news.mymetafarm.com/'
   },
   {
     id: 2,
@@ -40,16 +39,16 @@ const mocks = [
     title: 'Global Ambassador Program',
     content: 'This is an opportunity for you to get deeply integrated into My Meta Farm and our growth journey.',
     date: '13:56 15/03/2022',
-    href: 'http://news.mymetafarm.com/2022/03/18/the-global-ambassador-program/'
+    href: 'https://news.mymetafarm.com/the-global-ambassador-a1-contest/'
   },
   {
     id: 3,
     imgSrc: imgEvent3,
     tag: 'Update',
     title: 'Outstanding Prize',
-    content: 'My Meta Farm - The second winner of the GameFi track  in Metathon Hackathon.',
+    content: 'My Meta Farm - The second winner of the GameFi track in Metathon Hackathon.',
     date: '13:56 15/03/2022',
-    href: 'http://news.mymetafarm.com/'
+    href: 'https://news.mymetafarm.com/my-meta-farm-the-excellent-second-winner-of-the-gamefi-categories-in-metathon-contest/'
   }
 ];
 
