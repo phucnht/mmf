@@ -7,6 +7,7 @@ import HeaderButtonUser from './components/HeaderButtonUser';
 import clsxm from 'utils/clsxm';
 import { useRouter } from 'next/router';
 import { Flex } from '@whammytechvn/wt-components';
+import Spinner from 'components/display/spinner/Spinner';
 
 const HeaderDesktop = () => {
   return (
@@ -28,7 +29,7 @@ const HeaderMobile = () => {
 };
 
 export default function Header() {
-  const windowSize = useWindowSize();
+  const { width } = useWindowSize();
   const { pathname } = useRouter();
 
   const cxNav = clsxm(
@@ -36,10 +37,14 @@ export default function Header() {
     { relative: pathname !== '/' }
   );
 
+  if (!width) {
+    return <Spinner />;
+  }
+
   return (
     <>
       {/* <BackgroundHeaderShadow /> */}
-      <nav className={cxNav}>{windowSize?.width < 1024 ? <HeaderMobile /> : <HeaderDesktop />}</nav>
+      <nav className={cxNav}>{width < 1024 ? <HeaderMobile /> : <HeaderDesktop />}</nav>
     </>
   );
 }
