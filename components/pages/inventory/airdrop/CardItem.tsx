@@ -27,7 +27,7 @@ export default function CardItem({ item, className, children }: CardItemProps) {
             url={external.modelUrl}
             urlTexture={external.uvUrl}
             alt={item.name}
-            imgFallback={external.backgroundUrl}
+            imgFallback={external.iconUrl}
           />
         )}
         <Stack className="flex-col justify-center w-full gap-7 mt-4">

@@ -40,9 +40,9 @@ const ModalTypeCheckout = ({ confirm, decline, data }: ModalTypeCheckoutProps) =
         <Flex className="relative flex-col items-center justify-center w-[22.8rem] h-[22.2rem]">
           <CustomImage
             alt={`#${data?.id}`}
-            src={data?.external.backgroundUrl}
+            src={data?.external.iconUrl}
             layout="fill"
-            objectFit="cover"
+            objectFit="contain"
             unoptimized={true}
           />
         </Flex>

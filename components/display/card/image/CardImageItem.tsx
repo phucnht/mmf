@@ -18,12 +18,7 @@ export default function CardImageItem({ item, className, children }: CardImageIt
   return (
     <Flex className={cxCardWrapper}>
       {external && (
-        <Canvas3D
-          url={external.modelUrl}
-          urlTexture={external.uvUrl}
-          alt={item.name}
-          imgFallback={external.backgroundUrl}
-        />
+        <Canvas3D url={external.modelUrl} urlTexture={external.uvUrl} alt={item.name} imgFallback={external.iconUrl} />
       )}
       <Stack className="flex-col justify-center w-full gap-7 mt-4">
         <Box className="text-2xl font-bold">{renderContent}</Box>

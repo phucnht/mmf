@@ -45,7 +45,7 @@ export default function Canvas3D({
         // reset the state of your app so the error doesn't happen again
       }}
     >
-      <Canvas dpr={[1, 2]} camera={{ position: [-2, 2, 4], fov: 50 }} className={cxCanvas}>
+      <Canvas dpr={[1, 2]} camera={{ position: [-4, 2, 4], fov: 50 }} className={cxCanvas}>
         <ambientLight intensity={1} />
         <OrbitControls autoRotate />
         <Suspense fallback={null}>
