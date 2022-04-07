@@ -145,6 +145,7 @@ export interface NftItemHistoryDto {
   tokenId: string;
   nftContract: string;
   amount: number;
+  price: number;
   paymentToken: PaymentTokenDto;
   paymentTokenId: string;
   type: HistoryType;
@@ -173,7 +174,7 @@ export type NftItemRequest = {
 export type InventoryRequest = PaginationRequest;
 
 export type NftItemHistoryRequest = {
-  nftItemId: string;
+  tokenId: string;
   userAddress?: string;
   type?: HistoryType;
 } & PaginationRequest;

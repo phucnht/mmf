@@ -24,9 +24,10 @@ const MetaverseCardDescription: FC<MetaverseCardDescriptionProps> = ({
   toDate
 }) => {
   const endDate = new Date(toDate).getTime();
+  const startDate = new Date(fromDate).getTime();
   const now = Date.now();
 
-  const isEventEnded = now > endDate;
+  const isEventNotAvailable = now > endDate || now < startDate;
 
   return (
     <Flex className="rounded-[2rem] bgg-black p-4 lg:p-8 h-full min-h-[30rem] flex-col justify-between divide-y divide-white/50">
@@ -38,11 +39,15 @@ const MetaverseCardDescription: FC<MetaverseCardDescriptionProps> = ({
             <Image src={imgMeteverseSmall} alt="Metaverse" layout="fill" objectFit="cover" />
           </Box>
         </Flex>
-        <Text className="text-sm lg:text-xl uppercase">{description}</Text>
+        <Text className="text-sm lg:text-xl mb-8 text-justify">{description}</Text>
       </Flex>
       <Stack className="flex-col w-full">
         <Text className="text-sm lg:text-xl text-yellow-100 my-5 w-full">{condition}</Text>
-        <MetaverseCardButton whitelistContract={whitelistContract} onchainId={onchainId} isEventEnded={isEventEnded} />
+        <MetaverseCardButton
+          whitelistContract={whitelistContract}
+          onchainId={onchainId}
+          isEventNotAvailable={isEventNotAvailable}
+        />
       </Stack>
     </Flex>
   );

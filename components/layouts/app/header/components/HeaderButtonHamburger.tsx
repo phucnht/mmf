@@ -7,6 +7,8 @@ import { Box, Button } from '@whammytechvn/wt-components';
 import { SidebarRouteProps } from 'components/navigation/sidebar/sidebar.typings';
 import { useRouter } from 'next/router';
 import ReactTooltip from 'react-tooltip';
+import useWindowSize from 'hooks/useWindowSize';
+import clsxm from 'utils/clsxm';
 
 const mobileRoutes = [
   {
@@ -14,7 +16,7 @@ const mobileRoutes = [
     label: 'Home'
   },
   {
-    slug: 'https://news.mymetafarm.com',
+    slug: 'https://news.mymetafarm.com/',
     label: 'News'
   },
   {
@@ -46,12 +48,18 @@ const desktopRoutes = [
     disabled: true
   },
   {
-    slug: 'https://news.mymetafarm.com',
+    slug: 'https://news.mymetafarm.com/',
     label: 'News'
   }
 ];
 
-const HeaderButtonRoute = ({ route, onClick }: { route: SidebarRouteProps; onClick?: () => void }) => {
+const HeaderButtonRoute = ({ route }: { route: SidebarRouteProps }) => {
+  const router = useRouter();
+
+  const goToRoute = () => {
+    router.push(route.slug);
+  };
+
   const cxButton = classNames(
     'text-sm !leading-[3.2rem] xl:text-btn p-1 w-full xl:p-3 lg:w-[9rem] !min-w-fit xl:w-[15rem] bg-transparent hover:bg-blue-100/10 font-black text-white uppercase',
     {
@@ -61,7 +69,7 @@ const HeaderButtonRoute = ({ route, onClick }: { route: SidebarRouteProps; onCli
 
   return (
     <Box className="relative">
-      <Button onClick={onClick} className={cxButton} data-tip={route.disabled ? 'Coming Soon' : undefined}>
+      <Button onClick={goToRoute} className={cxButton} data-tip={route.disabled ? 'Coming Soon' : undefined}>
         {route.label}
       </Button>
       <ReactTooltip place="bottom" className="z-[100]" />
@@ -70,11 +78,13 @@ const HeaderButtonRoute = ({ route, onClick }: { route: SidebarRouteProps; onCli
 };
 
 export default function HeaderButtonHamburger({ className }: CxProps) {
-  const router = useRouter();
+  const { width } = useWindowSize();
 
-  const goTo = (path: string) => {
-    router.push(path);
-  };
+  if (!width) {
+    return null;
+  }
+  const isMobile = width < 1024;
+  const routes = isMobile ? mobileRoutes : desktopRoutes;
 
   return (
     <Popover className={classNames('my-auto', className)}>
@@ -93,43 +103,14 @@ export default function HeaderButtonHamburger({ className }: CxProps) {
         leaveTo="transform scale-95 opacity-0"
         className="absolute left-0 mt-8 w-full z-50"
       >
-        <Popover.Panel className="hidden lg:flex text-white text-md bg-blue-400 rounded-none lg:rounded-[2rem] w-full p-2 xl:p-4">
-          {({ close }) => (
-            <>
-              {desktopRoutes.map(route => (
-                <HeaderButtonRoute
-                  key={route.slug}
-                  route={route}
-                  onClick={() => {
-                    if (route.disabled) {
-                      return;
-                    }
-                    goTo(route.slug);
-                    close();
-                  }}
-                />
-              ))}
-            </>
-          )}
-        </Popover.Panel>
-        <Popover.Panel className="lg:hidden text-white flex flex-col text-md bg-blue-400 rounded-none lg:rounded-[2rem] w-full p-2 xl:p-4 z-50 divide-y-[1px]">
-          {({ close }) => (
-            <>
-              {mobileRoutes.map(route => (
-                <HeaderButtonRoute
-                  key={route.slug}
-                  route={route}
-                  onClick={() => {
-                    if (route.disabled) {
-                      return;
-                    }
-                    goTo(route.slug);
-                    close();
-                  }}
-                />
-              ))}
-            </>
-          )}
+        <Popover.Panel
+          className={clsxm('lg:flex text-white text-md bg-blue-400 rounded-none lg:rounded-[2rem] w-full p-2 xl:p-4', {
+            'z-50 divide-y-[1px]': isMobile
+          })}
+        >
+          {routes.map(route => (
+            <HeaderButtonRoute key={route.slug} route={route} />
+          ))}
         </Popover.Panel>
       </Transition>
     </Popover>

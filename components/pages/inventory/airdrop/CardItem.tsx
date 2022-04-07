@@ -22,24 +22,14 @@ export default function CardItem({ item, className, children }: CardItemProps) {
   return (
     <Box className="w-full">
       <Flex className={cxCardWrapper}>
-        {/* <Image alt={content} src={imgSrc} /> */}
-        {/* <ReactPlayer
-          url="/assets/img-video/item.mp4"
-          style={{ borderRadius: '2rem' }}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          width="100%"
-          height="100%"
-          loop={true}
-          playing={true}
-          controls={false}
-          muted
-        /> */}
-        <Canvas3D
-          url={external.modelUrl}
-          urlTexture={external.uvUrl}
-          alt={item.name}
-          imgFallback={external.backgroundUrl}
-        />
+        {external && (
+          <Canvas3D
+            url={external.modelUrl}
+            urlTexture={external.uvUrl}
+            alt={item.name}
+            imgFallback={external.iconUrl}
+          />
+        )}
         <Stack className="flex-col justify-center w-full gap-7 mt-4">
           <Box className="text-2xl font-bold">{renderContent}</Box>
           <Text className={'bg-blue-100 text-md font-black py-3 px-6 rounded-[2rem] flex items-center'}>

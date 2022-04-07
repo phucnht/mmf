@@ -73,9 +73,11 @@ export default function CardPanelItem({ item, exchange, onClick }: CardPanelItem
           <CustomImage
             loader={externaImageLoader}
             alt={item.name}
-            src={item?.external.backgroundUrl}
+            src={item?.external.iconUrl}
             layout="fill"
-            objectFit="cover"
+            objectFit="contain"
+            unoptimized={true}
+            placeholder="blur"
           />
         </Box>
       </Flex>

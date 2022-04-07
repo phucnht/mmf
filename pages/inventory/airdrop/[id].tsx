@@ -59,7 +59,7 @@ export default function InventoryMetaverseDetail({ item }: InventoryMetaverseDet
             </Flex>
           </Flex>
         </Flex>
-        <DataTableHistory nftItemId={item.tokenId} />
+        <DataTableHistory tokenId={item.tokenId} />
       </Container>
     </>
   );

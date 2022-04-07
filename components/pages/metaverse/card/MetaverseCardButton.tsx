@@ -16,10 +16,10 @@ const ButtonType = {
   SUCCESS: 'success'
 };
 
-const MetaverseCardButton: FC<{ isEventEnded: boolean; whitelistContract: string; onchainId: string }> = ({
+const MetaverseCardButton: FC<{ isEventNotAvailable: boolean; whitelistContract: string; onchainId: string }> = ({
   whitelistContract,
   onchainId,
-  isEventEnded
+  isEventNotAvailable
 }) => {
   const { accessToken, address } = useAppSelector(selectAuthData);
   const { metaverseContractAddress } = useAppSelector(selectSystemConfigData);
@@ -27,8 +27,8 @@ const MetaverseCardButton: FC<{ isEventEnded: boolean; whitelistContract: string
   const [isProcessing, setIsProcessing] = useState(false);
 
   const toggleClaimable = useCallback(
-    async (address: string, isEventEnded: boolean) => {
-      if (isEventEnded) {
+    async (address: string, isEventNotAvailable: boolean) => {
+      if (isEventNotAvailable) {
         setIsClaimable(false);
       } else {
         if (address) {
@@ -45,8 +45,8 @@ const MetaverseCardButton: FC<{ isEventEnded: boolean; whitelistContract: string
   );
 
   useEffect(() => {
-    toggleClaimable(address, isEventEnded);
-  }, [toggleClaimable, address, isEventEnded]);
+    toggleClaimable(address, isEventNotAvailable);
+  }, [toggleClaimable, address, isEventNotAvailable]);
 
   const router = useRouter();
   const [type, setType] = useState(ButtonType.IDLE);
@@ -58,6 +58,7 @@ const MetaverseCardButton: FC<{ isEventEnded: boolean; whitelistContract: string
   };
 
   const handleProcess = () => {
+    console.log(onchainId);
     setIsProcessing(true);
     plgMetaverseContract(metaverseContractAddress)
       .methods.claim1155Event(onchainId)
@@ -98,7 +99,7 @@ const MetaverseCardButton: FC<{ isEventEnded: boolean; whitelistContract: string
       <Button
         color={isClaimable && !isProcessing ? 'secondary' : 'default'}
         disabled={isClaimable === false || (isClaimable && isProcessing)}
-        content={isClaimable === false ? 'Claimed' : 'Claim'}
+        content={isClaimable === false ? 'Cannot Claim' : 'Claim'}
         fullWidth
         className="text-sm lg:text-xl py-3 lg:py-5 text-red-100 disabled:bg-grey-400 disabled:cursor-not-allowed disabled:pointer-events-none"
         onClick={handleProcess}
