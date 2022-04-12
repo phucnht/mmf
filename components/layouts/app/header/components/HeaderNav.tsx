@@ -19,7 +19,7 @@ export default function HeaderNav() {
         <NavLink href="/" exact content="Home" />
         <NavLink disabled href="/dashboard/box" content="Dashboard" />
         <NavLink disabled={isNotInWhitelist} href="/marketplace/items" content="Marketplace" />
-        <NavLink href="/metaverse" content="Metaverse" />
+        <NavLink disabled={isNotInWhitelist} href="/metaverse" content="Metaverse" />
         <Link href="https://discord.gg/A2C4eYb3T9">
           <Flex className="items-center gap-2">
             <Text className="text-white text-btn uppercase font-black">Join Our Discord</Text>
