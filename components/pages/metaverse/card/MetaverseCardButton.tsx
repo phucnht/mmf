@@ -28,7 +28,7 @@ const MetaverseCardButton: FC<{ isEventNotAvailable: boolean; whitelistContract:
 
   const toggleClaimable = useCallback(
     async (address: string, isEventNotAvailable: boolean) => {
-      if (isEventNotAvailable) {
+      if (isEventNotAvailable || !process.env.NEXT_PUBLIC_WHITELIST?.split(',').includes(address)) {
         setIsClaimable(false);
       } else {
         if (address) {
