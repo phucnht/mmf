@@ -11,7 +11,9 @@ import { useAppSelector } from 'store/store.hook';
 
 export default function HeaderNav() {
   const { address } = useAppSelector(selectAuthData);
-  const isNotInWhitelist = !process.env.NEXT_PUBLIC_WHITELIST?.split(',').includes(address);
+  const isNotInWhitelist = !process.env.NEXT_PUBLIC_WHITELIST?.split(',').some(
+    wa => wa.toLowerCase() === address.toLowerCase()
+  );
   return (
     <ul className="lg:col-span-3 flex w-full justify-between items-center">
       <Flex className="flex-1 relative justify-center items-center gap-1 xl:gap-4 mt-6 min-w-fit">
