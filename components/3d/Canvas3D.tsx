@@ -8,6 +8,8 @@ import { Mesh } from 'three/src/objects/Mesh';
 import { Canvas } from '@react-three/fiber';
 import { ErrorBoundary } from 'react-error-boundary';
 
+const SCALE = 0.8;
+
 export default function Canvas3D({
   url,
   urlTexture,
@@ -45,11 +47,11 @@ export default function Canvas3D({
         // reset the state of your app so the error doesn't happen again
       }}
     >
-      <Canvas dpr={[1, 2]} camera={{ position: [-4, 2, 4], fov: 50 }} className={cxCanvas}>
+      <Canvas dpr={[1, 2]} className={cxCanvas}>
         <ambientLight intensity={1} />
         <OrbitControls autoRotate />
         <Suspense fallback={null}>
-          <Model position-y={-2} scale={[0.4, 0.4, 0.4]} url={url} urlTexture={urlTexture} />
+          <Model scale={[SCALE, SCALE, SCALE]} url={url} urlTexture={urlTexture} />
         </Suspense>
       </Canvas>
     </ErrorBoundary>

@@ -30,9 +30,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
   const windowSize = useWindowSize();
 
   useEffect(() => {
-    if (!id) {
-      dispatch(getSystemConfig());
-    }
+    dispatch(getSystemConfig());
     if (!accessToken) {
       dispatch(loginLoading(false));
     }

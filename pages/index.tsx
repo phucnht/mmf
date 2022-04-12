@@ -75,7 +75,7 @@ const LandingVideo = () => {
   return (
     <Box className="relative aspect-video h-screen w-screen z-10">
       <VideoAutoPlayback
-        url="https://d1cqw9qrof1e8g.cloudfront.net/HomePage.mp4"
+        url="https://d9hvi1ehclsbh.cloudfront.net/MyMetaFarmTrailer_1.mp4"
         videoClassName="w-full h-full absolute object-cover"
         className="h-full"
       />
