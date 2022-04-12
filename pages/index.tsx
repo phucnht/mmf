@@ -3,7 +3,6 @@ import Head from 'next/head';
 import { NextPageWithLayout } from './_app';
 import _map from 'lodash/map';
 
-import IntroVideo from 'public/media/landing/intro.mp4';
 import imgEvent1 from 'public/media/landing/event-1.png';
 import imgEvent2 from 'public/media/landing/event-2.png';
 import imgEvent3 from 'public/media/landing/event-3.png';
@@ -75,7 +74,11 @@ const Home: NextPageWithLayout = () => {
 const LandingVideo = () => {
   return (
     <Box className="relative aspect-video h-screen w-screen z-10">
-      <VideoAutoPlayback url={IntroVideo} videoClassName="w-full h-full absolute object-cover" className="h-full" />
+      <VideoAutoPlayback
+        url="https://d9hvi1ehclsbh.cloudfront.net/MyMetaFarmTrailer_1.mp4"
+        videoClassName="w-full h-full absolute object-cover"
+        className="h-full"
+      />
     </Box>
   );
 };
