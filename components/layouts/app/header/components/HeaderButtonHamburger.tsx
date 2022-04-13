@@ -3,61 +3,21 @@ import { Popover, Transition } from '@headlessui/react';
 import classNames from 'classnames';
 import ButtonImageRef from './ButtonImageRef';
 import { CxProps } from 'utils/types';
-import { Box, Button } from '@whammytechvn/wt-components';
+import { Button } from '@whammytechvn/wt-components';
 import { SidebarRouteProps } from 'components/navigation/sidebar/sidebar.typings';
 import { useRouter } from 'next/router';
-import ReactTooltip from 'react-tooltip';
 import useWindowSize from 'hooks/useWindowSize';
 import clsxm from 'utils/clsxm';
-
-const mobileRoutes = [
-  {
-    slug: '/',
-    label: 'Home'
-  },
-  {
-    slug: 'https://news.mymetafarm.com/',
-    label: 'News'
-  },
-  {
-    slug: '/marketplace/items',
-    label: 'Marketplace',
-    disabled: true
-  },
-  {
-    slug: '/metaverse',
-    label: 'Metaverse',
-    disabled: true
-  },
-  {
-    slug: '/dashboard/box',
-    label: 'Dashboard',
-    disabled: true
-  },
-  {
-    slug: '/document',
-    label: 'Document',
-    disabled: true
-  }
-];
-
-const desktopRoutes = [
-  {
-    slug: '/document',
-    label: 'Document',
-    disabled: true
-  },
-  {
-    slug: 'https://news.mymetafarm.com/',
-    label: 'News'
-  }
-];
+import { selectAuthData } from 'store/account/auth/auth.slice';
+import { useAppSelector } from 'store/store.hook';
 
 const HeaderButtonRoute = ({ route }: { route: SidebarRouteProps }) => {
   const router = useRouter();
 
   const goToRoute = () => {
-    router.push(route.slug);
+    if (!route.disabled) {
+      router.push(route.slug);
+    }
   };
 
   const cxButton = classNames(
@@ -68,22 +28,67 @@ const HeaderButtonRoute = ({ route }: { route: SidebarRouteProps }) => {
   );
 
   return (
-    <Box className="relative">
-      <Button onClick={goToRoute} className={cxButton} data-tip={route.disabled ? 'Coming Soon' : undefined}>
-        {route.label}
-      </Button>
-      <ReactTooltip place="bottom" className="z-[100]" />
-    </Box>
+    <Button onClick={goToRoute} className={cxButton}>
+      {route.label}
+    </Button>
   );
 };
 
 export default function HeaderButtonHamburger({ className }: CxProps) {
   const { width } = useWindowSize();
+  const { address } = useAppSelector(selectAuthData);
+  const isNotInWhitelist = !process.env.NEXT_PUBLIC_WHITELIST?.split(',').some(
+    wa => wa.toLowerCase() === address.toLowerCase()
+  );
 
   if (!width) {
     return null;
   }
   const isMobile = width < 1024;
+
+  const mobileRoutes = [
+    {
+      slug: '/',
+      label: 'Home'
+    },
+    {
+      slug: 'https://news.mymetafarm.com/',
+      label: 'News'
+    },
+    {
+      slug: '/marketplace/items',
+      label: 'Marketplace',
+      disabled: isNotInWhitelist
+    },
+    {
+      slug: '/metaverse',
+      label: 'Metaverse',
+      disabled: isNotInWhitelist
+    },
+    {
+      slug: '/dashboard/box',
+      label: 'Dashboard',
+      disabled: true
+    },
+    {
+      slug: '/document',
+      label: 'Document',
+      disabled: true
+    }
+  ];
+
+  const desktopRoutes = [
+    {
+      slug: '/document',
+      label: 'Document',
+      disabled: true
+    },
+    {
+      slug: 'https://news.mymetafarm.com/',
+      label: 'News'
+    }
+  ];
+
   const routes = isMobile ? mobileRoutes : desktopRoutes;
 
   return (

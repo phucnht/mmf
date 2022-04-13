@@ -2,7 +2,6 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import classNames from 'classnames';
 import { Button } from '@whammytechvn/wt-components';
-import ReactTooltip from 'react-tooltip';
 
 interface NavLinkProps {
   content: string;
@@ -22,17 +21,9 @@ export default function NavLink({ content, href, exact, disabled, className }: N
   );
 
   return (
-    <>
-      <Link href={disabled ? '#' : href} passHref>
-        <Button
-          className={cxNavLink}
-          color="primary"
-          content={content}
-          data-tip={disabled ? 'Coming Soon' : undefined}
-        />
-      </Link>
-      <ReactTooltip place="bottom" />
-    </>
+    <Link href={disabled ? '#' : href} passHref>
+      <Button className={cxNavLink} color="primary" content={content} />
+    </Link>
   );
 }
 
