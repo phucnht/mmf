@@ -10,6 +10,11 @@ export type NonceDto = {
   nonce: string;
 };
 
+export type WhitelistDto = {
+  name: string;
+  addresses: string;
+};
+
 export type GetNonceResponse = GetResponse<BaseResult<NonceDto>>;
 
 // TOKEN
