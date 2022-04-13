@@ -10,6 +10,8 @@ import useWindowSize from 'hooks/useWindowSize';
 import clsxm from 'utils/clsxm';
 import { selectAuthData } from 'store/account/auth/auth.slice';
 import { useAppSelector } from 'store/store.hook';
+import { useEffect, useState } from 'react';
+import { checkIsTester } from 'store/account/auth/auth.api';
 
 const HeaderButtonRoute = ({ route }: { route: SidebarRouteProps }) => {
   const router = useRouter();
@@ -37,9 +39,11 @@ const HeaderButtonRoute = ({ route }: { route: SidebarRouteProps }) => {
 export default function HeaderButtonHamburger({ className }: CxProps) {
   const { width } = useWindowSize();
   const { address } = useAppSelector(selectAuthData);
-  const isNotInWhitelist = !process.env.NEXT_PUBLIC_WHITELIST?.split(',').some(
-    wa => wa.toLowerCase() === address.toLowerCase()
-  );
+  const [isTester, setIsTester] = useState(false);
+
+  useEffect(() => {
+    checkIsTester(address).then(setIsTester);
+  }, [address]);
 
   if (!width) {
     return null;
@@ -58,12 +62,12 @@ export default function HeaderButtonHamburger({ className }: CxProps) {
     {
       slug: '/marketplace/items',
       label: 'Marketplace',
-      disabled: isNotInWhitelist
+      disabled: !isTester
     },
     {
       slug: '/metaverse',
       label: 'Metaverse',
-      disabled: isNotInWhitelist
+      disabled: !isTester
     },
     {
       slug: '/dashboard/box',
