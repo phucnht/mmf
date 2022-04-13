@@ -1,5 +1,5 @@
 import { web3, erc20Contract, plgWhitelistContract } from 'utils/contract';
-import { clientAccount } from 'utils/api';
+import { clientAccount, clientMarket } from 'utils/api';
 import { NonceDto, NonceRequest, TokenDto, TokenRequest } from './auth.i';
 import { fetchBalance, login, loginLoading } from './auth.slice';
 import { toast } from 'react-toastify';
@@ -14,6 +14,12 @@ export const checkIsInWhitelist = async (whitelistAddress: string, userAddress: 
   const contract = plgWhitelistContract(whitelistAddress);
   const result = await contract.methods.isInWhitelist(userAddress).call();
   return result;
+};
+
+export const checkIsTester = async (userAddress: string) => {
+  type WhitelistType = { name: string; addresses: string };
+  const { name, addresses } = (await clientMarket.get(`/whitelists`)) as WhitelistType;
+  return !name || addresses.includes(userAddress);
 };
 
 export const getBalance = async (address: string | null, tokenAddress?: string) => {
