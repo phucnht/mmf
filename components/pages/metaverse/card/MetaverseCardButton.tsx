@@ -28,20 +28,13 @@ const MetaverseCardButton: FC<{ isEventNotAvailable: boolean; whitelistContract:
 
   const toggleClaimable = useCallback(
     async (address: string, isEventNotAvailable: boolean) => {
-      if (
-        isEventNotAvailable ||
-        !process.env.NEXT_PUBLIC_WHITELIST?.split(',').some(wa => wa.toLowerCase() === address.toLowerCase())
-      ) {
-        setIsClaimable(false);
-      } else {
-        if (address) {
-          const result = await checkIsInWhitelist(whitelistContract, address);
-          const alreadyClaimed = await plgMetaverseContract(metaverseContractAddress)
-            .methods.metaverseEventClaims(onchainId, address)
-            .call();
+      if (address) {
+        const isInWhitelist = await checkIsInWhitelist(whitelistContract, address);
+        const alreadyClaimed = await plgMetaverseContract(metaverseContractAddress)
+          .methods.metaverseEventClaims(onchainId, address)
+          .call();
 
-          setIsClaimable(result && alreadyClaimed === false);
-        }
+        setIsClaimable(isInWhitelist && alreadyClaimed === false && !isEventNotAvailable);
       }
     },
     [metaverseContractAddress, onchainId, whitelistContract]
@@ -61,7 +54,6 @@ const MetaverseCardButton: FC<{ isEventNotAvailable: boolean; whitelistContract:
   };
 
   const handleProcess = () => {
-    console.log(onchainId);
     setIsProcessing(true);
     plgMetaverseContract(metaverseContractAddress)
       .methods.claim1155Event(onchainId)
