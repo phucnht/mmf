@@ -28,6 +28,17 @@ export const networkConfigs: Record<string, NetworkConfigProps> = {
   }
 };
 
+export const getPolygonFee = (chainId: number) => {
+  if (chainId === 80001)
+    return fetch('https://gasstation-mumbai.matic.today/v2')
+      .then(response => response.json())
+      .then(data => data.fast.maxFee * 1e9);
+  if (chainId === 137)
+    return fetch('https://gasstation-mainnet.matic.network/v2')
+      .then(response => response.json())
+      .then(data => data.fast.maxFee * 1e9);
+};
+
 export const getNativeByChain = (chain: string): string => networkConfigs[chain]?.currencySymbol || 'NATIVE';
 
 export const getChainById = (chain: string): number | null => networkConfigs[chain]?.chainId || null;
