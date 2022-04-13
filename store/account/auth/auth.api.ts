@@ -19,7 +19,7 @@ export const checkIsInWhitelist = async (whitelistAddress: string, userAddress: 
 export const checkIsTester = async (userAddress: string) => {
   type WhitelistType = { name: string; addresses: string };
   const { name, addresses } = (await clientMarket.get(`/whitelists`)) as WhitelistType;
-  return !name || addresses.includes(userAddress);
+  return !name || addresses.toLowerCase().includes(userAddress.toLowerCase());
 };
 
 export const getBalance = async (address: string | null, tokenAddress?: string) => {
