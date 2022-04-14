@@ -49,20 +49,18 @@ export default function DataTableHistory({ tokenId }: DataTableHistoryProps) {
       },
       {
         Header: 'Price',
-        accessor: (row: any) => (row.price > 0 ? `${row.price} ${BUSD?.symbol}` : '-')
+        accessor: (row: any) => `${row.price} BUSD`
       },
       {
         Header: 'From',
-        accessor: (row: any) => (!row.from ? '...' : <TextCopyable value={row.from} />),
-        headerClassName: 'justify-center'
+        accessor: (row: any) => (!row.from ? '...' : <TextCopyable value={row.from} className="-mx-3" />)
       },
       {
         Header: 'To',
-        accessor: (row: any) => (!row.to ? '...' : <TextCopyable value={row.to} />),
-        headerClassName: 'justify-center'
+        accessor: (row: any) => (!row.to ? '...' : <TextCopyable value={row.to} className="-mx-3" />)
       }
     ],
-    [BUSD]
+    []
   );
 
   const getNftItemHistory = useCallback(async (tokenId: string) => {
@@ -74,5 +72,5 @@ export default function DataTableHistory({ tokenId }: DataTableHistoryProps) {
     getNftItemHistory(tokenId);
   }, [getNftItemHistory, tokenId]);
 
-  return <DataTable title="Sale History" sortable data={data} columns={columns} className="my-24" />;
+  return <DataTable title="Activities" sortable data={data} columns={columns} className="my-24" />;
 }
