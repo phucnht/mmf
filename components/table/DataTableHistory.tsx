@@ -49,12 +49,12 @@ export default function DataTableHistory({ tokenId }: DataTableHistoryProps) {
       },
       {
         Header: 'Price',
-        accessor: (row: any) => `${row.price || 'NaN'} ${BUSD?.symbol}`
+        accessor: (row: any) => (row.price > 0 ? `${row.price} ${BUSD?.symbol}` : '-')
       },
       {
         Header: 'From',
         accessor: (row: any) => (!row.from ? '...' : <TextCopyable value={row.from} />),
-        headerClassName: 'text-center'
+        headerClassName: 'justify-center'
       },
       {
         Header: 'To',

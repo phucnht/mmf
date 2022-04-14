@@ -46,7 +46,7 @@ export const client = (baseURL?: string): AxiosInstance => {
           const { status, statusText } = response;
 
           if (status === 401) {
-            logout();
+            store.dispatch(logout());
           } else {
             toast.error(`${status} - ${statusText}`);
           }

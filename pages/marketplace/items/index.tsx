@@ -43,7 +43,7 @@ const MarketplaceItems: NextPageWithLayout = () => {
       return;
     }
     getBNBUSDT();
-    dispatch(getNftSaleItems({ ...router.query, page: currentPage }));
+    // dispatch(getNftSaleItems({ ...router.query, page: currentPage }));
   }, [dispatch, router.isReady, router.query, currentPage]);
 
   return (
