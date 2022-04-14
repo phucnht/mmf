@@ -3,7 +3,14 @@ import CustomImage, { externaImageLoader } from 'components/display/image/Custom
 import { MouseEventHandler } from 'react';
 import { Box, Flex, Text } from '@whammytechvn/wt-components';
 import { NftItemDto } from 'store/market/nft-item/nftItem.i';
-import { IconStarList } from 'components/icon/IconStar';
+
+const RARITY_COLOR = {
+  Common: 'gray-400',
+  Rare: 'blue-300',
+  Epic: 'purple-400',
+  Legendary: 'orange-300',
+  Unique: 'red-400'
+};
 
 export interface InventoryAirdropCardProps {
   item: NftItemDto;
@@ -11,12 +18,19 @@ export interface InventoryAirdropCardProps {
 }
 
 export default function InventoryAirdropCard({ item, onClick }: InventoryAirdropCardProps) {
+  const rarity = item.external?.rarity;
+
   const cxCardWrapper = classNames('flex flex-col text-white hover:opacity-90 transition', {
     'cursor-pointer': onClick
   });
-  const cxId = classNames('bg-blue-300 text-xs font-black py-2 px-5 rounded-[2rem] flex items-center justify-center');
   const cxWrapper = classNames(
-    'border-blue-300 flex-col justify-between items-start p-2 rounded-[2rem] border-[5px] h-[36rem] gap-4'
+    `flex-col justify-between items-start p-2 rounded-[2rem] border-[5px] h-[36rem] gap-4 border-${RARITY_COLOR[rarity]}`
+  );
+  const cxId = classNames(
+    `text-xs font-black py-2 px-5 rounded-[2rem] flex items-center justify-center bg-${RARITY_COLOR[rarity]}`
+  );
+  const cxRarity = classNames(
+    `text-xs uppercase py-2 px-2 rounded-md flex items-center justify-center bg-${RARITY_COLOR[rarity]}`
   );
 
   return (
@@ -24,8 +38,8 @@ export default function InventoryAirdropCard({ item, onClick }: InventoryAirdrop
       <Flex className={cxWrapper}>
         <Flex className="flex-col items-start gap-2">
           <Text className={cxId}>#{item.tokenId}</Text>
-          <Flex className="justify-center items-end gap-2">
-            <IconStarList count={3} className="mt-2" />
+          <Flex className="justify-center items-center gap-2 mt-1">
+            <Text className={cxRarity}>{rarity}</Text>
             <Text className="text-md font-black">{item.name}</Text>
           </Flex>
           <Text>

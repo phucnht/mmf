@@ -110,6 +110,7 @@ export interface ItemExternalDto {
   modelUrl: string;
   uvUrl: string;
   backgroundUrl: string;
+  rarity: 'Common' | 'Rare' | 'Epic' | 'Legendary' | 'Unique';
   itemType: string;
   description: string;
 }
