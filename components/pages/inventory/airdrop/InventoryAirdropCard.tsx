@@ -36,14 +36,14 @@ export default function InventoryAirdropCard({ item, onClick }: InventoryAirdrop
     'border-orange-400': isLegendary,
     'border-red-400': isUnique
   });
-  const cxId = classNames(`text-xs font-black py-2 px-5 rounded-[2rem] flex items-center justify-center`, {
+  const cxId = clsxm(`text-xs font-black py-2 px-5 rounded-[2rem] flex items-center justify-center`, {
     'bg-gray-400': isCommon,
     'bg-blue-300': isRare,
     'bg-purple-400': isEpic,
     'bg-orange-400': isLegendary,
     'bg-red-400': isUnique
   });
-  const cxRarity = classNames(`text-xs uppercase py-2 px-2 rounded-md flex items-center justify-center`, {
+  const cxRarity = clsxm(`text-xs uppercase py-2 px-2 rounded-md flex items-center justify-center`, {
     'bg-gray-400': isCommon,
     'bg-blue-300': isRare,
     'bg-purple-400': isEpic,
