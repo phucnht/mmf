@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect=5009' next dev",
+    "window": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

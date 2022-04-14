@@ -17,6 +17,7 @@ export const checkIsInWhitelist = async (whitelistAddress: string, userAddress: 
 };
 
 export const checkIsTester = async (userAddress: string) => {
+  if (!userAddress) return false;
   const { name, addresses } = (await clientMarket.get(`/whitelists`)) as WhitelistDto;
   return !name || addresses.toLowerCase().includes(userAddress.toLowerCase());
 };

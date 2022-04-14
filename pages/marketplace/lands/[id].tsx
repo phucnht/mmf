@@ -21,9 +21,7 @@ export const getServerSideProps = async ({ query }: GetServerSidePropsContext) =
   const { data } = await res.json();
 
   if (!data) {
-    return {
-      notFound: true
-    };
+    return { notFound: true };
   }
 
   return { props: { item: data } };

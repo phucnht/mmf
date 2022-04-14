@@ -12,7 +12,7 @@ export default function FormListingButton({ item }: FormListingButtonProps) {
   //   const dispatch = useAppDispatch();
   const { open } = useModalConfirmation();
 
-  const isFullListing = item.amount === item.amountSale;
+  const isFullListing = item.amount === item.amountSale || true;
 
   const handleOnClick = async (e: any) => {
     if (e) e.preventDefault();
@@ -42,7 +42,8 @@ export default function FormListingButton({ item }: FormListingButtonProps) {
         className={cxBtn}
         content="Listing Now"
         onClick={handleOnClick}
-        data-tip={isFullListing ? 'All items are listed' : undefined}
+        // data-tip={isFullListing ? 'All items are listed' : undefined}
+        data-tip="Comming soon"
       />
       <ReactTooltip place="bottom" />
     </>

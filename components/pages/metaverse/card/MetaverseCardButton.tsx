@@ -9,6 +9,7 @@ import { plgMetaverseContract } from 'utils/contract';
 import { selectSystemConfigData } from 'store/market/system-config/systemConfig.slice';
 import { toast } from 'react-toastify';
 import { checkIsInWhitelist } from 'store/account/auth/auth.api';
+import { getPolygonFee } from 'utils/networks';
 
 const ButtonType = {
   IDLE: 'idle',
@@ -22,7 +23,7 @@ const MetaverseCardButton: FC<{ isEventNotAvailable: boolean; whitelistContract:
   isEventNotAvailable
 }) => {
   const { accessToken, address } = useAppSelector(selectAuthData);
-  const { metaverseContractAddress } = useAppSelector(selectSystemConfigData);
+  const { metaverseContractAddress, chainId: systemConfigChainId } = useAppSelector(selectSystemConfigData);
   const [isClaimable, setIsClaimable] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -53,11 +54,16 @@ const MetaverseCardButton: FC<{ isEventNotAvailable: boolean; whitelistContract:
     await open({ type: 'account' });
   };
 
-  const handleProcess = () => {
+  const handleProcess = async () => {
     setIsProcessing(true);
+    const maxFeeForFast = (await getPolygonFee(+systemConfigChainId)) as number;
+
     plgMetaverseContract(metaverseContractAddress)
       .methods.claim1155Event(onchainId)
-      .send({ from: address })
+      .send({
+        from: address,
+        gasPrice: Math.ceil(maxFeeForFast)
+      })
       .once('transactionHash', function () {
         setIsProcessing(false);
         setType(ButtonType.PROCESSING);
