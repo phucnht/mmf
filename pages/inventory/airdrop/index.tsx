@@ -10,8 +10,8 @@ const InventoryAirdrop: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Inventory - Airdrop | My Metafarm</title>
-        <meta name="description" content="Inventory - Airdrop | My Metafarm" />
+        <title>Inventory - Airdrop | My Meta Farm</title>
+        <meta name="description" content="Inventory - Airdrop | My Meta Farm" />
       </Head>
       <InventoryAirdropCardList />
     </>

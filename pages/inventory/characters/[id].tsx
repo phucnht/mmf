@@ -66,8 +66,8 @@ export default function InvnetoryCharacterDetail({ character }: InventoryCharact
   return (
     <>
       <Head>
-        <title>{character.name} | My Metafarm</title>
-        <meta name="description" content={`${character.name} | My Metafarm`} />
+        <title>{character.name} | My Meta Farm</title>
+        <meta name="description" content={`${character.name} | My Meta Farm`} />
       </Head>
       <Container className="max-w-screen-lg min-h-fit">
         <ButtonBack className="mb-8" />

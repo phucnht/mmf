@@ -39,8 +39,8 @@ const DashboardDashboard: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Dashboard - Buy Box | My Metafarm</title>
-        <meta name="description" content="Dashboard - Buy Box | My Metafarm" />
+        <title>Dashboard - Buy Box | My Meta Farm</title>
+        <meta name="description" content="Dashboard - Buy Box | My Meta Farm" />
       </Head>
       <Box className="layout border-blue-100 border-[3px] rounded-[2rem] px-20 py-[4.5rem]">
         <Flex className="w-full items-start justify-between mb-10">

@@ -29,8 +29,8 @@ const InventoryBox: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Inventory - Box | My Metafarm</title>
-        <meta name="description" content="Inventory - Box | My Metafarm" />
+        <title>Inventory - Box | My Meta Farm</title>
+        <meta name="description" content="Inventory - Box | My Meta Farm" />
       </Head>
       <GridBox className="grid-cols-fluid-48 gap-8">
         {items.map((item, index: number) => (

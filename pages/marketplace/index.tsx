@@ -14,8 +14,8 @@ const Marketplace: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Marketplace | My Metafarm</title>
-        <meta name="description" content="Marketplace | My Metafarm" />
+        <title>Marketplace | My Meta Farm</title>
+        <meta name="description" content="Marketplace | My Meta Farm" />
       </Head>
       <Box className="text-white text-sm">Redirecting...</Box>
     </>
