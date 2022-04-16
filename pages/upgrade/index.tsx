@@ -7,8 +7,8 @@ const MarketplaceUpgrade: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Upgrade | My Metafarm</title>
-        <meta name="description" content="Upgrade | My Metafarm" />
+        <title>Upgrade | My Meta Farm</title>
+        <meta name="description" content="Upgrade | My Meta Farm" />
       </Head>
       <Box className="text-white text-sm">In development...</Box>
     </>

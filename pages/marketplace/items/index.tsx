@@ -49,8 +49,8 @@ const MarketplaceItems: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Marketplace - Items | My Metafarm</title>
-        <meta name="description" content="Marketplace - Items | My Metafarm" />
+        <title>Marketplace - Items | My Meta Farm</title>
+        <meta name="description" content="Marketplace - Items | My Meta Farm" />
       </Head>
       {_isEmpty(data) ? (
         <Box className="h-[48rem]">

@@ -22,8 +22,8 @@ export default function InventoryMetaverseDetail({ item }: InventoryMetaverseDet
   return (
     <>
       <Head>
-        <title>{item.name} | My Metafarm</title>
-        <meta name="description" content={`${item.name} | My Metafarm`} />
+        <title>{item.name} | My Meta Farm</title>
+        <meta name="description" content={`${item.name} | My Meta Farm`} />
       </Head>
       <Container className="max-w-screen-lg min-h-fit mx-auto">
         <ButtonBack className="mb-8" />

@@ -8,8 +8,8 @@ export default function MarketplaceLandDetail({ item }: { item: ObjectProps }) {
   return (
     <>
       <Head>
-        <title>{item.name} | My Metafarm</title>
-        <meta name="description" content={`${item.name} | My Metafarm`} />
+        <title>{item.name} | My Meta Farm</title>
+        <meta name="description" content={`${item.name} | My Meta Farm`} />
       </Head>
       <CardLayoutDetail type="land" item={item} />
     </>

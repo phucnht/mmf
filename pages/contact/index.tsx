@@ -7,8 +7,8 @@ const Contact: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Contact | My Metafarm</title>
-        <meta name="description" content="Contact | My Metafarm" />
+        <title>Contact | My Meta Farm</title>
+        <meta name="description" content="Contact | My Meta Farm" />
       </Head>
       <Box className="text-white text-sm">In development...</Box>
     </>

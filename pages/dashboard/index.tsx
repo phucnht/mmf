@@ -15,8 +15,8 @@ const Dashboard: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Dashboard | My Metafarm</title>
-        <meta name="description" content="Dashboard | My Metafarm" />
+        <title>Dashboard | My Meta Farm</title>
+        <meta name="description" content="Dashboard | My Meta Farm" />
       </Head>
       <Box className="text-white text-sm">Redirecting...</Box>
     </>

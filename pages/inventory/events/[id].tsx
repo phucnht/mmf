@@ -63,8 +63,8 @@ export default function InventoryLandDetail() {
   return (
     <>
       <Head>
-        <title>In development... | My Metafarm</title>
-        <meta name="description" content={`In development... | My Metafarm`} />
+        <title>In development... | My Meta Farm</title>
+        <meta name="description" content={`In development... | My Meta Farm`} />
       </Head>
       <Container className="max-w-screen-lg min-h-fit">
         <ButtonBack className="mb-8" />

@@ -22,8 +22,8 @@ const MarketplaceAccount: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Account | My Metafarm</title>
-        <meta name="description" content="Account | My Metafarm" />
+        <title>Account | My Meta Farm</title>
+        <meta name="description" content="Account | My Meta Farm" />
       </Head>
       <Box className="border-green-200 border-[3px] rounded-[2rem] w-full p-28 pr-48">
         <Heading as="h1" className="text-white text-2xl font-extrabold">

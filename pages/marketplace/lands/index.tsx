@@ -29,8 +29,8 @@ const MarketplaceLands: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Marketplace - Lands | My Metafarm</title>
-        <meta name="description" content="Marketplace - Lands | My Metafarm" />
+        <title>Marketplace - Lands | My Meta Farm</title>
+        <meta name="description" content="Marketplace - Lands | My Meta Farm" />
       </Head>
       {_isEmpty(nftSaleItems) ? (
         <Box className="h-[48rem]">
