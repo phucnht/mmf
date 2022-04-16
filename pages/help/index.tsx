@@ -7,8 +7,8 @@ const Help: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Help | My Metafarm</title>
-        <meta name="description" content="Help | My Metafarm" />
+        <title>Help | My Meta Farm</title>
+        <meta name="description" content="Help | My Meta Farm" />
       </Head>
       <Box className="text-white text-sm">In development...</Box>
     </>

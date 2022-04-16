@@ -8,8 +8,8 @@ const DashboardBox: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Dashboard - Buy Box | My Metafarm</title>
-        <meta name="description" content="Dashboard - Buy Box | My Metafarm" />
+        <title>Dashboard - Buy Box | My Meta Farm</title>
+        <meta name="description" content="Dashboard - Buy Box | My Meta Farm" />
       </Head>
       <DashboardBoxList />
     </>

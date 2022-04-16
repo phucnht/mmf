@@ -7,8 +7,8 @@ const MarketplaceHistory: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>History | My Metafarm</title>
-        <meta name="description" content="History | My Metafarm" />
+        <title>History | My Meta Farm</title>
+        <meta name="description" content="History | My Meta Farm" />
       </Head>
       <EmptyBanner />
     </>

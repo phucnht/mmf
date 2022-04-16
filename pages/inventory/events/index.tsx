@@ -10,8 +10,8 @@ const InventoryEvents: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Inventory - Events | My Metafarm</title>
-        <meta name="description" content="Inventory - Events | My Metafarm" />
+        <title>Inventory - Events | My Meta Farm</title>
+        <meta name="description" content="Inventory - Events | My Meta Farm" />
       </Head>
       <Box className="text-white text-sm">In development...</Box>
     </>

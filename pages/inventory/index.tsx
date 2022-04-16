@@ -14,8 +14,8 @@ const Inventory: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Inventory | My Metafarm</title>
-        <meta name="description" content="Inventory | My Metafarm" />
+        <title>Inventory | My Meta Farm</title>
+        <meta name="description" content="Inventory | My Meta Farm" />
       </Head>
       <Box className="text-white text-sm">Redirecting...</Box>
     </>

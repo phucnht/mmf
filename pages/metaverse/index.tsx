@@ -12,8 +12,8 @@ const Metaverse: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Metaverse | My Metafarm</title>
-        <meta name="description" content="Metaverse | My Metafarm" />
+        <title>Metaverse | My Meta Farm</title>
+        <meta name="description" content="Metaverse | My Meta Farm" />
       </Head>
       <Stack className="flex-col gap-16 layout mx-auto lg:mt-32 z-10">
         <Box className="-mt-48 lg:-mt-56 flex flex-col max-w-[85%] h-auto">

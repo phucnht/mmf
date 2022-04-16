@@ -51,8 +51,8 @@ const InventoryCharacters: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Inventory - Characters | My Metafarm</title>
-        <meta name="description" content="Inventory - Characters | My Metafarm" />
+        <title>Inventory - Characters | My Meta Farm</title>
+        <meta name="description" content="Inventory - Characters | My Meta Farm" />
       </Head>
       <GridBox className="grid-cols-fluid-48 gap-8 -mt-8">
         {mockCharacters.map((item, index) => (

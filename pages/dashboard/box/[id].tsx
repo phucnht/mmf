@@ -17,8 +17,8 @@ export default function DashboardBoxDetail() {
   return (
     <>
       <Head>
-        <title>Buy Box | My Metafarm</title>
-        <meta name="description" content={`Buy Box | My Metafarm`} />
+        <title>Buy Box | My Meta Farm</title>
+        <meta name="description" content={`Buy Box | My Meta Farm`} />
       </Head>
       <Container className="mx-auto max-w-[113rem] min-h-fit">
         <ButtonBack className="mb-8" />
