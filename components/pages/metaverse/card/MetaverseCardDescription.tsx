@@ -5,6 +5,8 @@ import imgMeteverseSmall from 'public/assets/metaverse/metaverse-sm.png';
 import Countdown from 'components/countdown/Countdown';
 import MetaverseCardButton from './MetaverseCardButton';
 import Image from 'next/image';
+import NextLink from 'next/link';
+import Link from 'components/navigation/link/Link';
 
 export interface MetaverseCardDescriptionProps {
   description: string;
@@ -42,7 +44,15 @@ const MetaverseCardDescription: FC<MetaverseCardDescriptionProps> = ({
         <Text className="text-sm lg:text-xl mb-8 text-justify min-h-min">{description}</Text>
       </Flex>
       <Stack className="flex-col w-full">
-        <Text className="text-sm lg:text-xl text-yellow-100 my-5 w-full min-h-min">{condition}</Text>
+        <Text className="text-sm lg:text-xl text-yellow-100 my-5 w-full min-h-min">
+          {condition}
+          <br />
+          <NextLink href="https://docs.google.com/spreadsheets/d/1ipcKKviZqua9PEHkDAQ1F06JSS03j93fjzAFYO7qGtY" passHref>
+            <Link>
+              <span className="text-white hover:opacity-90">Check whitelist here.</span>
+            </Link>
+          </NextLink>
+        </Text>
         <MetaverseCardButton
           whitelistContract={whitelistContract}
           onchainId={onchainId}
