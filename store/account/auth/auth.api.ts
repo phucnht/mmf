@@ -16,10 +16,11 @@ export const checkIsInWhitelist = async (whitelistAddress: string, userAddress: 
   return result;
 };
 
-export const checkIsTester = async (userAddress: string) => {
-  if (!userAddress) return false;
+export const checkIsTester = async (address: string) => {
   const { name, addresses } = (await clientMarket.get(`/whitelists`)) as WhitelistDto;
-  return !name || addresses.toLowerCase().includes(userAddress.toLowerCase());
+  if (!name) return true;
+  if (!address) return false;
+  return addresses.toLowerCase().includes(address.toLowerCase());
 };
 
 export const getBalance = async (address: string | null, tokenAddress?: string) => {
