@@ -14,9 +14,12 @@ import CardPanelItem from 'components/display/card/panel/CardPanelItem';
 import EmptyBanner from 'components/display/empty/EmptyBanner';
 import Pagination from 'components/pagination/Pagination';
 import axios from 'axios';
+import { selectAuthData } from 'store/account/auth/auth.slice';
+import { checkIsTester } from 'store/account/auth/auth.api';
 
 const MarketplaceItems: NextPageWithLayout = () => {
   const router = useRouter();
+  const { address } = useAppSelector(selectAuthData);
 
   const goTo = (itemId: string) => {
     router.push(`/marketplace/items/${itemId}`);
@@ -37,6 +40,13 @@ const MarketplaceItems: NextPageWithLayout = () => {
   const cb = (page: number) => {
     dispatch(nftSaleItemActions.updatePageSaleItems(page));
   };
+
+  useEffect(() => {
+    // router.push('/dashboard/box');
+    checkIsTester(address).then(isTester => {
+      if (!isTester) router.push('/');
+    });
+  }, [router, address]);
 
   useEffect(() => {
     if (!router.isReady) {
