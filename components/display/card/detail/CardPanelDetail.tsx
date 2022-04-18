@@ -35,19 +35,19 @@ export default function CardLayoutDetail({ type, item }: CardLayoutDetailProps) 
           </Heading>
         </Flex>
         <Flex className="flex-col justify-start gap-12 w-[34rem] min-w-[34rem]">
-          <Box className="overflow-y-auto overflow-x-hidden max-h-[40rem] pr-12">
+          <Box className="max-h-[40rem] pr-12">
             <Heading className="font-black text-lg items-baseline">Owner: {getEllipsisTxt(item.ownerAddress)}</Heading>
             <Flex className="flex-col mt-9">
               <Heading className="uppercase font-black text-md">Story</Heading>
               <Text className="mt-4 text-md whitespace-normal	break-normal">{item?.external.description}</Text>
             </Flex>
-            <Flex className="flex-col mt-9">
+            {/* <Flex className="flex-col mt-9">
               <Heading className="uppercase font-black text-md">Stats</Heading>
               <Flex className="flex-col mt-4">
                 <ProgressBar type="error" content="base health" value={360} maxValue={360} className="mb-7" />
                 <ProgressBar type="success" content="base defense" value={180} maxValue={360} className="mb-7" />
               </Flex>
-            </Flex>
+            </Flex> */}
           </Box>
           <Flex className="justify-between">
             <Flex className="flex-col price-block">
