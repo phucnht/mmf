@@ -15,7 +15,7 @@ export interface MetaverseCardProps {
 
 export default function MetaverseCard({ metaverse }: MetaverseCardProps) {
   const metaverseCardImage = (
-    <Box className="relative w-full h-full min-h-[60rem] bg-gray-100/30 border-[3px] border-gray-300 rounded-[2rem]">
+    <Box className="relative w-full h-full min-h-[60rem] bg-gray-100/30 border-[3px] border-gray-300 rounded-[2rem] overflow-hidden">
       <CustomImage
         loader={externaImageLoader}
         src={metaverse.backgroundImage}
