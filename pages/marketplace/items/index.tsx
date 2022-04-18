@@ -8,15 +8,18 @@ import _isEmpty from 'lodash/isEmpty';
 import _map from 'lodash/map';
 import { Box, GridBox } from '@whammytechvn/wt-components';
 import { useRouter } from 'next/router';
-import { getNftSaleItems } from 'store/market/nft-item/nftItem.api';
 import { nftSaleItemActions, selectNftSaleItemState } from 'store/market/nft-item/nftSaleItem.slice';
 import CardPanelItem from 'components/display/card/panel/CardPanelItem';
 import EmptyBanner from 'components/display/empty/EmptyBanner';
 import Pagination from 'components/pagination/Pagination';
 import axios from 'axios';
+import { selectAuthData } from 'store/account/auth/auth.slice';
+import { checkIsTester } from 'store/account/auth/auth.api';
 
 const MarketplaceItems: NextPageWithLayout = () => {
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
+  const { address } = useAppSelector(selectAuthData);
 
   const goTo = (itemId: string) => {
     router.push(`/marketplace/items/${itemId}`);
@@ -39,12 +42,27 @@ const MarketplaceItems: NextPageWithLayout = () => {
   };
 
   useEffect(() => {
+    // router.push('/dashboard/box');
+    checkIsTester(address).then(isTester => {
+      if (!isTester) {
+        router.push('/');
+      } else {
+        setLoading(false);
+      }
+    });
+  }, [router, address]);
+
+  useEffect(() => {
     if (!router.isReady) {
       return;
     }
     getBNBUSDT();
     // dispatch(getNftSaleItems({ ...router.query, page: currentPage }));
   }, [dispatch, router.isReady, router.query, currentPage]);
+
+  if (loading) {
+    return null;
+  }
 
   return (
     <>
