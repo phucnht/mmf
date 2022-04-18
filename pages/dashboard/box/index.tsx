@@ -3,8 +3,21 @@ import { NextPageWithLayout } from 'pages/_app';
 
 import { getLayoutDashboard } from 'components/layouts/pages/dashboard/getLayoutDashboard';
 import DashboardBoxList from 'components/pages/dashboard/box/DashboardBoxList';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 const DashboardBox: NextPageWithLayout = () => {
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push('/');
+  }, [router]);
+
+  if (loading) {
+    return null;
+  }
+
   return (
     <>
       <Head>

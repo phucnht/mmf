@@ -7,22 +7,31 @@ import imgMetaverse from 'public/assets/metaverse/metaverse.png';
 import { NextPageWithLayout } from 'pages/_app';
 import { getLayoutDefault } from 'components/layouts/pages/default/getLayoutDefault';
 import MetaverseCardList from 'components/pages/metaverse/MetaverseCardList';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { checkIsTester } from 'store/account/auth/auth.api';
 import { useAppSelector } from 'store/store.hook';
 import { selectAuthData } from 'store/account/auth/auth.slice';
 
 const Metaverse: NextPageWithLayout = () => {
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
   const { address } = useAppSelector(selectAuthData);
 
   useEffect(() => {
     // router.push('/dashboard/box');
     checkIsTester(address).then(isTester => {
-      if (!isTester) router.push('/');
+      if (!isTester) {
+        router.push('/');
+      } else {
+        setLoading(false);
+      }
     });
   }, [router, address]);
+
+  if (loading) {
+    return null;
+  }
 
   return (
     <>
