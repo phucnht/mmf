@@ -22,7 +22,7 @@ const MetaverseCardTitle: FC<MetaverseCardTitleProps> = ({ title, logo }) => {
           unoptimized={true}
         />
       </Flex>
-      <Heading as="h1" className={clsxm('!text-xl lg:!text-[3.6rem] leading-snug uppercase pl-4 lg:pl-4')}>
+      <Heading as="h1" className={clsxm('text-[1.6rem] lg:text-[2.4rem] leading-snug uppercase pl-4 lg:pl-4')}>
         {title}
       </Heading>
     </Stack>

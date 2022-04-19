@@ -37,7 +37,7 @@ body {
     background: linear-gradient(90.21deg, #119699 0.18%, rgba(40, 224, 167, 0) 99.81%);
   }
   .bgg-black {
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.05) 100%);
   }
   .bgg-pink {
     background: linear-gradient(180deg, #f5799e 0%, #de6585 100%);
