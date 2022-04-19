@@ -59,11 +59,11 @@ export default function HeaderButtonHamburger({ className }: CxProps) {
       slug: 'https://news.mymetafarm.com/',
       label: 'News'
     },
-    {
-      slug: '/marketplace/items',
-      label: 'Marketplace',
-      disabled: !isTester
-    },
+    // {
+    //   slug: '/marketplace/items',
+    //   label: 'Marketplace',
+    //   disabled: !isTester
+    // },
     {
       slug: '/metaverse',
       label: 'Metaverse',
