@@ -1,14 +1,13 @@
 import { FC, useCallback, useEffect, useState } from 'react';
 import { Button } from '@whammytechvn/wt-components';
 
-import useModalConfirmation from 'hooks/useModal';
 import { useRouter } from 'next/router';
 import { useAppSelector } from 'store/store.hook';
 import { selectAuthData } from 'store/account/auth/auth.slice';
 import { plgMetaverseContract } from 'utils/contract';
 import { selectSystemConfigData } from 'store/market/system-config/systemConfig.slice';
 import { toast } from 'react-toastify';
-import { checkIsInWhitelist } from 'store/account/auth/auth.api';
+import { checkIsInWhitelist, connect } from 'store/account/auth/auth.api';
 import { getPolygonFee } from 'utils/networks';
 
 const ButtonType = {
@@ -48,12 +47,6 @@ const MetaverseCardButton: FC<{ isEventNotAvailable: boolean; whitelistContract:
   const router = useRouter();
   const [type, setType] = useState(ButtonType.IDLE);
 
-  // Modal confirmation
-  const { open } = useModalConfirmation();
-  const handleOpenDialogAuthRequired = async () => {
-    await open({ type: 'account' });
-  };
-
   const handleProcess = async () => {
     setIsProcessing(true);
     const maxFeeForFast = (await getPolygonFee(+systemConfigChainId)) as number;
@@ -87,11 +80,11 @@ const MetaverseCardButton: FC<{ isEventNotAvailable: boolean; whitelistContract:
   let renderButton = (
     <Button
       color="primary"
-      content="I want to receive it"
+      content="Connect Wallet"
       fullWidth
       className="text-sm lg:text-xl py-3 lg:py-5"
       disabled={isProcessing}
-      onClick={handleOpenDialogAuthRequired}
+      onClick={() => connect()}
     />
   );
 

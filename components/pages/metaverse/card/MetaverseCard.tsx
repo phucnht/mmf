@@ -37,7 +37,7 @@ export default function MetaverseCard({ metaverse }: MetaverseCardProps) {
     <div className="w-full flex gap-10 text-white text-xl font-bold">
       <div className="flex flex-col gap-4">
         <MetaverseCardTitle title={metaverse.name} logo={metaverse.logo} />
-        <Center className="flex lg:hidden justify-center items-center relative w-auto min-h-[32rem]">
+        <Center className="flex lg:hidden justify-center items-center relative w-full aspect-[3/1]">
           {metaverseCardImageMobile}
         </Center>
         <MetaverseCardDescription

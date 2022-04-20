@@ -30,26 +30,27 @@ const MetaverseCardDescription: FC<MetaverseCardDescriptionProps> = ({
   const now = Date.now();
 
   const isEventNotAvailable = now > endDate || now < startDate;
+  const status = now < startDate ? 'COMING SOON' : now > endDate ? 'EVENT ENDED' : 'IN PROGRESS';
 
   return (
     <Flex className="rounded-[2rem] bgg-black p-4 lg:p-8 lg:h-full min-h-min lg:min-h-[30rem] flex-col justify-between divide-y divide-white/50">
       <Flex className="flex-col w-full gap-2 lg:gap-3">
         <Countdown fromDate={fromDate} toDate={toDate} />
         <Flex className="items-center gap-6 lg:gap-12 relative lg:h-full min-h-[5rem] max-h-[8rem]">
-          <Button compact content="Play To Earn" className="text-sm p-3 lg:p-4 min-w-max bgg-pink" />
+          <Button compact content={status} className="text-sm p-3 lg:p-4 min-w-max bgg-pink" />
           <Box className="relative h-[5rem] lg:h-full w-40 lg:w-60">
             <Image src={imgMeteverseSmall} alt="Metaverse" layout="fill" objectFit="cover" />
           </Box>
         </Flex>
-        <Text className="text-sm lg:text-xl mb-8 text-justify min-h-min">{description}</Text>
+        <Text className="text-sm lg:text-lg mb-8 text-justify min-h-min whitespace-pre-line">{description}</Text>
       </Flex>
       <Stack className="flex-col w-full">
         <Text className="text-sm lg:text-xl text-yellow-100 my-5 w-full min-h-min">
           {condition}
           <br />
           <NextLink href="https://docs.google.com/spreadsheets/d/1ipcKKviZqua9PEHkDAQ1F06JSS03j93fjzAFYO7qGtY" passHref>
-            <Link>
-              <span className="text-white hover:opacity-90">Check whitelist here.</span>
+            <Link target="_blank">
+              <span className="text-white hover:opacity-90">Check whitelist here</span>
             </Link>
           </NextLink>
         </Text>

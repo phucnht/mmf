@@ -1,54 +1,40 @@
-// import { selectSeason } from 'store/season/seasonSlice';
-import { useTimer } from 'react-timer-hook';
+import { Flex } from '@whammytechvn/wt-components';
 import classNames from 'classnames';
 import { FC } from 'react';
-import { zeroPad } from 'utils/convert';
-import { Flex } from '@whammytechvn/wt-components';
+import { useTimer } from 'react-timer-hook';
 import clsxm from 'utils/clsxm';
+import { zeroPad } from 'utils/convert';
 
 const CountdownTitle: FC<{ className?: string }> = ({ className, children }) => {
-  const countdownTitleClassName = classNames('text-white font-bold text-md lg:text-2xl', className);
+  const countdownTitleClassName = classNames('text-white font-bold text-center text-md lg:text-xl mr-4', className);
   return <span className={countdownTitleClassName}>{children}</span>;
 };
 
-const CountdownEnded = () => <CountdownTitle className="font-bold uppercase">Event Ended</CountdownTitle>;
-
-const CountdownInProgress = ({ endDate }: { endDate: number }) => {
+const CountdownTimer = ({ endTime }: { endTime: number }) => {
   const { seconds, minutes, hours, days } = useTimer({
-    expiryTimestamp: new Date(endDate)
+    expiryTimestamp: new Date(endTime)
   });
-
   return (
     <>
-      <CountdownTitle>In Progress...</CountdownTitle>
-      <span className="font-bold text-md lg:text-2xl text-white tracking-wider">
-        {zeroPad(days)}:{zeroPad(hours)}:{zeroPad(minutes)}:{zeroPad(seconds)}
-      </span>
+      <CountdownTitle>
+        FIRST METAVERSE <br className="hidden lg:inline" /> CAMPAIGN
+      </CountdownTitle>
+      <div className="flex gap-3">
+        <CountdownComingBlock value={zeroPad(days)} unit="days" />
+        <CountdownComingBlock value={zeroPad(hours)} unit="hours" />
+        <CountdownComingBlock value={zeroPad(minutes)} unit="minutes" />
+        <CountdownComingBlock value={zeroPad(seconds)} unit="seconds" />
+      </div>
     </>
   );
 };
 
 const CountdownComingBlock = ({ value, unit }: { value: string; unit: string }) => (
-  <Flex className="flex-col text-white">
+  <Flex className="flex-col text-white bgg-green py-2 w-[7rem]">
     <span className="text-md lg:text-2xl font-bold justify-center text-center">{value}</span>
     <span className="text-sm lg:text-md font-normal text-center">{unit}</span>
   </Flex>
 );
-
-const CountdownComing = ({ startDate }: { startDate: number }) => {
-  const { seconds, minutes, hours, days } = useTimer({
-    expiryTimestamp: new Date(startDate)
-  });
-
-  return (
-    <>
-      <CountdownComingBlock value={zeroPad(days)} unit="days" />
-      <CountdownComingBlock value={zeroPad(hours)} unit="hours" />
-      <CountdownComingBlock value={zeroPad(minutes)} unit="minutes" />
-      <CountdownComingBlock value={zeroPad(seconds)} unit="seconds" />
-    </>
-  );
-};
 
 export interface CountdownProps {
   fromDate: Date;
@@ -61,18 +47,18 @@ export default function Countdown({ fromDate, toDate, className }: CountdownProp
   const endDate = new Date(toDate).getTime();
   const now = Date.now();
 
-  let renderCountdown = <CountdownInProgress endDate={endDate} />;
+  let renderCountdown = <CountdownTimer endTime={endDate} />;
 
   if (now < startDate) {
-    renderCountdown = <CountdownComing startDate={startDate} />;
+    renderCountdown = <CountdownTimer endTime={startDate} />;
   }
 
   if (now > endDate) {
-    renderCountdown = <CountdownEnded />;
+    renderCountdown = <CountdownTimer endTime={now} />;
   }
 
   const cxCountdown = clsxm(
-    'flex items-center justify-evenly w-full h-[5rem] lg:h-[9.3rem] bgg-green rounded-[2rem] p-4',
+    'flex flex-col lg:flex-row items-center justify-evenly w-full min-h-[9rem] bgg-green rounded-[2rem] gap-3 p-6',
     className
   );
 
