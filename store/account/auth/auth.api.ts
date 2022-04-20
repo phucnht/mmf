@@ -42,7 +42,10 @@ export const connectProvider = async () => {
     walletconnect: {
       package: WalletConnectProvider,
       options: {
-        rpc: [].reduce((sum, item: any) => ({ ...sum, [item.chainId]: item.rpcUrl }), {})
+        rpc: {
+          137: 'https://polygon-rpc.com',
+          80001: 'https://matic-mumbai.chainstacklabs.com'
+        }
       }
     }
   };
