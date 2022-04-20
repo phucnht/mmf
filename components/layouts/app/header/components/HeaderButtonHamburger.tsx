@@ -56,14 +56,10 @@ export default function HeaderButtonHamburger({ className }: CxProps) {
       label: 'Home'
     },
     {
-      slug: 'https://news.mymetafarm.com/',
-      label: 'News'
+      slug: '/marketplace/items',
+      label: 'Marketplace',
+      disabled: !isTester
     },
-    // {
-    //   slug: '/marketplace/items',
-    //   label: 'Marketplace',
-    //   disabled: !isTester
-    // },
     {
       slug: '/metaverse',
       label: 'Metaverse',
@@ -73,6 +69,14 @@ export default function HeaderButtonHamburger({ className }: CxProps) {
       slug: '/dashboard/box',
       label: 'Dashboard',
       disabled: true
+    },
+    {
+      slug: 'http://community.mymetafarm.com/',
+      label: 'Community'
+    },
+    {
+      slug: 'https://news.mymetafarm.com/',
+      label: 'News'
     },
     {
       slug: '/document',
@@ -85,6 +89,11 @@ export default function HeaderButtonHamburger({ className }: CxProps) {
     {
       slug: '/document',
       label: 'Document',
+      disabled: true
+    },
+    {
+      slug: '/dashboard/box',
+      label: 'Dashboard',
       disabled: true
     },
     {
@@ -113,9 +122,10 @@ export default function HeaderButtonHamburger({ className }: CxProps) {
         className="absolute left-0 mt-8 w-full z-50"
       >
         <Popover.Panel
-          className={clsxm('lg:flex text-white text-md bg-blue-400 rounded-none lg:rounded-[2rem] w-full p-2 xl:p-4', {
-            'z-50 divide-y-[1px]': isMobile
-          })}
+          className={clsxm(
+            'flex flex-col lg:flex-row rounded-none lg:rounded-[3rem] gap-2 lg:gap-4 text-white text-md bg-blue-400 w-full p-4',
+            { 'z-50 divide-y-[1px]': isMobile }
+          )}
         >
           {routes.map(route => (
             <HeaderButtonRoute key={route.slug} route={route} />

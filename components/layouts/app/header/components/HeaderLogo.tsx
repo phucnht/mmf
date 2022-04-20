@@ -9,7 +9,9 @@ export default function HeaderLogo() {
   return (
     <Box className="h-8rem lg:h-full text-center relative cursor-pointer">
       <Link href="/" passHref>
-        <Image alt="My Meta Farm" src={logo} />
+        <a>
+          <Image alt="My Meta Farm" src={logo} />
+        </a>
       </Link>
     </Box>
   );
