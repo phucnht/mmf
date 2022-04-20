@@ -36,7 +36,12 @@ const rootReducer = (state: any, action: AnyAction) => {
   if (action.type === logout.type) {
     storage.removeItem('persist:root');
     return appReducer(
-      { ...state, systemConfig: undefined, auth: undefined, profile: undefined, inventory: undefined },
+      {
+        ...state,
+        auth: undefined,
+        profile: undefined,
+        inventory: undefined
+      },
       action
     );
   }

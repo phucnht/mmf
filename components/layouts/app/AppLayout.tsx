@@ -21,13 +21,13 @@ interface AppLayoutProps {
 }
 
 export default function AppLayout({ children }: AppLayoutProps) {
-  const { pathname } = useRouter();
+  useNetworkValidate();
   const dispatch = useAppDispatch();
+  const windowSize = useWindowSize();
+  const { pathname } = useRouter();
   const { id } = useAppSelector(selectSystemConfigData);
   const { accessToken } = useAppSelector(selectAuthData);
   const { MMF } = useAppSelector(selectPaymentTokenData);
-  useNetworkValidate();
-  const windowSize = useWindowSize();
 
   useEffect(() => {
     if (!id) {
