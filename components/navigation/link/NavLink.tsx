@@ -14,7 +14,7 @@ export default function NavLink({ content, href, exact, disabled, className }: N
   const { pathname } = useRouter();
   const isActive = disabled ? false : exact ? pathname === href : pathname.startsWith(href);
   const cxNavLink = classNames(
-    'text-sm !leading-[3.2rem] xl:text-btn p-1 xl:p-2 w-[8rem] !min-w-fit xl:w-[15rem]',
+    '!text-sm !leading-[3.2rem] xl:text-btn p-1 xl:p-2 w-[8rem] !min-w-fit xl:w-[15rem]',
     { 'bgg-yellow text-red-100': isActive },
     { '!bg-gray-400 !cursor-not-allowed': disabled },
     className
@@ -24,7 +24,7 @@ export default function NavLink({ content, href, exact, disabled, className }: N
     <Button className={cxNavLink} color="primary" content={content} />
   ) : (
     <Link href={href} passHref>
-      <a>
+      <a target="_blank" rel="noopener noreferrer">
         <Button className={cxNavLink} color="primary" content={content} />
       </a>
     </Link>

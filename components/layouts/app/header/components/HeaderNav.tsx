@@ -23,12 +23,12 @@ export default function HeaderNav() {
       <Flex className="flex-1 relative justify-center items-center gap-1 xl:gap-4 mt-6 min-w-fit">
         <HeaderButtonHamburger />
         <NavLink href="/" exact content="Home" />
-        <NavLink href="http://community.mymetafarm.com" content="Community" />
+        <NavLink href="https://community.mymetafarm.com" content="Partner Token" />
         {/* <NavLink disabled={!isTester} href="/marketplace/items" content="Marketplace" /> */}
         <NavLink disabled={!isTester} href="/metaverse" content="Metaverse" />
         <Link href="https://discord.gg/A2C4eYb3T9" passHref>
           <a className="flex items-center gap-2">
-            <Text className="text-white text-btn uppercase font-black">Join Our Discord</Text>
+            <Text className="text-white !text-sm uppercase font-black">Join Our Discord</Text>
             <Image alt="Discord" src={imgDiscord} />
           </a>
         </Link>

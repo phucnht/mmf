@@ -23,7 +23,7 @@ const HeaderButtonRoute = ({ route }: { route: SidebarRouteProps }) => {
   };
 
   const cxButton = classNames(
-    'text-sm !leading-[3.2rem] xl:text-btn p-1 w-full xl:p-3 lg:w-[9rem] !min-w-fit xl:w-[15rem] bg-transparent hover:bg-blue-100/10 font-black text-white uppercase',
+    '!text-sm !leading-[3.2rem] xl:text-btn p-1 w-full xl:p-3 lg:w-[9rem] !min-w-fit xl:w-[15rem] bg-transparent hover:bg-blue-100/10 font-black text-white uppercase',
     {
       '!bg-gray-400 !cursor-not-allowed': route.disabled
     }
