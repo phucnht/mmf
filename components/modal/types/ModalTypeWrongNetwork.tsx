@@ -1,9 +1,10 @@
 import { Box, Button, Heading, Stack, Text } from '@whammytechvn/wt-components';
 import { useState } from 'react';
 import { NetworkConfigProps } from 'utils/networks';
+import { ObjectProps } from 'utils/types';
 
 export interface ModalTypeAccountProps {
-  data?: NetworkConfigProps;
+  data?: ObjectProps;
 }
 
 export default function ModalTypeWrongNetwork({ data: network }: ModalTypeAccountProps) {
@@ -41,7 +42,7 @@ export default function ModalTypeWrongNetwork({ data: network }: ModalTypeAccoun
         <Stack className="justify-center items-center">
           <Button
             fullWidth
-            onClick={() => (network ? switchNetwork(network) : null)}
+            onClick={() => (network ? switchNetwork(network as NetworkConfigProps) : null)}
             color={loading ? 'default' : 'secondary'}
             className="text-red-100 py-4 w-fit min-w-[15rem] disabled:bg-grey-400 disabled:cursor-not-allowed disabled:pointer-events-none"
             disabled={loading}

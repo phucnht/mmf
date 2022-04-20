@@ -29,7 +29,7 @@ export default function ModalConfirmation() {
         {type === 'createGameProfile' && <ModalTypeCreateGameProfile />}
         {type === 'account' && <ModalTypeAccount decline={decline} />}
         {type === 'login' && <ModalTypeLoginRequired decline={decline} />}
-        {type === 'network' && <ModalTypeWrongNetwork decline={decline} data={data} />}
+        {type === 'network' && <ModalTypeWrongNetwork data={data} />}
         {type === 'checkout' && <ModalTypeCheckout data={data} decline={decline} confirm={confirm} />}
         {type === 'listing' && <ModalTypeListing data={data} confirm={confirm} />}
         {type === 'cancel-listing' && <ModalTypeListing data={data} confirm={confirm} isCancel />}
