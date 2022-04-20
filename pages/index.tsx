@@ -57,8 +57,8 @@ const Home: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>My Metafarm</title>
-        <meta name="description" content="My Metafarm" />
+        <title>My Meta Farm</title>
+        <meta name="description" content="My Meta Farm" />
       </Head>
       <Box className="grow bg-white">
         <LandingVideo />
