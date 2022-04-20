@@ -8,6 +8,7 @@ import ModalTypeCreateGameProfile from './types/ModalTypeCreateGameProfile';
 import { useAppDispatch } from 'store/store.hook';
 import useUnload from 'hooks/useUnload';
 import ModalTypeLoginRequired from './types/ModalTypeLoginRequired';
+import ModalTypeWrongNetwork from './types/ModalTypeWrongNetwork';
 import ModalTypeCheckout from './types/ModalTypeCheckout';
 import ModalTypeCompleted from './types/ModalTypeCompleted';
 import ModalTypeListing from './types/ModalTypeListing';
@@ -28,6 +29,7 @@ export default function ModalConfirmation() {
         {type === 'createGameProfile' && <ModalTypeCreateGameProfile />}
         {type === 'account' && <ModalTypeAccount decline={decline} />}
         {type === 'login' && <ModalTypeLoginRequired decline={decline} />}
+        {type === 'network' && <ModalTypeWrongNetwork decline={decline} data={data} />}
         {type === 'checkout' && <ModalTypeCheckout data={data} decline={decline} confirm={confirm} />}
         {type === 'listing' && <ModalTypeListing data={data} confirm={confirm} />}
         {type === 'cancel-listing' && <ModalTypeListing data={data} confirm={confirm} isCancel />}

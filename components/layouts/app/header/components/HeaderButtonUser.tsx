@@ -16,6 +16,7 @@ import classNames from 'classnames';
 import Divider from 'components/display/divider/Divider';
 import ButtonImageRef from './ButtonImageRef';
 import { CxProps } from 'utils/types';
+import { connectProvider } from 'store/account/auth/auth.api';
 
 export default function HeaderButtonUser({ className }: CxProps) {
   const { pathname } = useRouter();
@@ -30,9 +31,14 @@ export default function HeaderButtonUser({ className }: CxProps) {
 
   useEffect(() => {
     if (accessToken) {
-      dispatch(getProfileByAddress({ address }));
+      try {
+        connectProvider();
+        dispatch(getProfileByAddress({ address }));
+      } catch {
+        dispatch(logout());
+      }
     }
-  }, [accessToken, dispatch, address]);
+  }, [accessToken, address, dispatch]);
 
   const router = useRouter();
   const goTo = (path: string) => {

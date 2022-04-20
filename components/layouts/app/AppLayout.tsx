@@ -9,7 +9,7 @@ import { getPaymentTokens } from 'store/market/payment-token/paymentToken.api';
 import BackgroundFlare from 'components/bg/BackgroundFlare';
 // import BackgroundFooterShadow from 'components/bg/BackgroundFooterShadow';
 import { useRouter } from 'next/router';
-import useWeb3Validate from 'hooks/useWeb3Validate';
+import useNetworkValidate from 'hooks/useNetworkValidate';
 import { loginLoading, selectAuthData } from 'store/account/auth/auth.slice';
 import { selectPaymentTokenData } from 'store/market/payment-token/paymentToken.slice';
 import useWindowSize from 'hooks/useWindowSize';
@@ -26,18 +26,23 @@ export default function AppLayout({ children }: AppLayoutProps) {
   const { id } = useAppSelector(selectSystemConfigData);
   const { accessToken } = useAppSelector(selectAuthData);
   const { MMF } = useAppSelector(selectPaymentTokenData);
-  useWeb3Validate();
+  useNetworkValidate();
   const windowSize = useWindowSize();
 
   useEffect(() => {
-    dispatch(getSystemConfig());
+    if (!id) {
+      dispatch(getSystemConfig());
+    }
+  }, [id, dispatch]);
+
+  useEffect(() => {
     if (!accessToken) {
       dispatch(loginLoading(false));
     }
     if (!MMF) {
       // dispatch(getPaymentTokens());
     }
-  }, [id, accessToken, MMF, dispatch]);
+  }, [accessToken, MMF, dispatch]);
 
   let renderChildren = (
     <Box className="layout z-[5] grow mb-10 mt-10">

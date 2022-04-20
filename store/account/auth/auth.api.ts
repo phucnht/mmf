@@ -1,9 +1,12 @@
-import { web3, erc20Contract, plgWhitelistContract } from 'utils/contract';
-import { clientAccount, clientMarket } from 'utils/api';
-import { NonceDto, NonceRequest, TokenDto, TokenRequest, WhitelistDto } from './auth.i';
-import { fetchBalance, login, loginLoading } from './auth.slice';
+import WalletConnectProvider from '@walletconnect/web3-provider';
 import { toast } from 'react-toastify';
 import { store } from 'store/store';
+import { clientAccount, clientMarket } from 'utils/api';
+import { erc20Contract, plgWhitelistContract, web3 } from 'utils/contract';
+import Web3 from 'web3';
+import Web3Modal from 'web3modal';
+import { NonceDto, NonceRequest, TokenDto, TokenRequest, WhitelistDto } from './auth.i';
+import { fetchBalance, login, loginLoading, logout } from './auth.slice';
 
 export const getNonce = (params: NonceRequest): Promise<NonceDto> =>
   clientAccount.get(`/authentication/nonce`, { params });
@@ -34,52 +37,60 @@ export const getBalance = async (address: string | null, tokenAddress?: string) 
   return balance;
 };
 
+export const connectProvider = async () => {
+  const providerOptions = {
+    walletconnect: {
+      package: WalletConnectProvider,
+      options: {
+        rpc: [].reduce((sum, item: any) => ({ ...sum, [item.chainId]: item.rpcUrl }), {})
+      }
+    }
+  };
+  const web3Modal = new Web3Modal({ providerOptions, cacheProvider: false });
+
+  const provider = Web3.givenProvider || (await web3Modal.connect());
+  provider.on('accountsChanged', () => store.dispatch(logout()));
+  provider.on('disconnect', () => store.dispatch(logout()));
+
+  web3.setProvider(provider);
+};
+
 export const connect = async (callback?: () => void) => {
   store.dispatch(loginLoading(true));
 
-  const { ethereum } = window;
   const { chainId: systemConfigChainId, chainName } = store.getState().systemConfig.data;
   const { MMF, BUSD } = store.getState().paymentToken.data;
 
   try {
-    // First request user to login to their wallet
-    const [user] = await ethereum.request({ method: 'eth_requestAccounts' });
-    // Check if user is connected to required Net
-    const chainId = await web3.eth.getChainId();
+    await connectProvider();
 
+    const chainId = await web3.eth.getChainId();
     if (chainId !== +systemConfigChainId) {
       toast.info(`Please connect to ${chainName}`);
       store.dispatch(loginLoading(false));
       return;
     }
 
-    // Else get the user data
-    else {
-      try {
-        const { address, nonce } = await getNonce({ address: user });
-        const message = `${nonce}`;
-        const signature = await web3.eth.personal.sign(message, address, '');
-        const { accessToken } = await getToken({ address, signature });
-
-        const balance = await getBalance(address, MMF?.contractAddress);
-        const balance2 = await getBalance(address, BUSD?.contractAddress);
-
-        store.dispatch(login({ accessToken, address, balance, balance2 }));
-
-        if (typeof callback === 'function') callback();
-      } catch (err: any) {
-        console.error(err);
-        store.dispatch(loginLoading(false));
-      }
+    let user;
+    try {
+      [user] = await web3.eth.requestAccounts();
+    } catch {
+      [user] = await web3.eth.getAccounts();
     }
-  } catch (err: any) {
+    user = user.toLowerCase();
+
+    const { address, nonce } = await getNonce({ address: user });
+    const message = `${nonce}`;
+    const signature = await web3.eth.personal.sign(message, address, '');
+    const { accessToken } = await getToken({ address, signature });
+
+    const balance = await getBalance(address, MMF?.contractAddress);
+    const balance2 = await getBalance(address, BUSD?.contractAddress);
+
+    store.dispatch(login({ accessToken, address, balance, balance2 }));
+
+    if (typeof callback === 'function') callback();
+  } catch (error) {
     store.dispatch(loginLoading(false));
-    if (err.code === 4001) {
-      // EIP-1193 userRejectedRequest error
-      // If this happens, the user rejected the connection request.
-      toast.error('Cannot connect Metamask');
-    } else {
-      console.error(err);
-    }
   }
 };

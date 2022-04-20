@@ -7,6 +7,7 @@ export type ModalType =
   | 'account'
   | 'confirm'
   | 'login'
+  | 'network'
   | 'checkout'
   | 'listing'
   | 'cancel-listing'

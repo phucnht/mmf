@@ -48,4 +48,4 @@ export const tokenValueTxt = (value: number, decimals: number, symbol: string): 
   `${n4.format(tokenValue(value, decimals))} ${symbol}`;
 
 export const formatUsername = (username: string) =>
-  username && !_isEmpty(username) ? (username.startsWith('0x') ? getEllipsisTxt(username) : username) : 'Unknown';
+  username && !_isEmpty(username) ? (username.startsWith('0x') ? getEllipsisTxt(username) : username) : '';

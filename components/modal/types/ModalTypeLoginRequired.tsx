@@ -1,14 +1,12 @@
 import { Box, Button, Heading, Stack, Text } from '@whammytechvn/wt-components';
-import useConnectWeb3 from 'hooks/useConnectWeb3';
 import { MouseEventHandler } from 'react';
+import { connect } from 'store/account/auth/auth.api';
 
 export interface ModalTypeAccountProps {
   decline: MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
 export default function ModalTypeLoginRequired({ decline }: ModalTypeAccountProps) {
-  const [loading, connect] = useConnectWeb3();
-
   return (
     <Stack className="p-24 rounded-[2rem] shadow-lg relative flex-col w-full bg-blue-500 outline-none focus:outline-none border-[3px] border-green-200 text-white text-2xl font-bold">
       <Box className="bg-[url('/assets/logos/login.svg')] w-[9.1rem] h-[9.1rem] bg-auto bg-no-repeat bg-center" />
@@ -21,13 +19,12 @@ export default function ModalTypeLoginRequired({ decline }: ModalTypeAccountProp
           <Button
             onClick={() => connect()}
             fullWidth
-            color={loading ? 'default' : 'secondary'}
+            color="secondary"
             className="text-red-100 py-4 w-fit min-w-[15rem] disabled:bg-grey-400 disabled:cursor-not-allowed disabled:pointer-events-none"
-            disabled={loading}
           >
             Connect Now
           </Button>
-          <Button disabled={loading} onClick={decline} fullWidth color="primary" className="py-4 min-w-[15rem] w-fit">
+          <Button onClick={decline} fullWidth color="primary" className="py-4 min-w-[15rem] w-fit">
             Later
           </Button>
         </Stack>
