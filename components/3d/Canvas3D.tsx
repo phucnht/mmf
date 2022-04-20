@@ -8,7 +8,7 @@ import { Mesh } from 'three/src/objects/Mesh';
 import { Canvas } from '@react-three/fiber';
 import { ErrorBoundary } from 'react-error-boundary';
 
-const SCALE = 0.02;
+const SCALE = 1;
 
 export default function Canvas3D({
   url,
