@@ -8,9 +8,10 @@ interface NavLinkProps {
   href: string;
   exact?: boolean;
   disabled?: boolean;
+  openInNew?: boolean;
   className?: string;
 }
-export default function NavLink({ content, href, exact, disabled, className }: NavLinkProps) {
+export default function NavLink({ content, href, exact, disabled, openInNew, className }: NavLinkProps) {
   const { pathname } = useRouter();
   const isActive = disabled ? false : exact ? pathname === href : pathname.startsWith(href);
   const cxNavLink = classNames(
@@ -24,7 +25,7 @@ export default function NavLink({ content, href, exact, disabled, className }: N
     <Button className={cxNavLink} color="primary" content={content} />
   ) : (
     <Link href={href} passHref>
-      <a target="_blank" rel="noopener noreferrer">
+      <a target={openInNew ? '_blank' : '_self'} rel="noopener noreferrer">
         <Button className={cxNavLink} color="primary" content={content} />
       </a>
     </Link>
