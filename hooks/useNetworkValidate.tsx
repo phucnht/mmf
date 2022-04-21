@@ -14,7 +14,7 @@ export const useNetworkValidate = () => {
     const network = networkConfigs[systemConfigChainId];
     const isWrongNetwork = chainId && network && chainId !== network.chainId;
     if (isWrongNetwork) {
-      open({ type: 'network', data: network, isClosable: true });
+      open({ type: 'network', data: network });
     }
     return isWrongNetwork;
   }, [systemConfigChainId, open]);
