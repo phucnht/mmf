@@ -1,13 +1,13 @@
-import { FC, useCallback, useEffect, useState } from 'react';
 import { Button } from '@whammytechvn/wt-components';
-
+import { useNetworkValidate } from 'hooks/useNetworkValidate';
 import { useRouter } from 'next/router';
-import { useAppSelector } from 'store/store.hook';
-import { selectAuthData } from 'store/account/auth/auth.slice';
-import { plgMetaverseContract } from 'utils/contract';
-import { selectSystemConfigData } from 'store/market/system-config/systemConfig.slice';
+import { FC, useCallback, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { checkIsInWhitelist, connect } from 'store/account/auth/auth.api';
+import { selectAuthData } from 'store/account/auth/auth.slice';
+import { selectSystemConfigData } from 'store/market/system-config/systemConfig.slice';
+import { useAppSelector } from 'store/store.hook';
+import { plgMetaverseContract } from 'utils/contract';
 import { getPolygonFee } from 'utils/networks';
 
 const ButtonType = {
@@ -23,6 +23,7 @@ const MetaverseCardButton: FC<{ isEventNotAvailable: boolean; whitelistContract:
 }) => {
   const { accessToken, address } = useAppSelector(selectAuthData);
   const { metaverseContractAddress, chainId: systemConfigChainId } = useAppSelector(selectSystemConfigData);
+  const [isWrongNetwork] = useNetworkValidate();
   const [isClaimable, setIsClaimable] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
 
@@ -44,10 +45,17 @@ const MetaverseCardButton: FC<{ isEventNotAvailable: boolean; whitelistContract:
     toggleClaimable(address, isEventNotAvailable);
   }, [toggleClaimable, address, isEventNotAvailable]);
 
+  const handleConnectWallet = () => {
+    if (isWrongNetwork()) return;
+    connect();
+  };
+
   const router = useRouter();
   const [type, setType] = useState(ButtonType.IDLE);
 
   const handleProcess = async () => {
+    if (isWrongNetwork()) return;
+
     setIsProcessing(true);
     const maxFeeForFast = (await getPolygonFee(+systemConfigChainId)) as number;
 
@@ -84,7 +92,7 @@ const MetaverseCardButton: FC<{ isEventNotAvailable: boolean; whitelistContract:
       fullWidth
       className="text-sm lg:text-xl py-3 lg:py-5"
       disabled={isProcessing}
-      onClick={() => connect()}
+      onClick={handleConnectWallet}
     />
   );
 

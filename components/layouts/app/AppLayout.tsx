@@ -9,7 +9,6 @@ import { getPaymentTokens } from 'store/market/payment-token/paymentToken.api';
 import BackgroundFlare from 'components/bg/BackgroundFlare';
 // import BackgroundFooterShadow from 'components/bg/BackgroundFooterShadow';
 import { useRouter } from 'next/router';
-import useNetworkValidate from 'hooks/useNetworkValidate';
 import { loginLoading, selectAuthData } from 'store/account/auth/auth.slice';
 import { selectPaymentTokenData } from 'store/market/payment-token/paymentToken.slice';
 import useWindowSize from 'hooks/useWindowSize';
@@ -21,7 +20,6 @@ interface AppLayoutProps {
 }
 
 export default function AppLayout({ children }: AppLayoutProps) {
-  useNetworkValidate();
   const dispatch = useAppDispatch();
   const windowSize = useWindowSize();
   const { pathname } = useRouter();

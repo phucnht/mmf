@@ -1,5 +1,4 @@
 import WalletConnectProvider from '@walletconnect/web3-provider';
-import { toast } from 'react-toastify';
 import { store } from 'store/store';
 import { clientAccount, clientMarket } from 'utils/api';
 import { erc20Contract, plgWhitelistContract, web3 } from 'utils/contract';
@@ -61,18 +60,9 @@ export const connectProvider = async () => {
 export const connect = async (callback?: () => void) => {
   store.dispatch(loginLoading(true));
 
-  const { chainId: systemConfigChainId, chainName } = store.getState().systemConfig.data;
   const { MMF, BUSD } = store.getState().paymentToken.data;
-
   try {
     await connectProvider();
-
-    const chainId = await web3.eth.getChainId();
-    if (chainId !== +systemConfigChainId) {
-      toast.info(`Please connect to ${chainName}`);
-      store.dispatch(loginLoading(false));
-      return;
-    }
 
     let user;
     try {
