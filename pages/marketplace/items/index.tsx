@@ -15,6 +15,7 @@ import Pagination from 'components/pagination/Pagination';
 import axios from 'axios';
 import { selectAuthData } from 'store/account/auth/auth.slice';
 import { checkIsTester } from 'store/account/auth/auth.api';
+import { getNftSaleItems } from 'store/market/nft-item/nftItem.api';
 
 const MarketplaceItems: NextPageWithLayout = () => {
   const [loading, setLoading] = useState(true);
@@ -57,7 +58,7 @@ const MarketplaceItems: NextPageWithLayout = () => {
       return;
     }
     getBNBUSDT();
-    // dispatch(getNftSaleItems({ ...router.query, page: currentPage }));
+    dispatch(getNftSaleItems({ ...router.query, page: currentPage }));
   }, [dispatch, router.isReady, router.query, currentPage]);
 
   if (loading) {
