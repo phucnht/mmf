@@ -38,7 +38,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
       dispatch(loginLoading(false));
     }
     if (!MMF) {
-      // dispatch(getPaymentTokens());
+      dispatch(getPaymentTokens());
     }
   }, [accessToken, MMF, dispatch]);
 

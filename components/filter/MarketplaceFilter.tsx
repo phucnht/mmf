@@ -167,14 +167,14 @@ export default function MarketplaceFilter({ elementOptions }: MarketplaceFilterP
       <MarketplaceFilterHeader onResetFilter={handleResetFilter} />
       <MarketplaceFilterSelect name="orderBy" options={SORT_BY_OPTIONS} callback={handleSearchParams} />
       <MarketplaceFilterSwitch name="listedByMe" label="Listed By Me" callback={handleSearchParams} />
-      <MarketplaceFilterCheckbox
+      {/* <MarketplaceFilterCheckbox
         disabled
         name="elements"
         label="Elements"
         options={elementOptions}
         callback={handleSearchParams}
       />
-      <MarketplaceFilterMinMax disabled nameMin="minPrice" nameMax="maxPrice" callback={handleSearchParams} />
+      <MarketplaceFilterMinMax disabled nameMin="minPrice" nameMax="maxPrice" callback={handleSearchParams} /> */}
     </FormProvider>
   );
 }

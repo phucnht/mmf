@@ -24,7 +24,7 @@ export default function HeaderNav() {
         <HeaderButtonHamburger />
         <NavLink href="/" exact content="Home" />
         <NavLink href="https://community.mymetafarm.com" content="Partner Token" openInNew />
-        {/* <NavLink disabled={!isTester} href="/marketplace/items" content="Marketplace" /> */}
+        <NavLink disabled={!isTester} href="/marketplace/items" content="Marketplace" />
         <NavLink disabled={!isTester} href="/metaverse" content="Metaverse" />
         <Link href="https://discord.gg/A2C4eYb3T9" passHref>
           <a className="flex items-center gap-2">
