@@ -15,6 +15,8 @@ import AppLayout from 'components/layouts/app/AppLayout';
 import NextNProgress from 'nextjs-progressbar';
 import { PersistGate } from 'redux-persist/integration/react';
 import TagManager from 'react-gtm-module';
+import queryClient from 'utils/queryClient';
+import { QueryClientProvider } from 'react-query';
 
 export type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -46,19 +48,21 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
       />
       <ProviderRedux store={store}>
         <PersistGate loading={<>Loading...</>} persistor={persistor}>
-          <AppLayout>{getLayout(<Component {...pageProps} />)}</AppLayout>
-          <ToastContainer
-            position="top-right"
-            autoClose={3000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            className="text-sm"
-          />
+          <QueryClientProvider client={queryClient}>
+            <AppLayout>{getLayout(<Component {...pageProps} />)}</AppLayout>
+            <ToastContainer
+              position="top-right"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              className="text-sm"
+            />
+          </QueryClientProvider>
           <ModalConfirmation />
         </PersistGate>
       </ProviderRedux>

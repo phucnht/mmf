@@ -22,9 +22,9 @@ export default function SidebarHorizontal({
     router.push(path);
   };
 
-  const cxTabWrapper = classNames('w-full text-white text-sm', className);
+  const cxTabWrapper = classNames('w-full text-white text-sm px-60', className);
   const cxTabs = classNames(
-    'hidden lg:flex justify-start gap-20 text-white w-full py-6 px-8 xl:py-10 xl:px-12 rounded-[2rem] bg-green-300'
+    'hidden lg:flex justify-center gap-20 text-white w-full py-6 px-8 xl:py-10 xl:px-12 rounded-[2rem] bg-green-300'
   );
   const cxTab = classNames('flex items-center relative uppercase font-black text-md');
 
