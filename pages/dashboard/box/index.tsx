@@ -7,17 +7,6 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 const DashboardBox: NextPageWithLayout = () => {
-  const [loading, setLoading] = useState(true);
-  const router = useRouter();
-
-  useEffect(() => {
-    router.push('/');
-  }, [router]);
-
-  if (loading) {
-    return null;
-  }
-
   return (
     <>
       <Head>

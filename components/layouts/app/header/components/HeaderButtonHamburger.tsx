@@ -66,9 +66,9 @@ export default function HeaderButtonHamburger({ className }: CxProps) {
       disabled: !isTester
     },
     {
-      slug: '/dashboard/box',
+      slug: '/dashboard/dashboard',
       label: 'Dashboard',
-      disabled: true
+      disabled: !isTester
     },
     {
       slug: 'http://community.mymetafarm.com/',
@@ -92,9 +92,9 @@ export default function HeaderButtonHamburger({ className }: CxProps) {
       disabled: true
     },
     {
-      slug: '/dashboard/box',
+      slug: '/dashboard/dashboard',
       label: 'Dashboard',
-      disabled: true
+      disabled: !isTester
     },
     {
       slug: 'https://news.mymetafarm.com/',
