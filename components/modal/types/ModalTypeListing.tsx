@@ -7,13 +7,15 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { InputField } from 'components/input/InputField';
 import { clientMarket } from 'utils/api';
-import { web3 } from 'utils/contract';
+import { plgMetafarmContract, web3 } from 'utils/contract';
 import { selectAuthData } from 'store/account/auth/auth.slice';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { validateInputNumber } from 'utils/validate';
 import InputNumber from 'components/input/InputNumber';
 import CustomImage from 'components/display/image/CustomImage';
+import { selectSystemConfigData } from 'store/market/system-config/systemConfig.slice';
+import { useState } from 'react';
 
 export interface ModalTypeListingProps {
   data?: ObjectProps;
@@ -31,6 +33,8 @@ const ModalTypeListing = ({ data, confirm, isCancel }: ModalTypeListingProps) =>
   const { BUSD } = useAppSelector(selectPaymentTokenData);
   const symbolBUSD = BUSD?.symbol || 'BUSD';
   const amountRest = data ? data.amount - data.amountSale : 0;
+  const { marketplaceAddress } = useAppSelector(selectSystemConfigData);
+  const [isLoading, setIsLoading] = useState(false);
 
   const schema = yup.object({
     amount: yup
@@ -83,51 +87,62 @@ const ModalTypeListing = ({ data, confirm, isCancel }: ModalTypeListingProps) =>
         return;
       }
       if (data) {
-        const saltNonce = new Date().getTime();
-        const paramsHashMessage = {
-          nftItemId: data.id,
-          paymentTokenId: BUSD.id,
-          price,
-          saltNonce,
-          amount,
-          ownerAccept: true
-        };
+        try {
+          setIsLoading(true);
+          const isApprovedForAll = await plgMetafarmContract(data.nftContract)
+            .methods.isApprovedForAll(address, marketplaceAddress)
+            .call();
 
-        const resHashMessage = (await clientMarket.get('/sale-items/hash-message', {
-          params: paramsHashMessage
-        })) as any;
-
-        if (resHashMessage) {
-          try {
-            const signedSignature = await web3.eth.personal.sign(resHashMessage.hashMessage, address, '');
-            const paramsCreateSaleItem = {
-              nftItemId: data.id,
-              signedSignature,
-              paymentTokenId: BUSD.id,
-              price,
-              amount,
-              saltNonce
-            };
-
-            const resCreateSaleItem = (await axios.post(
-              `${process.env.NEXT_PUBLIC_API_MARKET}/sale-items/create`,
-              paramsCreateSaleItem,
-              {
-                headers: {
-                  Authorization: `Bearer ${accessToken}`
-                }
-              }
-            )) as any;
-
-            if (resCreateSaleItem.data.success) {
-              confirm();
-            } else {
-              toast.error(resCreateSaleItem.data.errors.error);
-            }
-          } catch (e: any) {
-            toast.error(e.message);
-            return;
+          if (!isApprovedForAll) {
+            await plgMetafarmContract(data.nftContract)
+              .methods.setApprovalForAll(marketplaceAddress, true)
+              .send({ from: address });
           }
+
+          const saltNonce = new Date().getTime();
+          const paramsHashMessage = {
+            nftItemId: data.id,
+            paymentTokenId: BUSD.id,
+            price,
+            saltNonce,
+            amount,
+            ownerAccept: true
+          };
+
+          const resHashMessage = (await clientMarket.get('/sale-items/hash-message', {
+            params: paramsHashMessage
+          })) as any;
+
+          const signedSignature = await web3.eth.personal.sign(resHashMessage.hashMessage, address, '');
+          const paramsCreateSaleItem = {
+            nftItemId: data.id,
+            signedSignature,
+            paymentTokenId: BUSD.id,
+            price,
+            amount,
+            saltNonce
+          };
+
+          const resCreateSaleItem = (await axios.post(
+            `${process.env.NEXT_PUBLIC_API_MARKET}/sale-items/create`,
+            paramsCreateSaleItem,
+            {
+              headers: {
+                Authorization: `Bearer ${accessToken}`
+              }
+            }
+          )) as any;
+
+          if (resCreateSaleItem.data.success) {
+            confirm();
+          } else {
+            toast.error(resCreateSaleItem.data.errors.error);
+          }
+        } catch (e: any) {
+          toast.error(e.message);
+          return;
+        } finally {
+          setIsLoading(false);
         }
       }
     },
@@ -200,8 +215,9 @@ const ModalTypeListing = ({ data, confirm, isCancel }: ModalTypeListingProps) =>
           <Button
             type="submit"
             className="text-red-100 py-4 min-w-[15rem] max-w-[38rem] mx-auto"
-            color={'secondary'}
+            color={isLoading ? 'default' : 'secondary'}
             fullWidth
+            disabled={isLoading}
           >
             {isCancel ? 'Cancel Listing' : 'Post Your Listing'}
           </Button>
