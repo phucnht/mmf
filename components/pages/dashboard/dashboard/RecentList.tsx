@@ -29,6 +29,7 @@ export const RecentListBuyerSeller = () => {
   const onSearchChange = (data: any) => {
     setSearch(search => ({
       ...search,
+      page: 1,
       ...data
     }));
   };
@@ -37,7 +38,7 @@ export const RecentListBuyerSeller = () => {
     <Container title="TRANSACTIONS">
       <List>
         {_map(items, item => (
-          <Item key={item.tokenId}>
+          <Item key={item.id}>
             <ItemAvatar className="flex items-center justify-center m-0 px-3 py-2 border border-gray-300">
               <Image src={item.itemId.external.iconUrl} alt={item.tokenId} width={40} height={40} />
             </ItemAvatar>
@@ -55,7 +56,7 @@ export const RecentListBuyerSeller = () => {
           className="min-w-[0rem] py-3 rounded-full"
           color={hasPrevious ? 'primary' : 'default'}
           disabled={!hasPrevious}
-          onClick={() => onSearchChange({ size: search.size - 1 })}
+          onClick={() => onSearchChange({ page: search.page - 1 })}
         >
           {'<'}
         </Button>
@@ -64,7 +65,7 @@ export const RecentListBuyerSeller = () => {
           className="min-w-[0rem] py-3 rounded-full"
           color={hasNext ? 'primary' : 'default'}
           disabled={!hasNext}
-          onClick={() => onSearchChange({ size: search.size + 1 })}
+          onClick={() => onSearchChange({ page: search.page + 1 })}
         >
           {'>'}
         </Button>
