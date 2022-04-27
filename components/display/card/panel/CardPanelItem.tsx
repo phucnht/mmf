@@ -75,7 +75,7 @@ export default function CardPanelItem({ item, exchange, onClick }: CardPanelItem
             alt={item.name}
             src={item?.external.iconUrl}
             layout="fill"
-            objectFit="contain"
+            objectFit="scale-down"
             unoptimized={true}
             placeholder="blur"
           />
