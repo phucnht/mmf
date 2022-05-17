@@ -13,6 +13,7 @@ export interface MetaverseCardDescriptionProps {
   condition: string;
   whitelistContract: string;
   onchainId: string;
+  nftType: number;
   fromDate: Date;
   toDate: Date;
 }
@@ -22,6 +23,7 @@ const MetaverseCardDescription: FC<MetaverseCardDescriptionProps> = ({
   condition,
   whitelistContract,
   onchainId,
+  nftType,
   fromDate,
   toDate
 }) => {
@@ -57,6 +59,7 @@ const MetaverseCardDescription: FC<MetaverseCardDescriptionProps> = ({
         <MetaverseCardButton
           whitelistContract={whitelistContract}
           onchainId={onchainId}
+          nftType={nftType}
           isEventNotAvailable={isEventNotAvailable}
         />
       </Stack>

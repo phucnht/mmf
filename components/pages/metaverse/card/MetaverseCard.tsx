@@ -35,13 +35,14 @@ export default function MetaverseCard({ metaverse }: MetaverseCardProps) {
 
   return (
     <div className="w-full flex gap-10 text-white text-xl font-bold">
-      <div className="flex flex-col gap-4">
+      <div className="flex-1 flex flex-col gap-4">
         <MetaverseCardTitle title={metaverse.name} logo={metaverse.logo} />
         <Center className="flex lg:hidden justify-center items-center relative w-full aspect-[3/1]">
           {metaverseCardImageMobile}
         </Center>
         <MetaverseCardDescription
           onchainId={metaverse.onchainId}
+          nftType={metaverse.nftType}
           description={metaverse.description}
           condition={metaverse.condition}
           fromDate={metaverse.fromDate}

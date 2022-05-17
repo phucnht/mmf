@@ -8,6 +8,7 @@ import { selectAuthData } from 'store/account/auth/auth.slice';
 import { selectSystemConfigData } from 'store/market/system-config/systemConfig.slice';
 import { useAppSelector } from 'store/store.hook';
 import { plgMetaverseContract } from 'utils/contract';
+import { randomTokenID } from 'utils/mock';
 import { getPolygonFee } from 'utils/networks';
 
 const ButtonType = {
@@ -16,11 +17,12 @@ const ButtonType = {
   SUCCESS: 'success'
 };
 
-const MetaverseCardButton: FC<{ isEventNotAvailable: boolean; whitelistContract: string; onchainId: string }> = ({
-  whitelistContract,
-  onchainId,
-  isEventNotAvailable
-}) => {
+const MetaverseCardButton: FC<{
+  isEventNotAvailable: boolean;
+  whitelistContract: string;
+  onchainId: string;
+  nftType: number;
+}> = ({ whitelistContract, onchainId, nftType, isEventNotAvailable }) => {
   const { accessToken, address } = useAppSelector(selectAuthData);
   const { metaverseContractAddress, chainId: systemConfigChainId } = useAppSelector(selectSystemConfigData);
   const [isWrongNetwork] = useNetworkValidate();
@@ -59,8 +61,12 @@ const MetaverseCardButton: FC<{ isEventNotAvailable: boolean; whitelistContract:
     setIsProcessing(true);
     const maxFeeForFast = (await getPolygonFee(+systemConfigChainId)) as number;
 
-    plgMetaverseContract(metaverseContractAddress)
-      .methods.claim1155Event(onchainId)
+    const claimEvent =
+      nftType === 721
+        ? plgMetaverseContract(metaverseContractAddress).methods.claim721Event(onchainId, randomTokenID())
+        : plgMetaverseContract(metaverseContractAddress).methods.claim1155Event(onchainId);
+
+    claimEvent
       .send({
         from: address,
         gasPrice: Math.ceil(maxFeeForFast)
