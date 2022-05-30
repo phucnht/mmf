@@ -1,0 +1,29 @@
+@import '~react-perfect-scrollbar/dist/css/styles.css';
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick/slick-theme.css';
+@import 'styles/components';
+@import 'styles/mui';
+
+body {
+  font-size: 1rem;
+  font-family: 'Nunito', sans-serif !important;
+}
+
+main {
+  min-height: calc(100vh - 96px - 64px);
+}
+
+* {
+  outline: none !important;
+}
+
+a:hover {
+  text-decoration: none !important;
+}
+
+:root {
+  --color-primary: #ffde48;
+  --color-secondary: #fc9669;
+  --color-info: #3fb2ff;
+  --color-action: #cecece;
+}

@@ -1,73 +1,31 @@
-import '../styles/main.css';
-import 'react-toastify/dist/ReactToastify.css';
-import 'node_modules/video-react/dist/video-react.css';
-import 'animate.css/animate.min.css';
-
-import type { AppProps } from 'next/app';
-import { persistor, store } from '../store/store';
-import { ToastContainer } from 'react-toastify';
-import ModalConfirmation from 'components/modal/ModalConfirmation';
+import createCache, { EmotionCache } from '@emotion/cache';
+import { CacheProvider } from '@emotion/react';
+import { CssBaseline } from '@mui/material';
+import { AppTheme } from 'containers';
+import NextProgress from 'next-progress';
+import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { Provider as ProviderRedux } from 'react-redux';
-import { NextPage } from 'next';
-import { ReactElement, ReactNode, useEffect } from 'react';
-import AppLayout from 'components/layouts/app/AppLayout';
-import NextNProgress from 'nextjs-progressbar';
-import { PersistGate } from 'redux-persist/integration/react';
-import TagManager from 'react-gtm-module';
-import queryClient from 'utils/queryClient';
-import { QueryClientProvider } from 'react-query';
+import React from 'react';
+import 'styles/App.scss';
+import 'tailwindcss/tailwind.css';
 
-export type NextPageWithLayout = NextPage & {
-  getLayout?: (page: ReactElement) => ReactNode;
+type EmotionAppProps = AppProps & {
+  emotionCache: EmotionCache;
 };
 
-export type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout;
-};
-
-function MyApp({ Component, pageProps }: AppPropsWithLayout) {
-  const getLayout = Component.getLayout || (page => page);
-
-  useEffect(() => {
-    TagManager.initialize({ gtmId: 'GTM-P734JPJ' });
-  }, []);
-
+const App = ({ Component, emotionCache = createCache({ key: 'css' }), pageProps }: EmotionAppProps) => {
   return (
-    <>
+    <CacheProvider value={emotionCache}>
       <Head>
-        <link rel="shortcut icon" href="/assets/logos/favicon.ico" />
+        <title>My Meta Farm</title>
       </Head>
-      <NextNProgress
-        color="#ffc400dd"
-        startPosition={0.3}
-        stopDelayMs={200}
-        height={3}
-        showOnShallow={true}
-        options={{ easing: 'ease', speed: 500 }}
-      />
-      <ProviderRedux store={store}>
-        <PersistGate loading={<>Loading...</>} persistor={persistor}>
-          <QueryClientProvider client={queryClient}>
-            <AppLayout>{getLayout(<Component {...pageProps} />)}</AppLayout>
-            <ToastContainer
-              position="top-right"
-              autoClose={3000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              className="text-sm"
-            />
-          </QueryClientProvider>
-          <ModalConfirmation />
-        </PersistGate>
-      </ProviderRedux>
-    </>
+      <AppTheme>
+        <CssBaseline />
+        <Component {...pageProps} />
+        <NextProgress delay={300} options={{ showSpinner: false }} />
+      </AppTheme>
+    </CacheProvider>
   );
-}
+};
 
-export default MyApp;
+export default App;

@@ -1,25 +1,12 @@
-import { Box } from '@whammytechvn/wt-components';
-import { NextPage } from 'next';
-import Head from 'next/head';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { PublicLayout } from 'layouts';
+import { Marketplace } from 'views/Marketplace';
 
-const Marketplace: NextPage = () => {
-  const router = useRouter();
-
-  useEffect(() => {
-    router.push('/marketplace/items');
-  }, [router]);
-
+const Home = () => {
   return (
-    <>
-      <Head>
-        <title>Marketplace | My Meta Farm</title>
-        <meta name="description" content="Marketplace | My Meta Farm" />
-      </Head>
-      <Box className="text-white text-sm">Redirecting...</Box>
-    </>
+    <PublicLayout>
+      <Marketplace />
+    </PublicLayout>
   );
 };
 
-export default Marketplace;
+export default Home;
