@@ -27,7 +27,7 @@ const Home = ({ item }: { item: AirdropEvent }) => {
       <Head>
         <meta property='og:title' content={`${item.name} - Airdrop Event`} key='title' />
         <meta property='og:description' content={item.description} key='description' />
-        <meta property='og:image' content={item.image} key='image' />
+        <meta property='og:image' content={item.itemImage} key='image' />
       </Head>
 
       <MetaverseEvent item={item} />
