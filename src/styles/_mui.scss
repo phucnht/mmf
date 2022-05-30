@@ -1,0 +1,60 @@
+.MuiFormControl-root {
+  .MuiFormHelperText-root {
+    font-size: 1rem;
+    margin: 4px 0px 0px;
+  }
+}
+
+.MuiTableBody-root > .MuiTableRow-root:last-child > .MuiTableCell-root {
+  border-bottom: none;
+}
+
+.MuiDialog-root {
+  .MuiDialogTitle-root {
+    padding: 12px 16px;
+    font-size: 24px;
+  }
+  .MuiDialogContent-root {
+    padding: 16px;
+  }
+  .MuiDialogActions-root {
+    padding: 12px 16px;
+  }
+}
+
+.MuiLoadingButton-root {
+  .MuiLoadingButton-loadingIndicator {
+    position: static;
+    left: 0px;
+    margin-right: 8px;
+  }
+
+  &.MuiLoadingButton-loading {
+    color: inherit !important;
+  }
+}
+
+.SnackbarContainer-top {
+  top: 108px !important;
+}
+
+.MuiMenu-root {
+  > .MuiPaper-root {
+    overflow: visible;
+    margin-top: 12px;
+    min-width: 180px;
+  }
+
+  > .MuiPaper-root::before {
+    content: '';
+    display: block;
+    z-index: 0;
+    position: absolute;
+    top: 0px;
+    right: 14px;
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    transform: translateY(-50%) rotate(45deg);
+  }
+}

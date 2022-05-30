@@ -1,0 +1,46 @@
+.walletconnect-modal__base {
+  .walletconnect-modal__mobile__toggle {
+    color: #888;
+    > a {
+      cursor: pointer;
+    }
+  }
+  .walletconnect-qrcode__image {
+    cursor: auto;
+  }
+}
+
+@for $i from 1 through 12 {
+  .max-line-#{$i} {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: #{$i};
+    -webkit-box-orient: vertical;
+  }
+}
+
+.loading:after {
+  content: ' .';
+  animation: dots 1s steps(5, end) infinite;
+  color: black;
+}
+
+@keyframes dots {
+  0%,
+  20% {
+    color: transparent;
+    text-shadow: 0.2rem 0 0 transparent, 0.4rem 0 0 transparent;
+  }
+  40% {
+    color: black;
+    text-shadow: 0.2rem 0 0 transparent, 0.4rem 0 0 transparent;
+  }
+  60% {
+    text-shadow: 0.2rem 0 0 black, 0.4rem 0 0 transparent;
+  }
+  80%,
+  100% {
+    text-shadow: 0.2rem 0 0 black, 0.4rem 0 0 black;
+  }
+}
