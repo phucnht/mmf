@@ -13,6 +13,8 @@ const CardAirdropItem = ({ item, event }: { item: AirdropItem; event: AirdropEve
   const { isLoggedIn, address } = useSelector(profileSelector);
   const { metaverseContractAddress } = useSelector(systemSelector);
 
+  console.log(item.whitelistContract, metaverseContractAddress);
+
   const { mutate: claim, isLoading } = useMutation(
     async () => {
       return metaverseContract(metaverseContractAddress)
