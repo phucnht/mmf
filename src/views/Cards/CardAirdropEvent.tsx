@@ -23,11 +23,13 @@ const CardAirdropEvent = ({ item }: { item: AirdropEvent }) => {
             <Button color='secondary' className='w-40'>
               HOW TO JOIN
             </Button>
-            <NextLink href={publicRoute.metaverseEvent.url(item)}>
-              <a>
-                <Button className='w-40'>RECEIVE NOW</Button>
-              </a>
-            </NextLink>
+            {item.isStarted && (
+              <NextLink href={publicRoute.metaverseEvent.url(item)}>
+                <a>
+                  <Button className='w-40'>RECEIVE NOW</Button>
+                </a>
+              </NextLink>
+            )}
           </div>
         </Grid>
       </Grid>

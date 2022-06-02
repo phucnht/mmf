@@ -1,3 +1,4 @@
+import { LoadingButton } from '@mui/lab';
 import { Button, Grid, Paper } from '@mui/material';
 import { NextImage } from 'components';
 import { metaverseContract, whitelistContract } from 'contracts';
@@ -6,7 +7,7 @@ import { useMutation, useQuery } from 'react-query';
 import { useSelector } from 'react-redux';
 import { profileSelector } from 'reducers/profileSlice';
 import { systemSelector } from 'reducers/systemSlice';
-import { walletService } from 'services';
+import { queryClient, walletService } from 'services';
 import { getPolygonFee, randomTokenID } from 'utils/common';
 
 const CardAirdropItem = ({ item, event }: { item: AirdropItem; event: AirdropEvent }) => {
@@ -16,19 +17,18 @@ const CardAirdropItem = ({ item, event }: { item: AirdropItem; event: AirdropEve
   const { data: isInWhitelist } = useQuery(
     ['whitelistContract.isInWhitelist', { contract: item.whitelistContract, address }],
     () => whitelistContract(item.whitelistContract).methods.isInWhitelist(address).call(),
+    { enabled: isLoggedIn },
   );
 
   const { data: alreadyClaimed } = useQuery(
     ['metaverseContract.metaverseEventClaims', { onchainId: item.onchainId, address }],
     () => metaverseContract(metaverseContractAddress).methods.metaverseEventClaims(item.onchainId, address).call(),
+    { enabled: isLoggedIn },
   );
-
-  console.log({ isInWhitelist, alreadyClaimed });
 
   const { mutate: claim, isLoading } = useMutation(
     async () => {
       const maxFeeForFast = (await getPolygonFee(+appChainId)) as number;
-
       return metaverseContract(metaverseContractAddress)
         .methods.claim721Event(item.onchainId, randomTokenID())
         .send({
@@ -38,7 +38,8 @@ const CardAirdropItem = ({ item, event }: { item: AirdropItem; event: AirdropEve
     },
     {
       onSuccess: () => {
-        //
+        queryClient.invalidateQueries('fetchItems');
+        queryClient.invalidateQueries('metaverseContract.metaverseEventClaims');
       },
     },
   );
@@ -59,9 +60,15 @@ const CardAirdropItem = ({ item, event }: { item: AirdropItem; event: AirdropEve
           <div className='font-bold text-orange-700'>{item.condition}</div>
           <div className='flex gap-6'>
             {isLoggedIn ? (
-              <Button className='w-40' onClick={() => claim()}>
+              <LoadingButton
+                className='w-40'
+                variant='contained'
+                disabled={!isInWhitelist || alreadyClaimed}
+                loading={isLoading}
+                onClick={() => claim()}
+              >
                 CLAIM
-              </Button>
+              </LoadingButton>
             ) : (
               <Button className='w-40' onClick={() => walletService.connectWallet()}>
                 Connect Wallet
