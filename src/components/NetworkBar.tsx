@@ -9,19 +9,19 @@ const isMobile = () => {
 };
 
 const TESTNET = {
-  chainName: 'Klaytn Testnet Baobab',
-  chainId: '0x3e9',
-  nativeCurrency: { name: 'KLAY', symbol: 'KLAY', decimals: 18 },
-  rpcUrls: ['https://api.baobab.klaytn.net:8651'],
-  blockExplorerUrls: ['https://baobab.scope.klaytn.com'],
+  chainName: 'Polygon Mumbai Testnet',
+  chainId: '0x13881',
+  nativeCurrency: { name: 'MATIC', symbol: 'MATIC', decimals: 18 },
+  rpcUrls: ['https://matic-mumbai.chainstacklabs.com'],
+  blockExplorerUrls: ['https://mumbai.polygonscan.com/'],
 };
 
 const MAINNET = {
-  chainName: 'Klaytn Mainnet Cypress',
-  chainId: '0x2019',
-  nativeCurrency: { name: 'KLAY', symbol: 'KLAY', decimals: 18 },
-  rpcUrls: ['https://public-node-api.klaytnapi.com/v1/cypress'],
-  blockExplorerUrls: ['https://scope.klaytn.com'],
+  chainName: 'Polygon Mainnet',
+  chainId: '0x89',
+  nativeCurrency: { name: 'MATIC', symbol: 'MATIC', decimals: 18 },
+  rpcUrls: ['https://polygon-rpc.com'],
+  blockExplorerUrls: ['https://polygonscan.com'],
 };
 
 const NetworkBar = () => {
@@ -29,7 +29,7 @@ const NetworkBar = () => {
   const { chainId: appChainId } = useSelector(systemSelector);
 
   const [chainId, setChainId] = useState(window.ethereum?.chainId);
-  const network = appChainId === '8217' ? MAINNET : TESTNET;
+  const network = appChainId === '137' ? MAINNET : TESTNET;
 
   const handleConnectWallet = async () => {
     try {

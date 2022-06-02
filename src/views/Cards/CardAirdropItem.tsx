@@ -1,29 +1,45 @@
 import { Button, Grid, Paper } from '@mui/material';
 import { NextImage } from 'components';
-import { metaverseContract } from 'contracts';
+import { metaverseContract, whitelistContract } from 'contracts';
 import { AirdropEvent, AirdropItem } from 'models/Airdrop';
-import { useMutation } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import { useSelector } from 'react-redux';
 import { profileSelector } from 'reducers/profileSlice';
 import { systemSelector } from 'reducers/systemSlice';
 import { walletService } from 'services';
-import { randomTokenID } from 'utils/common';
+import { getPolygonFee, randomTokenID } from 'utils/common';
 
 const CardAirdropItem = ({ item, event }: { item: AirdropItem; event: AirdropEvent }) => {
   const { isLoggedIn, address } = useSelector(profileSelector);
-  const { metaverseContractAddress } = useSelector(systemSelector);
+  const { chainId: appChainId, metaverseContractAddress } = useSelector(systemSelector);
 
-  console.log(item.whitelistContract, metaverseContractAddress);
+  const { data: isInWhitelist } = useQuery(
+    ['whitelistContract.isInWhitelist', { contract: item.whitelistContract, address }],
+    () => whitelistContract(item.whitelistContract).methods.isInWhitelist(address).call(),
+  );
+
+  const { data: alreadyClaimed } = useQuery(
+    ['metaverseContract.metaverseEventClaims', { onchainId: item.onchainId, address }],
+    () => metaverseContract(metaverseContractAddress).methods.metaverseEventClaims(item.onchainId, address).call(),
+  );
+
+  console.log({ isInWhitelist, alreadyClaimed });
 
   const { mutate: claim, isLoading } = useMutation(
     async () => {
+      const maxFeeForFast = (await getPolygonFee(+appChainId)) as number;
+
       return metaverseContract(metaverseContractAddress)
         .methods.claim721Event(item.onchainId, randomTokenID())
-        .send({ from: address })
-        .catch(console.log);
+        .send({
+          from: address,
+          gasPrice: Math.ceil(maxFeeForFast),
+        });
     },
     {
-      onSuccess: () => {},
+      onSuccess: () => {
+        //
+      },
     },
   );
 
