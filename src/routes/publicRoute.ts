@@ -20,6 +20,11 @@ const publicRoute = {
     path: '/metaverse',
     url: ({ id }: { id: string }) => `/metaverse/${id}`,
   },
+
+  itemView: {
+    path: '/items',
+    url: ({ id }: { id: string }) => `/items/${id}`,
+  },
 };
 
 export default publicRoute;
