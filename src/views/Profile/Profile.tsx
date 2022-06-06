@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { profileSelector } from 'reducers/profileSlice';
 import { shorten } from 'utils/common';
-import { TabAssets } from './components';
+import { TabInventory, TabListing } from './components';
 
 const Profile = () => {
   const router = useRouter();
@@ -17,8 +17,8 @@ const Profile = () => {
   }
 
   const tabs = [
-    { code: 'owned', label: 'Owned', component: <TabAssets params={{ listedOnMarket: 'false' }} /> },
-    { code: 'listing', label: 'Listing', component: <TabAssets params={{ listedOnMarket: 'true' }} /> },
+    { code: 'owned', label: 'Owned', component: <TabInventory /> },
+    { code: 'listing', label: 'Listing', component: <TabListing /> },
   ];
 
   const [activeTab, onTabChange] = useTabs(tabs);

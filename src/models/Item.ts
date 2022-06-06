@@ -2,6 +2,8 @@ import { PaginateParamsType, PaginateType } from './Common';
 import { SaleType } from './Sale';
 import { UserType } from './User';
 
+export type RarityType = 'Common' | 'Rare' | 'Epic' | 'Legendary';
+
 export type ItemType = {
   id: string;
   name: string;
@@ -18,7 +20,7 @@ export type ItemType = {
     backgroundUrl: string;
     itemType: string;
     description: string;
-    rarity: string;
+    rarity: RarityType;
   };
   nftContract: string;
   tokenId: string;

@@ -22,10 +22,17 @@ module.exports = {
           500: '#64A030',
         },
         blue: {
+          300: '#0071BC',
           400: '#18446E',
         },
         neutral: {
           400: '#717171',
+        },
+        rarity: {
+          common: '#767676',
+          rare: '#0071BC',
+          epic: '#F27340',
+          legendary: '#F2A840',
         },
       },
     },

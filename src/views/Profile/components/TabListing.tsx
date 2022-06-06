@@ -6,34 +6,38 @@ import { useSelector } from 'react-redux';
 import { profileSelector } from 'reducers/profileSlice';
 import { publicRoute } from 'routes';
 import { marketSerivce } from 'services';
+import { CardItem } from 'views/Cards';
 
-const TabAssets = ({ params }: any) => {
+const TabListing = () => {
   const { address } = useSelector(profileSelector);
 
-  const [dataSearch, onSearchChange] = useSearch({ owner: address, ...params });
+  const [dataSearch, onSearchChange] = useSearch({ owner: address });
 
   const { data, isLoading } = useQuery(
-    ['marketSerivce.fetchItems', dataSearch],
-    () => marketSerivce.fetchItems(dataSearch),
+    ['marketSerivce.fetchSales', dataSearch],
+    () => marketSerivce.fetchSales(dataSearch),
     { keepPreviousData: true },
   );
   const { items = [], total, currentPage, pages: totalPage } = data ?? {};
 
   return (
     <div>
-      <div>{total} Assets</div>
+      <div className='mb-6'>
+        <div className=''>{total} Assets</div>
+      </div>
 
-      {items.map((item) => (
-        <Grid item key={item.id} lg={4} sm={6} xs={12}>
-          <NextLink href={publicRoute.itemView.url(item)!}>
-            <a>
-              {/* <CardItem item={item} isArtwork /> */}
-              {item.id}
-            </a>
-          </NextLink>
-        </Grid>
-      ))}
-      <div className='flex justify-center'>
+      <Grid container spacing={3}>
+        {items.map((item) => (
+          <Grid item key={item.id} lg={3} sm={6} xs={12}>
+            <NextLink href={publicRoute.itemView.url(item)!}>
+              <a>
+                <CardItem item={item} />
+              </a>
+            </NextLink>
+          </Grid>
+        ))}
+      </Grid>
+      <div className='flex justify-center my-8'>
         <Pagination
           page={currentPage ?? 1}
           count={totalPage}
@@ -44,4 +48,4 @@ const TabAssets = ({ params }: any) => {
   );
 };
 
-export default TabAssets;
+export default TabListing;
