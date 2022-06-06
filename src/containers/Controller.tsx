@@ -32,8 +32,10 @@ const Controller = ({ children }: any) => {
   return (
     <>
       <AppHeader />
-      <main>{isSuccess ? children : null}</main>
-      <AppFooter />
+      <main>
+        {isSuccess ? children : null}
+        <AppFooter />
+      </main>
     </>
   );
 };

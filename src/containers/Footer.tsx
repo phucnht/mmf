@@ -1,11 +1,10 @@
 import { AppBar, Button, Container, Grid, TextField, Toolbar } from '@mui/material';
-import { NextImage } from 'components';
 
 const Footer = () => {
   return (
-    <AppBar component='footer' position='static' elevation={0} color='transparent' className='relative'>
+    <AppBar component='footer' position='static' elevation={0} color='transparent' className='relative z-[1]'>
       <div
-        className='absolute bottom-0 left-0 right-0 -z-10 h-screen'
+        className='absolute bottom-0 left-0 right-0 -z-10 h-[600px]'
         style={{
           background: `url(${require('assets/images/metaverse-footer.png').default.src}) no-repeat bottom / contain`,
         }}
