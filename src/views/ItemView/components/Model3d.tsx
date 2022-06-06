@@ -2,7 +2,7 @@ import { OrbitControls, useFBX, useTexture } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { Suspense, useMemo } from 'react';
 
-const SCALE = 1.5;
+const SCALE = 1.2;
 
 const Model = ({ url, urlTexture, ...props }: any) => {
   const obj = useFBX(url);
