@@ -15,7 +15,7 @@ const ItemView = ({ item }: { item: ItemType }) => {
         </Grid>
         <Grid item md={6.5} className='flex flex-col items-start'>
           <div className='font-black text-2xl max-line-1'>{item.name}</div>
-          <div className='font-black text-base text-neutral-400'>#{item.tokenId}</div>
+          <div className='font-bold text-base text-neutral-400'>#{item.tokenId}</div>
           <div className='my-6'>
             <CardItem.Rarity rarity={item.external.rarity} />
           </div>
@@ -23,7 +23,7 @@ const ItemView = ({ item }: { item: ItemType }) => {
           <Grid container>
             <Grid item>
               <div className='font-semibold text-sm'>Owner:</div>
-              <div className='font-black'>{shorten(item.ownerAddress)}</div>
+              <div className='font-bold'>{shorten(item.ownerAddress)}</div>
             </Grid>
           </Grid>
         </Grid>

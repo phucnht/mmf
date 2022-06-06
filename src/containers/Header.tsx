@@ -19,7 +19,7 @@ const Header = () => {
 
   return (
     <AppBar position='sticky' elevation={0} style={{ background: '#F8F8F8' }}>
-      <Toolbar className='h-[96px]'>
+      <Toolbar className='h-[80px]'>
         <Container className='flex items-center'>
           <NextLink href={publicRoute.home.path}>
             <a className='flex items-center'>
