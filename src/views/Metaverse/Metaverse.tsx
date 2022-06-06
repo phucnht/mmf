@@ -8,8 +8,15 @@ import { TabEvents } from './components';
 
 const ButtonCloud = styled(Button)({
   background: `url(${require('assets/components/tab_cloud.png').default.src})`,
+  backgroundSize: 'cover',
   width: 210,
   height: 116,
+
+  '@media (max-width: 800px)': {
+    width: (210 * 2) / 3,
+    height: (116 * 2) / 3,
+    fontSize: '18px !important',
+  },
 });
 
 const Metaverse = () => {

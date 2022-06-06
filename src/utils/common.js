@@ -2,7 +2,7 @@ import { web3 } from 'contracts';
 
 export const formatNumber = (number) => Number(number ?? 0).toLocaleString();
 
-export const shorten = (address, head = 8, tail = 6) => {
+export const shorten = (address, head = 6, tail = 6) => {
   if (!web3.utils.isAddress(address)) return address;
   return address.slice(0, head) + '...' + address.slice(address.length - tail);
 };

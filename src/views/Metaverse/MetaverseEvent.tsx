@@ -13,7 +13,7 @@ const MetaverseEvent = ({ item: event }: { item: AirdropEvent }) => {
           <div className='font-semibold text-sm whitespace-pre-line'>{event.description}</div>
         </Container>
 
-        <Container maxWidth='lg' className='flex flex-col gap-10'>
+        <Container maxWidth='lg' className='flex flex-col gap-10 px-0'>
           {event.events.map((item) => (
             <CardAirdropItem key={item.id} item={item} event={event} />
           ))}

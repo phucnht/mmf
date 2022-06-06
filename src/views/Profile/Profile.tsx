@@ -25,14 +25,17 @@ const Profile = () => {
 
   return (
     <Container>
-      <CardMedia image={require('assets/images/profile-cover.png').default.src} className='h-[320px] rounded-xl'>
+      <CardMedia
+        image={require('assets/images/profile-cover.png').default.src}
+        className='md:h-[320px] h-[180px] rounded-xl'
+      >
         <div></div>
       </CardMedia>
-      <div className='-mt-[80px] pb-20'>
+      <div className='md:-mt-[80px] -mt-[60px] pb-20'>
         <div className='flex flex-col items-center gap-2 mb-10'>
           <Avatar
             src={require('assets/images/profile-avatar.png').default.src}
-            className='w-[120px] h-[120px] bg-red-100 border-2'
+            className='md:w-[120px] md:h-[120px] w-[100px] h-[100px] bg-red-100 border-2'
           />
           <div className='font-semibold text-sm text-neutral-400'>{shorten(address)}</div>
         </div>

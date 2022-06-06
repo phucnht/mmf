@@ -8,12 +8,12 @@ const ItemView = ({ item }: { item: ItemType }) => {
   return (
     <Container className='py-20'>
       <Grid container spacing={5}>
-        <Grid item md={6}>
-          <CardMedia image={item.external.backgroundUrl} className='h-[600px] relative p-8 border'>
+        <Grid item md={6} xs={12}>
+          <CardMedia image={item.external.backgroundUrl} className='md:h-[600px] h-[360px] relative p-8 border'>
             <Model3d urlModel={item.external.modelUrl} urlTexture={item.external.uvUrl} />
           </CardMedia>
         </Grid>
-        <Grid item md={6} className='flex flex-col items-start'>
+        <Grid item md={6} xs={12} className='flex flex-col items-start'>
           <div className='font-black text-2xl max-line-1'>{item.name}</div>
           <div className='font-bold text-base text-neutral-400'>#{item.tokenId}</div>
           <div className='my-6'>

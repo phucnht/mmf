@@ -45,20 +45,20 @@ const CardAirdropItem = ({ item, event }: { item: AirdropItem; event: AirdropEve
   );
 
   return (
-    <Paper className='p-10 rounded-[24px] shadow-md'>
+    <Paper className='md:p-10 p-4 rounded-[24px] shadow-md'>
       <Grid container spacing={5}>
-        <Grid item md={5.5}>
-          <div className='relative h-full'>
+        <Grid item md={5.5} xs={12}>
+          <div className='relative h-full min-h-[240px]'>
             <NextImage src={item.itemImage} layout='fill' objectFit='contain' />
           </div>
         </Grid>
-        <Grid item md={6.5} className='flex flex-col items-start gap-3'>
+        <Grid item md={6.5} xs={12} className='flex flex-col items-start gap-3'>
           <div className='bg-info-light text-white font-black rounded-[8px] px-3 py-1'>{event.name}</div>
           <div className='font-black text-2xl text-info-dark'>{item.name}</div>
 
           <div className='font-semibold text-sm whitespace-pre-line'>{item.description}</div>
           <div className='font-bold text-orange-700'>{item.condition}</div>
-          <div className='flex gap-6'>
+          <div className='flex md:flex-row flex-col md:gap-6 gap-3'>
             {isLoggedIn ? (
               <LoadingButton
                 className='w-40'

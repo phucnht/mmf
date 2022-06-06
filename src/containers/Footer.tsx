@@ -5,9 +5,9 @@ const Footer = () => {
     <AppBar component='footer' position='static' elevation={0} color='transparent' className='relative z-[1]'>
       <div
         style={{ background: `url(${require('assets/images/footer-background.png').default.src}) no-repeat bottom` }}
-        className='flex items-end h-[720px] bg-cover overflow-hidden'
+        className='flex items-end md:h-[720px] h-[320px] bg-cover overflow-hidden'
       >
-        <Container maxWidth='md' className='relative py-[160px]'>
+        <Container maxWidth='md' className='relative md:py-[160px] py-[40px]'>
           <img
             src={require('assets/images/footer-character.png').default.src}
             className='absolute -left-[240px] bottom-[80px]'
@@ -21,7 +21,7 @@ const Footer = () => {
             className='absolute -right-[580px] bottom-[20px] w-[600px]'
           />
           <Grid container spacing={4}>
-            <Grid item lg={7} className='flex flex-col items-start gap-3'>
+            <Grid item md={6.5} className='flex flex-col items-start gap-3'>
               <div className='font-black'>STAY IN THE LOOP</div>
               <div className='text-sm'>
                 Join our mailing list to stay in the loop with our newest feature releases, NFT drops, and tips and
@@ -32,9 +32,9 @@ const Footer = () => {
                 <Button>Subcribe</Button>
               </div>
             </Grid>
-            <Grid item lg={5} className='flex flex-col items-start gap-3'>
+            <Grid item md={5.5} className='flex flex-col items-start gap-3'>
               <div className='font-black'>JOIN OUR COMMUNITY</div>
-              <div className='flex gap-3'>
+              <div className='flex flex-wrap gap-3'>
                 {[
                   { url: '', icon: require('assets/icons/socials/facebook.svg').default.src },
                   { url: '', icon: require('assets/icons/socials/instagram.svg').default.src },

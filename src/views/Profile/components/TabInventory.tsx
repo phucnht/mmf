@@ -24,7 +24,7 @@ const TabInventory = () => {
 
       <Grid container spacing={3}>
         {items.map((item) => (
-          <Grid item key={item.id} lg={12 / 5} sm={6} xs={12}>
+          <Grid item lg={12 / 5} md={4} sm={6} xs={12} key={item.id}>
             <NextLink href={publicRoute.itemView.url(item)!}>
               <a>
                 <CardItem item={item} />

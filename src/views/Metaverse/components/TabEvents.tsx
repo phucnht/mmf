@@ -5,7 +5,7 @@ import { CardAirdropEvent } from 'views/Cards';
 
 const TabEvents = ({ items }: { items?: AirdropEvent[] }) => {
   return (
-    <Container maxWidth='lg' className='flex flex-col gap-10'>
+    <Container maxWidth='lg' className='flex flex-col gap-10 px-0'>
       {items ? (
         items.length > 0 ? (
           items.map((item) => <CardAirdropEvent key={item.id} item={item} />)

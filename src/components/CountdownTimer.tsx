@@ -15,9 +15,9 @@ const CountdownTimer = ({ endTime, onComplete }: { endTime: string; onComplete?:
               { label: 'Minutes', value: minutes },
               { label: 'Seconds', value: seconds },
             ].map((item, index) => (
-              <div key={index} className='w-[70px] rounded bg-white/50 p-1'>
-                <div className='font-black text-xl text-blue-400'>{item.value}</div>
-                <div className='font-semibold'>{item.label}</div>
+              <div key={index} className='md:w-[70px] w-[64px] rounded bg-white/50 p-1'>
+                <div className='font-black md:text-xl text-lg text-blue-400'>{item.value}</div>
+                <div className='font-semibold md:text-base text-sm'>{item.label}</div>
               </div>
             ))}
           </>
