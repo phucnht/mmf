@@ -24,7 +24,7 @@ const Profile = () => {
   const [activeTab, onTabChange] = useTabs(tabs);
 
   return (
-    <Container>
+    <Container className='pt-3'>
       <CardMedia
         image={require('assets/images/profile-cover.png').default.src}
         className='md:h-[320px] h-[180px] rounded-xl'
