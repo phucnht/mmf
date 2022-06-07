@@ -9,7 +9,14 @@ const PublicLayout = ({ children }: any) => {
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
-        <SnackbarProvider preventDuplicate anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
+        <SnackbarProvider
+          preventDuplicate
+          variant='success'
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+          }}
+        >
           <AppController>
             <>{children}</>
           </AppController>

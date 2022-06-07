@@ -1,5 +1,6 @@
 import { AirdropEvent } from 'models/Airdrop';
 import { ItemPaginateParams, ItemPaginateType, ItemType } from 'models/Item';
+import { CreateSaleBody, CreateSaleType, GetHashMessageParams, GetHashMessageType } from 'models/Sale';
 import { client } from './axios';
 
 const fetchAirdropEvents = (): Promise<AirdropEvent[]> => client.get(`/market-apis/api/airdrop-events`);
@@ -15,6 +16,11 @@ const fetchItems = (params: ItemPaginateParams): Promise<ItemPaginateType> =>
 
 const getItemById = ({ id }: { id: string }): Promise<ItemType> => client.get(`/market-apis/api/items/${id}`);
 
+const getHashMessage = (params: GetHashMessageParams): Promise<GetHashMessageType> =>
+  client.get(`/market-apis/api/sale-items/hash-message`, { params });
+const createSale = (body: CreateSaleBody): Promise<CreateSaleType> =>
+  client.post(`/market-apis/api/sale-items/create`, body);
+
 export default {
   fetchAirdropEvents,
   getAirdropEventById,
@@ -24,4 +30,6 @@ export default {
   fetchItems,
 
   getItemById,
+  getHashMessage,
+  createSale,
 };

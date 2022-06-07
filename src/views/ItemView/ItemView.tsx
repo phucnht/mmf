@@ -1,10 +1,18 @@
 import { CardMedia, Container, Grid } from '@mui/material';
 import { ItemType } from 'models/Item';
+import { useQuery } from 'react-query';
+import { marketService } from 'services';
 import { shorten } from 'utils/common';
 import { CardItem } from 'views/Cards';
-import { Model3d } from './components';
+import { Model3d, BoxPrice } from './components';
 
-const ItemView = ({ item }: { item: ItemType }) => {
+const ItemView = ({ item: apiItem }: { item: ItemType }) => {
+  const { data: item } = useQuery(
+    ['marketService.getItemById', { id: apiItem.id }],
+    () => marketService.getItemById({ id: apiItem.id }),
+    { placeholderData: apiItem },
+  ) as { data: ItemType };
+
   return (
     <Container className='py-20'>
       <Grid container spacing={5}>
@@ -26,6 +34,10 @@ const ItemView = ({ item }: { item: ItemType }) => {
               <div className='font-bold'>{shorten(item.ownerAddress)}</div>
             </Grid>
           </Grid>
+
+          <div className='flex-1 flex items-end'>
+            <BoxPrice item={item} />
+          </div>
         </Grid>
       </Grid>
     </Container>

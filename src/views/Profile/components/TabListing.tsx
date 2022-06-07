@@ -5,7 +5,7 @@ import { useQuery } from 'react-query';
 import { useSelector } from 'react-redux';
 import { profileSelector } from 'reducers/profileSlice';
 import { publicRoute } from 'routes';
-import { marketSerivce } from 'services';
+import { marketService } from 'services';
 import { CardItem } from 'views/Cards';
 
 const TabListing = () => {
@@ -14,8 +14,8 @@ const TabListing = () => {
   const [dataSearch, onSearchChange] = useSearch({ owner: address });
 
   const { data, isLoading } = useQuery(
-    ['marketSerivce.fetchSales', dataSearch],
-    () => marketSerivce.fetchSales(dataSearch),
+    ['marketService.fetchSales', dataSearch],
+    () => marketService.fetchSales(dataSearch),
     { keepPreviousData: true },
   );
   const { items = [], total, currentPage, pages: totalPage } = data ?? {};

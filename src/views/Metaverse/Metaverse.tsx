@@ -3,7 +3,7 @@ import { styled } from '@mui/styles';
 import { useTabs } from 'hooks';
 import { DateTime } from 'luxon';
 import { useQuery } from 'react-query';
-import { marketSerivce } from 'services';
+import { marketService } from 'services';
 import { TabEvents } from './components';
 
 const ButtonCloud = styled(Button)({
@@ -20,8 +20,8 @@ const ButtonCloud = styled(Button)({
 });
 
 const Metaverse = () => {
-  const { data: events } = useQuery(['marketSerivce.fetchAirdropEvents'], () =>
-    marketSerivce.fetchAirdropEvents().then((events) =>
+  const { data: events } = useQuery(['marketService.fetchAirdropEvents'], () =>
+    marketService.fetchAirdropEvents().then((events) =>
       events.map((event) => ({
         ...event,
         isStarted: DateTime.fromISO(event.fromDate) < DateTime.now(),

@@ -3,15 +3,15 @@ import { NextLink } from 'components';
 import { useSearch } from 'hooks';
 import { useQuery } from 'react-query';
 import { publicRoute } from 'routes';
-import { marketSerivce } from 'services';
+import { marketService } from 'services';
 import { CardItem } from 'views/Cards';
 
 const TabInventory = () => {
   const [dataSearch, onSearchChange] = useSearch();
 
   const { data, isLoading } = useQuery(
-    ['marketSerivce.fetchInventory', dataSearch],
-    () => marketSerivce.fetchInventory(dataSearch),
+    ['marketService.fetchInventory', dataSearch],
+    () => marketService.fetchInventory(dataSearch),
     { keepPreviousData: true },
   );
   const { items = [], total, currentPage, pages: totalPage } = data ?? {};

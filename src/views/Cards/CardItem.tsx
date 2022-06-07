@@ -17,7 +17,7 @@ const ChipItemRarity = ({ rarity }: { rarity: RarityType }) => (
 
 const CardItem = ({ item, onListing }: { item: ItemType; onListing?: boolean }) => {
   return (
-    <Paper elevation={0} className='p-5 rounded-[8px] hover:shadow-md'>
+    <Paper elevation={0} className='p-5 rounded-[8px] hover:shadow-card'>
       <div className='font-black text-2xl max-line-1'>{item.name}</div>
       <div className='font-semibold text-sm'>#{item.tokenId}</div>
       <CardMedia

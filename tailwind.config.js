@@ -35,6 +35,9 @@ module.exports = {
           legendary: '#F2A840',
         },
       },
+      boxShadow: {
+        card: '0px 0px 12px #F27340A0',
+      },
     },
   },
   variants: {},

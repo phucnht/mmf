@@ -30,8 +30,8 @@ export const appTheme = createTheme({
         root: {
           '& .MuiOutlinedInput-root.Mui-focused fieldset': {
             borderWidth: 1,
-            boxShadow: '0px 0px 4px 0px #FFDE48',
-            borderColor: '#FFDE48A0',
+            boxShadow: '0px 0px 4px 0px #FC9669',
+            borderColor: '#FC9669A0',
           },
         },
       },

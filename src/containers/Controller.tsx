@@ -24,7 +24,9 @@ const Controller = ({ children }: any) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const {} = useQuery(['fetchPayments'], () => systemService.fetchPayments());
+  const {} = useQuery(['fetchPayments'], () => systemService.fetchPayments(), {
+    staleTime: Infinity,
+  });
   const { isSuccess } = useQuery(['fetchConfig'], () => systemService.fetchConfig(), {
     onSuccess: (data) => dispatch(saveSystem(data)),
   });

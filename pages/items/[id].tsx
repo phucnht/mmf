@@ -3,13 +3,13 @@ import { ItemType } from 'models/Item';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { publicRoute } from 'routes';
-import { marketSerivce } from 'services';
+import { marketService } from 'services';
 import { ItemView } from 'views/ItemView';
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const { id } = params as { id: string };
   try {
-    const item = await marketSerivce.getItemById({ id });
+    const item = await marketService.getItemById({ id });
     return { props: { item } };
   } catch (error) {
     return {

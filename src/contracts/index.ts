@@ -12,6 +12,6 @@ export const web3 = new Web3();
 export const erc20Contract = (address: string) => new web3.eth.Contract(ERC20.abi as AbiItem[], address);
 export const erc721Contract = (address: string) => new web3.eth.Contract(ERC721.abi as AbiItem[], address);
 export const nftContract = (address: string) => new web3.eth.Contract(nftAbi as AbiItem[], address);
-export const marketplaceContract = (address: string) => new web3.eth.Contract(marketplaceAbi as AbiItem[], address);
+export const marketContract = (address: string) => new web3.eth.Contract(marketplaceAbi as AbiItem[], address);
 export const metaverseContract = (address: string) => new web3.eth.Contract(metaverseAbi as AbiItem[], address);
 export const whitelistContract = (address: string) => new web3.eth.Contract(whitelistAbi as AbiItem[], address);

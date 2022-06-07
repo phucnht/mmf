@@ -12,3 +12,27 @@ export type SaleType = {
   paymentTokenId: string;
   paymentToken: PaymentTokenType;
 };
+
+export type GetHashMessageParams = {
+  nftItemId: string;
+  paymentTokenId: string;
+  price: number;
+  saltNonce: number;
+  amount: number;
+  ownerAccept: boolean;
+};
+
+export type GetHashMessageType = {
+  hashMessage: string;
+};
+
+export type CreateSaleBody = {
+  nftItemId: string;
+  paymentTokenId: string;
+  price: number;
+  saltNonce: number;
+  amount: number;
+  signedSignature: string;
+};
+
+export type CreateSaleType = {};

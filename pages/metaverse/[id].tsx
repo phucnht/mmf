@@ -3,13 +3,13 @@ import { AirdropEvent } from 'models/Airdrop';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { publicRoute } from 'routes';
-import { marketSerivce } from 'services';
+import { marketService } from 'services';
 import { MetaverseEvent } from 'views/Metaverse';
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const { id } = params as { id: string };
   try {
-    const item = await marketSerivce.getAirdropEventById({ id });
+    const item = await marketService.getAirdropEventById({ id });
     return { props: { item } };
   } catch (error) {
     return {
