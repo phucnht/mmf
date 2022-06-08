@@ -3,6 +3,7 @@ import { Button, Grid, Paper } from '@mui/material';
 import { NextImage } from 'components';
 import { metaverseContract, whitelistContract } from 'contracts';
 import { AirdropEvent, AirdropItem } from 'models/Airdrop';
+import { useSnackbar } from 'notistack';
 import { useMutation, useQuery } from 'react-query';
 import { useSelector } from 'react-redux';
 import { profileSelector } from 'reducers/profileSlice';
@@ -11,6 +12,7 @@ import { queryClient, walletService } from 'services';
 import { getPolygonFee, randomTokenID } from 'utils/common';
 
 const CardAirdropItem = ({ item, event }: { item: AirdropItem; event: AirdropEvent }) => {
+  const { enqueueSnackbar } = useSnackbar();
   const { isLoggedIn, address } = useSelector(profileSelector);
   const { chainId: appChainId, metaverseContractAddress } = useSelector(systemSelector);
 
@@ -38,7 +40,7 @@ const CardAirdropItem = ({ item, event }: { item: AirdropItem; event: AirdropEve
     },
     {
       onSuccess: () => {
-        queryClient.invalidateQueries('fetchItems');
+        enqueueSnackbar('Claim airdrop successfully');
         queryClient.invalidateQueries('metaverseContract.metaverseEventClaims');
       },
     },

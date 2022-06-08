@@ -20,6 +20,7 @@ const getHashMessage = (params: GetHashMessageParams): Promise<GetHashMessageTyp
   client.get(`/market-apis/api/sale-items/hash-message`, { params });
 const createSale = (body: CreateSaleBody): Promise<CreateSaleType> =>
   client.post(`/market-apis/api/sale-items/create`, body);
+const deleteSale = ({ id }: { id: string }): Promise<any> => client.delete(`/market-apis/api/sale-items/${id}`);
 
 export default {
   fetchAirdropEvents,
@@ -32,4 +33,5 @@ export default {
   getItemById,
   getHashMessage,
   createSale,
+  deleteSale,
 };

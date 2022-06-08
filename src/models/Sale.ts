@@ -8,8 +8,7 @@ export type SaleType = {
   id: string;
   saleType: 1 | 2;
   price: number;
-  cancelled: boolean;
-  paymentTokenId: string;
+  signedSignature: string;
   paymentToken: PaymentTokenType;
 };
 
