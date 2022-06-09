@@ -28,7 +28,15 @@ const ItemView = ({ item: apiItem }: { item: ItemType }) => {
             <CardItem.Rarity rarity={item.external.rarity} />
           </div>
 
-          <Grid container>
+          <Grid container spacing={4}>
+            {item.listedOnMarket && (
+              <Grid item>
+                <div className='font-semibold text-sm'>Price:</div>
+                <div className='font-bold'>
+                  {item.sale?.price} {item.sale?.paymentToken.symbol}
+                </div>
+              </Grid>
+            )}
             <Grid item>
               <div className='font-semibold text-sm'>Owner:</div>
               <div className='font-bold'>{shorten(item.ownerAddress)}</div>

@@ -1,19 +1,18 @@
-import { Button, CardMedia, DialogActions, DialogContent, DialogTitle, Grid, MenuItem, TextField } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
+import { CardMedia, DialogActions, DialogContent, DialogTitle, Grid, MenuItem, TextField } from '@mui/material';
 import { CloseButton, InputNumber } from 'components';
-import { erc20Contract, erc721Contract, marketContract, web3 } from 'contracts';
-import { Controller, useForm } from 'react-hook-form';
+import { erc721Contract, web3 } from 'contracts';
 import { PopupController } from 'models/Common';
 import { ItemType } from 'models/Item';
-import { useState } from 'react';
+import { GetHashMessageParams } from 'models/Sale';
+import { useSnackbar } from 'notistack';
+import { Controller, useForm } from 'react-hook-form';
+import { useMutation, useQuery } from 'react-query';
 import { useSelector } from 'react-redux';
 import { profileSelector } from 'reducers/profileSlice';
 import { systemSelector } from 'reducers/systemSlice';
 import { marketService, queryClient, systemService } from 'services';
-import { useMutation, useQuery } from 'react-query';
-import { LoadingButton } from '@mui/lab';
 import { getPolygonFee } from 'utils/common';
-import { CreateSaleBody, GetHashMessageParams } from 'models/Sale';
-import { useSnackbar } from 'notistack';
 
 type PopupProps = PopupController & {
   item: ItemType;
@@ -102,7 +101,7 @@ const PopupListing = ({ item, onClose }: PopupProps) => {
                         inputComponent: InputNumber,
                         style: { borderTopRightRadius: 0, borderBottomRightRadius: 0 },
                       }}
-                      // disabled={isLoading || isTryAgain || isSuccess}
+                      disabled={isLoading}
                       error={invalid}
                       helperText={error?.message}
                     />
@@ -117,7 +116,7 @@ const PopupListing = ({ item, onClose }: PopupProps) => {
                       select
                       {...field}
                       InputProps={{ style: { borderTopLeftRadius: 0, borderBottomLeftRadius: 0, width: 100 } }}
-                      // disabled={isLoading || isTryAgain || isSuccess}
+                      disabled={isLoading}
                     >
                       {payments?.map((item) => (
                         <MenuItem key={item.id} value={item.id}>
@@ -131,15 +130,21 @@ const PopupListing = ({ item, onClose }: PopupProps) => {
             </div>
 
             <div className='flex-1 flex items-end'>
-              <LoadingButton variant='contained' color='secondary' loading={isLoading} onClick={handleClickSubmit}>
-                Put on market
+              <LoadingButton
+                variant='contained'
+                color='secondary'
+                className='w-40'
+                loading={isLoading}
+                onClick={handleClickSubmit}
+              >
+                {isLoading ? 'Processing' : 'Put on market'}
               </LoadingButton>
             </div>
           </Grid>
         </Grid>
       </DialogContent>
       <DialogActions></DialogActions>
-      <CloseButton onClick={onClose} />
+      <CloseButton onClick={onClose} disabled={isLoading} />
     </>
   );
 };
