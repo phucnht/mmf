@@ -27,9 +27,9 @@ const PopupCancel = ({ item, onClose }: PopupProps) => {
 
       await marketContract(marketplaceAddress)
         .methods.cancelSale(
-          item.sale?.saleType,
+          item.type,
           [address, item.nftContract, item.sale?.paymentToken.contractAddress],
-          [item.tokenId, item.sale?.price],
+          [item.tokenId, item.sale?.price, item.sale?.saltNonce, item.amount],
           item.sale?.signedSignature,
         )
         .send({

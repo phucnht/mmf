@@ -10,6 +10,7 @@ export type SaleType = {
   price: number;
   signedSignature: string;
   paymentToken: PaymentTokenType;
+  saltNonce: number;
 };
 
 export type GetHashMessageParams = {

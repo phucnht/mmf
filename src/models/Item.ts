@@ -22,6 +22,7 @@ export type ItemType = {
     description: string;
     rarity: RarityType;
   };
+  amount: number;
   nftContract: string;
   tokenId: string;
 };

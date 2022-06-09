@@ -30,8 +30,6 @@ const Metaverse = () => {
     ),
   );
 
-  console.log(events);
-
   const tabs = [
     {
       code: 'opening',
