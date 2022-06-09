@@ -44,7 +44,7 @@ const ItemView = ({ item: apiItem }: { item: ItemType }) => {
           </Grid>
 
           <div className='flex-1 flex items-end'>
-            <BoxPrice item={item} />
+            {/* <BoxPrice item={item} /> */}
           </div>
         </Grid>
       </Grid>
