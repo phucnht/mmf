@@ -1,19 +1,16 @@
-import { Button, CardMedia, DialogActions, DialogContent, DialogTitle, Grid, MenuItem, TextField } from '@mui/material';
-import { CloseButton, InputNumber } from 'components';
-import { erc20Contract, erc721Contract, marketContract, web3 } from 'contracts';
-import { Controller, useForm } from 'react-hook-form';
+import { LoadingButton } from '@mui/lab';
+import { CardMedia, DialogActions, DialogContent, DialogTitle, Grid } from '@mui/material';
+import { CloseButton } from 'components';
+import { erc20Contract, marketContract, web3 } from 'contracts';
 import { PopupController } from 'models/Common';
 import { ItemType } from 'models/Item';
-import { useState } from 'react';
+import { useSnackbar } from 'notistack';
+import { useMutation } from 'react-query';
 import { useSelector } from 'react-redux';
 import { profileSelector } from 'reducers/profileSlice';
 import { systemSelector } from 'reducers/systemSlice';
-import { marketService, queryClient, systemService } from 'services';
-import { useMutation, useQuery } from 'react-query';
-import { LoadingButton } from '@mui/lab';
+import { queryClient } from 'services';
 import { getPolygonFee } from 'utils/common';
-import { CreateSaleBody, GetHashMessageParams } from 'models/Sale';
-import { useSnackbar } from 'notistack';
 
 type PopupProps = PopupController & {
   item: ItemType;
@@ -24,41 +21,37 @@ const PopupBuy = ({ item, onClose }: PopupProps) => {
   const { address } = useSelector(profileSelector);
   const { chainId: appChainId, marketplaceAddress } = useSelector(systemSelector);
 
-  const { data: payments } = useQuery(['fetchPayments'], () => systemService.fetchPayments());
-
-  const { control, handleSubmit, getValues } = useForm();
-
   const { mutate, isLoading } = useMutation(
     async () => {
       const maxFeeForFast = (await getPolygonFee(+appChainId)) as number;
+      const priceInWei = web3.utils.toWei(item.sale?.price.toString()!, 'ether');
 
-      const isApprovedForAll = await erc721Contract(item.nftContract)
-        .methods.isApprovedForAll(address, marketplaceAddress)
+      const allowance = await erc20Contract(item.sale?.paymentToken.contractAddress!)
+        .methods.allowance(address, marketplaceAddress)
         .call();
-      if (!isApprovedForAll) {
-        await erc721Contract(item.nftContract)
-          .methods.setApprovalForAll(marketplaceAddress, true)
+      if (Number(allowance) < Number(priceInWei)) {
+        await erc20Contract(item.sale?.paymentToken.contractAddress!!)
+          .methods.approve(marketplaceAddress, web3.utils.toTwosComplement(-1))
           .send({
             from: address,
             gasPrice: Math.ceil(maxFeeForFast),
           });
       }
 
-      const payload = {
-        nftItemId: item.id,
-        saltNonce: new Date().getTime(),
-        ownerAccept: true,
-        ...getValues(),
-      } as GetHashMessageParams;
-
-      const { hashMessage: message } = await marketService.getHashMessage(payload);
-
-      const signedSignature = await web3.eth.personal.sign(message, address!, '');
-      return marketService.createSale({ ...payload, signedSignature });
+      return marketContract(marketplaceAddress)
+        .methods.matchTransaction(
+          [item.ownerAddress, item.nftContract, item.sale?.paymentToken.contractAddress],
+          [item.tokenId, priceInWei, item.sale?.saltNonce],
+          item.sale?.signedSignature,
+        )
+        .send({
+          from: address,
+          gasPrice: Math.ceil(maxFeeForFast),
+        });
     },
     {
       onSuccess: () => {
-        enqueueSnackbar('Put on market successfully');
+        enqueueSnackbar('Purchase item successfully');
         queryClient.invalidateQueries('marketService.getItemById');
         onClose();
       },
@@ -66,9 +59,7 @@ const PopupBuy = ({ item, onClose }: PopupProps) => {
   );
 
   const handleClickSubmit = () => {
-    handleSubmit(() => {
-      mutate();
-    })();
+    mutate();
   };
 
   return (
@@ -95,15 +86,21 @@ const PopupBuy = ({ item, onClose }: PopupProps) => {
             </div>
 
             <div className='flex-1 flex items-end'>
-              <LoadingButton variant='contained' color='secondary' loading={isLoading} onClick={handleClickSubmit}>
-                Buy now
+              <LoadingButton
+                variant='contained'
+                color='secondary'
+                className='w-40'
+                loading={isLoading}
+                onClick={handleClickSubmit}
+              >
+                {isLoading ? 'Processing' : 'Buy now'}
               </LoadingButton>
             </div>
           </Grid>
         </Grid>
       </DialogContent>
       <DialogActions></DialogActions>
-      <CloseButton onClick={onClose} />
+      <CloseButton onClick={onClose} disabled={isLoading} />
     </>
   );
 };

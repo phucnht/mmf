@@ -1,7 +1,7 @@
 import { LoadingButton } from '@mui/lab';
 import { CardMedia, DialogActions, DialogContent, DialogTitle, Grid } from '@mui/material';
 import { CloseButton } from 'components';
-import { marketContract } from 'contracts';
+import { marketContract, web3 } from 'contracts';
 import { PopupController } from 'models/Common';
 import { ItemType } from 'models/Item';
 import { useSnackbar } from 'notistack';
@@ -24,12 +24,13 @@ const PopupCancel = ({ item, onClose }: PopupProps) => {
   const { mutate, isLoading } = useMutation(
     async () => {
       const maxFeeForFast = (await getPolygonFee(+appChainId)) as number;
+      const priceInWei = web3.utils.toWei(item.sale?.price.toString()!, 'ether');
 
       await marketContract(marketplaceAddress)
         .methods.cancelSale(
           item.type,
           [address, item.nftContract, item.sale?.paymentToken.contractAddress],
-          [item.tokenId, item.sale?.price, item.sale?.saltNonce, item.amount],
+          [item.tokenId, priceInWei, item.sale?.saltNonce, item.amount],
           item.sale?.signedSignature,
         )
         .send({
@@ -76,15 +77,21 @@ const PopupCancel = ({ item, onClose }: PopupProps) => {
             </div>
 
             <div className='flex-1 flex items-end'>
-              <LoadingButton variant='contained' color='secondary' loading={isLoading} onClick={handleClickSubmit}>
-                Cancel listing
+              <LoadingButton
+                variant='contained'
+                color='secondary'
+                className='w-40'
+                loading={isLoading}
+                onClick={handleClickSubmit}
+              >
+                {isLoading ? 'Processing' : 'Cancel listing'}
               </LoadingButton>
             </div>
           </Grid>
         </Grid>
       </DialogContent>
       <DialogActions></DialogActions>
-      <CloseButton onClick={onClose} />
+      <CloseButton onClick={onClose} disabled={isLoading} />
     </>
   );
 };

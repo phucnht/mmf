@@ -130,15 +130,21 @@ const PopupListing = ({ item, onClose }: PopupProps) => {
             </div>
 
             <div className='flex-1 flex items-end'>
-              <LoadingButton variant='contained' color='secondary' loading={isLoading} onClick={handleClickSubmit}>
-                Put on market
+              <LoadingButton
+                variant='contained'
+                color='secondary'
+                className='w-40'
+                loading={isLoading}
+                onClick={handleClickSubmit}
+              >
+                {isLoading ? 'Processing' : 'Put on market'}
               </LoadingButton>
             </div>
           </Grid>
         </Grid>
       </DialogContent>
       <DialogActions></DialogActions>
-      <CloseButton onClick={onClose} />
+      <CloseButton onClick={onClose} disabled={isLoading} />
     </>
   );
 };

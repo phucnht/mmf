@@ -1,20 +1,21 @@
 import { LoadingButton } from '@mui/lab';
-import { Button, Grid, Paper } from '@mui/material';
+import { Button, Dialog, Grid, Paper } from '@mui/material';
 import { NextImage } from 'components';
 import { metaverseContract, whitelistContract } from 'contracts';
 import { AirdropEvent, AirdropItem } from 'models/Airdrop';
-import { useSnackbar } from 'notistack';
-import { useMutation, useQuery } from 'react-query';
+import { useState } from 'react';
+import { useQuery } from 'react-query';
 import { useSelector } from 'react-redux';
 import { profileSelector } from 'reducers/profileSlice';
 import { systemSelector } from 'reducers/systemSlice';
-import { queryClient, walletService } from 'services';
-import { getPolygonFee, randomTokenID } from 'utils/common';
+import { walletService } from 'services';
+import { PopupAirdrop } from '.';
 
 const CardAirdropItem = ({ item, event }: { item: AirdropItem; event: AirdropEvent }) => {
-  const { enqueueSnackbar } = useSnackbar();
   const { isLoggedIn, address } = useSelector(profileSelector);
-  const { chainId: appChainId, metaverseContractAddress } = useSelector(systemSelector);
+  const { metaverseContractAddress } = useSelector(systemSelector);
+
+  const [isOpenClaim, setOpenClaim] = useState(false);
 
   const { data: isInWhitelist } = useQuery(
     ['whitelistContract.isInWhitelist', { contract: item.whitelistContract, address }],
@@ -26,24 +27,6 @@ const CardAirdropItem = ({ item, event }: { item: AirdropItem; event: AirdropEve
     ['metaverseContract.metaverseEventClaims', { onchainId: item.onchainId, address }],
     () => metaverseContract(metaverseContractAddress).methods.metaverseEventClaims(item.onchainId, address).call(),
     { enabled: isLoggedIn },
-  );
-
-  const { mutate: claim, isLoading } = useMutation(
-    async () => {
-      const maxFeeForFast = (await getPolygonFee(+appChainId)) as number;
-      return metaverseContract(metaverseContractAddress)
-        .methods.claim721Event(item.onchainId, randomTokenID())
-        .send({
-          from: address,
-          gasPrice: Math.ceil(maxFeeForFast),
-        });
-    },
-    {
-      onSuccess: () => {
-        enqueueSnackbar('Claim airdrop successfully');
-        queryClient.invalidateQueries('metaverseContract.metaverseEventClaims');
-      },
-    },
   );
 
   return (
@@ -66,8 +49,7 @@ const CardAirdropItem = ({ item, event }: { item: AirdropItem; event: AirdropEve
                 className='w-40'
                 variant='contained'
                 disabled={!isInWhitelist || alreadyClaimed}
-                loading={isLoading}
-                onClick={() => claim()}
+                onClick={() => setOpenClaim(true)}
               >
                 CLAIM
               </LoadingButton>
@@ -77,6 +59,9 @@ const CardAirdropItem = ({ item, event }: { item: AirdropItem; event: AirdropEve
               </Button>
             )}
           </div>
+          <Dialog open={isOpenClaim} fullWidth maxWidth='sm'>
+            <PopupAirdrop item={item} onClose={() => setOpenClaim(false)} />
+          </Dialog>
         </Grid>
       </Grid>
     </Paper>
