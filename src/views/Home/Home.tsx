@@ -1,14 +1,7 @@
-import { Container } from '@mui/material';
+import { Metaverse } from 'views/Metaverse';
 
 const Home = () => {
-  return (
-    <Container>
-      <div className='text-center p-20'>
-        <div className='font-bold text-2xl text-secondary-main'>Home</div>
-        <div className='font-bold'>coming soon</div>
-      </div>
-    </Container>
-  );
+  return <Metaverse />;
 };
 
 export default Home;

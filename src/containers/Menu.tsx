@@ -37,7 +37,7 @@ const Menu = () => {
     <>
       <NavItem {...home} />
       <NavItem {...marketplace} />
-      <NavItem {...metaverse} />
+      {/* <NavItem {...metaverse} /> */}
     </>
   );
 };
