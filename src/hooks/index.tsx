@@ -1,5 +1,6 @@
 export { default as useNotification } from './useNotification';
 export { default as useRequiredLogin } from './useRequiredLogin';
+export { default as useValidNetwork } from './useValidNetwork';
 
 export { default as useTabs } from './useTabs';
 export { default as useSearch } from './useSearch';

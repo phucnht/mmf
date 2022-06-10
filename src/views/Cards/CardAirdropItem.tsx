@@ -2,6 +2,7 @@ import { LoadingButton } from '@mui/lab';
 import { Button, Dialog, Grid, Paper } from '@mui/material';
 import { NextImage } from 'components';
 import { metaverseContract, whitelistContract } from 'contracts';
+import { useValidNetwork } from 'hooks';
 import { AirdropEvent, AirdropItem } from 'models/Airdrop';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
@@ -14,6 +15,7 @@ import { PopupAirdrop } from '.';
 const CardAirdropItem = ({ item, event }: { item: AirdropItem; event: AirdropEvent }) => {
   const { isLoggedIn, address } = useSelector(profileSelector);
   const { metaverseContractAddress } = useSelector(systemSelector);
+  const { validNetwork } = useValidNetwork();
 
   const [isOpenClaim, setOpenClaim] = useState(false);
 
@@ -49,12 +51,12 @@ const CardAirdropItem = ({ item, event }: { item: AirdropItem; event: AirdropEve
                 className='w-40'
                 variant='contained'
                 disabled={!isInWhitelist || alreadyClaimed}
-                onClick={() => setOpenClaim(true)}
+                onClick={() => validNetwork(() => setOpenClaim(true))}
               >
                 CLAIM
               </LoadingButton>
             ) : (
-              <Button className='w-40' onClick={() => walletService.connectWallet()}>
+              <Button className='w-40' onClick={() => validNetwork(walletService.connectWallet)}>
                 Connect Wallet
               </Button>
             )}

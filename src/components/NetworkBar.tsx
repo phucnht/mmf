@@ -1,46 +1,26 @@
 import { Button, CircularProgress, Dialog, DialogContent, Typography } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { systemSelector } from 'reducers/systemSlice';
+import { useValidNetwork } from 'hooks';
+import { useEffect, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { networkSelector } from 'reducers/networkSlice';
 
 const isMobile = () => {
   const mobiles = [/Android/i, /webOS/i, /iPhone/i, /iPad/i, /iPod/i, /BlackBerry/i, /Windows Phone/i];
   return mobiles.some((matches) => navigator.userAgent.match(matches));
 };
 
-const TESTNET = {
-  chainName: 'Polygon Mumbai Testnet',
-  chainId: '0x13881',
-  nativeCurrency: { name: 'MATIC', symbol: 'MATIC', decimals: 18 },
-  rpcUrls: ['https://matic-mumbai.chainstacklabs.com'],
-  blockExplorerUrls: ['https://mumbai.polygonscan.com/'],
-};
-
-const MAINNET = {
-  chainName: 'Polygon Mainnet',
-  chainId: '0x89',
-  nativeCurrency: { name: 'MATIC', symbol: 'MATIC', decimals: 18 },
-  rpcUrls: ['https://polygon-rpc.com'],
-  blockExplorerUrls: ['https://polygonscan.com'],
-};
-
 const NetworkBar = () => {
-  const dispatch = useDispatch();
-  const { chainId: appChainId } = useSelector(systemSelector);
+  const { network } = useValidNetwork();
+  const { onOpen } = useSelector(networkSelector);
 
-  const [chainId, setChainId] = useState(window.ethereum?.chainId);
-  const network = appChainId === '137' ? MAINNET : TESTNET;
+  const [isOpenSwitch, setOpenSwitch] = useState(false);
 
-  const handleConnectWallet = async () => {
+  const handleSwitchNetwork = async () => {
     try {
-      if (network.chainId !== window.ethereum.chainId)
-        await window.ethereum.request({
-          method: 'wallet_switchEthereumChain',
-          params: [{ chainId: network.chainId }],
-        });
-      else {
-        setChainId(network.chainId);
-      }
+      await window.ethereum.request({
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: network.chainId }],
+      });
     } catch (error: any) {
       if (error.code === 4902) {
         await window.ethereum.request({
@@ -51,13 +31,24 @@ const NetworkBar = () => {
     }
   };
 
+  const lastUpdate = useRef(onOpen);
+
   useEffect(() => {
-    window.ethereum?.on('chainChanged', setChainId);
-  }, [dispatch]);
+    if (onOpen && lastUpdate.current !== onOpen) {
+      lastUpdate.current = onOpen;
+      setOpenSwitch(true);
+    } else {
+      setOpenSwitch(false);
+    }
+  }, [onOpen]);
+
+  useEffect(() => {
+    window.ethereum?.on('chainChanged', () => setOpenSwitch(false));
+  }, []);
 
   return (
     <div hidden={isMobile()}>
-      <Dialog open={chainId && chainId !== network.chainId && !!appChainId}>
+      <Dialog open={isOpenSwitch} onClose={() => setOpenSwitch(false)}>
         <DialogContent className='px-16 py-8'>
           <div className='flex flex-col items-center'>
             <CircularProgress color='secondary' />
@@ -68,7 +59,7 @@ const NetworkBar = () => {
             <Button
               color='primary'
               startIcon={<img src={require('assets/icons/MetaMask.png').default.src} />}
-              onClick={handleConnectWallet}
+              onClick={handleSwitchNetwork}
             >
               {network.chainName}
             </Button>

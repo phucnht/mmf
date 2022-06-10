@@ -3,9 +3,8 @@ import { AppBar, Button, Container, IconButton, Menu, MenuItem, Toolbar } from '
 import { styled } from '@mui/system';
 import { NetworkBar, NextImage, NextLink } from 'components';
 import { AppMenu } from 'containers';
-import { useAnchor } from 'hooks';
+import { useAnchor, useValidNetwork } from 'hooks';
 import { useState } from 'react';
-import { useMutation } from 'react-query';
 import { useDispatch, useSelector } from 'react-redux';
 import { profileSelector, signOut } from 'reducers/profileSlice';
 import { publicRoute } from 'routes';
@@ -21,12 +20,11 @@ const StyledListItem = styled(MenuItem)({
 
 const Header = () => {
   const dispatch = useDispatch();
+  const { validNetwork } = useValidNetwork();
   const { isLoggedIn, address } = useSelector(profileSelector);
 
   const [showMenu, setShowMenu] = useState(false);
   const [anchorMenu, openMenu, onOpenMenu, onCloseMenu] = useAnchor();
-
-  const { mutate: connectWallet } = useMutation(walletService.connectWallet);
 
   return (
     <AppBar position='sticky' elevation={0} style={{ background: '#F8F8F8' }}>
@@ -60,7 +58,7 @@ const Header = () => {
               </>
             ) : (
               <>
-                <Button onClick={() => connectWallet()}>Connect Wallet</Button>
+                <Button onClick={() => validNetwork(walletService.connectWallet)}>Connect Wallet</Button>
               </>
             )}
           </div>
