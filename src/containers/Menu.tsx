@@ -41,6 +41,12 @@ const Menu = () => {
       <a href='https://mymetafarm.helpshift.com/hc/en' target='_blank' rel='noreferrer'>
         <StyledListItem>Support Center</StyledListItem>
       </a>
+      <a href='https://news.mymetafarm.com' target='_blank' rel='noreferrer'>
+        <StyledListItem>News</StyledListItem>
+      </a>
+      <a href='https://docs.mymetafarm.com' target='_blank' rel='noreferrer'>
+        <StyledListItem>Whitepaper</StyledListItem>
+      </a>
     </>
   );
 };
