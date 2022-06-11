@@ -1,7 +1,7 @@
 const publicRoute = {
   home: {
     path: '/',
-    name: 'Metaverse',
+    name: 'Home',
   },
   profile: {
     path: '/profile',
