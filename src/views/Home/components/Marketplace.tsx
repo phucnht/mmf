@@ -43,7 +43,7 @@ const Marketplace = () => {
     >
       <Container className='py-20 z-10 relative'>
         <div className='home-title text-center'>MARKETPLACE</div>
-        <div className='font-bold text-2xl w-[640px] text-center mx-auto'>
+        <div className='font-bold text-2xl max-w-[640px] text-center mx-auto'>
           Where players exchange various digital assets generated in the Metaverse and experience the trading platform
           on the website or even in the game.
         </div>

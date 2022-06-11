@@ -75,4 +75,9 @@
   -webkit-text-stroke: 3px white;
   font-weight: 900;
   font-size: 80px;
+
+  @media (max-width: 600px) {
+    font-size: 48px;
+    -webkit-text-stroke: 2px white;
+  }
 }

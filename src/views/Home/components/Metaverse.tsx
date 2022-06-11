@@ -10,7 +10,7 @@ const Metaverse = () => {
       <Container className='py-20 z-10 relative'>
         <div>
           <div className='home-title text-right'>METAVERSE - CITY</div>
-          <div className='font-bold text-2xl w-[640px] ml-auto text-right text-red-100'>
+          <div className='font-bold text-2xl max-w-[640px] ml-auto text-right text-red-100'>
             Where citizens can play, build, own, and monetize virtual experiences. A virtual world allows interacting,
             exchanging, socializing seamlessly with multi other worlds
           </div>
