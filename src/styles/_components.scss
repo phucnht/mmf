@@ -66,3 +66,13 @@
     display: flex !important;
   }
 }
+
+.home-title {
+  font-family: Exo;
+  background: linear-gradient(180deg, #f7da3b 16.67%, #e5492b 78.65%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 3px white;
+  font-weight: 900;
+  font-size: 80px;
+}

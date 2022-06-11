@@ -37,7 +37,7 @@ const Menu = () => {
     <>
       <NavItem {...home} />
       <NavItem {...marketplace} />
-      {/* TODO <NavItem {...metaverse} /> */}
+      <NavItem {...metaverse} />
       <a href='https://mymetafarm.helpshift.com/hc/en' target='_blank' rel='noreferrer'>
         <StyledListItem>Support Center</StyledListItem>
       </a>
