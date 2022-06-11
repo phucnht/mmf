@@ -1,18 +1,20 @@
 import { CardMedia, Container, Grid } from '@mui/material';
 import { ItemType } from 'models/Item';
+import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
 import { marketService } from 'services';
 import { shorten } from 'utils/common';
 import { CardItem } from 'views/Cards';
 import { Model3d, BoxPrice } from './components';
 
-const ItemView = ({ item: apiItem }: { item: ItemType }) => {
-  const { data: item } = useQuery(
-    ['marketService.getItemById', { id: apiItem.id }],
-    () => marketService.getItemById({ id: apiItem.id }),
-    { placeholderData: apiItem },
-  ) as { data: ItemType };
+const ItemView = () => {
+  const { query } = useRouter();
 
+  const { data: item, isSuccess } = useQuery(['marketService.getItemById', { id: query.id }], () =>
+    marketService.getItemById({ id: query.id as string }),
+  ) as { data: ItemType; isSuccess: boolean };
+
+  if (!isSuccess) return <></>;
   return (
     <Container className='py-20'>
       <Grid container spacing={5}>
@@ -44,7 +46,7 @@ const ItemView = ({ item: apiItem }: { item: ItemType }) => {
           </Grid>
 
           <div className='flex-1 flex items-end'>
-            {/* TODO <BoxPrice item={item} /> */}
+            <BoxPrice item={item} />
           </div>
         </Grid>
       </Grid>

@@ -1,40 +1,10 @@
 import { PublicLayout } from 'layouts';
-import { AirdropEvent } from 'models/Airdrop';
-import { GetServerSideProps } from 'next';
-import Head from 'next/head';
-import { publicRoute } from 'routes';
-import { marketService } from 'services';
 import { MetaverseEvent } from 'views/Metaverse';
 
-export const getServerSidePropsSkip: GetServerSideProps = async ({ params }) => {
-  const { id } = params as { id: string };
-  try {
-    const item = await marketService.getAirdropEventById({ id });
-    return { props: { item } };
-  } catch (error) {
-    return {
-      redirect: {
-        destination: publicRoute.home.path,
-        permanent: false,
-      },
-    };
-  }
-};
-
-const Home = ({ item }: { item?: AirdropEvent }) => {
+const Home = () => {
   return (
     <PublicLayout>
-      {item ? (
-        <Head>
-          <meta property='og:title' content={`${item.name} - Airdrop Event`} key='title' />
-          <meta property='og:description' content={item.description} key='description' />
-          <meta property='og:image' content={item.itemImage} key='image' />
-        </Head>
-      ) : (
-        <></>
-      )}
-
-      <MetaverseEvent item={item} />
+      <MetaverseEvent />
     </PublicLayout>
   );
 };
