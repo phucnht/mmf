@@ -20,7 +20,10 @@ const CardItem = ({ item, onListing }: { item: ItemType; onListing?: boolean }) 
     <Paper elevation={0} className='p-5 rounded-[8px] hover:shadow-card'>
       <div className='font-black text-2xl max-line-1'>{item.name}</div>
       <div className='font-semibold text-sm'>#{item.tokenId}</div>
-      <CardMedia image={item.external.iconUrl} className='flex justify-center items-center h-[240px] relative p-8 mt-3'>
+      <CardMedia
+        image={item.external.iconUrl}
+        className='flex justify-center items-center h-[240px] relative rounded-[8px] p-8 mt-3'
+      >
         <div className='absolute top-3 left-3'>
           <ChipItemRarity rarity={item.external.rarity} />
         </div>
