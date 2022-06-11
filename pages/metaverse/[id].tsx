@@ -6,7 +6,7 @@ import { publicRoute } from 'routes';
 import { marketService } from 'services';
 import { MetaverseEvent } from 'views/Metaverse';
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+export const getServerSidePropsSkip: GetServerSideProps = async ({ params }) => {
   const { id } = params as { id: string };
   try {
     const item = await marketService.getAirdropEventById({ id });
@@ -21,14 +21,18 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   }
 };
 
-const Home = ({ item }: { item: AirdropEvent }) => {
+const Home = ({ item }: { item?: AirdropEvent }) => {
   return (
     <PublicLayout>
-      <Head>
-        <meta property='og:title' content={`${item.name} - Airdrop Event`} key='title' />
-        <meta property='og:description' content={item.description} key='description' />
-        <meta property='og:image' content={item.itemImage} key='image' />
-      </Head>
+      {item ? (
+        <Head>
+          <meta property='og:title' content={`${item.name} - Airdrop Event`} key='title' />
+          <meta property='og:description' content={item.description} key='description' />
+          <meta property='og:image' content={item.itemImage} key='image' />
+        </Head>
+      ) : (
+        <></>
+      )}
 
       <MetaverseEvent item={item} />
     </PublicLayout>

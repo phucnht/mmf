@@ -7,31 +7,31 @@ const items = [
     id: 1,
     name: 'Grandslam Cap',
     tokenId: 18712375,
-    external: { rarity: 'Common', iconUrl: require('../assets/images/market-Cap.webp').default.src },
+    external: { rarity: 'Rare', iconUrl: require('../assets/images/market-Cap.webp').default.src },
   },
   {
     id: 2,
     name: 'Grandslam Glasses',
     tokenId: 18712376,
-    external: { rarity: 'Common', iconUrl: require('../assets/images/market-Glasses.webp').default.src },
+    external: { rarity: 'Rare', iconUrl: require('../assets/images/market-Glasses.webp').default.src },
   },
   {
     id: 3,
     name: 'Grandslam Shirt',
     tokenId: 18712377,
-    external: { rarity: 'Common', iconUrl: require('../assets/images/market-Shirt.webp').default.src },
+    external: { rarity: 'Rare', iconUrl: require('../assets/images/market-Shirt.webp').default.src },
   },
   {
     id: 4,
     name: 'Grandslam Shoes',
     tokenId: 18712378,
-    external: { rarity: 'Common', iconUrl: require('../assets/images/market-Shoes.webp').default.src },
+    external: { rarity: 'Rare', iconUrl: require('../assets/images/market-Shoes.webp').default.src },
   },
   {
     id: 5,
     name: 'Grandslam Bag',
     tokenId: 18712379,
-    external: { rarity: 'Common', iconUrl: require('../assets/images/market-Bag.webp').default.src },
+    external: { rarity: 'Rare', iconUrl: require('../assets/images/market-Bag.webp').default.src },
   },
 ];
 
