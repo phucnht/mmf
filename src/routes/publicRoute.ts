@@ -1,13 +1,8 @@
 const publicRoute = {
   home: {
     path: '/',
-    name: 'Home',
+    name: 'Metaverse',
   },
-  profile: {
-    path: '/profile',
-    name: 'Profile',
-  },
-
   marketplace: {
     path: '/marketplace',
     name: 'Marketplace',
@@ -24,6 +19,11 @@ const publicRoute = {
   itemView: {
     path: '/items',
     url: ({ id }: { id: string }) => `/items/${id}`,
+  },
+
+  profile: {
+    path: '/profile',
+    name: 'Profile',
   },
 };
 

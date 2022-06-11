@@ -1,10 +1,11 @@
 import { PublicLayout } from 'layouts';
 import { Home } from 'views/Home';
+import { Metaverse } from 'views/Metaverse';
 
 const Page = () => {
   return (
     <PublicLayout>
-      <Home />
+      <Metaverse />
     </PublicLayout>
   );
 };
