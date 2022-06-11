@@ -77,7 +77,14 @@
   font-size: 80px;
 
   @media (max-width: 600px) {
-    font-size: 48px;
+    margin-bottom: 12px;
+    font-size: 44px;
+    line-height: 48px;
     -webkit-text-stroke: 2px white;
+
+    + .font-bold.text-2xl {
+      font-size: 20px !important;
+      line-height: 24px !important;
+    }
   }
 }

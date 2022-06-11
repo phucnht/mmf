@@ -12,10 +12,10 @@ const Minigame = () => {
       />
       <img
         src={require('../assets/images/game-footer-right.png').default.src}
-        className='absolute right-0 -bottom-[60px] w-[360px] z-10 hidden md:block'
+        className='absolute right-0 -bottom-[60px] w-[360px] z-10 hidden lg:block'
       />
 
-      <Container className='py-20 pb-60 z-10 relative'>
+      <Container className='py-20 pb-96 lg:pb-60 z-10 relative'>
         <Grid container spacing={5}>
           <Grid item lg={6}>
             <div>

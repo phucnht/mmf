@@ -11,7 +11,7 @@ const Event = () => {
       <Container className='py-20 z-10 relative'>
         <img
           src={require('../assets/images/home-logo.webp').default.src}
-          className='max-w-[60vw] mx-auto md:-mt-[180px]'
+          className='max-w-[60vw] mx-auto mb-[20px] md:-mt-[180px]'
         />
         <div className='home-title text-center'>EVENTS</div>
         <div className='font-bold text-2xl text-center'>LATEST UPDATE ABOUT MY META FARM{"'"}S EVENTS AND NEWS</div>
