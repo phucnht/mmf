@@ -13,11 +13,9 @@ const TabListing = () => {
 
   const [dataSearch, onSearchChange] = useSearch({ owner: address });
 
-  const { data, isLoading } = useQuery(
-    ['marketService.fetchSales', dataSearch],
-    () => marketService.fetchSales(dataSearch),
-    { keepPreviousData: true },
-  );
+  const { data } = useQuery(['marketService.fetchSales', dataSearch], () => marketService.fetchSales(dataSearch), {
+    keepPreviousData: true,
+  });
   const { items = [], total, currentPage, pages: totalPage } = data ?? {};
 
   return (
@@ -28,7 +26,7 @@ const TabListing = () => {
 
       <Grid container spacing={3}>
         {items.map((item) => (
-          <Grid item lg={3} md={4} sm={6} xs={12} key={item.id}>
+          <Grid item xl={12 / 5} lg={3} md={4} sm={6} xs={12} key={item.id}>
             <NextLink href={publicRoute.itemView.url(item)!}>
               <a>
                 <CardItem item={item} />

@@ -50,7 +50,7 @@ const Marketplace = () => {
 
         <Grid container spacing={3} className='mt-6'>
           {items.map((item: any) => (
-            <Grid item lg={12 / 5} md={4} sm={6} xs={12} key={item.id}>
+            <Grid item xl={12 / 5} lg={3} md={4} sm={6} xs={12} key={item.id}>
               <CardItem item={item as ItemType} />
             </Grid>
           ))}
