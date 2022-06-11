@@ -1,4 +1,4 @@
-import { Button, Container } from '@mui/material';
+import { Button, CardMedia, Container } from '@mui/material';
 import { styled } from '@mui/styles';
 import { useTabs } from 'hooks';
 import { DateTime } from 'luxon';
@@ -47,8 +47,31 @@ const Metaverse = () => {
 
   return (
     <div style={{ background: 'linear-gradient(180deg, #C1F1FF 0%, #C1F1FF 30%, #C1F1FF00 100%)' }}>
+      <CardMedia
+        component='video'
+        src={require('assets/videos/metaverse-web.mp4')}
+        autoPlay
+        loop
+        muted
+        controls={false}
+        className='hidden sm:block'
+      >
+        <div></div>
+      </CardMedia>
+      <CardMedia
+        component='video'
+        src={require('assets/videos/metaverse-mobile.mp4')}
+        autoPlay
+        loop
+        muted
+        controls={false}
+        className='block sm:hidden'
+      >
+        <div></div>
+      </CardMedia>
+
       <Container className='pb-20'>
-        <img src={require('assets/images/metaverse.gif').default.src} className='w-full' />
+        {/* <img src={require('assets/images/metaverse.gif').default.src} className='w-full' /> */}
         <div className='flex justify-center gap-6 mt-20'>
           {tabs.map((tab) => (
             <ButtonCloud

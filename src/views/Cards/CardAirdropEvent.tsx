@@ -15,7 +15,7 @@ const CardAirdropEvent = ({ item }: { item: AirdropEvent }) => {
         <Grid item md={6.5} xs={12} className='flex flex-col items-start gap-3'>
           <div className='bg-info-light text-white font-black rounded-[8px] px-3 py-1'>{item.name}</div>
           <div className='font-black text-2xl text-info-dark'>AIRDROP EVENT</div>
-          <CountdownTimer endTime={item.toDate} />
+          <CountdownTimer endTime={item.isStarted ? item.toDate : item.fromDate} />
 
           <div className='font-semibold text-sm whitespace-pre-line'>{item.description}</div>
           <div className='font-bold text-orange-700'>{item.condition}</div>
