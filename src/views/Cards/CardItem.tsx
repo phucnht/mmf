@@ -2,7 +2,7 @@ import { CardMedia, Paper } from '@mui/material';
 import { ItemType, RarityType } from 'models/Item';
 import { merge } from 'utils/common';
 
-const ChipItemRarity = ({ rarity }: { rarity: RarityType }) => (
+export const ChipItemRarity = ({ rarity }: { rarity: RarityType }) => (
   <div
     className={merge('px-2 py-1 rounded-[8px]', {
       'bg-rarity-common': rarity === 'Common',
@@ -15,7 +15,7 @@ const ChipItemRarity = ({ rarity }: { rarity: RarityType }) => (
   </div>
 );
 
-const CardItem = ({ item, onListing }: { item: ItemType; onListing?: boolean }) => {
+const CardItem = ({ item }: { item: ItemType }) => {
   return (
     <Paper elevation={0} className='p-5 rounded-[8px] hover:shadow-card'>
       <div className='font-black text-2xl max-line-1'>{item.name}</div>

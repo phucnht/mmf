@@ -4,8 +4,8 @@ import { useSearch } from 'hooks';
 import { useQuery } from 'react-query';
 import { publicRoute } from 'routes';
 import { marketService } from 'services';
-import { CardItem } from 'views/Cards';
-import { Filter } from './components';
+import { CardSaleItem } from 'views/Cards';
+import { MarketFilter } from './components';
 
 const TabListing = () => {
   const [dataSearch, onSearchChange] = useSearch();
@@ -19,7 +19,7 @@ const TabListing = () => {
     <Container className='py-10'>
       <div className='flex items-end mb-6'>
         <div className='font-bold text-2xl mr-10'>Marketplace</div>
-        <Filter />
+        <MarketFilter onSearchChange={onSearchChange} />
       </div>
 
       <div className='mb-6'>
@@ -31,7 +31,7 @@ const TabListing = () => {
           <Grid item xl={12 / 5} lg={3} md={4} sm={6} xs={12} key={item.id}>
             <NextLink href={publicRoute.itemView.url({ id: item.nftItem })!}>
               <a>
-                <CardItem item={item} />
+                <CardSaleItem item={item} />
               </a>
             </NextLink>
           </Grid>

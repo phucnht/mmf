@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { profileSelector } from 'reducers/profileSlice';
 import { publicRoute } from 'routes';
 import { marketService } from 'services';
-import { CardItem } from 'views/Cards';
+import { CardSaleItem } from 'views/Cards';
 
 const TabListing = () => {
   const { address } = useSelector(profileSelector);
@@ -29,7 +29,7 @@ const TabListing = () => {
           <Grid item xl={12 / 5} lg={3} md={4} sm={6} xs={12} key={item.id}>
             <NextLink href={publicRoute.itemView.url({ id: item.nftItem })!}>
               <a>
-                <CardItem item={item} />
+                <CardSaleItem item={item} />
               </a>
             </NextLink>
           </Grid>
