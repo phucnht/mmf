@@ -59,8 +59,8 @@ const PopupCancel = ({ item, onClose }: PopupProps) => {
       <DialogContent>
         <Grid container spacing={3}>
           <Grid item xs={5.5}>
-            <CardMedia image={item.external.backgroundUrl} className='flex justify-center items-center h-[240px] p-6'>
-              <img src={item.external.iconUrl} className='max-h-full' />
+            <CardMedia image={item.external.iconUrl} className='h-[240px]'>
+              <div></div>
             </CardMedia>
           </Grid>
           <Grid item xs={6} className='flex flex-col gap-6'>

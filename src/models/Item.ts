@@ -17,7 +17,6 @@ export type ItemType = {
     iconUrl: string;
     modelUrl: string;
     uvUrl: string;
-    backgroundUrl: string;
     itemType: string;
     description: string;
     rarity: RarityType;

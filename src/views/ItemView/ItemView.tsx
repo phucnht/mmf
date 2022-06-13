@@ -19,9 +19,9 @@ const ItemView = () => {
     <Container className='py-20'>
       <Grid container spacing={5}>
         <Grid item md={6} xs={12}>
-          <CardMedia image={item.external.backgroundUrl} className='md:h-[600px] h-[360px] relative p-8 border'>
+          <div className='md:h-[600px] h-[360px] relative p-8 border'>
             <Model3d urlModel={item.external.modelUrl} urlTexture={item.external.uvUrl} />
-          </CardMedia>
+          </div>
         </Grid>
         <Grid item md={6} xs={12} className='flex flex-col items-start'>
           <div className='font-black text-2xl max-line-1'>{item.name}</div>
