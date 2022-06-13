@@ -19,7 +19,7 @@ const TabInventory = () => {
   return (
     <div>
       <div className='mb-6'>
-        <div className=''>{total} Assets</div>
+        <div>{total} Assets</div>
       </div>
 
       <Grid container spacing={3}>

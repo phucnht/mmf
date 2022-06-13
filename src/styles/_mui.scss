@@ -44,10 +44,17 @@
     overflow: visible;
     margin-top: 12px;
     min-width: 180px;
+
+    .MuiMenuItem-root {
+      min-height: 40px;
+      font-weight: 700;
+      color: #000a;
+      font-size: 14px;
+    }
   }
 
   > .MuiPaper-root::before {
-    content: '';
+    // content: '';
     display: block;
     z-index: 0;
     position: absolute;

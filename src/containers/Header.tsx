@@ -1,6 +1,5 @@
 import { CloseOutlined, MenuOutlined } from '@mui/icons-material';
 import { AppBar, Button, Container, IconButton, Menu, MenuItem, Toolbar } from '@mui/material';
-import { styled } from '@mui/system';
 import { NetworkBar, NextImage, NextLink } from 'components';
 import { AppMenu } from 'containers';
 import { useAnchor, useValidNetwork } from 'hooks';
@@ -10,13 +9,6 @@ import { profileSelector, signOut } from 'reducers/profileSlice';
 import { publicRoute } from 'routes';
 import { walletService } from 'services';
 import { shorten } from 'utils/common';
-
-const StyledListItem = styled(MenuItem)({
-  minHeight: '40px !important',
-  fontWeight: 700,
-  color: '#000a',
-  fontSize: 14,
-});
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -50,10 +42,10 @@ const Header = () => {
                 <Menu anchorEl={anchorMenu} open={openMenu} onClose={onCloseMenu} onClick={onCloseMenu}>
                   <NextLink href={publicRoute.profile.path}>
                     <a>
-                      <StyledListItem>Profile</StyledListItem>
+                      <MenuItem>Profile</MenuItem>
                     </a>
                   </NextLink>
-                  <StyledListItem onClick={() => dispatch(signOut())}>Disconnect</StyledListItem>
+                  <MenuItem onClick={() => dispatch(signOut())}>Disconnect</MenuItem>
                 </Menu>
               </>
             ) : (
