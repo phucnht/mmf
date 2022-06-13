@@ -27,7 +27,7 @@ const TabListing = () => {
       <Grid container spacing={3}>
         {items.map((item) => (
           <Grid item xl={12 / 5} lg={3} md={4} sm={6} xs={12} key={item.id}>
-            <NextLink href={publicRoute.itemView.url(item)!}>
+            <NextLink href={publicRoute.itemView.url({ id: item.nftItem })!}>
               <a>
                 <CardItem item={item} />
               </a>

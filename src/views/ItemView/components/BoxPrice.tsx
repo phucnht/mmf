@@ -26,7 +26,7 @@ const BoxPrice = ({ item }: { item: ItemType }) => {
   }, [isLoggedIn]);
 
   return (
-    <div className='mt-10 hidden'>
+    <div className='mt-10'>
       {item.listedOnMarket ? (
         <>
           {isOwner ? (

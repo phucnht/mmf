@@ -23,6 +23,7 @@ export type ItemType = {
   };
   amount: number;
   nftContract: string;
+  nftItem: string;
   tokenId: string;
 };
 

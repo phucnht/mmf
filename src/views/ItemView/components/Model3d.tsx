@@ -30,7 +30,7 @@ const Model3d = ({ urlModel, urlTexture }: { urlModel: string; urlTexture: strin
   return (
     <Canvas dpr={[1, 2]}>
       <ambientLight intensity={1} />
-      <OrbitControls autoRotate enableZoom={false} />
+      <OrbitControls autoRotate enableZoom />
       <Suspense fallback={null}>
         <Model scale={[SCALE, SCALE, SCALE]} url={urlModel} urlTexture={urlTexture} />
       </Suspense>
